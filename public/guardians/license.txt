@@ -1,0 +1,11 @@
+Model Information:
+* title:	Rocket from Guardians Of The Galaxy Vol 3
+* source:	https://sketchfab.com/3d-models/rocket-from-guardians-of-the-galaxy-vol-3-de776b8619bd4c8f806258d1acc649dc
+* author:	CVRxEarth (https://sketchfab.com/CVRxEarth)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Rocket from Guardians Of The Galaxy Vol 3" (https://sketchfab.com/3d-models/rocket-from-guardians-of-the-galaxy-vol-3-de776b8619bd4c8f806258d1acc649dc) by CVRxEarth (https://sketchfab.com/CVRxEarth) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
