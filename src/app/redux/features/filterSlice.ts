@@ -1,7 +1,23 @@
 'use client'
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import Products from '../modals/productsType'
 
-const initialState = {
+interface FilterState {
+  filtered_products: Products[]
+  all_products: Products[]
+  grid_view: boolean
+  sort: string
+  filters: {
+    text: string
+    category: string
+    min_price: number
+    max_price: number
+    price: number
+    [index: string]: string | number
+  }
+}
+
+const initialState: FilterState = {
   filtered_products: [],
   all_products: [],
   grid_view: true,
@@ -19,9 +35,9 @@ const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-    loadProducts: (state, action) => {
+    loadProducts: (state, action: PayloadAction<Products[]>) => {
       const { payload } = action
-      const maxPrice = Math.max(...payload.map((item) => item.price))
+      const maxPrice = Math.max(...payload.map((item: Products) => item.price))
       state.all_products = payload
       state.filtered_products = payload
       state.filters.max_price = maxPrice
@@ -33,7 +49,7 @@ const filterSlice = createSlice({
     setListView: (state) => {
       state.grid_view = false
     },
-    updateSort: (state, action) => {
+    updateSort: (state, action: PayloadAction<string>) => {
       state.sort = action.payload
     },
     updateFilters: (state, action) => {

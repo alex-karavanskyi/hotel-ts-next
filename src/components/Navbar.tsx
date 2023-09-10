@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { RouterLink } from '../utils'
 import { useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { openModal } from '../app/global/features/modalSlice'
+import { openModal } from '../app/redux/features/modalSlice'
 import { handleButtonClick } from '../helpers'
 
 const Navbar = () => {
