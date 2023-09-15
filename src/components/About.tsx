@@ -3,15 +3,15 @@ import { motion } from 'framer-motion'
 import { styles } from '../styles'
 import { services } from '../constants'
 import { fadeIn, textVariant } from '../utils/motion'
-import { ServiceCard } from '../components'
+import { ServiceCard } from '.'
 
-const About = React.forwardRef((props, ref) => {
+const About = React.forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div
       ref={ref}
       className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
     >
-      <motion.div variants={textVariant()}>
+      <motion.div variants={textVariant(0.1)}>
         <p className={styles.sectionSubText}>Introduction</p>
         <h2 className={styles.sectionHeadText}>Overview.</h2>
       </motion.div>

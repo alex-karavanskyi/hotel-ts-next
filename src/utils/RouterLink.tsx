@@ -1,33 +1,46 @@
 'use client'
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { handleButtonClick } from '../helpers'
+import Link from 'next/link'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
-import { closeModal } from '../app/global/features/modalSlice'
+import { handleButtonClick } from '../helpers'
+import { useRouter } from 'next/navigation'
+import { closeModal } from '@/app/redux/features/modalSlice'
 import { useDispatch } from 'react-redux'
+import { NavigateOptions } from 'next/dist/shared/lib/app-router-context'
 
-const RouterLink = ({ parentClass }) => {
-  const navigate = useNavigate()
+type MyNavigateOptions = NavigateOptions & {
+  scrollOptions: {
+    behavior: string
+    block: string
+  }
+}
+
+const RouterLink = ({ parentClass }: any) => {
+  const navigate = useRouter()
   const dispatch = useDispatch()
 
-  const handleClick = (target) => {
-    navigate(`/#${target}`, {
-      scrollOptions: { behavior: 'smooth', block: 'start' },
-    })
+  const options: MyNavigateOptions = {
+    scrollOptions: {
+      behavior: 'smooth',
+      block: 'center',
+    },
+  }
+
+  const handleClick = (target: string) => {
+    navigate.push(`/#${target}`, options)
   }
 
   return (
     <Wrapper>
       <ul className={parentClass} onClick={handleButtonClick}>
         <li onClick={() => dispatch(closeModal())}>
-          <Link to='/'>home</Link>
+          <Link href='/'>home</Link>
         </li>
         <li onClick={() => dispatch(closeModal())}>
-          <Link to='/rooms'>rooms</Link>
+          <Link href='/rooms'>rooms</Link>
         </li>
         <li onClick={() => dispatch(closeModal())}>
-          <Link to='/favorite'>favorite</Link>
+          <Link href='/favorite'>favorite</Link>
         </li>
         <li onClick={() => dispatch(closeModal())}>
           <button onClick={() => handleClick('about')}>about</button>

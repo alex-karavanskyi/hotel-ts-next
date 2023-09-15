@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import styled from 'styled-components'
-import { Filters, ProductList, Sort } from '../components'
+import { Filters, ProductList, Sort } from '@/components'
 
 const Rooms = () => {
   return (

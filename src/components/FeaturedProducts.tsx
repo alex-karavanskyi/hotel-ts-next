@@ -1,14 +1,14 @@
 'use client'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import styled from 'styled-components'
-import { Error, Loading, ProductSlider } from '../components'
-import { useSelector } from 'react-redux'
+import { Error, Loading, ProductSlider } from '.'
+import { useAppSelector } from '@/app/redux/hooks'
 import { handleButtonClick } from '../helpers'
 import { SectionWrapper } from '../hoc'
 
 const FeaturedProducts = () => {
-  const { products_loading: loading, products_error: error } = useSelector(
+  const { products_loading: loading, products_error: error } = useAppSelector(
     (store) => store.products
   )
 
@@ -25,7 +25,7 @@ const FeaturedProducts = () => {
         <div className='underline'></div>
       </div>
       <ProductSlider />
-      <Link to='/rooms' className='btn' onClick={handleButtonClick}>
+      <Link href='/rooms' className='btn' onClick={handleButtonClick}>
         all products
       </Link>
     </Wrapper>

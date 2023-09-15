@@ -13,8 +13,8 @@ import { useRouter } from 'next/router'
 
 const Home = () => {
   const location = useRouter()
-  const aboutRef = useRef(null)
-  const contactRef = useRef(null)
+  const aboutRef = useRef<null | HTMLDivElement>(null)
+  const contactRef = useRef<null | HTMLDivElement>(null)
 
   useEffect(() => {
     if (location.pathname === '#about' && aboutRef.current) {

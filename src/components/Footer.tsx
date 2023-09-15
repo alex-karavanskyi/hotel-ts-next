@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { SocialLink } from '../utils'
 import { handleButtonClick } from '../helpers'
 import {
@@ -29,7 +29,7 @@ const Footer = () => {
                         {musicItem.map((item) => {
                           return (
                             <li key={item.id}>
-                              <Link to='/rooms'>{item.music}</Link>
+                              <Link href='/rooms'>{item.music}</Link>
                             </li>
                           )
                         })}
@@ -45,7 +45,7 @@ const Footer = () => {
                         {discoverItem.map((item) => {
                           return (
                             <li key={item.id}>
-                              <Link to='/rooms'>{item.discover}</Link>
+                              <Link href='/rooms'>{item.discover}</Link>
                             </li>
                           )
                         })}
@@ -61,7 +61,7 @@ const Footer = () => {
                         {accountItem.map((item) => {
                           return (
                             <li key={item.id}>
-                              <Link to='/rooms'>{item.account}</Link>
+                              <Link href='/rooms'>{item.account}</Link>
                             </li>
                           )
                         })}
@@ -77,7 +77,7 @@ const Footer = () => {
                         {academyItem.map((item) => {
                           return (
                             <li key={item.id}>
-                              <Link to='/rooms'>{item.sounds}</Link>
+                              <Link href='/rooms'>{item.academy}</Link>
                             </li>
                           )
                         })}
@@ -93,7 +93,7 @@ const Footer = () => {
                         {soundsItem.map((item) => {
                           return (
                             <li key={item.id}>
-                              <Link to='/rooms'>{item.sounds}</Link>
+                              <Link href='/rooms'>{item.sounds}</Link>
                             </li>
                           )
                         })}
@@ -109,7 +109,7 @@ const Footer = () => {
                         {aboutItem.map((item) => {
                           return (
                             <li key={item.id}>
-                              <Link to='/rooms'>{item.about}</Link>
+                              <Link href='/rooms'>{item.about}</Link>
                             </li>
                           )
                         })}
@@ -131,7 +131,7 @@ const Footer = () => {
                         {citiesItem.map((item) => {
                           return (
                             <li key={item.id}>
-                              <Link to='/rooms'>{item.cities}</Link>
+                              <Link href='/rooms'>{item.cities}</Link>
                             </li>
                           )
                         })}
@@ -159,8 +159,8 @@ const Wrapper = styled.footer`
   .container {
     padding: 0;
     max-width: 1300px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: auhref;
+    margin-right: auhref;
   }
   .container__logo {
     padding-top: 80px;

@@ -1,26 +1,30 @@
 'use client'
 import React from 'react'
 import styled from 'styled-components'
+import Link from 'next/link'
 import { formatPrice } from '../helpers'
-import { Link } from 'react-router-dom'
 import { handleButtonClick } from '../helpers'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  addFavorite,
-  removeFavorite,
-} from '../app/global/features/productSlice'
+import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
+import { addFavorite, removeFavorite } from '@/app/redux/features/productSlice'
+import Products from '@/app/redux/modals/productsType'
 
-const ListView = ({ products }) => {
-  const dispatch = useDispatch()
+interface ListProducts {
+  products: Products[]
+}
 
-  const handleAddToFavorite = (productId) => {
+const ListView: React.FC<ListProducts> = ({ products }) => {
+  const dispatch = useAppDispatch()
+
+  const handleAddToFavorite = (productId: string) => {
     dispatch(addFavorite({ productId }))
   }
-  const handleremoveToFavorite = (productId) => {
+  const handleremoveToFavorite = (productId: string) => {
     dispatch(removeFavorite({ productId }))
   }
-  const isFavorite = useSelector((state) => state.products.favorites_products)
+  const isFavorite = useAppSelector(
+    (state) => state.products.favorites_products
+  )
   return (
     <Wrapper>
       {products.map((product) => {
@@ -44,7 +48,7 @@ const ListView = ({ products }) => {
               <h5 className='price'>{formatPrice(price)}</h5>
               <p>{description.substring(0, 150)}...</p>
               <Link
-                to={`/rooms/${id}`}
+                href={`/rooms/${id}`}
                 className='btn'
                 onClick={handleButtonClick}
               >

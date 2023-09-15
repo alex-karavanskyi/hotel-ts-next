@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 import Products from '../modals/productsType'
 
-interface ProductsState {
+export interface ProductsState {
   products_loading: boolean
   products_error: boolean
   products: Products[]
@@ -11,7 +11,7 @@ interface ProductsState {
   single_product_loading: boolean
   single_product_error: boolean
   favorites_products: Products[]
-  single_product: Products | {}
+  single_product: Products
 }
 
 const initialState: ProductsState = {
@@ -22,7 +22,7 @@ const initialState: ProductsState = {
   single_product_loading: false,
   single_product_error: false,
   favorites_products: [],
-  single_product: {},
+  single_product: {} as Products,
 }
 
 export const getProductsItems = createAsyncThunk<
@@ -38,7 +38,7 @@ export const getProductsItems = createAsyncThunk<
   }
 })
 export const getSingeProduct = createAsyncThunk<
-  Products[],
+  Products,
   string,
   { rejectValue: string }
 >('products/getSingeProduct', async (url, thunkAPI) => {
@@ -54,7 +54,10 @@ const productSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    addFavorite: (state, action: PayloadAction<{ productId: string }>) => {
+    addFavorite: (
+      state,
+      action: PayloadAction<{ productId: string | string[] }>
+    ) => {
       const { productId } = action.payload
       const productToAdd = state.products.find(
         (product) => product.id === productId
@@ -63,7 +66,10 @@ const productSlice = createSlice({
         state.favorites_products.push(productToAdd)
       }
     },
-    removeFavorite: (state, action: PayloadAction<{ productId: string }>) => {
+    removeFavorite: (
+      state,
+      action: PayloadAction<{ productId: string | string[] }>
+    ) => {
       const { productId } = action.payload
       state.favorites_products = state.favorites_products.filter(
         (product) => product.id !== productId

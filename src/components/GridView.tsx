@@ -1,27 +1,31 @@
 'use client'
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { formatPrice } from '../helpers'
 import { FaSearch } from 'react-icons/fa'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { handleButtonClick } from '../helpers'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  addFavorite,
-  removeFavorite,
-} from '../app/global/features/productSlice'
+import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
+import { addFavorite, removeFavorite } from '@/app/redux/features/productSlice'
+import Products from '@/app/redux/modals/productsType'
 
-const GridView = ({ products }) => {
-  const dispatch = useDispatch()
+interface GridProducts {
+  products: Products[]
+}
 
-  const handleAddToFavorite = (productId) => {
+const GridView: React.FC<GridProducts> = ({ products }) => {
+  const dispatch = useAppDispatch()
+
+  const handleAddToFavorite = (productId: string) => {
     dispatch(addFavorite({ productId }))
   }
-  const handleremoveToFavorite = (productId) => {
+  const handleremoveToFavorite = (productId: string) => {
     dispatch(removeFavorite({ productId }))
   }
-  const isFavorite = useSelector((state) => state.products.favorites_products)
+  const isFavorite = useAppSelector(
+    (state) => state.products.favorites_products
+  )
 
   return (
     <Wrapper>
@@ -34,7 +38,7 @@ const GridView = ({ products }) => {
               <div className='container'>
                 <img src={image} alt={name} />
                 <Link
-                  to={`/rooms/${id}`}
+                  href={`/rooms/${id}`}
                   className='link'
                   onClick={handleButtonClick}
                 >

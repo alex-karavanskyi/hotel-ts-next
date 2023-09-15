@@ -2,7 +2,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import Products from '../modals/productsType'
 
-interface FilterState {
+export interface FilterState {
   filtered_products: Products[]
   all_products: Products[]
   grid_view: boolean

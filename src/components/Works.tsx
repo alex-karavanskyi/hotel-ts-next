@@ -6,8 +6,21 @@ import { github } from '../assets'
 import { SectionWrapper } from '../hoc'
 import { projects } from '../constants'
 import { fadeIn, textVariant } from '../utils/motion'
+import Image, { StaticImageData } from 'next/image'
 
-const ProjectCard = ({
+interface ProjectCard {
+  index: number
+  name: string
+  description: string
+  tags: {
+    name: string
+    color: string
+  }[]
+  image: StaticImageData
+  source_code_link: string
+}
+
+const ProjectCard: React.FC<ProjectCard> = ({
   index,
   name,
   description,
@@ -26,7 +39,7 @@ const ProjectCard = ({
         className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full'
       >
         <div className='relative w-full h-[230px]'>
-          <img
+          <Image
             src={image}
             alt='project_image'
             className='w-full h-full object-cover rounded-2xl'
@@ -37,7 +50,7 @@ const ProjectCard = ({
               onClick={() => window.open(source_code_link, '_blank')}
               className='black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'
             >
-              <img
+              <Image
                 src={github}
                 alt='source code'
                 className='w-1/2 h-1/2 object-contain'
@@ -69,7 +82,7 @@ const ProjectCard = ({
 const Works = () => {
   return (
     <>
-      <motion.div variants={textVariant()}>
+      <motion.div variants={textVariant(0.1)}>
         <p className={`${styles.sectionSubText} `}>My work</p>
         <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
       </motion.div>

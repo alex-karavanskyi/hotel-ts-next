@@ -1,26 +1,26 @@
 'use client'
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import styled from 'styled-components'
-import { useSelector, useDispatch } from 'react-redux'
+import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
 import {
   updateSort,
   setGridView,
   setListView,
-} from '../app/global/features/filterSlice'
+  sortProducts,
+} from '@/app/redux/features/filterSlice'
 import { BsFillGridFill, BsList } from 'react-icons/bs'
 import { useEffect } from 'react'
-import { sortProducts } from '../app/global/features/filterSlice'
 
 const Sort = () => {
   const {
     filtered_products: products,
     grid_view,
     sort,
-  } = useSelector((store) => store.filter)
+  } = useAppSelector((store) => store.filter)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
-  const handleSort = (e) => {
+  const handleSort = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(updateSort(e.target.value))
   }
 

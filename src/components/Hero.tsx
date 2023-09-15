@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { styles } from '../styles'
-import { EarthCanvas } from '../components/canvas'
+import { EarthCanvas } from './canvas'
 import logo from '../assets/herobg.png'
 
 const Hero = () => {

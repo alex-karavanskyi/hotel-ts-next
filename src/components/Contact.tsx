@@ -1,12 +1,12 @@
 'use client'
-import React, { useRef, useState } from 'react'
+import React, { ChangeEvent, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
 import { styles } from '../styles'
 import { slideIn } from '../utils/motion'
 
-const Contact = React.forwardRef((props, ref) => {
-  const formRef = useRef()
+const Contact = React.forwardRef<HTMLDivElement>((props, ref) => {
+  const formRef = useRef<HTMLFormElement | null>(null)
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -15,9 +15,10 @@ const Contact = React.forwardRef((props, ref) => {
 
   const [loading, setLoading] = useState(false)
 
-  const handleChange = (e) => {
-    const { target } = e
-    const { name, value } = target
+  const handleChange = (
+    e: React.FormEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.currentTarget
 
     setForm({
       ...form,
@@ -25,22 +26,22 @@ const Contact = React.forwardRef((props, ref) => {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
 
     emailjs
       .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
         {
           from_name: form.name,
-          to_name: 'JavaScript Mastery',
+          to_name: 'Alex',
           from_email: form.email,
-          to_email: 'sujata@jsmastery.pro',
+          to_email: 'alex@gmail.com',
           message: form.message,
         },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
       )
       .then(
         () => {

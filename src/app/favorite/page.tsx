@@ -1,15 +1,15 @@
 'use client'
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { formatPrice } from '../helpers'
-import { removeFavorite } from '../global/features/productSlice'
+import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
+import { formatPrice } from '@/helpers'
+import { removeFavorite } from '@/app/redux/features/productSlice'
 import styled from 'styled-components'
 
 const Favorite = () => {
-  const wishlist = useSelector((state) => state.products.favorites_products)
-  const dispatch = useDispatch()
+  const wishlist = useAppSelector((state) => state.products.favorites_products)
+  const dispatch = useAppDispatch()
 
-  const handleRemoveFromWishlist = (productId) => {
+  const handleRemoveFromWishlist = (productId: string) => {
     dispatch(removeFavorite({ productId }))
   }
 

@@ -3,9 +3,10 @@ import React from 'react'
 import styled from 'styled-components'
 import logo from '../images/Udemy_logo.png'
 import logoInverted from '../images/Udemy_logo_Inverted.png'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
+import Image from 'next/image'
 import { RouterLink } from '../utils'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@/app/redux/hooks'
 import { useState, useEffect } from 'react'
 import { openModal } from '../app/redux/features/modalSlice'
 import { handleButtonClick } from '../helpers'
@@ -13,11 +14,11 @@ import { handleButtonClick } from '../helpers'
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.pageYOffset > 80) {
+      if (window.scrollY > 80) {
         setNavbar(true)
       } else {
         setNavbar(false)
@@ -31,8 +32,8 @@ const Navbar = () => {
   return (
     <Wrapper>
       <nav className={navbar ? 'nav navbar-fixed' : 'nav'}>
-        <Link to={`/`} className='link'>
-          <img
+        <Link href={`/`} className='link'>
+          <Image
             src={navbar ? logo : logoInverted}
             className='nav-logo'
             alt='Logo'

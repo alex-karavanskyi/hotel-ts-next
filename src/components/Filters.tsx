@@ -1,32 +1,33 @@
 'use client'
-import React from 'react'
 import styled from 'styled-components'
 import { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
 import {
   clearFilters,
   updateFilters,
   loadProducts,
   filterProducts,
-} from '../app/global/features/filterSlice'
+} from '@/app/redux/features/filterSlice'
 import { getUniqueValues, formatPrice } from '../helpers'
 
 const Filters = () => {
-  const { products } = useSelector((store) => store.products)
+  const { products } = useAppSelector((store) => store.products)
   const {
     filters: { text, category, min_price, price, max_price },
     all_products,
-  } = useSelector((store) => store.filter)
+  } = useAppSelector((store) => store.filter)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const categories = getUniqueValues(all_products, 'category')
 
-  const handleFilters = (e) => {
-    let name = e.target.name
-    let value = e.target.value
+  const handleFilters = (
+    e: React.FormEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>
+  ) => {
+    let name = e.currentTarget.name
+    let value: string | number = e.currentTarget.value
     if (name === 'category') {
-      value = e.target.textContent
+      value = e.currentTarget.textContent || ''
     }
     if (name === 'price') {
       value = Number(value)
@@ -56,16 +57,19 @@ const Filters = () => {
               onChange={handleFilters}
             />
             {categories.map((c, index) => {
-              return (
-                <button
-                  key={index}
-                  onClick={handleFilters}
-                  type='button'
-                  name='category'
-                >
-                  {c}
-                </button>
-              )
+              if (typeof c === 'string') {
+                return (
+                  <button
+                    key={index}
+                    onClick={handleFilters}
+                    type='button'
+                    name='category'
+                  >
+                    {c}
+                  </button>
+                )
+              }
+              return null
             })}
           </div>
           <div className='form-control-price'>

@@ -1,11 +1,11 @@
 'use client'
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { GridView, ListView } from '../components'
+import { useAppSelector } from '@/app/redux/hooks'
+import { GridView, ListView } from '@/components'
 
 const ProductList = () => {
-  const { filtered_products: products, grid_view } = useSelector(
+  const { filtered_products: products, grid_view } = useAppSelector(
     (store) => store.filter
   )
   const [isLargeScreen, setIsLargeScreen] = useState(false)
@@ -14,10 +14,11 @@ const ProductList = () => {
     const mediaQuery = window.matchMedia('(max-width: 768px)')
     setIsLargeScreen(mediaQuery.matches)
 
-    const handleMediaQueryChange = (event) => {
+    const handleMediaQueryChange = (event: {
+      matches: boolean | ((prevState: boolean) => boolean)
+    }) => {
       setIsLargeScreen(event.matches)
     }
-
     mediaQuery.addEventListener('change', handleMediaQueryChange)
 
     return () => {
@@ -36,9 +37,9 @@ const ProductList = () => {
     return <ListView products={products} />
   }
   if (isLargeScreen) {
-    return <ListView products={products}>product list</ListView>
+    return <ListView products={products} />
   }
-  return <GridView products={products}>product list</GridView>
+  return <GridView products={products} />
 }
 
 export default ProductList

@@ -1,15 +1,15 @@
 'use client'
 import React from 'react'
 import styled from 'styled-components'
-import city from '../video/city.mp4'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
-import { closeModal } from '../app/global/features/modalSlice'
+import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
+import { closeModal } from '@/app/redux/features/modalSlice'
 import { RouterLink, SocialLink } from '../utils'
 
 const Sidebar = () => {
-  const { isOpen } = useSelector((store) => store.modal)
-  const dispatch = useDispatch()
+  const { isOpen } = useAppSelector((store) => store.modal)
+  const dispatch = useAppDispatch()
+
+  const city = '../video/city.mp4'
 
   return (
     <Wrapper>

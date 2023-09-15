@@ -1,14 +1,16 @@
 'use client'
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
+import Link from 'next/link'
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
-import { Link } from 'react-router-dom'
 import { formatPrice } from '../helpers'
 import { useSwipeable } from 'react-swipeable'
+import { useAppSelector } from '@/app/redux/hooks'
 
 export const ProductSlider = () => {
-  const { featured_products: featured } = useSelector((store) => store.products)
+  const { featured_products: featured } = useAppSelector(
+    (store) => store.products
+  )
   const [activeIndex, setActiveIndex] = useState(0)
 
   const goToNext = useCallback(() => {
@@ -23,7 +25,7 @@ export const ProductSlider = () => {
     setActiveIndex(newIndex)
   }
 
-  const goToSlide = (slideIndex) => {
+  const goToSlide = (slideIndex: number) => {
     setActiveIndex(slideIndex)
   }
 
@@ -59,7 +61,7 @@ export const ProductSlider = () => {
 
             return (
               <article key={id} className={position}>
-                <Link to={`/rooms/${id}`}>
+                <Link href={`/rooms/${id}`}>
                   <img alt='img' className='person-img' src={image} />
                 </Link>
                 <h4 className='text-white'>{name}</h4>

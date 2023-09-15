@@ -1,27 +1,33 @@
 'use client'
 import React, { useEffect } from 'react'
-import { getSingeProduct } from '../features/productSlice'
-import { useSelector, useDispatch } from 'react-redux'
-import { useParams, useNavigate } from 'react-router-dom'
-import { formatPrice } from '../helpers'
-import { Loading, Error, ProductImages } from '../components'
+import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
+import { useParams, useRouter } from 'next/navigation'
+import { formatPrice } from '@/helpers'
+import { Loading, Error, ProductImages } from '@/components'
 import styled from 'styled-components'
-import { addFavorite, removeFavorite } from '../features/productSlice'
+import {
+  addFavorite,
+  removeFavorite,
+  getSingeProduct,
+} from '@/app/redux/features/productSlice'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
+import { AnyMxRecord } from 'dns'
 
 const url = `https://course-api.com/react-store-single-product?id=`
 
 const SingleProductPage = () => {
   const { id } = useParams()
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useRouter()
+  const dispatch = useAppDispatch()
   const {
     single_product_loading: loading,
     single_product_error: error,
     single_product: product,
-  } = useSelector((store) => store.products)
+  } = useAppSelector((store) => store.products)
 
-  const isFavorite = useSelector((state) => state.products.favorites_products)
+  const isFavorite = useAppSelector(
+    (state) => state.products.favorites_products
+  )
 
   useEffect(() => {
     dispatch(getSingeProduct(`${url}${id}`))
@@ -30,7 +36,7 @@ const SingleProductPage = () => {
   useEffect(() => {
     if (error) {
       setTimeout(() => {
-        navigate('/')
+        navigate.push('/')
       }, 3000)
     }
   }, [error, navigate])
@@ -42,14 +48,15 @@ const SingleProductPage = () => {
     return <Error />
   }
 
-  const handleAddToFavorite = (productId) => {
+  const handleAddToFavorite = (productId: string | string[]) => {
     dispatch(addFavorite({ productId }))
   }
-  const handleremoveToFavorite = (productId) => {
+  const handleremoveToFavorite = (productId: string | string[]) => {
     dispatch(removeFavorite({ productId }))
   }
 
   const { name, price, description, stock, id: sku, company, images } = product
+
   const wishList = isFavorite.some((item) => item.id === id)
 
   return (
@@ -73,7 +80,11 @@ const SingleProductPage = () => {
             <p className='desc'> {description}</p>
             <p className='info'>
               <span>Available : </span>
-              {stock > 0 ? 'In stock' : 'out of stock'}
+              {stock !== undefined
+                ? stock > 0
+                  ? 'In stock'
+                  : 'out of stock'
+                : 'undefined'}
             </p>
             <p className='info'>
               <span>SKU : </span>

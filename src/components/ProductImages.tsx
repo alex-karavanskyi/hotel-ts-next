@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import Image from 'next/image'
 
 const ProductImages = ({ images = [{ url: '' }] }) => {
   const [main, setMain] = useState(images[0])
@@ -10,9 +11,9 @@ const ProductImages = ({ images = [{ url: '' }] }) => {
       <div className='gallery'>
         {images.map((image, index) => {
           return (
-            <img
+            <Image
               src={image.url}
-              alt={image.filename}
+              alt='Image'
               key={index}
               onClick={() => setMain(images[index])}
               className={`${image.url === main.url ? 'active' : null}`}

@@ -4,7 +4,7 @@ import { styles } from '../styles'
 import { SectionWrapper } from '../hoc'
 import { textVariant } from '../utils/motion'
 import { testimonials } from '../constants'
-import FeedbackCard from '../components/card/FeedbackCard'
+import FeedbackCard from './card/FeedbackCard'
 
 const Feedbacks = () => {
   return (
@@ -12,7 +12,7 @@ const Feedbacks = () => {
       <div
         className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[300px]`}
       >
-        <motion.div variants={textVariant()}>
+        <motion.div variants={textVariant(0.1)}>
           <p className={styles.sectionSubText}>What others say</p>
           <h2 className={styles.sectionHeadText}>Testimonials.</h2>
         </motion.div>
