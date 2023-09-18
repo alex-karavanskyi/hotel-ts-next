@@ -19,6 +19,7 @@
     "axios": "^1.5.0",
     "emailjs": "^4.0.3",
     "framer-motion": "^10.16.4",
+    "maath": "^0.8.2",
     "math-random": "^2.0.1",
     "next": "13.4.19",
     "postcss": "8.4.29",

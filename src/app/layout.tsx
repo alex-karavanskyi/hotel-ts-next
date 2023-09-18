@@ -1,9 +1,10 @@
+'use client'
 import './globals.css'
-import '../fontawesome-free-5.12.1-web'
+// import '@/fontawesome-free-5.12.1-web'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Navbar, Footer, Sidebar } from '@/components/'
-import { Providers } from './redux/provider'
+import { ReduxProvider } from '@/app/redux/provider'
 import { useEffect } from 'react'
 import { useAppDispatch } from '@/app/redux/hooks'
 import { getProductsItems } from './redux/features/productSlice'
@@ -34,9 +35,9 @@ export default function RootLayout({
         <link rel='apple-touch-icon' href='%PUBLIC_URL%/logo192.png' />
         <base href='#' target='_blank' />
       </head>
-      <body>
+      <body className={inter.className}>
         <Navbar />
-        <Providers>{children}</Providers>
+        <ReduxProvider>{children}</ReduxProvider>
         <Footer />
         <Sidebar />
       </body>

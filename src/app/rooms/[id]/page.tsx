@@ -5,18 +5,29 @@ import { useParams, useRouter } from 'next/navigation'
 import { formatPrice } from '@/helpers'
 import { Loading, Error, ProductImages } from '@/components'
 import styled from 'styled-components'
+import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import {
   addFavorite,
   removeFavorite,
   getSingeProduct,
 } from '@/app/redux/features/productSlice'
-import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
-import { AnyMxRecord } from 'dns'
 
 const url = `https://course-api.com/react-store-single-product?id=`
 
-const SingleProductPage = () => {
-  const { id } = useParams()
+type Props = {
+  params: {
+    id: string
+  }
+}
+
+export function generateMetadata({ params: { id } }: Props) {
+  return {
+    title: id,
+  }
+}
+
+const SingleProductPage = ({ params: { id } }: Props) => {
+  // const { id } = useParams()
   const navigate = useRouter()
   const dispatch = useAppDispatch()
   const {
