@@ -4,8 +4,13 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Navbar, Footer, Sidebar } from '@/components/'
 import { Providers } from './redux/provider'
+import { useEffect } from 'react'
+import { useAppDispatch } from '@/app/redux/hooks'
+import { getProductsItems } from './redux/features/productSlice'
 
 const inter = Inter({ subsets: ['latin'] })
+
+const url = 'https://course-api.com/react-store-products'
 
 export const metadata: Metadata = {
   title: 'Hotel App',
@@ -17,6 +22,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(getProductsItems(url))
+  }, [dispatch])
+
   return (
     <html lang='en'>
       <head>

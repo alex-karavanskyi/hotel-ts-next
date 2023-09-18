@@ -13,13 +13,15 @@ interface ListProducts {
   products: Products[]
 }
 
+type HandleProduct = string
+
 const ListView: React.FC<ListProducts> = ({ products }) => {
   const dispatch = useAppDispatch()
 
-  const handleAddToFavorite = (productId: string) => {
+  const handleAddToFavorite = (productId: HandleProduct) => {
     dispatch(addFavorite({ productId }))
   }
-  const handleremoveToFavorite = (productId: string) => {
+  const handleremoveToFavorite = (productId: HandleProduct) => {
     dispatch(removeFavorite({ productId }))
   }
   const isFavorite = useAppSelector(

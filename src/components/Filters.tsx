@@ -10,6 +10,8 @@ import {
 } from '@/app/redux/features/filterSlice'
 import { getUniqueValues, formatPrice } from '../helpers'
 
+type HandleValue = string | number
+
 const Filters = () => {
   const { products } = useAppSelector((store) => store.products)
   const {
@@ -25,7 +27,7 @@ const Filters = () => {
     e: React.FormEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>
   ) => {
     let name = e.currentTarget.name
-    let value: string | number = e.currentTarget.value
+    let value: HandleValue = e.currentTarget.value
     if (name === 'category') {
       value = e.currentTarget.textContent || ''
     }

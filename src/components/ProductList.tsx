@@ -14,9 +14,7 @@ const ProductList = () => {
     const mediaQuery = window.matchMedia('(max-width: 768px)')
     setIsLargeScreen(mediaQuery.matches)
 
-    const handleMediaQueryChange = (event: {
-      matches: boolean | ((prevState: boolean) => boolean)
-    }) => {
+    const handleMediaQueryChange = (event: { matches: boolean }) => {
       setIsLargeScreen(event.matches)
     }
     mediaQuery.addEventListener('change', handleMediaQueryChange)

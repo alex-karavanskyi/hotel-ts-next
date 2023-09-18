@@ -5,6 +5,7 @@ type Products = {
   image: string
   colors: string[]
   company: string
+  shipping: boolean
   description: string
   category: string
   images?: [
@@ -35,9 +36,8 @@ type Products = {
       }
     }
   ]
-  shipping?: boolean
-  featured?: boolean
   stock?: number
+  featured?: boolean
   reviews?: number
   stars?: number
 }

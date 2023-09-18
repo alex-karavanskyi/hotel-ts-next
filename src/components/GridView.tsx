@@ -14,13 +14,15 @@ interface GridProducts {
   products: Products[]
 }
 
+type HandleProduct = string
+
 const GridView: React.FC<GridProducts> = ({ products }) => {
   const dispatch = useAppDispatch()
 
-  const handleAddToFavorite = (productId: string) => {
+  const handleAddToFavorite = (productId: HandleProduct) => {
     dispatch(addFavorite({ productId }))
   }
-  const handleremoveToFavorite = (productId: string) => {
+  const handleremoveToFavorite = (productId: HandleProduct) => {
     dispatch(removeFavorite({ productId }))
   }
   const isFavorite = useAppSelector(
