@@ -1,33 +1,20 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import styled from 'styled-components'
 import { handleButtonClick } from '../helpers'
-import { useRouter } from 'next/navigation'
-import { closeModal } from '@/app/redux/features/modalSlice'
-import { useDispatch } from 'react-redux'
-import { NavigateOptions } from 'next/dist/shared/lib/app-router-context'
+import styled from 'styled-components'
+import { closeModal } from '../app/redux/features/modalSlice'
+import { useAppDispatch } from '../app/redux/hooks'
+import { useRouter } from 'next/router'
 
-type MyNavigateOptions = NavigateOptions & {
-  scrollOptions: {
-    behavior: string
-    block: string
-  }
-}
-
-const RouterLink = ({ parentClass }: any) => {
-  const navigate = useRouter()
-  const dispatch = useDispatch()
-
-  const options: MyNavigateOptions = {
-    scrollOptions: {
-      behavior: 'smooth',
-      block: 'center',
-    },
-  }
+const RouterLink: React.FC<{ parentClass?: string }> = ({ parentClass }) => {
+  const router = useRouter()
+  const dispatch = useAppDispatch()
 
   const handleClick = (target: string) => {
-    navigate.push(`/#${target}`, options)
+    router.push(`/#${target}`, undefined, {
+      scrollOptions: { behavior: 'smooth', block: 'start' },
+    })
   }
 
   return (
@@ -44,9 +31,11 @@ const RouterLink = ({ parentClass }: any) => {
         </li>
         <li onClick={() => dispatch(closeModal())}>
           <button onClick={() => handleClick('about')}>about</button>
+          {/* <Link href='/#about'>about</Link> */}
         </li>
         <li onClick={() => dispatch(closeModal())}>
           <button onClick={() => handleClick('contact')}>contact</button>
+          {/* <Link href='/#contact'>contact</Link> */}
         </li>
       </ul>
     </Wrapper>

@@ -35,7 +35,7 @@ const Navbar = () => {
         <Link href={`/`} className='link'>
           <Image
             src={navbar ? logo : logoInverted}
-            className='nav-logo'
+            width={100}
             alt='Logo'
             onClick={handleButtonClick}
           />
@@ -63,10 +63,6 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     transition: var(--transition);
-  }
-
-  .nav-logo {
-    max-width: 90px;
   }
   .nav-btn {
     position: absolute;

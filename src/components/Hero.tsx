@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { styles } from '../styles'
-import { EarthCanvas } from './canvas'
+// import { EarthCanvas } from './canvas'
 import logo from '../assets/herobg.png'
 
 const Hero = () => {
@@ -29,7 +29,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <EarthCanvas />
+      {/* <EarthCanvas /> */}
 
       <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
         <a href='#featured'>

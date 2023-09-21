@@ -9,22 +9,32 @@ import Works from '../components/Works'
 import Feedbacks from '../components/Feedbacks'
 import Contact from '../components/Contact'
 import { StarsCanvas } from '../components/canvas'
-import { useRef, useEffect } from 'react'
-import { useRouter } from 'next/router'
+import { useRef, useEffect, useLayoutEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import { useAppDispatch } from '@/app/redux/hooks'
+import { getProductsItems } from '@/app/redux/features/productSlice'
 
 const Home = () => {
-  const location = useRouter()
+  const pathname = usePathname()
   const aboutRef = useRef<null | HTMLDivElement>(null)
   const contactRef = useRef<null | HTMLDivElement>(null)
 
+  const url = 'https://course-api.com/react-store-products'
+
+  const dispatch = useAppDispatch()
+
   useEffect(() => {
-    if (location.pathname === '#about' && aboutRef.current) {
+    dispatch(getProductsItems(url))
+  }, [dispatch])
+
+  useLayoutEffect(() => {
+    if (pathname === '#about' && aboutRef.current) {
       aboutRef.current.scrollIntoView({ behavior: 'smooth' })
     }
-    if (location.pathname === '#contact' && contactRef.current) {
+    if (pathname === '#contact' && contactRef.current) {
       contactRef.current.scrollIntoView({ behavior: 'smooth' })
     }
-  }, [location])
+  }, [pathname])
   return (
     <main>
       <Hero />

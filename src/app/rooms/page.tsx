@@ -2,6 +2,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Filters, ProductList, Sort } from '@/components'
+import { Metadata } from 'next'
+import { useEffect } from 'react'
+import { useAppDispatch } from '@/app/redux/hooks'
+import { getProductsItems } from '@/app/redux/features/productSlice'
+
+// export const metadata: Metadata = {
+//   title: 'Rooms | Hotel App',
+// }
 
 const Rooms = () => {
   return (

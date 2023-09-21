@@ -6,6 +6,7 @@ import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 import { formatPrice } from '../helpers'
 import { useSwipeable } from 'react-swipeable'
 import { useAppSelector } from '@/app/redux/hooks'
+import Image from 'next/image'
 
 export const ProductSlider = () => {
   const { featured_products: featured } = useAppSelector(
@@ -62,7 +63,13 @@ export const ProductSlider = () => {
             return (
               <article key={id} className={position}>
                 <Link href={`/rooms/${id}`}>
-                  <img alt='img' className='person-img' src={image} />
+                  <Image
+                    alt='img'
+                    className='person-img'
+                    src={image}
+                    width={700}
+                    height={700}
+                  />
                 </Link>
                 <h4 className='text-white'>{name}</h4>
                 <p className='text-white'>{formatPrice(price)}</p>
