@@ -1,21 +1,13 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import { handleButtonClick } from '../helpers'
 import styled from 'styled-components'
 import { closeModal } from '../app/redux/features/modalSlice'
+import { handleButtonClick } from '../helpers'
 import { useAppDispatch } from '../app/redux/hooks'
-import { useRouter } from 'next/router'
 
 const RouterLink: React.FC<{ parentClass?: string }> = ({ parentClass }) => {
-  const router = useRouter()
   const dispatch = useAppDispatch()
-
-  const handleClick = (target: string) => {
-    router.push(`/#${target}`, undefined, {
-      scrollOptions: { behavior: 'smooth', block: 'start' },
-    })
-  }
 
   return (
     <Wrapper>
@@ -30,12 +22,10 @@ const RouterLink: React.FC<{ parentClass?: string }> = ({ parentClass }) => {
           <Link href='/favorite'>favorite</Link>
         </li>
         <li onClick={() => dispatch(closeModal())}>
-          <button onClick={() => handleClick('about')}>about</button>
-          {/* <Link href='/#about'>about</Link> */}
+          <Link href='/#about'>about</Link>
         </li>
         <li onClick={() => dispatch(closeModal())}>
-          <button onClick={() => handleClick('contact')}>contact</button>
-          {/* <Link href='/#contact'>contact</Link> */}
+          <Link href='/#contact'>contact</Link>
         </li>
       </ul>
     </Wrapper>
