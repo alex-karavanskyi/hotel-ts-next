@@ -10,12 +10,12 @@ import Feedbacks from '../components/Feedbacks'
 import Contact from '../components/Contact'
 import { StarsCanvas } from '../components/canvas'
 import { useRef, useEffect, useLayoutEffect } from 'react'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useAppDispatch } from '@/app/redux/hooks'
 import { getProductsItems } from '@/app/redux/features/productSlice'
 
 const Home = () => {
-  const pathname = usePathname()
+  const router = useRouter()
   const aboutRef = useRef<null | HTMLDivElement>(null)
   const contactRef = useRef<null | HTMLDivElement>(null)
 
@@ -27,14 +27,15 @@ const Home = () => {
     dispatch(getProductsItems(url))
   }, [dispatch])
 
-  useLayoutEffect(() => {
-    if (pathname === '#about' && aboutRef.current) {
-      aboutRef.current.scrollIntoView({ behavior: 'smooth' })
+  useEffect(() => {
+    if (aboutRef.current) {
+      router.push('/about')
     }
-    if (pathname === '#contact' && contactRef.current) {
-      contactRef.current.scrollIntoView({ behavior: 'smooth' })
+    if (contactRef.current) {
+      router.push('/#contact')
     }
-  }, [pathname])
+  }, [aboutRef, contactRef])
+
   return (
     <main>
       <Hero />
