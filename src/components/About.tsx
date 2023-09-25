@@ -8,7 +8,7 @@ import { ServiceCard } from '.'
 const About = React.forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div
-      ref={ref}
+      id='about'
       className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
     >
       <motion.div variants={textVariant(0.1)}>

@@ -15,10 +15,6 @@ import { useAppDispatch } from '@/app/redux/hooks'
 import { getProductsItems } from '@/app/redux/features/productSlice'
 
 const Home = () => {
-  const router = useRouter()
-  const aboutRef = useRef<null | HTMLDivElement>(null)
-  const contactRef = useRef<null | HTMLDivElement>(null)
-
   const url = 'https://course-api.com/react-store-products'
 
   const dispatch = useAppDispatch()
@@ -27,26 +23,17 @@ const Home = () => {
     dispatch(getProductsItems(url))
   }, [dispatch])
 
-  useEffect(() => {
-    if (aboutRef.current) {
-      router.push('/about')
-    }
-    if (contactRef.current) {
-      router.push('/#contact')
-    }
-  }, [aboutRef, contactRef])
-
   return (
     <main>
       <Hero />
       <FeaturedProducts />
-      <About ref={aboutRef} />
+      <About />
       <Experience />
       <Tech />
       <Works />
       <Feedbacks />
       <div className='relative z-0'>
-        <Contact ref={contactRef} />
+        <Contact />
         <StarsCanvas />
       </div>
     </main>

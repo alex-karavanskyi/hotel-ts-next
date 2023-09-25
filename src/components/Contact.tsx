@@ -66,7 +66,7 @@ const Contact = React.forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div
       className={`${styles.padding} max-w-7xl mx-auto relative z-0 xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
-      ref={ref}
+      id='contact'
     >
       <motion.div
         variants={slideIn('left', 'tween', 0.2, 1)}
