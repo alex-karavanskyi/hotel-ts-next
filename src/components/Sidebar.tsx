@@ -9,13 +9,13 @@ const Sidebar = () => {
   const { isOpen } = useAppSelector((store) => store.modal)
   const dispatch = useAppDispatch()
 
-  const city = '../video/city.mp4'
-
   return (
     <Wrapper>
       <aside className={isOpen ? 'sidebar show-sidebar' : 'sidebar'}>
         <div className='video'>
-          <video className='video-media' src={city} autoPlay muted loop></video>
+          <video autoPlay muted loop>
+            <source src='../../public/city.mp4' />
+          </video>
         </div>
 
         <div className='content'>
@@ -51,13 +51,6 @@ const Wrapper = styled.div`
     position: relative;
     z-index: 1;
     padding-bottom: 56.25%;
-  }
-  .video__media {
-    width: 100%;
-    height: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
   }
   .content {
     width: 100%;

@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Navbar, Footer, Sidebar } from '@/components/'
 import { ReduxProvider } from '@/app/redux/provider'
+import '../fontawesome-free-5.12.1-web/css/all.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,16 +20,11 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <head>
-        {/* <link rel='apple-touch-icon' href='%PUBLIC_URL%/logo192.png' /> */}
         {/* <link
           rel='stylesheet'
           href='https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css'
           integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm'
           crossOrigin='anonymous'
-        /> */}
-        {/* <link
-          rel='stylesheet'
-          href='node_modules/@fortawesome/fontawesome-free/css/all.css'
         /> */}
         <base href='#' target='_blank' />
       </head>

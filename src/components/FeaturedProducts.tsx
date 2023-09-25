@@ -39,11 +39,6 @@ const Wrapper = styled.section`
     margin: 0 auto;
     text-align: center;
   }
-  @media (min-width: 576px) {
-    .featured {
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-    }
-  }
 `
 
 export default SectionWrapper(FeaturedProducts, 'featured')
