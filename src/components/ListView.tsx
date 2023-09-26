@@ -8,6 +8,7 @@ import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
 import { addFavorite, removeFavorite } from '@/app/redux/features/productSlice'
 import Products from '@/app/redux/modals/productsType'
+import Image from 'next/image'
 
 interface ListProducts {
   products: Products[]
@@ -34,7 +35,7 @@ const ListView: React.FC<ListProducts> = ({ products }) => {
         const wishList = isFavorite.some((item) => item.id === id)
         return (
           <article key={id}>
-            <img src={image} alt={name} />
+            <Image src={image} alt={name} width={700} height={700} />
             <div>
               <h4>
                 {name}{' '}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { fadeIn } from '../../utils/motion'
+import Image from 'next/image'
 
 const FeedbackCard = ({
   index,
@@ -29,8 +30,10 @@ const FeedbackCard = ({
           </p>
         </div>
 
-        <img
+        <Image
           src={image}
+          width={100}
+          height={100}
           alt={`feedback_by-${name}`}
           className='w-10 h-10 rounded-full object-cover'
         />

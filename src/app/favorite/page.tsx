@@ -5,6 +5,7 @@ import { formatPrice } from '@/helpers'
 import { removeFavorite } from '@/app/redux/features/productSlice'
 import styled from 'styled-components'
 import { Metadata } from 'next'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Favorite | Hotel App',
@@ -28,7 +29,12 @@ const Favorite = () => {
           {wishlist.map((product) => (
             <li key={product.id}>
               <div className='grid-center'>
-                <img src={product.image} alt={product.name} />
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  width={700}
+                  height={700}
+                />
                 <div>
                   <h3>{product.name}</h3>
                   <p>{formatPrice(product.price)}</p>

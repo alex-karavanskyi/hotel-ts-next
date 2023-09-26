@@ -9,6 +9,7 @@ import { handleButtonClick } from '../helpers'
 import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
 import { addFavorite, removeFavorite } from '@/app/redux/features/productSlice'
 import Products from '@/app/redux/modals/productsType'
+import Image from 'next/image'
 
 interface GridProducts {
   products: Products[]
@@ -38,7 +39,7 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
           return (
             <article key={id}>
               <div className='container'>
-                <img src={image} alt={name} />
+                <Image src={image} alt={name} width={700} height={70} />
                 <Link
                   href={`/rooms/${id}`}
                   className='link'

@@ -5,6 +5,6 @@ module.exports = nextConfig
 
 module.exports = {
   images: {
-    domains: ['www.course-api.com'],
+    domains: ['www.course-api.com', 'randomuser.me'],
   },
 }
