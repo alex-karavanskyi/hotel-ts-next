@@ -47,13 +47,6 @@ const citiesItem = [
   { cities: 'new york', id: 3 },
   { cities: 'los angeles', id: 4 },
   { cities: 'amsterdam', id: 5 },
-  { cities: 'london', id: 6 },
-  { cities: 'paris', id: 7 },
-  { cities: 'warsaw', id: 8 },
-  { cities: 'liverpool', id: 9 },
-  { cities: 'madrid', id: 10 },
-  { cities: 'prague', id: 11 },
-  { cities: 'san francisco', id: 12 },
 ]
 
 export {
