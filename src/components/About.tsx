@@ -9,7 +9,7 @@ const About = React.forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div
       id='about'
-      className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
+      className={`${styles.padding} max-w-7xl mx-auto relative z-0 my-7`}
     >
       <motion.div variants={textVariant(0.1)}>
         <p className={styles.sectionSubText}>Introduction</p>

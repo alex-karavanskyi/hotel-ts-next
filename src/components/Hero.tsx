@@ -27,7 +27,7 @@ const Hero = () => {
           </p>
         </div>
       </div>
-      <EarthCanvas />
+      {/* <EarthCanvas /> */}
     </section>
   )
 }

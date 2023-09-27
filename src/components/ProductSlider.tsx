@@ -48,62 +48,62 @@ export const ProductSlider = () => {
 
   return (
     <Wrapper {...handlers}>
-      <section className='section'>
-        <div className='section-center'>
-          {featured.map((item, personIndex) => {
-            const { image, name, price, id } = item
-            let position =
-              personIndex === activeIndex
-                ? 'activeSlide'
-                : personIndex === activeIndex - 1 ||
-                  (activeIndex === 0 && personIndex === featured.length - 1)
-                ? 'lastSlide'
-                : 'nextSlide'
+      <div className='section-center'>
+        {featured.map((item, personIndex) => {
+          const { image, name, price, id } = item
+          let position =
+            personIndex === activeIndex
+              ? 'activeSlide'
+              : personIndex === activeIndex - 1 ||
+                (activeIndex === 0 && personIndex === featured.length - 1)
+              ? 'lastSlide'
+              : 'nextSlide'
 
-            return (
-              <article key={id} className={position}>
-                <Link href={`/rooms/${id}`}>
-                  <Image
-                    alt='img'
-                    className='person-img'
-                    src={image}
-                    width={700}
-                    height={700}
-                  />
-                </Link>
-                <h4 className='text-white'>{name}</h4>
-                <p className='text-white'>{formatPrice(price)}</p>
-              </article>
-            )
-          })}
-        </div>
-        <div className='indicators'>
-          {featured.map((slide, slideIndex) => (
-            <div
-              key={slideIndex}
-              onClick={() => goToSlide(slideIndex)}
-              className={`${
-                slideIndex === activeIndex
-                  ? 'indicator-symbol-active'
-                  : 'indicator-symbol'
-              }`}
-            >
-              ●
-            </div>
-          ))}
-        </div>
-        <button className='prev' onClick={goToPrevious}>
-          <FiChevronLeft />
-        </button>
-        <button className='next' onClick={goToNext}>
-          <FiChevronRight />
-        </button>
-      </section>
+          return (
+            <article key={id} className={position}>
+              <Link href={`/rooms/${id}`}>
+                <Image
+                  alt='img'
+                  className='person-img'
+                  src={image}
+                  width={700}
+                  height={700}
+                />
+              </Link>
+              <h4 className='text-white'>{name}</h4>
+              <p className='text-white'>{formatPrice(price)}</p>
+            </article>
+          )
+        })}
+      </div>
+      <div className='indicators'>
+        {featured.map((slide, slideIndex) => (
+          <div
+            key={slideIndex}
+            onClick={() => goToSlide(slideIndex)}
+            className={`${
+              slideIndex === activeIndex
+                ? 'indicator-symbol-active'
+                : 'indicator-symbol'
+            }`}
+          >
+            ●
+          </div>
+        ))}
+      </div>
+      <button className='prev' onClick={goToPrevious}>
+        <FiChevronLeft />
+      </button>
+      <button className='next' onClick={goToNext}>
+        <FiChevronRight />
+      </button>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
+  margin-bottom: 30px;
+  margin-top: 30px;
   .section-center {
     margin: 0 auto;
     width: 80vw;
@@ -243,11 +243,8 @@ const Wrapper = styled.div`
     }
   }
   @media (max-width: 877px) {
-    .section {
-      padding-bottom: 20px;
-    }
     .section-center {
-      height: 450px;
+      height: 400px;
     }
     .prev,
     .next {

@@ -13,7 +13,7 @@ const Sidebar = () => {
     <Wrapper>
       <aside className={isOpen ? 'sidebar show-sidebar' : 'sidebar'}>
         <div className='video'>
-          <video src='/city.mp4' autoPlay muted loop />
+          <video src='/seoul.mp4' autoPlay muted loop />
         </div>
 
         <div className='content'>

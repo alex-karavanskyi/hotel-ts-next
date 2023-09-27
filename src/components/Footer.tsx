@@ -187,6 +187,19 @@ const Wrapper = styled.footer`
   .footer__menu a:hover {
     color: var(--clr-primary-5);
   }
+  @media screen and (max-width: 1330px) {
+    padding: 0;
+    .container__logo {
+      padding-top: 10px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 130px);
+    }
+    .grid__social {
+      margin-bottom: 50px;
+    }
+  }
 `
 
 export default Footer

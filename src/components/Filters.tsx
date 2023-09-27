@@ -1,6 +1,6 @@
 'use client'
 import styled from 'styled-components'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
 import {
   clearFilters,
@@ -13,6 +13,7 @@ import { getUniqueValues, formatPrice } from '../helpers'
 type HandleValue = string | number
 
 const Filters = () => {
+  const [buttonColor, setButtonColor] = useState<string>('')
   const { products } = useAppSelector((store) => store.products)
   const {
     filters: { text, category, min_price, price, max_price },
@@ -30,6 +31,7 @@ const Filters = () => {
     let value: HandleValue = e.currentTarget.value
     if (name === 'category') {
       value = e.currentTarget.textContent || ''
+      setButtonColor(value)
     }
     if (name === 'price') {
       value = Number(value)
@@ -66,6 +68,12 @@ const Filters = () => {
                     onClick={handleFilters}
                     type='button'
                     name='category'
+                    style={{
+                      border:
+                        buttonColor === c
+                          ? 'solid 2px black'
+                          : 'var(--clr-grey-5)',
+                    }}
                   >
                     {c}
                   </button>
