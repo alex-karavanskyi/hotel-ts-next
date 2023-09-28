@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
 import { closeModal } from '@/app/redux/features/modalSlice'
 import { RouterLink, SocialLink } from '../utils'
+import Image from 'next/image'
+import city from '../images/city_coast_skyscrapers_866257_1920x1200.jpg'
 
 const Sidebar = () => {
   const { isOpen } = useAppSelector((store) => store.modal)
@@ -12,10 +14,17 @@ const Sidebar = () => {
   return (
     <Wrapper>
       <aside className={isOpen ? 'sidebar show-sidebar' : 'sidebar'}>
-        <div className='video'>
-          <video src='/seoul.mp4' autoPlay muted loop />
-        </div>
-
+        {/* <div className='video'>
+          <video src='/public/city.webm' autoPlay muted loop />
+        </div> */}
+        <Image
+          src={city}
+          alt='city'
+          width={1920}
+          height={1920}
+          className='img'
+        />
+        <div className='dark-overlay'></div>
         <div className='content'>
           <button className='close-btn' onClick={() => dispatch(closeModal())}>
             <i className='fas fa-times'></i>
@@ -50,6 +59,22 @@ const Wrapper = styled.div`
     z-index: 1;
     padding-bottom: 56.25%;
   }
+  .img {
+    max-height: 100vh;
+    position: relative;
+    z-index: 1;
+  }
+  .dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+    z-index: 1;
+  }
+
   .content {
     width: 100%;
     height: 100%;
