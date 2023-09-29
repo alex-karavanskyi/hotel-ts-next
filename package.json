@@ -28,6 +28,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
     "react-redux": "^8.1.2",
+    "react-responsive": "^9.0.2",
     "react-scroll": "^1.8.9",
     "react-swipeable": "^7.0.1",
     "react-tilt": "^1.0.2",

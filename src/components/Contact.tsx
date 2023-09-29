@@ -30,37 +30,37 @@ const Contact = React.forwardRef<HTMLDivElement>((props, ref) => {
     e.preventDefault()
     setLoading(true)
 
-    emailjs
-      .send(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID,
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: 'Alex',
-          from_email: form.email,
-          to_email: 'alex@gmail.com',
-          message: form.message,
-        },
-        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false)
-          alert('Thank you. I will get back to you as soon as possible.')
+    // emailjs
+    //   .send(
+    //     process.env.REACT_APP_EMAILJS_SERVICE_ID,
+    //     process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+    //     {
+    //       from_name: form.name,
+    //       to_name: 'Alex',
+    //       from_email: form.email,
+    //       to_email: 'alex@gmail.com',
+    //       message: form.message,
+    //     },
+    //     process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+    //   )
+    //   .then(
+    //     () => {
+    //       setLoading(false)
+    //       alert('Thank you. I will get back to you as soon as possible.')
 
-          setForm({
-            name: '',
-            email: '',
-            message: '',
-          })
-        },
-        (error) => {
-          setLoading(false)
-          console.error(error)
+    //       setForm({
+    //         name: '',
+    //         email: '',
+    //         message: '',
+    //       })
+    //     },
+    //     (error) => {
+    //       setLoading(false)
+    //       console.error(error)
 
-          alert('Ahh, something went wrong. Please try again.')
-        }
-      )
+    //       alert('Ahh, something went wrong. Please try again.')
+    //     }
+    //   )
   }
 
   return (

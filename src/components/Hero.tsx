@@ -1,13 +1,19 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { styles } from '../styles'
-import { EarthCanvas } from './canvas'
+import { EarthCanvas, StarsCanvas } from './canvas'
+import { useMediaQuery } from 'react-responsive'
 
 const Hero = () => {
+  const isMobile = useMediaQuery({ maxWidth: 390 })
+
+  const containerStyle = isMobile ? {} : { backgroundColor: '#0e0f13' }
+
   return (
     <section
-      className={`relative w-full h-screen mx-auto`}
-      style={{ backgroundColor: `#0e0f13` }}
+      className={`relative w-full h-screen mx-auto max-[390px]:h-[70vh]`}
+      style={containerStyle}
     >
       <div
         className={`absolute inset-0 top-[50px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
@@ -27,7 +33,7 @@ const Hero = () => {
           </p>
         </div>
       </div>
-      {/* <EarthCanvas /> */}
+      {isMobile ? <StarsCanvas /> : <EarthCanvas />}
     </section>
   )
 }
