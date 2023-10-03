@@ -4,12 +4,7 @@ import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
 import { formatPrice } from '@/helpers'
 import { removeFavorite } from '@/app/redux/features/productSlice'
 import styled from 'styled-components'
-import { Metadata } from 'next'
 import Image from 'next/image'
-
-export const metadata: Metadata = {
-  title: 'Favorite | Hotel App',
-}
 
 const Favorite = () => {
   const wishlist = useAppSelector((state) => state.products.favorites_products)

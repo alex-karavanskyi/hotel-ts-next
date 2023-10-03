@@ -14,20 +14,8 @@ import {
 
 const url = `https://course-api.com/react-store-single-product?id=`
 
-type Props = {
-  params: {
-    id: string
-  }
-}
-
-export function generateMetadata({ params: { id } }: Props) {
-  return {
-    title: id,
-  }
-}
-
-const SingleProductPage = ({ params: { id } }: Props) => {
-  // const { id } = useParams()
+const SingleProductPage = () => {
+  const { id } = useParams()
   const navigate = useRouter()
   const dispatch = useAppDispatch()
   const {
