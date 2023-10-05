@@ -9,7 +9,7 @@
 /coverage
 
 #Font
-src/fontawesome-free-5.12.1-web
+# src/fontawesome-free-5.12.1-web
 
 # next.js
 /.next/
