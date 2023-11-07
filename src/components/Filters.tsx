@@ -12,7 +12,7 @@ import { getUniqueValues, formatPrice } from '../helpers'
 
 type HandleValue = string | number
 
-const Filters = () => {
+const Filters = ({ setCurrentPage }: any) => {
   const [buttonColor, setButtonColor] = useState<string>('')
   const { products } = useAppSelector((store) => store.products)
   const {
@@ -37,6 +37,7 @@ const Filters = () => {
       value = Number(value)
     }
     dispatch(updateFilters({ name, value }))
+    setCurrentPage(1)
   }
 
   useEffect(() => {

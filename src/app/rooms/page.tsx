@@ -1,9 +1,11 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Filters, ProductList, Sort } from '@/components'
 
 const Rooms = () => {
+  const [currentPage, setCurrentPage] = useState(1)
+
   return (
     <Wrapper>
       <div className='main-text'>
@@ -18,9 +20,9 @@ const Rooms = () => {
           PUBLIC HOTEL OFFERS ALL THE COMFORTS OF HOME, BUT BETTER.
         </div>
       </div>
-      <Filters />
+      <Filters setCurrentPage={setCurrentPage} />
       <Sort />
-      <ProductList />
+      <ProductList currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </Wrapper>
   )
 }
