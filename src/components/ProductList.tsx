@@ -52,6 +52,7 @@ const ProductList = ({ currentPage, setCurrentPage }: any) => {
         postsPerPage={postsPerPage}
         totalPosts={products.length}
         paginate={paginate}
+        currentPage={currentPage}
       />
     </>
   )

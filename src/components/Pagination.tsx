@@ -1,16 +1,19 @@
 import React from 'react'
 import Link from 'next/link'
+import styled from 'styled-components'
 
 interface PaginationProducts {
   postsPerPage: number
   totalPosts: number
   paginate: any
+  currentPage: number
 }
 
 const Pagination: React.FC<PaginationProducts> = ({
   postsPerPage,
   totalPosts,
   paginate,
+  currentPage,
 }) => {
   const pageNumbers: number[] = []
 
@@ -19,25 +22,40 @@ const Pagination: React.FC<PaginationProducts> = ({
   }
 
   return (
-    <nav className='flex justify-center'>
-      <ul className='join mb-16'>
+    <Wrapper>
+      <ul className='flex justify-center'>
         {pageNumbers.map((number) => (
           <li
             key={number}
-            className='btn btn-xs sm:btn-md border-none join-item'
+            className={`${
+              number === currentPage ? 'pagination active' : 'pagination'
+            }`}
           >
             <Link
               onClick={() => paginate(number)}
               href='/rooms'
-              className='page-link'
+              className='flex justify-center items-center'
             >
               {number}
             </Link>
           </li>
         ))}
       </ul>
-    </nav>
+    </Wrapper>
   )
 }
+
+const Wrapper = styled.section`
+  padding-bottom: 30px;
+  .pagination {
+    border: solid 1px;
+    display: grid;
+    grid-template-columns: 30px;
+    grid-template-rows: 30px;
+  }
+  .active {
+    background-color: orange;
+  }
+`
 
 export default Pagination
