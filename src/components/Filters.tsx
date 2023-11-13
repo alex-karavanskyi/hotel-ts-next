@@ -1,6 +1,6 @@
 'use client'
 import styled from 'styled-components'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, memo } from 'react'
 import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
 import {
   clearFilters,
@@ -173,4 +173,4 @@ const Wrapper = styled.section`
   } */
 `
 
-export default Filters
+export default memo(Filters)
