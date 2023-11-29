@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import { Navbar, Footer, Sidebar } from '@/components/'
 import { ReduxProvider } from '@/app/redux/provider'
 import '../fontawesome-free-5.12.1-web/css/all.css'
+import ClientOnly from '../components/ClientOnly'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,12 +24,14 @@ export default function RootLayout({
         <base href='#' target='_blank' />
       </head>
       <body className={inter.className}>
-        <ReduxProvider>
-          <Navbar />
-          {children}
-          <Footer />
-          <Sidebar />
-        </ReduxProvider>
+        <ClientOnly>
+          <ReduxProvider>
+            <Navbar />
+            {children}
+            <Footer />
+            <Sidebar />
+          </ReduxProvider>
+        </ClientOnly>
       </body>
     </html>
   )
