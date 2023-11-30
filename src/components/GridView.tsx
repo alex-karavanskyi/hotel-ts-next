@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { formatPrice } from '../helpers'
 import { FaSearch } from 'react-icons/fa'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
-import { handleButtonClick } from '../helpers'
 import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
 import { addFavorite, removeFavorite } from '@/app/redux/features/productSlice'
 import Products from '@/app/redux/modals/productsType'
@@ -40,11 +39,7 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
             <article key={id}>
               <div className='container'>
                 <Image src={image} alt={name} width={700} height={70} />
-                <Link
-                  href={`/rooms/${id}`}
-                  className='link'
-                  onClick={handleButtonClick}
-                >
+                <Link href={`/rooms/${id}`} className='link'>
                   <FaSearch />
                 </Link>
               </div>

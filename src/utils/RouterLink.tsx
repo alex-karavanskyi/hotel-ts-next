@@ -3,7 +3,6 @@ import React, { useEffect } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { closeModal } from '../app/redux/features/modalSlice'
-import { handleButtonClick } from '../helpers'
 import { useAppDispatch } from '../app/redux/hooks'
 
 const RouterLink: React.FC<{ parentClass?: string }> = ({ parentClass }) => {
@@ -11,7 +10,7 @@ const RouterLink: React.FC<{ parentClass?: string }> = ({ parentClass }) => {
 
   return (
     <Wrapper>
-      <ul className={parentClass} onClick={handleButtonClick}>
+      <ul className={parentClass}>
         <li onClick={() => dispatch(closeModal())}>
           <Link href='/'>home</Link>
         </li>

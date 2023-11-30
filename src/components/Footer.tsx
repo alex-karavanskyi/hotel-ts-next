@@ -3,7 +3,6 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { SocialLink } from '../utils'
-import { handleButtonClick } from '../helpers'
 import {
   musicItem,
   discoverItem,
@@ -20,7 +19,7 @@ const Footer = () => {
       <div className='grid'>
         <div className='col-md-6'>
           <nav className='footer__menu'>
-            <div className='grid' onClick={handleButtonClick}>
+            <div className='grid'>
               <div className='size'>
                 <ul className='group'>
                   <li>

@@ -4,7 +4,6 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { Error, Loading, ProductSlider } from '.'
 import { useAppSelector } from '@/app/redux/hooks'
-import { handleButtonClick } from '../helpers'
 import { SectionWrapper } from '../hoc'
 
 const FeaturedProducts = () => {
@@ -25,7 +24,7 @@ const FeaturedProducts = () => {
         <div className='underline'></div>
       </div>
       <ProductSlider />
-      <Link href='/rooms' className='btn' onClick={handleButtonClick}>
+      <Link href='/rooms' className='btn'>
         all products
       </Link>
     </Wrapper>

@@ -9,7 +9,6 @@ import { RouterLink } from '../utils'
 import { useAppDispatch } from '@/app/redux/hooks'
 import { useState, useEffect } from 'react'
 import { openModal } from '../app/redux/features/modalSlice'
-import { handleButtonClick } from '../helpers'
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false)
@@ -33,12 +32,7 @@ const Navbar = () => {
     <Wrapper>
       <nav className={navbar ? 'nav navbar-fixed' : 'nav'}>
         <Link href={`/`} className='link'>
-          <Image
-            src={navbar ? logo : logoInverted}
-            width={100}
-            alt='Logo'
-            onClick={handleButtonClick}
-          />
+          <Image src={navbar ? logo : logoInverted} width={100} alt='Logo' />
         </Link>
         <button className='nav-btn' onClick={() => dispatch(openModal())}>
           <i className='fas fa-bars'></i>

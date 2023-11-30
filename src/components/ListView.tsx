@@ -3,7 +3,6 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { formatPrice } from '../helpers'
-import { handleButtonClick } from '../helpers'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
 import { addFavorite, removeFavorite } from '@/app/redux/features/productSlice'
@@ -50,11 +49,7 @@ const ListView: React.FC<ListProducts> = ({ products }) => {
               </h4>
               <h5 className='price'>{formatPrice(price)}</h5>
               <p>{description.substring(0, 150)}...</p>
-              <Link
-                href={`/rooms/${id}`}
-                className='btn'
-                onClick={handleButtonClick}
-              >
+              <Link href={`/rooms/${id}`} className='btn-details'>
                 Details
               </Link>
             </div>
@@ -90,9 +85,18 @@ const Wrapper = styled.section`
     max-width: 45em;
     margin-bottom: 1rem;
   }
-  .btn {
-    font-size: 0.5rem;
-    padding: 0.25rem 0.5rem;
+  .btn-details {
+    text-transform: uppercase;
+    background: var(--clr-primary-5);
+    color: var(--clr-primary-10);
+    transition: var(--transition);
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+  }
+  .btn-details:hover {
+    color: var(--clr-primary-1);
+    background: var(--clr-primary-7);
   }
   @media (min-width: 992px) {
     article {

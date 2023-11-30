@@ -13,7 +13,3 @@ export const getUniqueValues = (data, type) => {
   }
   return ['all', ...new Set(unique)]
 }
-
-export const handleButtonClick = () => {
-  window.scrollTo(0, 0)
-}
