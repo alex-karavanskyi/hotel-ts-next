@@ -5,12 +5,8 @@ import { useParams, useRouter } from 'next/navigation'
 import { formatPrice } from '@/helpers'
 import { Loading, Error, ProductImages } from '@/components'
 import styled from 'styled-components'
-import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
-import {
-  addFavorite,
-  removeFavorite,
-  getSingeProduct,
-} from '@/app/redux/features/productSlice'
+import { getSingeProduct } from '@/app/redux/features/productSlice'
+import Favorite from '@/components/Favorite'
 
 const url = `https://course-api.com/react-store-single-product?id=`
 
@@ -23,10 +19,6 @@ const SingleProductPage = () => {
     single_product_error: error,
     single_product: product,
   } = useAppSelector((store) => store.products)
-
-  const isFavorite = useAppSelector(
-    (state) => state.products.favorites_products
-  )
 
   useEffect(() => {
     dispatch(getSingeProduct(`${url}${id}`))
@@ -47,16 +39,7 @@ const SingleProductPage = () => {
     return <Error />
   }
 
-  const handleAddToFavorite = (productId: string | string[]) => {
-    dispatch(addFavorite({ productId }))
-  }
-  const handleremoveToFavorite = (productId: string | string[]) => {
-    dispatch(removeFavorite({ productId }))
-  }
-
   const { name, price, description, stock, id: sku, company, images } = product
-
-  const wishList = isFavorite.some((item) => item.id === id)
 
   return (
     <Wrapper>
@@ -65,15 +48,7 @@ const SingleProductPage = () => {
           <ProductImages images={images} />
           <section className='content'>
             <h2 className='text-white'>
-              {name}{' '}
-              {wishList ? (
-                <MdFavorite
-                  onClick={() => handleremoveToFavorite(id)}
-                  color='red'
-                />
-              ) : (
-                <MdFavoriteBorder onClick={() => handleAddToFavorite(id)} />
-              )}
+              <Favorite id={sku} name={name} />
             </h2>
             <h5 className='price'>{formatPrice(price)}</h5>
             <p className='desc'> {description}</p>

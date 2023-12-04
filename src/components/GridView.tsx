@@ -9,32 +9,18 @@ import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
 import { addFavorite, removeFavorite } from '@/app/redux/features/productSlice'
 import Products from '@/app/redux/modals/productsType'
 import Image from 'next/image'
+import Favorite from './Favorite'
 
 interface GridProducts {
   products: Products[]
 }
 
-type HandleProduct = string
-
 const GridView: React.FC<GridProducts> = ({ products }) => {
-  const dispatch = useAppDispatch()
-
-  const handleAddToFavorite = (productId: HandleProduct) => {
-    dispatch(addFavorite({ productId }))
-  }
-  const handleremoveToFavorite = (productId: HandleProduct) => {
-    dispatch(removeFavorite({ productId }))
-  }
-  const isFavorite = useAppSelector(
-    (state) => state.products.favorites_products
-  )
-
   return (
     <Wrapper>
       <div className='products-container'>
         {products.map((product) => {
           const { id, image, name, price } = product
-          const wishList = isFavorite.some((item) => item.id === id)
           return (
             <article key={id}>
               <div className='container'>
@@ -45,19 +31,7 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
               </div>
               <footer>
                 <h5>
-                  {name}{' '}
-                  {wishList ? (
-                    <MdFavorite
-                      onClick={() => handleremoveToFavorite(id)}
-                      color='red'
-                      className='cursor-pointer'
-                    />
-                  ) : (
-                    <MdFavoriteBorder
-                      onClick={() => handleAddToFavorite(id)}
-                      className='cursor-pointer'
-                    />
-                  )}
+                  <Favorite id={id} name={name} />
                 </h5>
                 <p>{formatPrice(price)}</p>
               </footer>

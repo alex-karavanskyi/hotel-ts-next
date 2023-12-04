@@ -8,44 +8,23 @@ import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
 import { addFavorite, removeFavorite } from '@/app/redux/features/productSlice'
 import Products from '@/app/redux/modals/productsType'
 import Image from 'next/image'
+import Favorite from './Favorite'
 
 interface ListProducts {
   products: Products[]
 }
 
-type HandleProduct = string
-
 const ListView: React.FC<ListProducts> = ({ products }) => {
-  const dispatch = useAppDispatch()
-
-  const handleAddToFavorite = (productId: HandleProduct) => {
-    dispatch(addFavorite({ productId }))
-  }
-  const handleremoveToFavorite = (productId: HandleProduct) => {
-    dispatch(removeFavorite({ productId }))
-  }
-  const isFavorite = useAppSelector(
-    (state) => state.products.favorites_products
-  )
   return (
     <Wrapper>
       {products.map((product) => {
         const { id, image, name, price, description } = product
-        const wishList = isFavorite.some((item) => item.id === id)
         return (
           <article key={id}>
             <Image src={image} alt={name} width={700} height={700} />
             <div>
               <h4>
-                {name}{' '}
-                {wishList ? (
-                  <MdFavorite
-                    onClick={() => handleremoveToFavorite(id)}
-                    color='red'
-                  />
-                ) : (
-                  <MdFavoriteBorder onClick={() => handleAddToFavorite(id)} />
-                )}
+                <Favorite id={id} name={name} />
               </h4>
               <h5 className='price'>{formatPrice(price)}</h5>
               <p>{description.substring(0, 150)}...</p>
