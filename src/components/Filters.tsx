@@ -1,13 +1,13 @@
 'use client'
 import styled from 'styled-components'
 import { useEffect, useState, memo } from 'react'
-import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
+import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import {
   clearFilters,
   updateFilters,
   loadProducts,
   filterProducts,
-} from '@/app/redux/features/filterSlice'
+} from '@/redux/features/filterSlice'
 import { getUniqueValues, formatPrice } from '../helpers'
 
 type HandleValue = string | number

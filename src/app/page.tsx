@@ -10,8 +10,8 @@ import Feedbacks from '../components/Feedbacks'
 import Contact from '../components/Contact'
 import { StarsCanvas } from '../components/canvas'
 import { useEffect } from 'react'
-import { useAppDispatch } from '@/app/redux/hooks'
-import { getProductsItems } from '@/app/redux/features/productSlice'
+import { useAppDispatch } from '@/redux/hooks'
+import { getProductsItems } from '@/redux/features/productSlice'
 
 const Home = () => {
   const url = 'https://course-api.com/react-store-products'

@@ -6,9 +6,9 @@ import logoInverted from '../images/Udemy_logo_Inverted.png'
 import Link from 'next/link'
 import Image from 'next/image'
 import { RouterLink } from '../utils'
-import { useAppDispatch } from '@/app/redux/hooks'
+import { useAppDispatch } from '@/redux/hooks'
 import { useState, useEffect } from 'react'
-import { openModal } from '../app/redux/features/modalSlice'
+import { openModal } from '@/redux/features/modalSlice'
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false)

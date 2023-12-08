@@ -1,8 +1,8 @@
 'use client'
 import React from 'react'
-import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
+import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { formatPrice } from '@/helpers'
-import { removeFavorite } from '@/app/redux/features/productSlice'
+import { removeFavorite } from '@/redux/features/productSlice'
 import styled from 'styled-components'
 import Image from 'next/image'
 

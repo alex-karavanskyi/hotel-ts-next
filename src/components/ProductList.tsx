@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { useEffect, useState } from 'react'
-import { useAppSelector } from '@/app/redux/hooks'
+import { useAppSelector } from '@/redux/hooks'
 import { GridView, ListView } from '@/components'
 import Pagination from './Pagination'
 

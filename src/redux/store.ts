@@ -1,8 +1,8 @@
 'use client'
 import { configureStore } from '@reduxjs/toolkit'
-import modalReducer from '@/app/redux/features/modalSlice'
-import filterReducer from '@/app/redux/features/filterSlice'
-import productsReducer from '@/app/redux/features/productSlice'
+import modalReducer from '@/redux/features/modalSlice'
+import filterReducer from '@/redux/features/filterSlice'
+import productsReducer from '@/redux/features/productSlice'
 
 export const store = configureStore({
   reducer: {

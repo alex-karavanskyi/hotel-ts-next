@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 import { formatPrice } from '../helpers'
 import { useSwipeable } from 'react-swipeable'
-import { useAppSelector } from '@/app/redux/hooks'
+import { useAppSelector } from '@/redux/hooks'
 import Image from 'next/image'
 
 export const ProductSlider = () => {

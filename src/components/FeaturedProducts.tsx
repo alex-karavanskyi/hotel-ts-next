@@ -3,7 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { Error, Loading, ProductSlider } from '.'
-import { useAppSelector } from '@/app/redux/hooks'
+import { useAppSelector } from '@/redux/hooks'
 import { SectionWrapper } from '../hoc'
 
 const FeaturedProducts = () => {

@@ -1,5 +1,5 @@
-import { useAppDispatch, useAppSelector } from '@/app/redux/hooks'
-import { addFavorite, removeFavorite } from '@/app/redux/features/productSlice'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { addFavorite, removeFavorite } from '@/redux/features/productSlice'
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md'
 
 type HandleProduct = string

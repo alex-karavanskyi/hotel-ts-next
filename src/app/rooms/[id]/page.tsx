@@ -1,11 +1,11 @@
 'use client'
 import React, { useEffect } from 'react'
-import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
+import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { useParams, useRouter } from 'next/navigation'
 import { formatPrice } from '@/helpers'
 import { Loading, Error, ProductImages } from '@/components'
 import styled from 'styled-components'
-import { getSingeProduct } from '@/app/redux/features/productSlice'
+import { getSingeProduct } from '@/redux/features/productSlice'
 import Favorite from '@/components/Favorite'
 
 const url = `https://course-api.com/react-store-single-product?id=`

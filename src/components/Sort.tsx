@@ -1,13 +1,13 @@
 'use client'
 import React, { ChangeEvent } from 'react'
 import styled from 'styled-components'
-import { useAppSelector, useAppDispatch } from '@/app/redux/hooks'
+import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import {
   updateSort,
   setGridView,
   setListView,
   sortProducts,
-} from '@/app/redux/features/filterSlice'
+} from '@/redux/features/filterSlice'
 import { BsFillGridFill, BsList } from 'react-icons/bs'
 import { useEffect } from 'react'
 
