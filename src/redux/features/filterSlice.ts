@@ -57,7 +57,6 @@ const filterSlice = createSlice({
       const { name, value } = payload
       state.filters[name] = value
     },
-
     filterProducts: (state) => {
       const { all_products } = state
       const { text, category, price } = state.filters

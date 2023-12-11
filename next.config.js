@@ -1,10 +1,15 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
-
-module.exports = nextConfig
-
-module.exports = {
+const nextConfig = {
   images: {
-    domains: ['www.course-api.com', 'randomuser.me'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.course-api.com',
+        port: '',
+        pathname: '/images/**',
+      },
+    ],
   },
 }
+
+module.exports = nextConfig

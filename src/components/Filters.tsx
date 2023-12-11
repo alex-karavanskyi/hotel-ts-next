@@ -13,12 +13,12 @@ import { getUniqueValues, formatPrice } from '../helpers'
 type HandleValue = string | number
 
 const Filters = ({ setCurrentPage }: any) => {
-  const [buttonColor, setButtonColor] = useState<string>('')
-  const { products } = useAppSelector((store) => store.products)
   const {
     filters: { text, category, min_price, price, max_price },
     all_products,
   } = useAppSelector((store) => store.filter)
+  const [buttonColor, setButtonColor] = useState<string>(category)
+  const { products } = useAppSelector((store) => store.products)
 
   const dispatch = useAppDispatch()
 
