@@ -20,7 +20,6 @@ const Filters = () => {
   } = useAppSelector((store) => store.filter)
   const [buttonColor, setButtonColor] = useState<string>(category)
   const { products } = useAppSelector((store) => store.products)
-  const { pagination } = useAppSelector((store) => store.pagination)
 
   const dispatch = useAppDispatch()
 
@@ -167,12 +166,6 @@ const Wrapper = styled.section`
       padding-left: 0;
     }
   }
-  /* @media (min-width: 768px) {
-    .content {
-      position: sticky;
-      top: 1rem;
-    }
-  } */
 `
 
 export default memo(Filters)
