@@ -1,21 +1,23 @@
+'use client'
 import React from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
+import { useAppSelector } from '@/redux/hooks'
 
 interface PaginationProducts {
   postsPerPage: number
   totalPosts: number
   paginate: any
-  currentPage: number
 }
 
 const Pagination: React.FC<PaginationProducts> = ({
   postsPerPage,
   totalPosts,
   paginate,
-  currentPage,
 }) => {
   const pageNumbers: number[] = []
+
+  const { pagination } = useAppSelector((store) => store.pagination)
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i)
@@ -28,7 +30,7 @@ const Pagination: React.FC<PaginationProducts> = ({
           <li
             key={number}
             className={`${
-              number === currentPage ? 'pagination active' : 'pagination'
+              number === pagination ? 'pagination active' : 'pagination'
             }`}
           >
             <Link

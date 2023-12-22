@@ -9,16 +9,18 @@ import {
   filterProducts,
 } from '@/redux/features/filterSlice'
 import { getUniqueValues, formatPrice } from '../helpers'
+import { numberPagination } from '@/redux/features/paginationSlice'
 
 type HandleValue = string | number
 
-const Filters = ({ setCurrentPage }: any) => {
+const Filters = () => {
   const {
     filters: { text, category, min_price, price, max_price },
     all_products,
   } = useAppSelector((store) => store.filter)
   const [buttonColor, setButtonColor] = useState<string>(category)
   const { products } = useAppSelector((store) => store.products)
+  const { pagination } = useAppSelector((store) => store.pagination)
 
   const dispatch = useAppDispatch()
 
@@ -37,7 +39,7 @@ const Filters = ({ setCurrentPage }: any) => {
       value = Number(value)
     }
     dispatch(updateFilters({ name, value }))
-    setCurrentPage(1)
+    dispatch(numberPagination(1))
   }
 
   useEffect(() => {

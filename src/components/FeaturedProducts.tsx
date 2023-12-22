@@ -1,15 +1,24 @@
 'use client'
-import React from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
+import { useEffect } from 'react'
 import { Error, Loading, ProductSlider } from '.'
-import { useAppSelector } from '@/redux/hooks'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { SectionWrapper } from '../hoc'
+import { getProductsItems } from '@/redux/features/productSlice'
 
 const FeaturedProducts = () => {
   const { products_loading: loading, products_error: error } = useAppSelector(
     (store) => store.products
   )
+
+  const url = 'https://course-api.com/react-store-products'
+
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(getProductsItems(url))
+  }, [dispatch])
 
   if (loading) {
     return <Loading />

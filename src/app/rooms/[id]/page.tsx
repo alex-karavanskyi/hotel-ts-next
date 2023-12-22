@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { useParams, useRouter } from 'next/navigation'
 import { formatPrice } from '@/helpers'

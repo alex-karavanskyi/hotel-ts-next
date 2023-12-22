@@ -1,16 +1,16 @@
-'use client'
-import React, { useState } from 'react'
-import styled from 'styled-components'
 import { Filters, ProductList, Sort } from '@/components'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Rooms | Hotel App',
+}
 
 const Rooms = () => {
-  const [currentPage, setCurrentPage] = useState(1)
-
   return (
-    <Wrapper>
-      <div className='main-text'>
-        <h1 className='page-title'>ROOMS</h1>
-        <div className='text'>
+    <div className='bg-white'>
+      <div className='p-4 lg:max-w-7xl lg:m-auto lg:pt-8'>
+        <h1 className='-ml-0.5'>ROOMS</h1>
+        <div className='mt-5'>
           REFINED, SOPHISTICATED, SMART AND SIMPLE, YET FLAMBOYANT AND
           PROVOCATIVE, ALL AT THE SAME TIME. UNIVERSALLY APPEALING HOTEL ROOMS
           ARE THOUGHTFULLY DESIGNED, DOWN TO EVERY LAST FINISH AND DETAIL, WITH
@@ -20,37 +20,11 @@ const Rooms = () => {
           PUBLIC HOTEL OFFERS ALL THE COMFORTS OF HOME, BUT BETTER.
         </div>
       </div>
-      <Filters setCurrentPage={setCurrentPage} />
+      <Filters />
       <Sort />
-      <ProductList currentPage={currentPage} setCurrentPage={setCurrentPage} />
-    </Wrapper>
+      <ProductList />
+    </div>
   )
 }
-
-const Wrapper = styled.div`
-  background: white;
-  .main-text {
-    max-width: 1243px;
-    margin: auto;
-    padding-top: 30px;
-  }
-  .text {
-    margin-top: 20px;
-  }
-  h1 {
-    margin-left: -3px;
-  }
-  @media screen and (max-width: 1068px) {
-    padding: 18px;
-    .text {
-      color: red;
-    }
-  }
-  @media screen and (max-width: 768px) {
-    .text {
-      color: #ff9500e1;
-    }
-  }
-`
 
 export default Rooms

@@ -1,3 +1,4 @@
+'use client'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { addFavorite, removeFavorite } from '@/redux/features/productSlice'
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md'
