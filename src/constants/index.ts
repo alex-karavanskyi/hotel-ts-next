@@ -14,11 +14,9 @@ import {
   mongodb,
   git,
   figma,
+  next,
   docker,
-  meta,
   starbucks,
-  tesla,
-  shopify,
   carrent,
   jobit,
   tripguide,
@@ -27,19 +25,19 @@ import {
 
 const services = [
   {
-    title: 'Web Developer',
+    title: 'React',
     icon: web,
   },
   {
-    title: 'React Native Developer',
+    title: 'Redux',
     icon: mobile,
   },
   {
-    title: 'Backend Developer',
+    title: 'Next',
     icon: backend,
   },
   {
-    title: 'Content Creator',
+    title: 'Typescript',
     icon: creator,
   },
 ]
@@ -101,9 +99,9 @@ const technologies = [
 
 const experiences = [
   {
-    title: 'React.js Developer',
+    title: 'React.js',
     company_name: 'Starbucks',
-    icon: starbucks,
+    icon: reactjs,
     iconBg: '#383E56',
     date: 'March 2020 - April 2021',
     points: [
@@ -114,9 +112,9 @@ const experiences = [
     ],
   },
   {
-    title: 'React Native Developer',
+    title: 'Next.js',
     company_name: 'Tesla',
-    icon: tesla,
+    icon: next,
     iconBg: '#E6DEDD',
     date: 'Jan 2021 - Feb 2022',
     points: [
@@ -127,9 +125,9 @@ const experiences = [
     ],
   },
   {
-    title: 'Web Developer',
+    title: 'Redux',
     company_name: 'Shopify',
-    icon: shopify,
+    icon: redux,
     iconBg: '#383E56',
     date: 'Jan 2022 - Jan 2023',
     points: [
@@ -140,9 +138,9 @@ const experiences = [
     ],
   },
   {
-    title: 'Full stack Developer',
+    title: 'Tailwind',
     company_name: 'Meta',
-    icon: meta,
+    icon: tailwind,
     iconBg: '#E6DEDD',
     date: 'Jan 2023 - Present',
     points: [
@@ -192,7 +190,7 @@ const projects = [
         color: 'blue-text-gradient',
       },
       {
-        name: 'mongodb',
+        name: 'typescript',
         color: 'green-text-gradient',
       },
       {
@@ -213,11 +211,11 @@ const projects = [
         color: 'blue-text-gradient',
       },
       {
-        name: 'restapi',
+        name: 'redux',
         color: 'green-text-gradient',
       },
       {
-        name: 'scss',
+        name: 'css',
         color: 'pink-text-gradient',
       },
     ],
@@ -230,11 +228,11 @@ const projects = [
       'A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.',
     tags: [
       {
-        name: 'nextjs',
+        name: 'next',
         color: 'blue-text-gradient',
       },
       {
-        name: 'supabase',
+        name: 'typescript',
         color: 'green-text-gradient',
       },
       {

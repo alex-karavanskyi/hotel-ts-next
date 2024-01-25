@@ -25,7 +25,7 @@ const Pagination: React.FC<PaginationProducts> = ({
 
   return (
     <Wrapper>
-      <ul className='flex justify-center'>
+      <ul className='flex justify-center gap-1'>
         {pageNumbers.map((number) => (
           <li
             key={number}
@@ -51,6 +51,7 @@ const Wrapper = styled.section`
   padding-bottom: 30px;
   .pagination {
     border: solid 1px;
+    border-radius: 20%;
     display: grid;
     grid-template-columns: 30px;
     grid-template-rows: 30px;

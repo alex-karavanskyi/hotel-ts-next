@@ -105,54 +105,17 @@ const Wrapper = styled.div`
   margin-bottom: 30px;
   margin-top: 30px;
   .section-center {
-    margin: 0 auto;
-    width: 80vw;
     height: 800px;
-    max-width: 900px;
     text-align: center;
     position: relative;
-    display: flex;
     overflow: hidden;
   }
-  .carousel {
-    overflow: hidden;
-    width: 700px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .inner {
-    white-space: nowrap;
-    transition: transform 0.3s;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  }
-
-  .carousel-item {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 490px;
-    background-color: #fff;
-  }
-
-  .carousel-item-text {
-    font-size: 1.15rem;
-    margin: 40px 0 40px 0;
-    padding: 0 20px 0 20px;
-    white-space: normal;
-    color: #617d98;
-  }
-  .carousel-img {
-    width: 250px;
-    padding: 0 20px 0 20px;
-  }
-
-  /* final stage */
 
   .indicators {
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-left: 12px;
     margin-top: 8px;
     cursor: pointer;
   }
@@ -171,7 +134,6 @@ const Wrapper = styled.div`
     margin-bottom: 2rem;
     width: 700px;
     height: 700px;
-    /* object-fit: cover; */
     border: 3px solid var(--clr-grey-8);
     box-shadow: var(--dark-shadow);
   }
@@ -236,23 +198,28 @@ const Wrapper = styled.div`
   article.nextSlide {
     transform: translateX(100%);
   }
-  @media (max-width: 1170px) {
+  @media (max-width: 1024px) {
     .prev,
     .next {
       display: none;
     }
   }
-  @media (max-width: 877px) {
+  @media (max-width: 768px) {
     .section-center {
-      height: 400px;
-    }
-    .prev,
-    .next {
-      display: none;
+      height: 600px;
     }
     .person-img {
-      width: 300px;
-      height: 300px;
+      width: 500px;
+      height: 500px;
+    }
+  }
+  @media (max-width: 430px) {
+    .person-img {
+      border-radius: 5%;
+    }
+    .person-img {
+      object-fit: cover;
+      width: 270px;
     }
   }
 `

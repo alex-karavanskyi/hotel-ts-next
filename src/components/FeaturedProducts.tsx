@@ -42,10 +42,10 @@ const FeaturedProducts = () => {
 
 const Wrapper = styled.section`
   .btn {
-    display: block;
-    width: 148px;
+    display: flex;
+    align-items: center;
     margin: 0 auto;
-    text-align: center;
+    width: 148px;
   }
 `
 

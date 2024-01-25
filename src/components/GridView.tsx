@@ -46,7 +46,7 @@ const Wrapper = styled.section`
     gap: 20px;
     max-width: 1450px;
     margin: auto;
-    padding-bottom: 32px;
+    margin-bottom: 32px;
   }
 
   .container {

@@ -7,10 +7,10 @@ export const metadata: Metadata = {
 
 const Rooms = () => {
   return (
-    <div className='bg-white'>
-      <div className='p-4 lg:max-w-7xl lg:m-auto lg:pt-8'>
-        <h1 className='-ml-0.5'>ROOMS</h1>
-        <div className='mt-5'>
+    <div className='bg-white pt-5 pl-3 pb-3'>
+      <div className='max-w-7xl mx-auto mb-8'>
+        <h1>ROOMS</h1>
+        <div>
           REFINED, SOPHISTICATED, SMART AND SIMPLE, YET FLAMBOYANT AND
           PROVOCATIVE, ALL AT THE SAME TIME. UNIVERSALLY APPEALING HOTEL ROOMS
           ARE THOUGHTFULLY DESIGNED, DOWN TO EVERY LAST FINISH AND DETAIL, WITH

@@ -51,68 +51,66 @@ const Filters = () => {
 
   return (
     <Wrapper>
-      <div className='content'>
-        <form onSubmit={(e) => e.preventDefault()}>
-          <div className='form-control-container'>
-            <input
-              type='text'
-              name='text'
-              placeholder='search'
-              className='search-input'
-              value={text}
-              onChange={handleFilters}
-            />
-            {categories.map((c, index) => {
-              if (typeof c === 'string') {
-                return (
-                  <button
-                    key={index}
-                    onClick={handleFilters}
-                    type='button'
-                    name='category'
-                    style={{
-                      border:
-                        buttonColor === c
-                          ? 'solid 2px black'
-                          : 'var(--clr-grey-5)',
-                    }}
-                  >
-                    {c}
-                  </button>
-                )
-              }
-              return null
-            })}
-          </div>
-          <div className='form-control-price'>
-            <h5>price</h5>
-            <p className='price'>{formatPrice(price)}</p>
-            <input
-              type='range'
-              name='price'
-              min={min_price}
-              max={max_price}
-              value={price}
-              onChange={handleFilters}
-            />
-          </div>
-        </form>
-        <button
-          type='button'
-          className='clear-btn'
-          onClick={() => dispatch(clearFilters())}
-        >
-          clear filters
-        </button>
-      </div>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <div className='form-control-container'>
+          <input
+            type='text'
+            name='text'
+            placeholder='search'
+            className='search-input'
+            value={text}
+            onChange={handleFilters}
+          />
+          {categories.map((c, index) => {
+            if (typeof c === 'string') {
+              return (
+                <button
+                  key={index}
+                  onClick={handleFilters}
+                  type='button'
+                  name='category'
+                  style={{
+                    border:
+                      buttonColor === c
+                        ? 'solid 2px black'
+                        : 'var(--clr-grey-5)',
+                  }}
+                >
+                  {c}
+                </button>
+              )
+            }
+            return null
+          })}
+        </div>
+        <div className='form-control-price'>
+          <h5>price</h5>
+          <p className='price'>{formatPrice(price)}</p>
+          <input
+            type='range'
+            name='price'
+            min={min_price}
+            max={max_price}
+            value={price}
+            onChange={handleFilters}
+          />
+        </div>
+      </form>
+      <button
+        type='button'
+        className='clear-btn'
+        onClick={() => dispatch(clearFilters())}
+      >
+        clear filters
+      </button>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.section`
-  .form-control {
-    margin-bottom: 1.25rem;
-  }
+  margin: 0 auto;
+  margin-bottom: 50px;
+  max-width: 1248px;
   .search-input {
     padding: 0.5rem;
     background: var(--clr-grey-10);
@@ -139,32 +137,20 @@ const Wrapper = styled.section`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 30px;
   }
   .form-control-price {
-    padding-left: 330px;
     padding-top: 30px;
+    margin-left: 14px;
   }
   .clear-btn {
-    padding: 14px;
-    margin-left: 325px;
-    margin-top: 5px;
-    margin-bottom: 45px;
+    padding-top: 14px;
+    margin-left: 14px;
     text-transform: capitalize;
     background: transparent;
     border: none;
     letter-spacing: var(--spacing);
     color: var(--clr-grey-5);
     cursor: pointer;
-  }
-
-  @media (max-width: 768px) {
-    .clear-btn {
-      margin-left: 0;
-    }
-    .form-control-price {
-      padding-left: 0;
-    }
   }
 `
 
