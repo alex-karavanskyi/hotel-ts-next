@@ -4,13 +4,13 @@ import { EarthCanvas, StarsCanvas } from './canvas'
 import { useMediaQuery } from 'react-responsive'
 
 const Hero = () => {
-  const isMobile = useMediaQuery({ maxWidth: 390 })
+  const isMobile = useMediaQuery({ maxWidth: 430 })
 
   const containerStyle = isMobile ? {} : { backgroundColor: '#0e0f13' }
 
   return (
     <section
-      className={`relative w-full h-screen mx-auto max-[390px]:h-[70vh]`}
+      className={`relative w-full h-screen mx-auto max-[430px]:h-[70vh]`}
       style={containerStyle}
     >
       <div

@@ -115,7 +115,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 12px;
+    text-align: center;
     margin-top: 8px;
     cursor: pointer;
   }
@@ -214,12 +214,17 @@ const Wrapper = styled.div`
     }
   }
   @media (max-width: 430px) {
+    .section-center {
+      height: 370px;
+    }
+
     .person-img {
       border-radius: 5%;
     }
     .person-img {
       object-fit: cover;
       width: 270px;
+      height: 270px;
     }
   }
 `
