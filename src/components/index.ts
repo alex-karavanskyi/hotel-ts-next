@@ -13,6 +13,7 @@ import Loading from './Loading'
 import ProductImages from './ProductImages'
 import ProductSlider from './ProductSlider'
 import ServiceCard from './card/ServiceCard'
+import ProjectCard from './card/ProjectCard'
 import ExperienceCard from './card/ExperienceCard'
 import Hero from './Hero'
 
@@ -32,4 +33,5 @@ export {
   Hero,
   ServiceCard,
   ExperienceCard,
+  ProjectCard,
 }
