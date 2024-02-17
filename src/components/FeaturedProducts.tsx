@@ -29,11 +29,11 @@ const FeaturedProducts = () => {
   return (
     <Wrapper>
       <div className='title'>
-        <h2 className='text-white'>featured products</h2>
+        <h2 style={{ color: 'white' }}>featured products</h2>
         <div className='underline'></div>
       </div>
       <ProductSlider />
-      <Link href='/rooms' className='btn'>
+      <Link href='/rooms' className='btn-featured'>
         all products
       </Link>
     </Wrapper>
@@ -41,11 +41,26 @@ const FeaturedProducts = () => {
 }
 
 const Wrapper = styled.section`
-  .btn {
+  .btn-featured {
+    text-transform: uppercase;
+    background: var(--clr-primary-5);
+    color: var(--clr-primary-10);
+    padding: 0.375rem 0.75rem;
+    letter-spacing: var(--spacing);
+    font-weight: 500;
+    transition: var(--transition);
+    font-size: 0.875rem;
+    cursor: pointer;
+    border-radius: var(--radius);
+    border-color: transparent;
     display: flex;
     align-items: center;
+    text-align: center;
     margin: 0 auto;
     width: 148px;
+  }
+  .btn-featured:hover {
+    color: var(--clr-primary-1);
   }
 `
 

@@ -70,7 +70,6 @@ const Wrapper = styled.section`
   }
   .btn-details:hover {
     color: var(--clr-primary-1);
-    background: var(--clr-primary-7);
   }
   @media (min-width: 992px) {
     article {

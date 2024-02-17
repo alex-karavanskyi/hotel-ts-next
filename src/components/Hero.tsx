@@ -1,7 +1,7 @@
 'use client'
-import { styles } from '../styles'
 import { EarthCanvas, StarsCanvas } from './canvas'
 import { useMediaQuery } from 'react-responsive'
+import styled from 'styled-components'
 
 const Hero = () => {
   const isMobile = useMediaQuery({ maxWidth: 430 })
@@ -9,31 +9,37 @@ const Hero = () => {
   const containerStyle = isMobile ? {} : { backgroundColor: '#0e0f13' }
 
   return (
-    <section
-      className={`relative w-full h-screen mx-auto max-[430px]:h-[70vh]`}
-      style={containerStyle}
-    >
-      <div
-        className={`absolute inset-0 top-[50px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
-      >
-        <div className='flex flex-col justify-center items-center mt-5'>
-          <div className='w-5 h-5 rounded-full bg-[#915EFF]' />
-          <div className='w-1 sm:h-80 h-40 violet-gradient' />
-        </div>
-
+    <Wrapper style={containerStyle}>
+      <div className='text-container'>
         <div>
-          <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className='text-[#915EFF]'>Alex</span>
+          <h1 style={{ color: 'white', fontWeight: 'black' }}>
+            Hi, I'm <span style={{ color: '#915EFF' }}>Alex</span>
           </h1>
-          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I develop user <br className='sm:block hidden' />
+          <p style={{ marginTop: '0.5 rem', fontWeight: '500' }}>
+            I develop user <br />
             interfaces and web applications
           </p>
         </div>
       </div>
       {isMobile ? <StarsCanvas /> : <EarthCanvas />}
-    </section>
+    </Wrapper>
   )
 }
+
+const Wrapper = styled.section`
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  .text-container {
+    position: absolute;
+    inset: 0px;
+    top: 50px;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+`
 
 export default Hero

@@ -15,7 +15,7 @@ const Home = () => {
       <About />
       <Experience />
       <Works />
-      <div className='relative z-0'>
+      <div className='home-page'>
         <Contact />
         <StarsCanvas />
       </div>

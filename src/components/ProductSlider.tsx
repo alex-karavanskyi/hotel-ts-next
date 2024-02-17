@@ -70,8 +70,8 @@ export const ProductSlider = () => {
                   height={700}
                 />
               </Link>
-              <h4 className='text-white'>{name}</h4>
-              <p className='text-white'>{formatPrice(price)}</p>
+              <h4 style={{ color: 'white' }}>{name}</h4>
+              <p style={{ color: 'white' }}>{formatPrice(price)}</p>
             </article>
           )
         })}

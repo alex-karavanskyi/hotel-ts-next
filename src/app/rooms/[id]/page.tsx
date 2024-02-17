@@ -47,7 +47,7 @@ const SingleProductPage = () => {
         <div className=' product-center'>
           <ProductImages images={images} />
           <section className='content'>
-            <h2 className='text-white'>
+            <h2 style={{ color: 'white' }}>
               <Favorite id={sku} name={name} />
             </h2>
             <h5 className='price'>{formatPrice(price)}</h5>

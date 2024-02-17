@@ -32,12 +32,12 @@ const Favorite: React.FC<ListProducts> = ({ id, name }) => {
         <MdFavorite
           onClick={() => handleremoveToFavorite(id)}
           color='red'
-          className='cursor-pointer'
+          style={{ cursor: 'pointer' }}
         />
       ) : (
         <MdFavoriteBorder
           onClick={() => handleAddToFavorite(id)}
-          className='cursor-pointer'
+          style={{ cursor: 'pointer' }}
         />
       )}
     </>

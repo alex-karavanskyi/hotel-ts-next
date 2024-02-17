@@ -25,7 +25,7 @@ const Pagination: React.FC<PaginationProducts> = ({
 
   return (
     <Wrapper>
-      <ul className='flex justify-center gap-1'>
+      <ul className='pagination-container'>
         {pageNumbers.map((number) => (
           <li
             key={number}
@@ -36,7 +36,7 @@ const Pagination: React.FC<PaginationProducts> = ({
             <Link
               onClick={() => paginate(number)}
               href='/rooms'
-              className='flex justify-center items-center'
+              className='pagination-link'
             >
               {number}
             </Link>
@@ -58,6 +58,16 @@ const Wrapper = styled.section`
   }
   .active {
     background-color: orange;
+  }
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+  .pagination-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `
 

@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 
 const Rooms = () => {
   return (
-    <div className='bg-white pt-5 pl-3 pb-3'>
-      <div className='max-w-7xl mx-auto mb-8'>
+    <div className='room-page'>
+      <div className='room-center'>
         <h1>ROOMS</h1>
         <div>
           REFINED, SOPHISTICATED, SMART AND SIMPLE, YET FLAMBOYANT AND
