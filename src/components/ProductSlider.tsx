@@ -164,10 +164,10 @@ const Wrapper = styled.div`
     background: var(--clr-primary-5);
   }
   .prev {
-    left: 90px;
+    left: 120px;
   }
   .next {
-    right: 90px;
+    right: 120px;
   }
 
   .text {

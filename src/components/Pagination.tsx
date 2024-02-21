@@ -2,18 +2,17 @@
 import React from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
-import { useAppSelector } from '@/redux/hooks'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { numberPagination } from '@/redux/features/paginationSlice'
 
 interface PaginationProducts {
   postsPerPage: number
   totalPosts: number
-  paginate: any
 }
 
 const Pagination: React.FC<PaginationProducts> = ({
   postsPerPage,
   totalPosts,
-  paginate,
 }) => {
   const pageNumbers: number[] = []
 
@@ -21,6 +20,16 @@ const Pagination: React.FC<PaginationProducts> = ({
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i)
+  }
+
+  const dispatch = useAppDispatch()
+
+  const paginate = (
+    pageNumber: number,
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    event.preventDefault()
+    dispatch(numberPagination(pageNumber))
   }
 
   return (
@@ -34,7 +43,7 @@ const Pagination: React.FC<PaginationProducts> = ({
             }`}
           >
             <Link
-              onClick={() => paginate(number)}
+              onClick={(e) => paginate(number, e)}
               href='/rooms'
               className='pagination-link'
             >

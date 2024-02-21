@@ -1,5 +1,5 @@
 'use client'
-import { EarthCanvas, StarsCanvas } from './canvas'
+import { StarsCanvas, LaptopCanvas } from './canvas'
 import { useMediaQuery } from 'react-responsive'
 import styled from 'styled-components'
 
@@ -21,7 +21,7 @@ const Hero = () => {
           </p>
         </div>
       </div>
-      {isMobile ? <StarsCanvas /> : <EarthCanvas />}
+      {isMobile ? <StarsCanvas /> : <LaptopCanvas />}
     </Wrapper>
   )
 }
