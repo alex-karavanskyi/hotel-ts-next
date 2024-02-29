@@ -9,7 +9,7 @@ const About = React.forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div id='about' className='about-container'>
       <motion.div variants={textVariant(0.1)}>
-        <p>Introduction</p>
+        <p className='introduction'>Introduction</p>
         <h2 className='head-text'>Overview.</h2>
       </motion.div>
 

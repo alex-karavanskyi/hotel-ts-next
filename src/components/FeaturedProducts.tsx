@@ -41,6 +41,12 @@ const FeaturedProducts = () => {
 }
 
 const Wrapper = styled.section`
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
   .btn-featured {
     text-transform: uppercase;
     background: var(--clr-primary-5);
@@ -64,4 +70,4 @@ const Wrapper = styled.section`
   }
 `
 
-export default SectionWrapper(FeaturedProducts, 'featured')
+export default FeaturedProducts

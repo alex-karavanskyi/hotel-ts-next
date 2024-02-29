@@ -32,6 +32,9 @@ const Wrapper = styled.section`
   height: 100vh;
   margin-left: auto;
   margin-right: auto;
+  @media (max-width: 430px) {
+    height: 50vh;
+  }
   .text-container {
     position: absolute;
     inset: 0px;
@@ -39,6 +42,13 @@ const Wrapper = styled.section`
     max-width: 80rem;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (max-width: 430px) {
+    .text-container {
+      text-align: center;
+    }
   }
 `
 
