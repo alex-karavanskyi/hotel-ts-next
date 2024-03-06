@@ -148,6 +148,11 @@ p {
   margin-right: auto;
   margin-bottom: 2rem
 }
+@media (max-width: 1320px) {
+.room-center {
+  margin-left: 15px;
+}
+}
 .section {
   padding: 5rem 0;
 }

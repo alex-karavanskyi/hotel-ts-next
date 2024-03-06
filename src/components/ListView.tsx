@@ -40,6 +40,10 @@ const Wrapper = styled.section`
   row-gap: 3rem;
   max-width: 1450px;
   margin: auto;
+  @media (max-width: 990px) {
+    margin-left: 15px;
+    padding-bottom: 45px;
+  }
   img {
     width: 100%;
     display: block;

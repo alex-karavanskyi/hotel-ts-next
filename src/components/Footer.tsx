@@ -189,7 +189,26 @@ const Wrapper = styled.footer`
   .footer-menu a:hover {
     color: var(--clr-primary-5);
   }
-  @media (max-width: 430px) {
+
+  @media (max-width: 800px) {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(6, 110px);
+    }
+  }
+  @media (max-width: 660px) {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 110px);
+    }
+  }
+  @media (max-width: 550px) {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 110px);
+    }
+  }
+  @media (max-width: 440px) {
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 110px);

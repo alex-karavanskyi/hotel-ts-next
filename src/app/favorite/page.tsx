@@ -16,7 +16,7 @@ const Favorite = () => {
 
   return (
     <Wrapper>
-      <h2>Wishlist</h2>
+      <h2 className='wish-list'>Wishlist</h2>
       {wishlist.length === 0 ? (
         <p className='empty'>Your wishlist is empty.</p>
       ) : (
@@ -31,8 +31,8 @@ const Favorite = () => {
                   height={700}
                 />
                 <div>
-                  <h3>{product.name}</h3>
-                  <p>{formatPrice(product.price)}</p>
+                  <h3 className='list-margin'>{product.name}</h3>
+                  <p className='list-margin'>{formatPrice(product.price)}</p>
                   <button
                     onClick={() => handleRemoveFromWishlist(product.id)}
                     className='btn-delete'
@@ -57,6 +57,10 @@ const Wrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr 2fr;
     align-items: center;
+    margin-left: 30px;
+  }
+  .list-margin {
+    margin-left: 14px;
   }
   img {
     width: 100%;
@@ -73,28 +77,43 @@ const Wrapper = styled.div`
     text-decoration: underline;
     background: transparent;
     border: none;
+    margin-left: 14px;
   }
   .btn-delete:hover {
     text-decoration: none;
   }
   .empty {
     height: 200px;
+    margin-left: 30px;
+  }
+  .wish-list {
+    padding-top: 15px;
+    margin-left: 30px;
   }
   h2,
   h3,
   p {
     color: white;
   }
-  @media screen and (max-width: 390px) {
+  @media (max-width: 430px) {
     .grid-center {
       display: block;
-      margin-left: 30px;
       margin-bottom: 10px;
     }
     h2,
     .empty {
       display: flex;
       justify-content: center;
+      margin-left: 0;
+    }
+    .wish-list {
+      margin-left: 0;
+    }
+    .btn-delete {
+      margin-left: 0px;
+    }
+    .list-margin {
+      margin-left: 0px;
     }
   }
 `

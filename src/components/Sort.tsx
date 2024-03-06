@@ -75,7 +75,10 @@ const Wrapper = styled.section`
   align-items: center;
   margin-bottom: 2rem;
   column-gap: 2rem;
-
+  @media (max-width: 1500px) {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
   .btn-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -100,7 +103,6 @@ const Wrapper = styled.section`
       color: var(--clr-white);
     }
   }
-
   .sort-input {
     border-color: transparent;
     font-size: 1rem;
@@ -110,6 +112,10 @@ const Wrapper = styled.section`
   label {
     font-size: 1rem;
     text-transform: capitalize;
+  }
+  p {
+    text-transform: capitalize;
+    margin-bottom: 0;
   }
   @media (max-width: 576px) {
     display: grid;
@@ -124,14 +130,9 @@ const Wrapper = styled.section`
     }
   }
   @media (max-width: 768px) {
-    column-gap: 2rem;
     .btn-container {
       display: none;
     }
-  }
-  p {
-    text-transform: capitalize;
-    margin-bottom: 0;
   }
 `
 

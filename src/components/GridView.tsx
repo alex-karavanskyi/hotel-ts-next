@@ -106,7 +106,13 @@ const Wrapper = styled.section`
     letter-spacing: var(--spacing);
   }
 
-  @media screen and (max-width: 768px) {
+  @media (max-width: 1500px) {
+    .products-container {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+  }
+  @media (max-width: 768px) {
     .products-container {
       grid-template-columns: repeat(1, 1fr);
     }
