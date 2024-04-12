@@ -7,19 +7,20 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { RouterLink } from '../utils'
 import { useAppDispatch } from '@/redux/hooks'
-import { useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { openModal } from '@/redux/features/modalSlice'
 
 const Navbar = () => {
-  const navbarRef = useRef<HTMLDivElement>(null)
+  const [navbar, setNavbar] = useState(false)
+
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 80) {
-        navbarRef.current?.classList.add('navbar-fixed')
+        setNavbar(true)
       } else {
-        navbarRef.current?.classList.remove('navbar-fixed')
+        setNavbar(false)
       }
     }
 
@@ -29,29 +30,15 @@ const Navbar = () => {
 
   return (
     <Wrapper>
-      <nav ref={navbarRef} className='nav'>
+      <nav className={navbar ? 'nav navbar-fixed' : 'nav'}>
         <Link href={`/`} className='link'>
-          <Image
-            src={
-              navbarRef.current &&
-              navbarRef.current.classList.contains('navbar-fixed')
-                ? logo
-                : logoInverted
-            }
-            width={100}
-            alt='Logo'
-          />
+          <Image src={navbar ? logo : logoInverted} width={100} alt='Logo' />
         </Link>
         <button className='nav-btn' onClick={() => dispatch(openModal())}>
           <i className='fas fa-bars'></i>
         </button>
         <RouterLink
-          parentClass={
-            navbarRef.current &&
-            navbarRef.current.classList.contains('navbar-fixed')
-              ? 'nav-links nav-links-color'
-              : 'nav-links'
-          }
+          parentClass={navbar ? 'nav-links nav-links-color' : 'nav-links'}
         />
       </nav>
     </Wrapper>
