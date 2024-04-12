@@ -593,6 +593,17 @@ p {
   outline: 2px solid transparent;
   outline-offset: 2px;
   width: fit-content;
+  cursor: pointer;
+}
+.contact-button:disabled {
+  opacity: 0.5;
+}
+.contact-button-white {
+  color: white;
+  cursor: not-allowed;
+}
+.contact-button-black {
+  color: black;
 }
 @media (max-width: 430px) {
   .contact-container {

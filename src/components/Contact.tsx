@@ -1,32 +1,25 @@
 'use client'
-import React, { ChangeEvent, useRef, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
 import { slideIn } from '../utils/motion'
 
-const Contact = React.forwardRef<HTMLDivElement>((props, ref) => {
-  const formRef = useRef<HTMLFormElement | null>(null)
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
+type FormData = {
+  name: string
+  email: string
+  message: string
+}
 
-  const [loading, setLoading] = useState(false)
+const Contact = () => {
+  const {
+    register,
+    formState: { errors, isValid },
+    handleSubmit,
+    reset,
+  } = useForm<FormData>({ mode: 'onChange' })
 
-  const handleChange = (
-    e: React.FormEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.currentTarget
-
-    setForm({
-      ...form,
-      [name]: value,
-    })
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setLoading(true)
+  const onSubmit = (data: FormData) => {
+    alert(JSON.stringify(data))
+    reset()
   }
 
   return (
@@ -38,45 +31,78 @@ const Contact = React.forwardRef<HTMLDivElement>((props, ref) => {
         <p>Get in touch</p>
         <h3 style={{ color: 'white' }}>Contact.</h3>
 
-        <form ref={formRef} onSubmit={handleSubmit} className='contact-form'>
+        <form onSubmit={handleSubmit(onSubmit)} className='contact-form'>
           <label>
-            <span>Your Name</span>
+            <span>Name</span>
             <input
-              type='text'
-              name='name'
-              value={form.name}
-              onChange={handleChange}
-              placeholder="What's your good name?"
+              {...register('name', {
+                required: true,
+                minLength: {
+                  value: 3,
+                  message: 'Name must be min 3 characters',
+                },
+              })}
             />
           </label>
+          <div>
+            {errors.name && (
+              <p style={{ color: 'red', marginBottom: 0 }}>
+                {errors.name?.message}
+              </p>
+            )}
+          </div>
           <label>
-            <span>Your email</span>
+            <span>Email</span>
             <input
-              type='email'
-              name='email'
-              value={form.email}
-              onChange={handleChange}
-              placeholder="What's your web address?"
+              {...register('email', {
+                required: true,
+                minLength: {
+                  value: 3,
+                  message: 'Email must be min 3 characters',
+                },
+              })}
             />
           </label>
+          <div>
+            {errors.email && (
+              <p style={{ color: 'red', marginBottom: 0 }}>
+                {errors.email?.message}
+              </p>
+            )}
+          </div>
           <label>
-            <span>Your Message</span>
+            <span>Message</span>
             <textarea
               rows={7}
-              name='message'
-              value={form.message}
-              onChange={handleChange}
-              placeholder='What you want to say?'
+              {...register('message', {
+                required: true,
+                minLength: {
+                  value: 15,
+                  message: 'Message must be min 15 characters',
+                },
+              })}
             />
           </label>
-
-          <button type='submit' className='contact-button'>
-            {loading ? 'Sending...' : 'Send'}
+          <div>
+            {errors.message && (
+              <p style={{ color: 'red', marginBottom: 0 }}>
+                {errors.message?.message}
+              </p>
+            )}
+          </div>
+          <button
+            type='submit'
+            className={`contact-button ${
+              isValid ? 'contact-button-black' : 'contact-button-white'
+            }`}
+            disabled={!isValid}
+          >
+            Send
           </button>
         </form>
       </motion.div>
     </div>
   )
-})
+}
 
 export default Contact
