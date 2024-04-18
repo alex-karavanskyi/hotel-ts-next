@@ -1,10 +1,9 @@
 'use client'
-import React from 'react'
-import { useAppSelector, useAppDispatch } from '@/redux/hooks'
-import { formatPrice } from '@/helpers'
-import { removeFavorite } from '@/redux/features/productSlice'
 import styled from 'styled-components'
 import Image from 'next/image'
+import { useAppSelector, useAppDispatch } from '@/redux/hooks'
+import { formatPrice } from '@/utils/helpers'
+import { removeFavorite } from '@/redux/features/productSlice'
 
 const Favorite = () => {
   const wishlist = useAppSelector((state) => state.products.favorites_products)

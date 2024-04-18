@@ -1,6 +1,6 @@
 'use client'
 import * as THREE from 'three'
-import React, { Suspense, useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Environment, useGLTF, ContactShadows } from '@react-three/drei'
 import { useSpring } from '@react-spring/core'

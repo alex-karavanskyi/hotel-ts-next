@@ -1,7 +1,6 @@
-import React from 'react'
 import styled from 'styled-components'
 
-const SocialLink = () => {
+const SocialLinks = () => {
   return (
     <StyledSocial>
       <li>
@@ -51,4 +50,4 @@ const StyledSocial = styled.ul`
   }
 `
 
-export default SocialLink
+export default SocialLinks

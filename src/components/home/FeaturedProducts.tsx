@@ -2,9 +2,9 @@
 import Link from 'next/link'
 import styled from 'styled-components'
 import { useEffect } from 'react'
-import { Error, Loading, ProductSlider } from '.'
+import { Error, Loading } from '..'
+import { Slider } from '@/modules'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { SectionWrapper } from '../hoc'
 import { getProductsItems } from '@/redux/features/productSlice'
 
 const FeaturedProducts = () => {
@@ -32,7 +32,7 @@ const FeaturedProducts = () => {
         <h2 style={{ color: 'white' }}>featured products</h2>
         <div className='underline'></div>
       </div>
-      <ProductSlider />
+      <Slider />
       <Link href='/rooms' className='btn-featured'>
         all products
       </Link>

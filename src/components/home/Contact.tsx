@@ -1,7 +1,7 @@
 'use client'
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
-import { slideIn } from '../utils/motion'
+import { slideIn } from '@/utils/motion'
 
 type FormData = {
   name: string

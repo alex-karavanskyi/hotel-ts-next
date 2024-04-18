@@ -1,15 +1,15 @@
 'use client'
-import React, { ChangeEvent } from 'react'
 import styled from 'styled-components'
+import { ChangeEvent } from 'react'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
+import { BsFillGridFill, BsList } from 'react-icons/bs'
+import { useEffect } from 'react'
 import {
   updateSort,
   setGridView,
   setListView,
   sortProducts,
 } from '@/redux/features/filterSlice'
-import { BsFillGridFill, BsList } from 'react-icons/bs'
-import { useEffect } from 'react'
 
 const Sort = () => {
   const {

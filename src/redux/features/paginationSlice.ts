@@ -16,4 +16,5 @@ const paginationSlice = createSlice({
 })
 
 export const { numberPagination } = paginationSlice.actions
+
 export default paginationSlice.reducer

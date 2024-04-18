@@ -1,7 +1,7 @@
 'use client'
-import React, { useState } from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
+import { useState } from 'react'
 
 const ProductImages = ({ images = [{ url: '' }] }) => {
   const [main, setMain] = useState(images[0])

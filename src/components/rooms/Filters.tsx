@@ -2,14 +2,14 @@
 import styled from 'styled-components'
 import { useEffect, useState, memo } from 'react'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
+import { getUniqueValues, formatPrice } from '@/utils/helpers'
+import { numberPagination } from '@/redux/features/paginationSlice'
 import {
   clearFilters,
   updateFilters,
   loadProducts,
   filterProducts,
 } from '@/redux/features/filterSlice'
-import { getUniqueValues, formatPrice } from '../helpers'
-import { numberPagination } from '@/redux/features/paginationSlice'
 
 type HandleValue = string | number
 
@@ -47,7 +47,7 @@ const Filters = () => {
 
   useEffect(() => {
     dispatch(filterProducts())
-  }, [category, min_price, price, max_price, text, dispatch])
+  }, [category, price, text, dispatch])
 
   return (
     <Wrapper>
@@ -112,7 +112,8 @@ const Wrapper = styled.section`
   margin-bottom: 50px;
   max-width: 1248px;
   .search-input {
-    padding: 0.5rem;
+    padding-left: 0.5rem;
+    margin-right: 1rem;
     background: var(--clr-grey-10);
     border-radius: var(--radius);
     border-color: transparent;

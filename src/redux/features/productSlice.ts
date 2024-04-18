@@ -1,7 +1,7 @@
 'use client'
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
-import Products from '../modals/productsType'
+import Products from '@/types/productsType'
 
 export interface ProductsState {
   products_loading: boolean
@@ -108,4 +108,5 @@ const productSlice = createSlice({
   },
 })
 export const { addFavorite, removeFavorite } = productSlice.actions
+
 export default productSlice.reducer

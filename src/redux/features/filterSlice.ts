@@ -1,6 +1,6 @@
 'use client'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import Products from '../modals/productsType'
+import Products from '@/types/productsType'
 
 export interface FilterState {
   filtered_products: Products[]
@@ -115,4 +115,5 @@ export const {
   filterProducts,
   sortProducts,
 } = filterSlice.actions
+
 export default filterSlice.reducer

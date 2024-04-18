@@ -1,9 +1,7 @@
 'use client'
-import React from 'react'
 import { useEffect, useState } from 'react'
 import { useAppSelector } from '@/redux/hooks'
-import { GridView, ListView } from '@/components'
-import Pagination from './Pagination'
+import { GridView, ListView, Pagination } from '@/components/rooms'
 
 const ProductList = () => {
   const [postsPerPage] = useState(4)
@@ -33,7 +31,14 @@ const ProductList = () => {
 
   if (products.length < 1) {
     return (
-      <h5 style={{ textTransform: 'none' }}>
+      <h5
+        style={{
+          textTransform: 'none',
+          margin: 0,
+          paddingBottom: '1rem',
+          textAlign: 'center',
+        }}
+      >
         Sorry, no products matched your search...
       </h5>
     )

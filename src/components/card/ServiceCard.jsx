@@ -1,8 +1,8 @@
 'use client'
+import Image from 'next/image'
 import { Tilt } from 'react-tilt'
 import { motion } from 'framer-motion'
-import { fadeIn } from '../../utils/motion'
-import Image from 'next/image'
+import { fadeIn } from '@/utils/motion'
 
 const ServiceCard = ({ index, title, icon }) => (
   <Tilt className='box-color'>

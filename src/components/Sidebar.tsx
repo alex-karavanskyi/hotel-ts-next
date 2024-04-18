@@ -1,11 +1,10 @@
 'use client'
-import React from 'react'
 import styled from 'styled-components'
+import city from '@/images/city_coast_skyscrapers_866257_1920x1200.jpg'
+import Image from 'next/image'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { closeModal } from '@/redux/features/modalSlice'
-import { RouterLink, SocialLink } from '../utils'
-import Image from 'next/image'
-import city from '../images/city_coast_skyscrapers_866257_1920x1200.jpg'
+import { NavbarLinks, SocialLinks } from '@/modules'
 
 const Sidebar = () => {
   const { isOpen } = useAppSelector((store) => store.modal)
@@ -14,9 +13,6 @@ const Sidebar = () => {
   return (
     <Wrapper>
       <aside className={isOpen ? 'sidebar show-sidebar' : 'sidebar'}>
-        {/* <div className='video'>
-          <video src='/public/city.webm' autoPlay muted loop />
-        </div> */}
         <Image
           src={city}
           alt='city'
@@ -30,8 +26,8 @@ const Sidebar = () => {
             <i className='fas fa-times'></i>
           </button>
           <div>
-            <RouterLink parentClass='sidebar-links' />
-            <SocialLink />
+            <NavbarLinks parentClass='sidebar-links' />
+            <SocialLinks />
           </div>
         </div>
       </aside>

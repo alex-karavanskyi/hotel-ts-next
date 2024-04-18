@@ -1,11 +1,10 @@
 'use client'
-import React from 'react'
 import { motion } from 'framer-motion'
-import { services } from '../constants'
-import { fadeIn, textVariant } from '../utils/motion'
-import { ServiceCard } from '.'
+import { services } from '@/constants'
+import { fadeIn, textVariant } from '@/utils/motion'
+import { ServiceCard } from '@/components/card'
 
-const About = React.forwardRef<HTMLDivElement>((props, ref) => {
+const About = () => {
   return (
     <div id='about' className='about-container'>
       <motion.div variants={textVariant(0.1)}>
@@ -27,6 +26,6 @@ const About = React.forwardRef<HTMLDivElement>((props, ref) => {
       </div>
     </div>
   )
-})
+}
 
 export default About

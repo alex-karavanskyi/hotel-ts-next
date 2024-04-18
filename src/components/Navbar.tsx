@@ -1,11 +1,10 @@
 'use client'
-import React from 'react'
 import styled from 'styled-components'
-import logo from '../images/stone-high-resolution-logo-black-transparent.png'
-import logoInverted from '../images/stone-high-resolution-logo-white-transparent.png'
+import logo from '@/images/stone-high-resolution-logo-black-transparent.png'
+import logoInverted from '@/images/stone-high-resolution-logo-white-transparent.png'
 import Link from 'next/link'
 import Image from 'next/image'
-import { RouterLink } from '../utils'
+import { NavbarLinks } from '@/modules'
 import { useAppDispatch } from '@/redux/hooks'
 import { useState, useEffect } from 'react'
 import { openModal } from '@/redux/features/modalSlice'
@@ -37,7 +36,7 @@ const Navbar = () => {
         <button className='nav-btn' onClick={() => dispatch(openModal())}>
           <i className='fas fa-bars'></i>
         </button>
-        <RouterLink
+        <NavbarLinks
           parentClass={navbar ? 'nav-links nav-links-color' : 'nav-links'}
         />
       </nav>

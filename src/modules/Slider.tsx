@@ -1,14 +1,14 @@
 'use client'
-import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
+import Image from 'next/image'
+import { useState, useEffect, useCallback } from 'react'
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
-import { formatPrice } from '../helpers'
+import { formatPrice } from '@/utils/helpers'
 import { useSwipeable } from 'react-swipeable'
 import { useAppSelector } from '@/redux/hooks'
-import Image from 'next/image'
 
-export const ProductSlider = () => {
+export const Slider = () => {
   const { featured_products: featured } = useAppSelector(
     (store) => store.products
   )
@@ -229,4 +229,4 @@ const Wrapper = styled.div`
   }
 `
 
-export default ProductSlider
+export default Slider

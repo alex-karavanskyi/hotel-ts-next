@@ -1,11 +1,11 @@
-import React from 'react'
+'use client'
 import styled from 'styled-components'
 import Link from 'next/link'
-import { formatPrice } from '../helpers'
-import { FaSearch } from 'react-icons/fa'
-import Products from '@/redux/modals/productsType'
 import Image from 'next/image'
-import Favorite from './Favorite'
+import Products from '@/types/productsType'
+import { formatPrice } from '@/utils/helpers'
+import { Favorite } from '@/modules'
+import { FaSearch } from 'react-icons/fa'
 
 interface GridProducts {
   products: Products[]

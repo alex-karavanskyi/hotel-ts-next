@@ -1,10 +1,10 @@
 'use client'
 import styled from 'styled-components'
 import Link from 'next/link'
-import { formatPrice } from '../helpers'
-import Products from '@/redux/modals/productsType'
 import Image from 'next/image'
-import Favorite from './Favorite'
+import Products from '@/types/productsType'
+import { Favorite } from '@/modules'
+import { formatPrice } from '@/utils/helpers'
 
 interface ListProducts {
   products: Products[]

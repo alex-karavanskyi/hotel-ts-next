@@ -1,10 +1,9 @@
 import './globals.css'
-import type { Metadata } from 'next'
+import '@/fontawesome-free-5.12.1-web/css/all.css'
 import { Inter } from 'next/font/google'
-import { Navbar, Footer, Sidebar } from '@/components/'
+import { Navbar, Footer, Sidebar, ClientOnly } from '@/components/'
 import { ReduxProvider } from '@/redux/provider'
-import '../fontawesome-free-5.12.1-web/css/all.css'
-import ClientOnly from '../components/ClientOnly'
+import { Metadata } from 'next'
 
 const inter = Inter({ subsets: ['latin'] })
 

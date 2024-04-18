@@ -1,4 +1,4 @@
-import { Filters, ProductList, Sort } from '@/components'
+import { Filters, ProductList, Sort } from '@/components/rooms'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

@@ -1,9 +1,9 @@
 'use client'
+import Image from 'next/image'
 import { Tilt } from 'react-tilt'
 import { motion } from 'framer-motion'
 import { github } from '@/assets'
 import { fadeIn } from '@/utils/motion'
-import Image from 'next/image'
 
 const ProjectCard = ({
   index,

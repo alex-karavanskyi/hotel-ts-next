@@ -1,8 +1,7 @@
 'use client'
-import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
-import { SocialLink } from '../utils'
+import { SocialLinks } from '@/modules'
 import {
   musicItem,
   discoverItem,
@@ -137,7 +136,7 @@ const Footer = () => {
         </div>
         <div className='container-logo'>
           <div className='grid-social'>
-            <SocialLink />
+            <SocialLinks />
           </div>
         </div>
       </div>

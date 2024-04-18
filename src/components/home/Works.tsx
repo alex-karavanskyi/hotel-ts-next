@@ -1,10 +1,9 @@
 'use client'
-import React from 'react'
 import { motion } from 'framer-motion'
-import { SectionWrapper } from '../hoc'
-import { projects } from '../constants'
-import { fadeIn, textVariant } from '../utils/motion'
-import { ProjectCard } from '.'
+import { SectionWrapper } from '@/hoc'
+import { projects } from '@/constants'
+import { fadeIn, textVariant } from '@/utils/motion'
+import { ProjectCard } from '@/components/card'
 
 const Works = () => {
   return (
@@ -33,4 +32,4 @@ const Works = () => {
   )
 }
 
-export default SectionWrapper(Works, '')
+export default SectionWrapper(Works)

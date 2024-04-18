@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { closeModal } from '@/redux/features/modalSlice'
 import { useAppDispatch } from '@/redux/hooks'
 
-const RouterLink: React.FC<{ parentClass?: string }> = ({ parentClass }) => {
+const NavbarLinks: React.FC<{ parentClass?: string }> = ({ parentClass }) => {
   const dispatch = useAppDispatch()
 
   return (
@@ -36,4 +36,4 @@ const Wrapper = styled.div`
   }
 `
 
-export default RouterLink
+export default NavbarLinks

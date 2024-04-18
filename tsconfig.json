@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/canvas/Ball.jsx", "src/components/canvas/Stars.jsx", "src/hoc/SectionWrapper.jsx", "src/helpers.jsx", "src/components/canvas/index.jsx", "src/components/canvas/Earth.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/canvas/Ball.jsx", "src/components/canvas/Stars.jsx", "src/hoc/SectionWrapper.jsx", "src/utils/helpers.jsx", "src/components/canvas/index.jsx", "src/components/canvas/Earth.jsx", "src/components/card/index.jsx"],
   "exclude": ["node_modules"]
 }
