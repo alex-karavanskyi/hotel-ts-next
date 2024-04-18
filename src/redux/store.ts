@@ -2,15 +2,17 @@
 import { configureStore } from '@reduxjs/toolkit'
 import modalReducer from '@/redux/features/modalSlice'
 import filterReducer from '@/redux/features/filterSlice'
-import productsReducer from '@/redux/features/productSlice'
+import productReducer from '@/redux/features/productSlice'
 import paginationSlice from '@/redux/features/paginationSlice'
+import favoriteSlice from '@/redux/features/favoriteSlice'
 
 export const store = configureStore({
   reducer: {
-    modal: modalReducer,
+    favorite: favoriteSlice,
     filter: filterReducer,
-    products: productsReducer,
+    modal: modalReducer,
     pagination: paginationSlice,
+    products: productReducer,
   },
 })
 

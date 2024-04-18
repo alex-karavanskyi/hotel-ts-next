@@ -18,6 +18,7 @@ const SingleProductPage = () => {
     single_product_loading: loading,
     single_product_error: error,
     single_product: product,
+    products,
   } = useAppSelector((store) => store.products)
 
   useEffect(() => {
@@ -48,7 +49,7 @@ const SingleProductPage = () => {
           <ProductImages images={images} />
           <section className='content'>
             <h2 style={{ color: 'white' }}>
-              <Favorite id={sku} name={name} />
+              <Favorite productId={sku} name={name} products={products} />
             </h2>
             <h5 className='price'>{formatPrice(price)}</h5>
             <p className='desc'> {description}</p>

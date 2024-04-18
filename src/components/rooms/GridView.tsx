@@ -27,7 +27,7 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
               </div>
               <footer>
                 <h5>
-                  <Favorite id={id} name={name} />
+                  <Favorite productId={id} name={name} products={products} />
                 </h5>
                 <p>{formatPrice(price)}</p>
               </footer>

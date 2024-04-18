@@ -20,7 +20,7 @@ const ListView: React.FC<ListProducts> = ({ products }) => {
             <Image src={image} alt={name} width={700} height={700} />
             <div>
               <h4>
-                <Favorite id={id} name={name} />
+                <Favorite productId={id} name={name} products={products} />
               </h4>
               <h5 className='price'>{formatPrice(price)}</h5>
               <p>{description.substring(0, 150)}...</p>

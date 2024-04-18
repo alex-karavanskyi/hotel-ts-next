@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { formatPrice } from '@/utils/helpers'
-import { removeFavorite } from '@/redux/features/productSlice'
+import { removeFavorite } from '@/redux/features/favoriteSlice'
 
 const Favorite = () => {
-  const wishlist = useAppSelector((state) => state.products.favorites_products)
+  const { favorites_products } = useAppSelector((store) => store.favorite)
+
   const dispatch = useAppDispatch()
 
   const handleRemoveFromWishlist = (productId: string) => {
@@ -16,11 +17,11 @@ const Favorite = () => {
   return (
     <Wrapper>
       <h2 className='wish-list'>Wishlist</h2>
-      {wishlist.length === 0 ? (
+      {favorites_products.length === 0 ? (
         <p className='empty'>Your wishlist is empty.</p>
       ) : (
         <ul>
-          {wishlist.map((product) => (
+          {favorites_products.map((product) => (
             <li key={product.id}>
               <div className='grid-center'>
                 <Image
