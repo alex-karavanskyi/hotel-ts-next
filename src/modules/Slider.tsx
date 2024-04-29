@@ -1,230 +1,176 @@
 'use client'
-import styled from 'styled-components'
-import Link from 'next/link'
+import 'swiper/css'
+import 'swiper/css/effect-coverflow'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 import Image from 'next/image'
-import { useState, useEffect, useCallback } from 'react'
-import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
-import { formatPrice } from '@/utils/helpers'
-import { useSwipeable } from 'react-swipeable'
+import styled from 'styled-components'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules'
 import { useAppSelector } from '@/redux/hooks'
+import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 
 export const Slider = () => {
   const { featured_products: featured } = useAppSelector(
     (store) => store.products
   )
-  const [activeIndex, setActiveIndex] = useState(0)
-
-  const goToNext = useCallback(() => {
-    const isLastSlide = activeIndex === featured.length - 1
-    const newIndex = isLastSlide ? 0 : activeIndex + 1
-    setActiveIndex(newIndex)
-  }, [activeIndex, featured.length])
-
-  const goToPrevious = () => {
-    const isFirstSlide = activeIndex === 0
-    const newIndex = isFirstSlide ? featured.length - 1 : activeIndex - 1
-    setActiveIndex(newIndex)
-  }
-
-  const goToSlide = (slideIndex: number) => {
-    setActiveIndex(slideIndex)
-  }
-
-  const handlers = useSwipeable({
-    onSwipedLeft: () => goToNext(),
-    onSwipedRight: () => goToPrevious(),
-    swipeDuration: 500,
-    preventScrollOnSwipe: true,
-    trackMouse: true,
-  })
-
-  useEffect(() => {
-    let sliderId = setInterval(() => {
-      goToNext()
-    }, 5000)
-
-    return () => clearInterval(sliderId)
-  }, [activeIndex, goToNext])
 
   return (
-    <Wrapper {...handlers}>
-      <div className='section-center'>
-        {featured.map((item, personIndex) => {
-          const { image, name, price, id } = item
-          let position =
-            personIndex === activeIndex
-              ? 'activeSlide'
-              : personIndex === activeIndex - 1 ||
-                (activeIndex === 0 && personIndex === featured.length - 1)
-              ? 'lastSlide'
-              : 'nextSlide'
-
+    <Wrapper>
+      <Swiper
+        effect={'coverflow'}
+        grabCursor={true}
+        centeredSlides={true}
+        loop={true}
+        slidesPerView={'auto'}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 2.5,
+        }}
+        pagination={{ el: '.swiper-pagination', clickable: true }}
+        navigation={{
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }}
+        modules={[EffectCoverflow, Pagination, Navigation]}
+        className='swiper_container'
+      >
+        {featured.slice(0, 5).map((item) => {
+          const { image, id } = item
           return (
-            <article key={id} className={position}>
-              <Link href={`/rooms/${id}`}>
-                <Image
-                  alt='img'
-                  className='person-img'
-                  src={image}
-                  width={700}
-                  height={700}
-                />
-              </Link>
-              <h4 style={{ color: 'white' }}>{name}</h4>
-              <p style={{ color: 'white' }}>{formatPrice(price)}</p>
-            </article>
+            <SwiperSlide key={id}>
+              <Image alt='img' src={image} width={700} height={700} />
+            </SwiperSlide>
           )
         })}
-      </div>
-      <div className='indicators'>
-        {featured.map((slide, slideIndex) => (
-          <div
-            key={slideIndex}
-            onClick={() => goToSlide(slideIndex)}
-            className={`${
-              slideIndex === activeIndex
-                ? 'indicator-symbol-active'
-                : 'indicator-symbol'
-            }`}
-          >
-            ●
+
+        <div className='slider-controler'>
+          <div className='swiper-pagination'></div>
+          <div className='swiper-button-prev slider-arrow'>
+            <FiChevronLeft />
           </div>
-        ))}
-      </div>
-      <button className='prev' onClick={goToPrevious}>
-        <FiChevronLeft />
-      </button>
-      <button className='next' onClick={goToNext}>
-        <FiChevronRight />
-      </button>
+          <div className='swiper-button-next slider-arrow'>
+            <FiChevronRight />
+          </div>
+        </div>
+      </Swiper>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
-  margin-bottom: 30px;
-  margin-top: 30px;
-  .section-center {
-    height: 800px;
-    text-align: center;
+  position: relative;
+  z-index: 0;
+  max-width: 124rem;
+  padding: 0 1rem;
+  margin: 0 auto;
+  .swiper_container {
+    height: 52rem;
+    padding: 2rem 0;
+  }
+  .swiper-slide {
+    width: 37rem;
+    height: 42rem;
+  }
+  .swiper-slide img {
+    width: 37rem;
+    height: 42rem;
+    border-radius: 2rem;
+    object-fit: cover;
+  }
+  .slider-controler {
     position: relative;
-    overflow: hidden;
   }
-
-  .indicators {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-top: 8px;
-    cursor: pointer;
+  .slider-controler .slider-arrow {
+    background: rgb(218, 219, 212);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
   }
-
-  .indicator-symbol {
-    color: #26343f;
-    width: 1.5rem;
+  .slider-controler .slider-arrow::after {
+    content: '';
   }
-
-  .indicator-symbol-active {
-    color: #ffffff;
-    width: 1.5rem;
+  .swiper-pagination .swiper-pagination-bullet {
+    background: white;
+    padding: 7px;
   }
-  .person-img {
-    border-radius: 10%;
-    margin-bottom: 2rem;
-    width: 700px;
-    height: 700px;
-    border: 3px solid var(--clr-grey-8);
-    box-shadow: var(--dark-shadow);
+  .swiper-pagination .swiper-pagination-bullet-active {
+    background: #007aff;
+    padding: 7px;
   }
-  article h4 {
-    text-transform: uppercase;
-    color: var(--clr-primary-5);
-    margin-bottom: 1.5rem;
-  }
-
-  .prev,
-  .next {
+  .slider-controler .swiper-button-next {
     position: absolute;
-    top: 550px;
+    top: 50%;
     transform: translateY(-50%);
-    background: var(--clr-grey-5);
-    width: 1.25rem;
-    height: 1.25rem;
-    display: grid;
-    place-items: center;
-    border-color: transparent;
-    font-size: 1rem;
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: var(--transition);
+    right: 30rem;
   }
-  .prev:hover,
-  .next:hover {
-    background: var(--clr-primary-5);
-  }
-  .prev {
-    left: 120px;
-  }
-  .next {
-    right: 120px;
-  }
-
-  .text {
-    max-width: 45em;
-  }
-  .prev,
-  .next {
-    width: 4rem;
-    height: 4rem;
-    font-size: 1.5rem;
-  }
-  article {
+  .slider-controler .swiper-button-prev {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: var(--transition);
+    top: 50%;
+    transform: translateY(-50%);
+    left: 30rem;
   }
-  article.activeSlide {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  article.lastSlide {
-    transform: translateX(-100%);
-  }
-  article.nextSlide {
-    transform: translateX(100%);
-  }
-  @media (max-width: 1024px) {
-    .prev,
-    .next {
-      display: none;
-    }
-  }
-  @media (max-width: 768px) {
-    .section-center {
-      height: 600px;
-    }
-    .person-img {
-      width: 500px;
-      height: 500px;
-    }
-  }
-  @media (max-width: 430px) {
-    .section-center {
-      height: 370px;
-    }
 
-    .person-img {
-      border-radius: 5%;
+  @media (max-width: 700px) {
+    .swiper_container {
+      height: 45rem;
     }
-    .person-img {
-      object-fit: cover;
-      width: 270px;
-      height: 270px;
+    .swiper-slide {
+      width: 28rem;
+      height: 36rem;
+    }
+    .swiper-slide img {
+      width: 28rem;
+      height: 36rem;
+    }
+  }
+  @media (max-width: 500px) {
+    .swiper_container {
+      height: 35rem;
+    }
+    .swiper-slide {
+      width: 18rem;
+      height: 26rem;
+    }
+    .swiper-slide img {
+      width: 18rem;
+      height: 26rem;
+    }
+  }
+
+  @media (max-width: 1230px) {
+    .slider-controler .swiper-button-next {
+      right: 20rem;
+    }
+  }
+
+  @media (max-width: 1230px) {
+    .slider-controler .swiper-button-prev {
+      left: 20rem;
+    }
+  }
+  @media (max-width: 920px) {
+    .slider-controler .swiper-button-next {
+      right: 10rem;
+    }
+  }
+
+  @media (max-width: 920px) {
+    .slider-controler .swiper-button-prev {
+      left: 10rem;
+    }
+  }
+  @media (max-width: 590px) {
+    .slider-controler .swiper-button-next {
+      right: 5rem;
+    }
+  }
+
+  @media (max-width: 590px) {
+    .slider-controler .swiper-button-prev {
+      left: 5rem;
     }
   }
 `

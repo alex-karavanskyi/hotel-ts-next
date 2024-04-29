@@ -4,7 +4,7 @@ import { StarsCanvas, LaptopCanvas } from '@/components/canvas'
 import { useMediaQuery } from 'react-responsive'
 
 const Hero = () => {
-  const isMobile = useMediaQuery({ maxWidth: 430 })
+  const isMobile = useMediaQuery({ maxWidth: 570 })
 
   const containerStyle = isMobile ? {} : { backgroundColor: '#0e0f13' }
 
@@ -32,7 +32,7 @@ const Wrapper = styled.section`
   height: 100vh;
   margin-left: auto;
   margin-right: auto;
-  @media (max-width: 430px) {
+  @media (max-width: 570px) {
     height: 50vh;
   }
   .text-container {

@@ -124,7 +124,7 @@ const Wrapper = styled.section`
   }
   .form-control-container button {
     display: grid;
-    grid-template-columns: 120px;
+    grid-template-columns: 118px;
     text-transform: capitalize;
     background: transparent;
     border: none;

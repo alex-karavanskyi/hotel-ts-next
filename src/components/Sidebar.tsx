@@ -5,10 +5,21 @@ import Image from 'next/image'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { closeModal } from '@/redux/features/modalSlice'
 import { NavbarLinks, SocialLinks } from '@/modules'
+import { useEffect } from 'react'
 
 const Sidebar = () => {
   const { isOpen } = useAppSelector((store) => store.modal)
   const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('sidebar-open')
+      document.documentElement.classList.add('sidebar-open')
+    } else {
+      document.body.classList.remove('sidebar-open')
+      document.documentElement.classList.remove('sidebar-open')
+    }
+  }, [isOpen])
 
   return (
     <Wrapper>
@@ -48,12 +59,6 @@ const Wrapper = styled.div`
   }
   .show-sidebar {
     transform: translateX(0);
-  }
-  .video {
-    max-height: 100vh;
-    position: relative;
-    z-index: 1;
-    padding-bottom: 56.25%;
   }
   .img {
     max-height: 100vh;
