@@ -1,7 +1,7 @@
 import modalReducer, {
   openModal,
   closeModal,
-} from '../redux/features/modalSlice'
+} from '@/redux/features/modalSlice'
 
 describe('modalSlice', () => {
   it('should handle openModal', () => {

@@ -1,4 +1,4 @@
-import filterReducer from '../redux/features/filterSlice'
+import filterReducer from '@/redux/features/filterSlice'
 
 describe('filterReducer', () => {
   it('should return default state when passed an empty action', () => {
