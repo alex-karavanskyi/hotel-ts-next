@@ -12,7 +12,7 @@ const FeaturedProducts = () => {
     (store) => store.products
   )
 
-  const url = 'https://course-api.com/react-store-products'
+  const url = 'https://www.course-api.com/react-store-products'
 
   const dispatch = useAppDispatch()
 

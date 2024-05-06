@@ -84,9 +84,9 @@ const Wrapper = styled.div`
     position: relative;
   }
   .slider-controler .slider-arrow {
-    background: rgb(218, 219, 212);
-    width: 2.5rem;
-    height: 2.5rem;
+    background: rgb(74, 74, 77);
+    width: 2.3rem;
+    height: 2.3rem;
     border-radius: 50%;
   }
   .slider-controler .slider-arrow::after {

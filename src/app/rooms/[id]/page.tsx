@@ -8,7 +8,7 @@ import { Loading, Error } from '@/components'
 import { ProductImages, Favorite } from '@/modules'
 import { getSingeProduct } from '@/redux/features/productSlice'
 
-const url = `https://course-api.com/react-store-single-product?id=`
+const url = `https://www.course-api.com/react-store-single-product?id=`
 
 const SingleProductPage = () => {
   const { id } = useParams()
