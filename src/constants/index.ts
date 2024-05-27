@@ -16,10 +16,9 @@ import {
   figma,
   next,
   docker,
-  starbucks,
-  carrent,
-  jobit,
-  tripguide,
+  dashboard,
+  ecommerce,
+  chatbot,
   threejs,
 } from '../assets'
 
@@ -181,7 +180,7 @@ const testimonials = [
 
 const projects = [
   {
-    name: 'Car Rent',
+    name: 'E-Commerce',
     description:
       'Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.',
     tags: [
@@ -198,11 +197,11 @@ const projects = [
         color: 'pink-text-gradient',
       },
     ],
-    image: carrent,
+    image: ecommerce,
     source_code_link: 'https://github.com/',
   },
   {
-    name: 'Job IT',
+    name: 'Dashboard (in procces)',
     description:
       'Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.',
     tags: [
@@ -219,11 +218,11 @@ const projects = [
         color: 'pink-text-gradient',
       },
     ],
-    image: jobit,
+    image: dashboard,
     source_code_link: 'https://github.com/',
   },
   {
-    name: 'Trip Guide',
+    name: 'Messenger (in procces)',
     description:
       'A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.',
     tags: [
@@ -240,7 +239,7 @@ const projects = [
         color: 'pink-text-gradient',
       },
     ],
-    image: tripguide,
+    image: chatbot,
     source_code_link: 'https://github.com/',
   },
 ]

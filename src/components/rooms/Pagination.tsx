@@ -59,7 +59,7 @@ const Wrapper = styled.section`
   padding-bottom: 30px;
   .pagination {
     border: solid 1px;
-    border-radius: 20%;
+    border-radius: 50%;
     display: grid;
     grid-template-columns: 30px;
     grid-template-rows: 30px;

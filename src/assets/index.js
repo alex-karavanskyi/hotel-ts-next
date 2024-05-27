@@ -27,12 +27,11 @@ import shopify from './company/shopify.png'
 import starbucks from './company/starbucks.png'
 import tesla from './company/tesla.png'
 
-import carrent from './carrent.png'
-import jobit from './jobit.png'
-import tripguide from './tripguide.png'
+import ecommerce from './ecommerce.png'
+import dashboard from './dashboard.png'
+import chatbot from './chatbot.jpg'
 
 export {
-  // logo,
   backend,
   creator,
   mobile,
@@ -58,7 +57,7 @@ export {
   shopify,
   starbucks,
   tesla,
-  carrent,
-  jobit,
-  tripguide,
+  dashboard,
+  chatbot,
+  ecommerce,
 }

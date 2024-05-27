@@ -4,23 +4,19 @@ const SocialLinks = () => {
   return (
     <StyledSocial>
       <li>
-        <a href='https://www.facebook.com' className='social-icon'>
-          <i className='fab fa-facebook'></i>
+        <a
+          href='https://https://github.com/alexfront2007'
+          className='social-icon'
+        >
+          <i className='fab fa-github'></i>
         </a>
       </li>
       <li>
-        <a href='https://www.linkedin.com' className='social-icon'>
+        <a
+          href='www.linkedin.com/in/oleksandr-karavanskyi-710770309'
+          className='social-icon'
+        >
           <i className='fab fa-linkedin'></i>
-        </a>
-      </li>
-      <li>
-        <a href='https://www.squarespace.com' className='social-icon'>
-          <i className='fab fa-squarespace'></i>
-        </a>
-      </li>
-      <li>
-        <a href='https://www.behance.com' className='social-icon'>
-          <i className='fab fa-behance'></i>
         </a>
       </li>
       <li>

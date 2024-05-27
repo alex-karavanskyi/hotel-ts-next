@@ -2,7 +2,7 @@ import { Filters, ProductList, Sort } from '@/components/rooms'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Rooms | Hotel App',
+  title: 'Rooms | React App',
 }
 
 const Rooms = () => {

@@ -3,13 +3,13 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import { SocialLinks } from '@/modules'
 import {
-  musicItem,
-  discoverItem,
-  accountItem,
-  academyItem,
-  soundsItem,
-  aboutItem,
-  citiesItem,
+  react,
+  redux,
+  html,
+  css,
+  javascript,
+  typescript,
+  cities,
 } from '../constants/footerItems'
 
 const Footer = () => {
@@ -22,12 +22,12 @@ const Footer = () => {
               <div className='size'>
                 <ul>
                   <li>
-                    <h3>music</h3>
+                    <h3>react</h3>
                     <ul>
-                      {musicItem.map((item) => {
+                      {react.map((item) => {
                         return (
                           <li key={item.id}>
-                            <Link href='/rooms'>{item.music}</Link>
+                            <Link href='/rooms'>{item.react}</Link>
                           </li>
                         )
                       })}
@@ -38,12 +38,12 @@ const Footer = () => {
               <div className='size'>
                 <ul>
                   <li>
-                    <h3>discover</h3>
+                    <h3>redux</h3>
                     <ul>
-                      {discoverItem.map((item) => {
+                      {redux.map((item) => {
                         return (
                           <li key={item.id}>
-                            <Link href='/rooms'>{item.discover}</Link>
+                            <Link href='/rooms'>{item.redux}</Link>
                           </li>
                         )
                       })}
@@ -54,12 +54,12 @@ const Footer = () => {
               <div className='size'>
                 <ul>
                   <li>
-                    <h3>account</h3>
+                    <h3>html</h3>
                     <ul>
-                      {accountItem.map((item) => {
+                      {html.map((item) => {
                         return (
                           <li key={item.id}>
-                            <Link href='/rooms'>{item.account}</Link>
+                            <Link href='/rooms'>{item.html}</Link>
                           </li>
                         )
                       })}
@@ -72,7 +72,7 @@ const Footer = () => {
                   <li>
                     <h3>cities</h3>
                     <ul>
-                      {citiesItem.map((item) => {
+                      {cities.map((item) => {
                         return (
                           <li key={item.id}>
                             <Link href='/rooms'>{item.cities}</Link>
@@ -86,12 +86,12 @@ const Footer = () => {
               <div className='size'>
                 <ul>
                   <li>
-                    <h3>sounds</h3>
+                    <h3>javascript</h3>
                     <ul>
-                      {soundsItem.map((item) => {
+                      {javascript.map((item) => {
                         return (
                           <li key={item.id}>
-                            <Link href='/rooms'>{item.sounds}</Link>
+                            <Link href='/rooms'>{item.javascript}</Link>
                           </li>
                         )
                       })}
@@ -102,12 +102,12 @@ const Footer = () => {
               <div className='size'>
                 <ul>
                   <li>
-                    <h3>about</h3>
+                    <h3>typescript</h3>
                     <ul>
-                      {aboutItem.map((item) => {
+                      {typescript.map((item) => {
                         return (
                           <li key={item.id}>
-                            <Link href='/rooms'>{item.about}</Link>
+                            <Link href='/rooms'>{item.typescript}</Link>
                           </li>
                         )
                       })}
@@ -118,12 +118,12 @@ const Footer = () => {
               <div className='size'>
                 <ul>
                   <li>
-                    <h3>academy</h3>
+                    <h3>css</h3>
                     <ul>
-                      {academyItem.map((item) => {
+                      {css.map((item) => {
                         return (
                           <li key={item.id}>
-                            <Link href='/rooms'>{item.academy}</Link>
+                            <Link href='/rooms'>{item.css}</Link>
                           </li>
                         )
                       })}

@@ -12,10 +12,10 @@ const Home = () => {
   return (
     <main>
       <Hero />
-      <FeaturedProducts />
       <About />
       <Experience />
       <Works />
+      <FeaturedProducts />
       <div className='home-page'>
         <Contact />
         <StarsCanvas />

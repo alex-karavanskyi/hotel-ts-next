@@ -1,7 +1,7 @@
 'use client'
 import styled from 'styled-components'
-import logo from '@/images/stone-high-resolution-logo-black-transparent.png'
-import logoInverted from '@/images/stone-high-resolution-logo-white-transparent.png'
+import pngwing_grey from '@/images/pngwing_grey.png'
+import pngwing_red from '@/images/pngwing_red.png'
 import Link from 'next/link'
 import Image from 'next/image'
 import { NavbarLinks } from '@/modules'
@@ -31,12 +31,17 @@ const Navbar = () => {
     <Wrapper>
       <nav className={navbar ? 'nav navbar-fixed' : 'nav'}>
         <Link href={`/`} className='link'>
-          <Image src={navbar ? logo : logoInverted} width={100} alt='Logo' />
+          <Image
+            src={navbar ? pngwing_red : pngwing_grey}
+            width={60}
+            alt='Logo'
+          />
         </Link>
         <button className='nav-btn' onClick={() => dispatch(openModal())}>
           <i className='fas fa-bars'></i>
         </button>
         <NavbarLinks
+          isNavbarFixed={navbar}
           parentClass={navbar ? 'nav-links nav-links-color' : 'nav-links'}
         />
       </nav>
@@ -91,10 +96,9 @@ const Wrapper = styled.div`
       z-index: 2;
     }
     .nav-links {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      justify-items: center;
-      column-gap: 2rem;
+      display: flex;
+      justify-content: end;
+      gap: 3rem;
     }
     .nav-links a,
     button {
