@@ -36,10 +36,8 @@ const Sidebar = () => {
           <button className='close-btn' onClick={() => dispatch(closeModal())}>
             <i className='fas fa-times'></i>
           </button>
-          <div>
-            <NavbarLinks parentClass='sidebar-links' />
-            <SocialLinks />
-          </div>
+          <NavbarLinks parentClass='sidebar-links' />
+          <SocialLinks />
         </div>
       </aside>
     </Wrapper>

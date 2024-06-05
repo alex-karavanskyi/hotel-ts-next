@@ -31,9 +31,9 @@ const SocialLinks = () => {
 const StyledSocial = styled.ul`
   display: grid;
   margin-top: 3rem;
-  width: 20rem;
+  width: 12rem;
   justify-items: center;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 
   .social-icon {
     font-size: 1.5rem;

@@ -89,7 +89,7 @@ const Submenu = styled.ul<{ isSubmenuVisible: boolean }>`
   transition: max-height 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
 
   li {
-    padding: 8px 16px;
+    padding-top: 7px;
   }
 `
 
