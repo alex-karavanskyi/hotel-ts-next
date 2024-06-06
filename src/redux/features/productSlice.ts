@@ -7,7 +7,6 @@ export interface ProductsState {
   products_loading: boolean
   products_error: boolean
   products: Products[]
-  featured_products: Products[]
   single_product_loading: boolean
   single_product_error: boolean
   single_product: Products
@@ -17,7 +16,6 @@ const initialState: ProductsState = {
   products_loading: false,
   products_error: false,
   products: [],
-  featured_products: [],
   single_product_loading: false,
   single_product_error: false,
   single_product: {} as Products,
@@ -35,6 +33,7 @@ export const getProductsItems = createAsyncThunk<
     return thunkAPI.rejectWithValue('something went wrong')
   }
 })
+
 export const getSingeProduct = createAsyncThunk<
   Products,
   string,
@@ -58,12 +57,8 @@ const productSlice = createSlice({
         state.products_loading = true
       })
       .addCase(getProductsItems.fulfilled, (state, action) => {
-        const featured_products = action.payload.filter(
-          (product) => product.featured === true
-        )
         state.products_loading = false
         state.products = action.payload
-        state.featured_products = featured_products
       })
       .addCase(getProductsItems.rejected, (state) => {
         state.products_loading = false

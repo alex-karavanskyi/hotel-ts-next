@@ -1,4 +1,4 @@
-import { Filters, ProductList, Sort } from '@/components/rooms'
+import { Filters, ProductList, Sort } from '@/components/ecommerce'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ const Rooms = () => {
   return (
     <div className='room-page'>
       <div className='room-center'>
-        <h1>ROOMS</h1>
+        <h1>E-COMMERCE</h1>
         <div>
           REFINED, SOPHISTICATED, SMART AND SIMPLE, YET FLAMBOYANT AND
           PROVOCATIVE, ALL AT THE SAME TIME. UNIVERSALLY APPEALING HOTEL ROOMS

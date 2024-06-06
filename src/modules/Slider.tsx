@@ -11,9 +11,7 @@ import { useAppSelector } from '@/redux/hooks'
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 
 export const Slider = () => {
-  const { featured_products: featured } = useAppSelector(
-    (store) => store.products
-  )
+  const { products } = useAppSelector((store) => store.products)
 
   return (
     <Wrapper>
@@ -37,7 +35,7 @@ export const Slider = () => {
         modules={[EffectCoverflow, Pagination, Navigation]}
         className='swiper_container'
       >
-        {featured.slice(0, 5).map((item) => {
+        {products.slice(0, 5).map((item) => {
           const { image, id } = item
           return (
             <SwiperSlide key={id}>

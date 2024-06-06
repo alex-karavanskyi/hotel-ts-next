@@ -48,7 +48,6 @@ const Wrapper = styled.section`
     margin: auto;
     margin-bottom: 32px;
   }
-
   .container {
     position: relative;
     background: var(--clr-black);

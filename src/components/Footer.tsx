@@ -151,7 +151,6 @@ const Wrapper = styled.footer`
     margin: 0 auto;
     max-width: 1200px;
   }
-
   .container-logo {
     padding-top: 143px;
   }

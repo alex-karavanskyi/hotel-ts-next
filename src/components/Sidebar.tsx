@@ -73,7 +73,6 @@ const Wrapper = styled.div`
     pointer-events: none;
     z-index: 1;
   }
-
   .content {
     width: 100%;
     height: 100%;

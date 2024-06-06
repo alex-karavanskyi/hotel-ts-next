@@ -133,7 +133,6 @@ const Wrapper = styled.section`
     cursor: pointer;
     padding: 14px;
   }
-
   .form-control-container {
     display: flex;
     flex-wrap: wrap;

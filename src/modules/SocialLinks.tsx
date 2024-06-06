@@ -34,7 +34,6 @@ const StyledSocial = styled.ul`
   width: 12rem;
   justify-items: center;
   grid-template-columns: repeat(3, 1fr);
-
   .social-icon {
     font-size: 1.5rem;
     color: var(--clr-grey-3);

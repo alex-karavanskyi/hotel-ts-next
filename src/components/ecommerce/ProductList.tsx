@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { useAppSelector } from '@/redux/hooks'
-import { GridView, ListView, Pagination } from '@/components/rooms'
+import { GridView, ListView, Pagination } from '@/components/ecommerce'
 
 const ProductList = () => {
   const [postsPerPage] = useState(4)
