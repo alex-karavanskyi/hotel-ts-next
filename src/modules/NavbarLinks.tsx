@@ -37,7 +37,7 @@ const NavbarLinks: React.FC<{
           onMouseLeave={handleMouseLeave}
           onClick={() => dispatch(closeModal())}
         >
-          <Link href='/rooms'>e-commerce</Link>
+          <Link href='/ecommerce'>e-commerce</Link>
           <Triangle
             isSubmenuVisible={isSubmenuVisible}
             isNavbarFixed={isNavbarFixed}

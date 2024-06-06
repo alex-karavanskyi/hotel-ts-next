@@ -2,13 +2,13 @@ import { Filters, ProductList, Sort } from '@/components/ecommerce'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Rooms | React App',
+  title: 'E-Commerce | React App',
 }
 
-const Rooms = () => {
+const Ecommerce = () => {
   return (
-    <div className='room-page'>
-      <div className='room-center'>
+    <div className='ecommerce-page'>
+      <div className='ecommerce-center'>
         <h1>E-COMMERCE</h1>
         <div>
           REFINED, SOPHISTICATED, SMART AND SIMPLE, YET FLAMBOYANT AND
@@ -27,4 +27,4 @@ const Rooms = () => {
   )
 }
 
-export default Rooms
+export default Ecommerce

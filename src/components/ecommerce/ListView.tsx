@@ -24,7 +24,7 @@ const ListView: React.FC<ListProducts> = ({ products }) => {
               </h4>
               <h5 className='price'>{formatPrice(price)}</h5>
               <p>{description.substring(0, 150)}...</p>
-              <Link href={`/rooms/${id}`} className='btn-details'>
+              <Link href={`/ecommerce/${id}`} className='btn-details'>
                 Details
               </Link>
             </div>

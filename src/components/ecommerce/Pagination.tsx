@@ -43,7 +43,7 @@ const Pagination: React.FC<PaginationProducts> = ({
           >
             <Link
               onClick={(e) => paginate(number, e)}
-              href='/rooms'
+              href='/ecommerce'
               className='pagination-link'
             >
               {number}

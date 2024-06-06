@@ -27,7 +27,7 @@ const Footer = () => {
                       {react.map((item) => {
                         return (
                           <li key={item.id}>
-                            <Link href='/rooms'>{item.react}</Link>
+                            <Link href='/ecommerce'>{item.react}</Link>
                           </li>
                         )
                       })}
@@ -43,7 +43,7 @@ const Footer = () => {
                       {redux.map((item) => {
                         return (
                           <li key={item.id}>
-                            <Link href='/rooms'>{item.redux}</Link>
+                            <Link href='/ecommerce'>{item.redux}</Link>
                           </li>
                         )
                       })}
@@ -59,7 +59,7 @@ const Footer = () => {
                       {html.map((item) => {
                         return (
                           <li key={item.id}>
-                            <Link href='/rooms'>{item.html}</Link>
+                            <Link href='/ecommerce'>{item.html}</Link>
                           </li>
                         )
                       })}
@@ -75,7 +75,7 @@ const Footer = () => {
                       {cities.map((item) => {
                         return (
                           <li key={item.id}>
-                            <Link href='/rooms'>{item.cities}</Link>
+                            <Link href='/ecommerce'>{item.cities}</Link>
                           </li>
                         )
                       })}
@@ -91,7 +91,7 @@ const Footer = () => {
                       {javascript.map((item) => {
                         return (
                           <li key={item.id}>
-                            <Link href='/rooms'>{item.javascript}</Link>
+                            <Link href='/ecommerce'>{item.javascript}</Link>
                           </li>
                         )
                       })}
@@ -107,7 +107,7 @@ const Footer = () => {
                       {typescript.map((item) => {
                         return (
                           <li key={item.id}>
-                            <Link href='/rooms'>{item.typescript}</Link>
+                            <Link href='/ecommerce'>{item.typescript}</Link>
                           </li>
                         )
                       })}
@@ -123,7 +123,7 @@ const Footer = () => {
                       {css.map((item) => {
                         return (
                           <li key={item.id}>
-                            <Link href='/rooms'>{item.css}</Link>
+                            <Link href='/ecommerce'>{item.css}</Link>
                           </li>
                         )
                       })}

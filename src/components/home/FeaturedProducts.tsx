@@ -33,7 +33,7 @@ const FeaturedProducts = () => {
         <div className='underline'></div>
       </div>
       <Slider />
-      <Link href='/rooms' className='btn-featured'>
+      <Link href='/ecommerce' className='btn-featured'>
         view
       </Link>
     </Wrapper>

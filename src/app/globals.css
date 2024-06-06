@@ -143,20 +143,20 @@ p {
   position:relative;
   z-index:0;
 }
-.room-page {
+.ecommerce-page {
   background-color:white;
   padding-top:1.25rem;
   padding-left:0.75;
   padding-bottom:0.75;
 }
-.room-center {
+.ecommerce-center {
   max-width: 80rem;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2rem
 }
 @media (max-width: 1320px) {
-.room-center {
+.ecommerce-center {
   margin-left: 15px;
 }
 }

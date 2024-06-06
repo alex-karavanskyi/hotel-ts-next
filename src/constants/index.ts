@@ -198,7 +198,7 @@ const projects = [
       },
     ],
     image: ecommerce,
-    source_code_link: 'https://github.com/',
+    source_code_link: 'https://github.com/alexfront2007/hotel-ts-next',
   },
   {
     name: 'Dashboard (in procces)',
