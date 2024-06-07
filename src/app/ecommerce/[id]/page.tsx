@@ -8,8 +8,6 @@ import { Loading, Error } from '@/components'
 import { ProductImages, Favorite } from '@/modules'
 import { getSingeProduct } from '@/redux/features/productSlice'
 
-const url = `https://www.course-api.com/react-store-single-product?id=`
-
 const SingleProductPage = () => {
   const { id } = useParams()
   const navigate = useRouter()
@@ -22,7 +20,7 @@ const SingleProductPage = () => {
   } = useAppSelector((store) => store.products)
 
   useEffect(() => {
-    dispatch(getSingeProduct(`${url}${id}`))
+    dispatch(getSingeProduct(`/api/${id}`))
   }, [dispatch, id])
 
   useEffect(() => {
@@ -40,7 +38,7 @@ const SingleProductPage = () => {
     return <Error />
   }
 
-  const { name, price, description, stock, id: sku, company, images } = product
+  const { name, price, description, images, id: sku } = product
 
   return (
     <Wrapper>
@@ -54,20 +52,8 @@ const SingleProductPage = () => {
             <h5 className='price'>{formatPrice(price)}</h5>
             <p className='desc'> {description}</p>
             <p className='info'>
-              <span>Available : </span>
-              {stock !== undefined
-                ? stock > 0
-                  ? 'In stock'
-                  : 'out of stock'
-                : 'undefined'}
-            </p>
-            <p className='info'>
               <span>SKU : </span>
               {sku}
-            </p>
-            <p className='info'>
-              <span>Brand : </span>
-              {company}
             </p>
             <hr />
           </section>
