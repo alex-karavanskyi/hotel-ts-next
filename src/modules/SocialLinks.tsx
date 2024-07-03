@@ -6,7 +6,7 @@ const SocialLinks = () => {
       <li>
         <a
           href='https://https://github.com/alexfront2007'
-          className='social-icon'
+          className='social__links-icon'
         >
           <i className='fab fa-github'></i>
         </a>
@@ -14,13 +14,13 @@ const SocialLinks = () => {
       <li>
         <a
           href='www.linkedin.com/in/oleksandr-karavanskyi-710770309'
-          className='social-icon'
+          className='social__links-icon'
         >
           <i className='fab fa-linkedin'></i>
         </a>
       </li>
       <li>
-        <a href='https://www.instagram.com' className='social-icon'>
+        <a href='https://www.instagram.com' className='social__links-icon'>
           <i className='fab fa-instagram'></i>
         </a>
       </li>
@@ -34,13 +34,13 @@ const StyledSocial = styled.ul`
   width: 12rem;
   justify-items: center;
   grid-template-columns: repeat(3, 1fr);
-  .social-icon {
+  .social__links-icon {
     font-size: 1.5rem;
     color: var(--clr-grey-3);
     -webkit-transition: var(--transition);
     transition: var(--transition);
   }
-  .social-icon:hover {
+  .social__links-icon:hover {
     color: var(--clr-primary-5);
   }
 `

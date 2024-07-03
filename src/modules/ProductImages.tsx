@@ -10,11 +10,11 @@ const ProductImages = ({ images = [{ url: '' }] }) => {
       <Image
         src={main.url}
         alt='main'
-        className='main'
+        className='product__images'
         width={700}
         height={700}
       />
-      <div className='gallery'>
+      <div className='product__images-gallery'>
         {images.map((image, index) => {
           return (
             <Image
@@ -22,7 +22,9 @@ const ProductImages = ({ images = [{ url: '' }] }) => {
               alt='Image'
               key={index}
               onClick={() => setMain(images[index])}
-              className={`${image.url === main.url ? 'active' : null}`}
+              className={`${
+                image.url === main.url ? 'product__images--active' : null
+              }`}
               width={70}
               height={70}
             />
@@ -34,7 +36,7 @@ const ProductImages = ({ images = [{ url: '' }] }) => {
 }
 
 const Wrapper = styled.section`
-  .main {
+  .product__images {
     height: 600px;
   }
   img {
@@ -43,7 +45,7 @@ const Wrapper = styled.section`
     border-radius: var(--radius);
     object-fit: cover;
   }
-  .gallery {
+  .product__images-gallery {
     margin-top: 1rem;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -53,24 +55,24 @@ const Wrapper = styled.section`
       cursor: pointer;
     }
   }
-  .active {
+  .product__images--active {
     border: 2px solid var(--clr-primary-5);
   }
   @media (max-width: 576px) {
-    .main {
+    .product__images {
       height: 300px;
     }
-    .gallery {
+    .product__images-gallery {
       img {
         height: 50px;
       }
     }
   }
   @media (min-width: 992px) {
-    .main {
+    .product__images {
       height: 500px;
     }
-    .gallery {
+    .product__images-gallery {
       img {
         height: 75px;
       }

@@ -14,7 +14,7 @@ const Works = () => {
       </motion.div>
 
       <div style={{ display: 'flex', width: '100%' }}>
-        <motion.p variants={fadeIn('', '', 0.1, 1)} className='work-container'>
+        <motion.p variants={fadeIn('', '', 0.1, 1)} className='works'>
           Following projects showcases my skills and experience through
           real-world examples of my work. Each project is briefly described with
           links to code repositories and live demos in it. It reflects my
@@ -23,7 +23,7 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className='card-container'>
+      <div className='works__project-card-container'>
         {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}

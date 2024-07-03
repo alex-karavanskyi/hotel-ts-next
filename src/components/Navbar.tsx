@@ -29,20 +29,22 @@ const Navbar = () => {
 
   return (
     <Wrapper>
-      <nav className={navbar ? 'nav navbar-fixed' : 'nav'}>
-        <Link href={`/`} className='link'>
+      <nav className={navbar ? 'navbar navbar--fixed' : 'navbar'}>
+        <Link href={`/`}>
           <Image
             src={navbar ? pngwing_red : pngwing_grey}
             width={60}
             alt='Logo'
           />
         </Link>
-        <button className='nav-btn' onClick={() => dispatch(openModal())}>
+        <button className='navbar__btn' onClick={() => dispatch(openModal())}>
           <i className='fas fa-bars'></i>
         </button>
         <NavbarLinks
           isNavbarFixed={navbar}
-          parentClass={navbar ? 'nav-links nav-links-color' : 'nav-links'}
+          parentClass={
+            navbar ? 'navbar__links navbar__links--color' : 'navbar__links'
+          }
         />
       </nav>
     </Wrapper>
@@ -50,10 +52,7 @@ const Navbar = () => {
 }
 
 const Wrapper = styled.div`
-  .nav-links {
-    display: none;
-  }
-  .nav {
+  .navbar {
     position: relative;
     height: 5rem;
     padding: 1rem;
@@ -62,7 +61,7 @@ const Wrapper = styled.div`
     align-items: center;
     transition: var(--transition);
   }
-  .nav-btn {
+  .navbar__btn {
     position: absolute;
     right: 14px;
     background: transparent;
@@ -71,12 +70,12 @@ const Wrapper = styled.div`
     font-size: 2rem;
     cursor: pointer;
   }
+  .navbar__links {
+    display: none;
+  }
 
   @media screen and (min-width: 768px) {
-    .nav-btn {
-      display: none;
-    }
-    .nav {
+    .navbar {
       height: 5rem;
       padding: 1rem;
       display: flex;
@@ -85,7 +84,7 @@ const Wrapper = styled.div`
       align-items: center;
       transition: var(--transition);
     }
-    .navbar-fixed {
+    .navbar--fixed {
       position: fixed;
       top: 0;
       left: 0;
@@ -95,36 +94,39 @@ const Wrapper = styled.div`
       transition: all 1s linear;
       z-index: 2;
     }
-    .nav-links {
+    .navbar__btn {
+      display: none;
+    }
+    .navbar__links {
       display: flex;
       justify-content: end;
       gap: 3rem;
     }
-    .nav-links a,
+    .navbar__links a,
     button {
       color: rgba(255, 255, 255, 0.6);
       font-weight: bold;
       letter-spacing: var(--spacing);
       transition: var(--transition);
     }
-    .nav-links button {
+    .navbar__links button {
       background: transparent;
       cursor: pointer;
       text-transform: capitalize;
       border: none;
       outline: none;
     }
-    .nav-links-color a {
+    .navbar__links--color a {
       color: black;
     }
-    .nav-links-color button {
+    .navbar__links--color button {
       color: black;
     }
-    .nav-links a:hover {
+    .navbar__links a:hover {
       color: var(--clr-primary-5);
       text-decoration: none;
     }
-    .nav-links button:hover {
+    .navbar__links button:hover {
       color: var(--clr-primary-5);
       text-decoration: none;
     }

@@ -9,7 +9,7 @@ const StarWrapper = (Component) =>
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.25 }}
-        className='section-container'
+        className='section__wrapper'
       >
         <Component />
       </motion.section>

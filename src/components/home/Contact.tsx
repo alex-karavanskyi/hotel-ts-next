@@ -23,15 +23,15 @@ const Contact = () => {
   }
 
   return (
-    <div className='contact-container' id='contact'>
+    <div id='contact' className='contact'>
       <motion.div
         variants={slideIn('left', 'tween', 0.2, 1)}
-        className='contact-flex'
+        className='contact__container'
       >
         <p>Get in touch</p>
         <h3 style={{ color: 'white' }}>Contact.</h3>
 
-        <form onSubmit={handleSubmit(onSubmit)} className='contact-form'>
+        <form onSubmit={handleSubmit(onSubmit)} className='contact__form'>
           <label>
             <span>Name</span>
             <input
@@ -92,8 +92,8 @@ const Contact = () => {
           </div>
           <button
             type='submit'
-            className={`contact-button ${
-              isValid ? 'contact-button-black' : 'contact-button-white'
+            className={`contact__button ${
+              isValid ? 'contact__button--black' : 'contact__button--white'
             }`}
             disabled={!isValid}
           >

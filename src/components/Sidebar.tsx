@@ -13,17 +13,17 @@ const Sidebar = () => {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.classList.add('sidebar-open')
-      document.documentElement.classList.add('sidebar-open')
+      document.body.classList.add('sidebar--open')
+      document.documentElement.classList.add('sidebar--open')
     } else {
-      document.body.classList.remove('sidebar-open')
-      document.documentElement.classList.remove('sidebar-open')
+      document.body.classList.remove('sidebar--open')
+      document.documentElement.classList.remove('sidebar--open')
     }
   }, [isOpen])
 
   return (
     <Wrapper>
-      <aside className={isOpen ? 'sidebar show-sidebar' : 'sidebar'}>
+      <aside className={isOpen ? 'sidebar sidebar--show' : 'sidebar'}>
         <Image
           src={city}
           alt='city'
@@ -31,12 +31,15 @@ const Sidebar = () => {
           height={1920}
           className='img'
         />
-        <div className='dark-overlay'></div>
-        <div className='content'>
-          <button className='close-btn' onClick={() => dispatch(closeModal())}>
+        <div className='sidebar__dark-overlay'></div>
+        <div className='sidebar__content'>
+          <button
+            className='sidebar__close-btn'
+            onClick={() => dispatch(closeModal())}
+          >
             <i className='fas fa-times'></i>
           </button>
-          <NavbarLinks parentClass='sidebar-links' />
+          <NavbarLinks parentClass='sidebar__links' />
           <SocialLinks />
         </div>
       </aside>
@@ -55,15 +58,15 @@ const Wrapper = styled.div`
     transition: var(--transition);
     transform: translateX(-100%);
   }
-  .show-sidebar {
+  .sidebar--show {
     transform: translateX(0);
   }
-  .img {
+  .sidebar img {
     max-height: 100vh;
     position: relative;
     z-index: 1;
   }
-  .dark-overlay {
+  .sidebar__dark-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -73,7 +76,7 @@ const Wrapper = styled.div`
     pointer-events: none;
     z-index: 1;
   }
-  .content {
+  .sidebar__content {
     width: 100%;
     height: 100%;
     display: grid;
@@ -83,10 +86,10 @@ const Wrapper = styled.div`
     left: 0;
     z-index: 2;
   }
-  .sidebar-links {
+  .sidebar__links {
     text-align: center;
   }
-  .sidebar-links a,
+  .sidebar__links a,
   button {
     font-size: 2rem;
     transition: var(--transition);
@@ -96,20 +99,20 @@ const Wrapper = styled.div`
     text-decoration: none;
     margin-bottom: 1.5rem;
   }
-  .sidebar-links button {
+  .sidebar__links button {
     background: transparent;
     cursor: pointer;
     text-transform: capitalize;
     border: none;
     outline: none;
   }
-  .sidebar-links a:hover {
+  .sidebar__links a:hover {
     color: var(--clr-primary-5);
   }
-  .sidebar-links button:hover {
+  .sidebar__links button:hover {
     color: var(--clr-primary-5);
   }
-  .close-btn {
+  .sidebar__close-btn {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -120,11 +123,11 @@ const Wrapper = styled.div`
     color: #bb2525;
     cursor: pointer;
   }
-  .close-btn:hover {
+  .sidebar__close-btn:hover {
     color: #e66b6b;
   }
   @media screen and (max-width: 768px) {
-    .close-btn {
+    .sidebar__close-btn {
       right: 2rem;
     }
   }

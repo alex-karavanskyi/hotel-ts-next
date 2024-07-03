@@ -16,7 +16,7 @@ const Home = () => {
       <Experience />
       <Works />
       <FeaturedProducts />
-      <div className='home-page'>
+      <div className='home__contact-container'>
         <Contact />
         <StarsCanvas />
       </div>

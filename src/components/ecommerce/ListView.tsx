@@ -13,58 +13,56 @@ interface ListProducts {
 const ListView: React.FC<ListProducts> = ({ products }) => {
   return (
     <Wrapper>
-      {products.map((product) => {
-        const { id, image, name, price, description } = product
-        return (
-          <article key={id}>
-            <Image src={image} alt={name} width={700} height={700} />
-            <div>
-              <h4>
-                <Favorite productId={id} name={name} products={products} />
-              </h4>
-              <h5 className='price'>{formatPrice(price)}</h5>
-              <p>{description.substring(0, 150)}...</p>
-              <Link href={`/ecommerce/${id}`} className='btn-details'>
-                Details
-              </Link>
-            </div>
-          </article>
-        )
-      })}
+      <div className='list__view-products'>
+        {products.map((product) => {
+          const { id, image, name, price, description } = product
+          return (
+            <article className='list__view-article' key={id}>
+              <Image src={image} alt={name} width={700} height={700} />
+              <div>
+                <h4 className='list__view-products-favorite'>
+                  <Favorite productId={id} name={name} products={products} />
+                </h4>
+                <h5 className='list__view-products-price'>
+                  {formatPrice(price)}
+                </h5>
+                <p className='list__view-products-description'>
+                  {description.substring(0, 150)}...
+                </p>
+                <Link
+                  href={`/ecommerce/${id}`}
+                  className='list__view-products-btn-details'
+                >
+                  Details
+                </Link>
+              </div>
+            </article>
+          )
+        })}
+      </div>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.section`
-  display: grid;
-  row-gap: 3rem;
   max-width: 1450px;
   margin: auto;
-  @media (max-width: 990px) {
-    margin-left: 15px;
-    padding-bottom: 45px;
+  .list__view-products {
+    display: grid;
+    row-gap: 3rem;
   }
-  img {
-    width: 100%;
-    display: block;
-    width: 300px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: var(--radius);
-    margin-bottom: 1rem;
-  }
-  h4 {
-    margin-bottom: 0.5rem;
-  }
-  .price {
+  .list__view-products-price {
     color: var(--clr-primary-6);
     margin-bottom: 0.75rem;
   }
-  p {
+  .list__view-products-favorite {
+    margin-bottom: 0.5rem;
+  }
+  .list__view-products-description {
     max-width: 45em;
     margin-bottom: 1rem;
   }
-  .btn-details {
+  .list__view-products-btn-details {
     text-transform: uppercase;
     background: var(--clr-primary-5);
     color: var(--clr-primary-10);
@@ -73,16 +71,29 @@ const Wrapper = styled.section`
     font-size: 1rem;
     padding: 0.5rem 1.5rem;
   }
-  .btn-details:hover {
+  .list__view-products-btn-details:hover {
     color: var(--clr-primary-1);
   }
+  .list__view-article img {
+    width: 100%;
+    display: block;
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+  }
   @media (min-width: 992px) {
-    article {
+    .list__view-article {
       display: grid;
       grid-template-columns: auto 1fr;
       column-gap: 2rem;
       align-items: center;
     }
+  }
+  @media (max-width: 990px) {
+    margin-left: 15px;
+    padding-bottom: 45px;
   }
 `
 

@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 
 const Ecommerce = () => {
   return (
-    <div className='ecommerce-page'>
-      <div className='ecommerce-center'>
+    <div className='ecommerce'>
+      <div className='ecommerce__container'>
         <h1>E-COMMERCE</h1>
         <div>
           REFINED, SOPHISTICATED, SMART AND SIMPLE, YET FLAMBOYANT AND

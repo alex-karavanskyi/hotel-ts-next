@@ -14,22 +14,27 @@ interface GridProducts {
 const GridView: React.FC<GridProducts> = ({ products }) => {
   return (
     <Wrapper>
-      <div className='products-container'>
+      <div className='grid__view-products'>
         {products.map((product) => {
           const { id, image, name, price } = product
           return (
             <article key={id}>
-              <div className='container'>
+              <div className='grid__view-products-images'>
                 <Image src={image} alt={name} width={700} height={700} />
-                <Link href={`/ecommerce/${id}`} className='link'>
+                <Link
+                  href={`/ecommerce/${id}`}
+                  className='grid__view-products-link'
+                >
                   <FaSearch />
                 </Link>
               </div>
-              <footer>
-                <h5>
+              <footer className='grid__view-footer'>
+                <h5 className='grid__view-favorite'>
                   <Favorite productId={id} name={name} products={products} />
                 </h5>
-                <p>{formatPrice(price)}</p>
+                <p className='grid__view-products-price'>
+                  {formatPrice(price)}
+                </p>
               </footer>
             </article>
           )
@@ -40,21 +45,21 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
 }
 
 const Wrapper = styled.section`
-  .products-container {
+  margin: auto;
+  max-width: 1450px;
+  margin-bottom: 32px;
+  .grid__view-products {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    max-width: 1450px;
-    margin: auto;
-    margin-bottom: 32px;
   }
-  .container {
+  .grid__view-products-images {
     position: relative;
     background: var(--clr-black);
     border-radius: var(--radius);
     padding: 0px;
   }
-  img {
+  .grid__view-products-images img {
     width: 100%;
     display: block;
     object-fit: cover;
@@ -62,7 +67,7 @@ const Wrapper = styled.section`
     transition: var(--transition);
     height: 500px;
   }
-  .link {
+  .grid__view-products-link {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -82,37 +87,36 @@ const Wrapper = styled.section`
       color: var(--clr-white);
     }
   }
-  .container:hover img {
+  .grid__view-products-images:hover img {
     opacity: 0.5;
   }
-  .container:hover .link {
+
+  .grid__view-products-images:hover .grid__view-products-link {
     opacity: 1;
   }
-  footer {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  footer h5,
-  footer p {
-    margin-bottom: 0;
-    font-weight: 400;
-  }
-
-  footer p {
+  .grid__view-products-price {
     color: var(--clr-primary-5);
     letter-spacing: var(--spacing);
   }
-
+  .grid__view-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  .grid__view-favorite,
+  .grid__view-products-price {
+    margin-bottom: 0;
+    font-weight: 400;
+  }
   @media (max-width: 1500px) {
-    .products-container {
+    .ggrid__view-products {
       margin-left: 15px;
       margin-right: 15px;
     }
   }
   @media (max-width: 768px) {
-    .products-container {
+    .ggrid__view-products {
       grid-template-columns: repeat(1, 1fr);
     }
   }

@@ -21,31 +21,35 @@ const ProjectCard = ({
           scale: 1,
           speed: 450,
         }}
-        className='project-container'
+        className='project__card'
       >
-        <div className='project-card'>
-          <Image src={image} alt='project_image' className='project-img' />
+        <div className='project__card-container'>
+          <Image
+            src={image}
+            alt='project_image'
+            className='project__card-img'
+          />
 
-          <div className='project-flex'>
+          <div className='project__card-flex'>
             <div
               onClick={() => window.open(source_code_link, '_blank')}
-              className='project-github-container'
+              className='project__card-github-container'
             >
               <Image
                 src={github}
                 alt='source code'
-                className='project-github-img'
+                className='project__card-github-img'
               />
             </div>
           </div>
         </div>
 
         <div style={{ marginTop: '1.25rem' }}>
-          <h3 className='project-name'>{name}</h3>
-          <p className='project-description'>{description}</p>
+          <h3 className='project__card-name'>{name}</h3>
+          <p className='project__card-description'>{description}</p>
         </div>
 
-        <div className='project-tags'>
+        <div className='project__card-tags'>
           {tags.map((tag) => (
             <p
               key={`${name}-${tag.name}`}

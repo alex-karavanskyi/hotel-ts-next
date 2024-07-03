@@ -12,10 +12,10 @@ const Experience = () => {
     <>
       <motion.div variants={textVariant(0.1)}>
         <p className='text-center'>What I have done so far</p>
-        <h2 className='head-text text-center'>Work Experience.</h2>
+        <h2 className='experience__title text-center'>Work Experience.</h2>
       </motion.div>
 
-      <div className='time-line'>
+      <div className='experience__time-line'>
         <VerticalTimeline>
           {experiences.map((experience, index) => (
             <ExperienceCard

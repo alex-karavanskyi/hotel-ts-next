@@ -33,18 +33,20 @@ const Pagination: React.FC<PaginationProducts> = ({
 
   return (
     <Wrapper>
-      <ul className='pagination-container'>
+      <ul className='pagination__container'>
         {pageNumbers.map((number) => (
           <li
             key={number}
             className={`${
-              number === pagination ? 'pagination active' : 'pagination'
+              number === pagination
+                ? 'pagination pagination--active'
+                : 'pagination'
             }`}
           >
             <Link
               onClick={(e) => paginate(number, e)}
               href='/ecommerce'
-              className='pagination-link'
+              className='pagination__link'
             >
               {number}
             </Link>
@@ -57,6 +59,11 @@ const Pagination: React.FC<PaginationProducts> = ({
 
 const Wrapper = styled.section`
   padding-bottom: 30px;
+  .pagination__container {
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+  }
   .pagination {
     border: solid 1px;
     border-radius: 50%;
@@ -64,15 +71,10 @@ const Wrapper = styled.section`
     grid-template-columns: 30px;
     grid-template-rows: 30px;
   }
-  .active {
+  .pagination--active {
     background-color: orange;
   }
-  .pagination-container {
-    display: flex;
-    justify-content: center;
-    gap: 0.25rem;
-  }
-  .pagination-link {
+  .pagination__link {
     display: flex;
     justify-content: center;
     align-items: center;

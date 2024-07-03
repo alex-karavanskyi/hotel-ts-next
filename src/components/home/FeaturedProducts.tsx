@@ -28,12 +28,12 @@ const FeaturedProducts = () => {
   }
   return (
     <Wrapper>
-      <div className='title'>
+      <div className='featured__products-container'>
         <h2 style={{ color: 'white' }}>E-Commerce</h2>
-        <div className='underline'></div>
+        <div className='featured__products-underline'></div>
       </div>
       <Slider />
-      <Link href='/ecommerce' className='btn-featured'>
+      <Link href='/ecommerce' className='featured__products-featured'>
         view
       </Link>
     </Wrapper>
@@ -47,7 +47,19 @@ const Wrapper = styled.section`
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  .btn-featured {
+  .featured__products-container {
+    text-align: center;
+  }
+  .featured__products-underline {
+    width: 6rem;
+    height: 0.25rem;
+    background: #49a6e9;
+    background: var(--clr-primary-5);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  .featured__products-featured {
     text-transform: uppercase;
     color: white;
     padding: 0.375rem 0.75rem;
@@ -56,7 +68,6 @@ const Wrapper = styled.section`
     transition: var(--transition);
     font-size: 0.875rem;
     cursor: pointer;
-    /* border: 1pxpx solid red; */
     border-radius: var(--radius);
     box-shadow: 0 0 5px #007aff;
     margin: 0 auto;
@@ -64,7 +75,7 @@ const Wrapper = styled.section`
     justify-content: center;
     width: 148px;
   }
-  .btn-featured:hover {
+  .featured__products-featured:hover {
     letter-spacing: 0.35rem;
     color: #007aff;
     box-shadow: 0 0 20px #007aff;

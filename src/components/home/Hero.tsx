@@ -10,7 +10,7 @@ const Hero = () => {
 
   return (
     <Wrapper style={containerStyle}>
-      <div className='text-container'>
+      <div className='hero__container'>
         <div>
           <h1 style={{ color: 'white', fontWeight: 'black' }}>
             Hi, I'm <span style={{ color: '#915EFF' }}>Alex</span>
@@ -35,7 +35,7 @@ const Wrapper = styled.section`
   @media (max-width: 570px) {
     height: 50vh;
   }
-  .text-container {
+  .hero__container {
     position: absolute;
     inset: 0px;
     top: 50px;
@@ -46,7 +46,7 @@ const Wrapper = styled.section`
     padding-right: 1.5rem;
   }
   @media (max-width: 430px) {
-    .text-container {
+    .hero__container {
       text-align: center;
     }
   }

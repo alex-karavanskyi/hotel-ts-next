@@ -14,22 +14,22 @@ const ExperienceCard = ({ experience }) => {
       date={experience.date}
       iconStyle={{ background: experience.iconBg }}
       icon={
-        <div className='experience-center'>
+        <div className='experience__card-center'>
           <Image
             src={experience.icon}
             alt={experience.company_name}
-            className='experience-img'
+            className='experience__card-img'
           />
         </div>
       }
     >
       <div>
-        <h3 className='experience-title'>{experience.title}</h3>
+        <h3 className='experience__card-title'>{experience.title}</h3>
       </div>
 
-      <ul className='experience-points'>
+      <ul className='experience__card-points'>
         {experience.points.map((point, index) => (
-          <li key={`experience-point-${index}`}>{point}</li>
+          <li key={`experience__card-points-${index}`}>{point}</li>
         ))}
       </ul>
     </VerticalTimelineElement>

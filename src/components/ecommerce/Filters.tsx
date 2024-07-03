@@ -52,12 +52,12 @@ const Filters = () => {
   return (
     <Wrapper>
       <form onSubmit={(e) => e.preventDefault()}>
-        <div className='form-control-container'>
+        <div className='filters__search'>
           <input
             type='text'
             name='text'
             placeholder='search'
-            className='search-input'
+            className='filters__search-input'
             value={text}
             onChange={handleFilters}
           />
@@ -83,9 +83,9 @@ const Filters = () => {
             return null
           })}
         </div>
-        <div className='form-control-price'>
+        <div className='filters__control-price'>
           <h5>price</h5>
-          <p className='price'>{formatPrice(price)}</p>
+          <p>{formatPrice(price)}</p>
           <input
             type='range'
             name='price'
@@ -98,7 +98,7 @@ const Filters = () => {
       </form>
       <button
         type='button'
-        className='clear-btn'
+        className='filters__clear-btn'
         onClick={() => dispatch(clearFilters())}
       >
         clear filters
@@ -109,20 +109,14 @@ const Filters = () => {
 
 const Wrapper = styled.section`
   margin: 0 auto;
-  margin-bottom: 50px;
   max-width: 1248px;
-  .search-input {
-    padding-left: 0.5rem;
-    margin-right: 1rem;
-    background: var(--clr-grey-10);
-    border-radius: var(--radius);
-    border-color: transparent;
-    letter-spacing: var(--spacing);
+  margin-bottom: 50px;
+  .filters__search {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
-  .search-input::placeholder {
-    text-transform: capitalize;
-  }
-  .form-control-container button {
+  .filters__search button {
     display: grid;
     grid-template-columns: 118px;
     text-transform: capitalize;
@@ -133,16 +127,22 @@ const Wrapper = styled.section`
     cursor: pointer;
     padding: 14px;
   }
-  .form-control-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  .filters__search-input {
+    padding-left: 0.5rem;
+    margin-right: 1rem;
+    background: var(--clr-grey-10);
+    border-radius: var(--radius);
+    border-color: transparent;
+    letter-spacing: var(--spacing);
   }
-  .form-control-price {
+  .filters__search-input::placeholder {
+    text-transform: capitalize;
+  }
+  .filters__control-price {
     padding-top: 30px;
     margin-left: 14px;
   }
-  .clear-btn {
+  .filters__clear-btn {
     padding-top: 14px;
     margin-left: 14px;
     text-transform: capitalize;

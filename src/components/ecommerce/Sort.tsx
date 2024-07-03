@@ -30,39 +30,41 @@ const Sort = () => {
 
   return (
     <Wrapper>
-      <div className='btn-container'>
-        <button
-          type='button'
-          className={`${grid_view ? 'active' : null}`}
-          onClick={() => dispatch(setGridView())}
-        >
-          <BsFillGridFill />
-        </button>
-        <button
-          type='button'
-          className={`${!grid_view ? 'active' : null}`}
-          onClick={() => dispatch(setListView())}
-        >
-          <BsList />
-        </button>
+      <div className='sort__container'>
+        <div className='sort__btn'>
+          <button
+            type='button'
+            className={`${grid_view ? 'sort__btn-active' : null}`}
+            onClick={() => dispatch(setGridView())}
+          >
+            <BsFillGridFill />
+          </button>
+          <button
+            type='button'
+            className={`${!grid_view ? 'sort__btn-active' : null}`}
+            onClick={() => dispatch(setListView())}
+          >
+            <BsList />
+          </button>
+        </div>
+        <p className='sort__title'>{products.length} products found</p>
+        <hr />
+        <form>
+          <label htmlFor='sort__price'>sort by</label>
+          <select
+            name='sort'
+            id='sort'
+            className='sort__input'
+            value={sort}
+            onChange={handleSort}
+          >
+            <option value='price-lowest'>price (lowest)</option>
+            <option value='price-highest'>price (highest)</option>
+            <option value='name-a'>name (a-z)</option>
+            <option value='name-z'>name (z-a)</option>
+          </select>
+        </form>
       </div>
-      <p>{products.length} products found</p>
-      <hr />
-      <form>
-        <label htmlFor='sort'>sort by</label>
-        <select
-          name='sort'
-          id='sort'
-          className='sort-input'
-          value={sort}
-          onChange={handleSort}
-        >
-          <option value='price-lowest'>price (lowest)</option>
-          <option value='price-highest'>price (highest)</option>
-          <option value='name-a'>name (a-z)</option>
-          <option value='name-z'>name (z-a)</option>
-        </select>
-      </form>
     </Wrapper>
   )
 }
@@ -70,16 +72,14 @@ const Sort = () => {
 const Wrapper = styled.section`
   max-width: 1450px;
   margin: auto;
-  display: grid;
-  grid-template-columns: auto auto 1fr auto;
-  align-items: center;
   margin-bottom: 2rem;
-  column-gap: 2rem;
-  @media (max-width: 1500px) {
-    margin-left: 15px;
-    margin-right: 15px;
+  .sort__container {
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+    align-items: center;
+    column-gap: 2rem;
   }
-  .btn-container {
+  .sort__btn {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 0.5rem;
@@ -98,40 +98,41 @@ const Wrapper = styled.section`
         font-size: 1rem;
       }
     }
-    .active {
+    .sort__btn-active {
       background: var(--clr-black);
       color: var(--clr-white);
     }
   }
-  .sort-input {
+  .sort__input {
     border-color: transparent;
     font-size: 1rem;
     text-transform: capitalize;
     padding: 0.25rem 0.5rem;
   }
-  label {
+  .sort__price {
     font-size: 1rem;
     text-transform: capitalize;
   }
-  p {
+  .sort__title {
     text-transform: capitalize;
     margin-bottom: 0;
   }
-  @media (max-width: 576px) {
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 0.75rem;
-    .btn-container {
-      width: 50px;
-    }
-    label {
-      display: inline-block;
-      margin-right: 0.5rem;
-    }
+  @media (max-width: 1500px) {
+    margin-left: 15px;
+    margin-right: 15px;
   }
   @media (max-width: 768px) {
-    .btn-container {
+    .sort__btn {
       display: none;
+    }
+    .sort__container {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  @media (max-width: 576px) {
+    .sort__btn {
+      width: 50px;
     }
   }
 `
