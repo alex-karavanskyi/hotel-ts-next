@@ -10,7 +10,7 @@ import {
   javascript,
   typescript,
   cities,
-} from '../constants/footerItems'
+} from '../constants/footer'
 
 const Footer = () => {
   return (

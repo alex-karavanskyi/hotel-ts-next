@@ -1,6 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
-import { services } from '@/constants'
+import { services } from '@/constants/tech'
 import { fadeIn, textVariant } from '@/utils/motion'
 import { ServiceCard } from '@/components/card'
 

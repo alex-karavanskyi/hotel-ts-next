@@ -6,13 +6,12 @@ import { Error, Loading } from '..'
 import { Slider } from '@/modules'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { getProductsItems } from '@/redux/features/productSlice'
+import { url } from '@/constants/db'
 
 const FeaturedProducts = () => {
   const { products_loading: loading, products_error: error } = useAppSelector(
     (store) => store.products
   )
-
-  const url = '/api'
 
   const dispatch = useAppDispatch()
 

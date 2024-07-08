@@ -1,106 +1,36 @@
 import {
-  mobile,
-  backend,
-  creator,
-  web,
-  javascript,
   typescript,
-  html,
-  css,
-  reactjs,
   redux,
+  react,
   tailwind,
-  nodejs,
-  mongodb,
-  git,
-  figma,
-  next,
-  docker,
   dashboard,
   ecommerce,
   chatbot,
-  threejs,
 } from '../assets'
 
 const services = [
   {
     title: 'React',
-    icon: web,
+    icon: react,
   },
   {
     title: 'Redux',
-    icon: mobile,
-  },
-  {
-    title: 'Next',
-    icon: backend,
-  },
-  {
-    title: 'Typescript',
-    icon: creator,
-  },
-]
-
-const technologies = [
-  {
-    name: 'HTML 5',
-    icon: html,
-  },
-  {
-    name: 'CSS 3',
-    icon: css,
-  },
-  {
-    name: 'JavaScript',
-    icon: javascript,
-  },
-  {
-    name: 'TypeScript',
-    icon: typescript,
-  },
-  {
-    name: 'React JS',
-    icon: reactjs,
-  },
-  {
-    name: 'Redux Toolkit',
     icon: redux,
   },
   {
-    name: 'Tailwind CSS',
+    title: 'Tailwind',
     icon: tailwind,
   },
   {
-    name: 'Node JS',
-    icon: nodejs,
-  },
-  {
-    name: 'MongoDB',
-    icon: mongodb,
-  },
-  {
-    name: 'Three JS',
-    icon: threejs,
-  },
-  {
-    name: 'git',
-    icon: git,
-  },
-  {
-    name: 'figma',
-    icon: figma,
-  },
-  {
-    name: 'docker',
-    icon: docker,
+    title: 'Typescript',
+    icon: typescript,
   },
 ]
 
 const experiences = [
   {
-    title: 'React.js',
-    company_name: 'Starbucks',
-    icon: reactjs,
+    title: 'React',
+    icon: react,
     iconBg: '#383E56',
     date: 'March 2020 - April 2021',
     points: [
@@ -111,9 +41,8 @@ const experiences = [
     ],
   },
   {
-    title: 'Next.js',
-    company_name: 'Tesla',
-    icon: next,
+    title: 'Typescript',
+    icon: typescript,
     iconBg: '#E6DEDD',
     date: 'Jan 2021 - Feb 2022',
     points: [
@@ -125,7 +54,6 @@ const experiences = [
   },
   {
     title: 'Redux',
-    company_name: 'Shopify',
     icon: redux,
     iconBg: '#383E56',
     date: 'Jan 2022 - Jan 2023',
@@ -138,7 +66,6 @@ const experiences = [
   },
   {
     title: 'Tailwind',
-    company_name: 'Meta',
     icon: tailwind,
     iconBg: '#E6DEDD',
     date: 'Jan 2023 - Present',
@@ -148,33 +75,6 @@ const experiences = [
       'Implementing responsive design and ensuring cross-browser compatibility.',
       'Participating in code reviews and providing constructive feedback to other developers.',
     ],
-  },
-]
-
-const testimonials = [
-  {
-    testimonial:
-      'I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.',
-    name: 'Sara Lee',
-    designation: 'CFO',
-    company: 'Acme Co',
-    image: 'https://randomuser.me/api/portraits/women/4.jpg',
-  },
-  {
-    testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Rick does.",
-    name: 'Chris Brown',
-    designation: 'COO',
-    company: 'DEF Corp',
-    image: 'https://randomuser.me/api/portraits/men/5.jpg',
-  },
-  {
-    testimonial:
-      "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: 'Lisa Wang',
-    designation: 'CTO',
-    company: '456 Enterprises',
-    image: 'https://randomuser.me/api/portraits/women/6.jpg',
   },
 ]
 
@@ -244,4 +144,4 @@ const projects = [
   },
 ]
 
-export { services, technologies, experiences, testimonials, projects }
+export { services, experiences, projects }

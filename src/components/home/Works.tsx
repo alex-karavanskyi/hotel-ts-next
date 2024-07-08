@@ -1,7 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import { SectionWrapper } from '@/hoc'
-import { projects } from '@/constants'
+import { projects } from '@/constants/tech'
 import { fadeIn, textVariant } from '@/utils/motion'
 import { ProjectCard } from '@/components/card'
 

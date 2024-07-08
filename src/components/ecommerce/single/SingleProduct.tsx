@@ -7,6 +7,7 @@ import { formatPrice } from '@/utils/helpers'
 import { Loading, Error } from '@/components'
 import { ProductImages, Favorite } from '@/modules'
 import { getSingeProduct } from '@/redux/features/productSlice'
+import { url } from '@/constants/db'
 
 const SingleProduct = () => {
   const { id } = useParams()
@@ -20,7 +21,7 @@ const SingleProduct = () => {
   } = useAppSelector((store) => store.products)
 
   useEffect(() => {
-    dispatch(getSingeProduct(`/api/${id}`))
+    dispatch(getSingeProduct(`${url}/${id}`))
   }, [dispatch, id])
 
   useEffect(() => {
