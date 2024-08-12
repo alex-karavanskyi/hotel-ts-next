@@ -110,13 +110,13 @@ const Wrapper = styled.section`
     font-weight: 400;
   }
   @media (max-width: 1500px) {
-    .ggrid__view-products {
+    .grid__view-products {
       margin-left: 15px;
       margin-right: 15px;
     }
   }
   @media (max-width: 768px) {
-    .ggrid__view-products {
+    .grid__view-products {
       grid-template-columns: repeat(1, 1fr);
     }
   }
