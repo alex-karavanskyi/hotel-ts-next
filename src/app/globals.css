@@ -63,11 +63,11 @@ body {
   line-height: 1.2;
   font-size: 0.875rem;
 }
-body.sidebar--open {
+body.sidebar-scroll-hidden {
   overflow: hidden;
 }
 
-html.sidebar--open {
+html.sidebar-scroll-hidden {
   overflow: hidden;
 }
 ul {

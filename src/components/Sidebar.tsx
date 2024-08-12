@@ -13,11 +13,11 @@ const Sidebar = () => {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.classList.add('sidebar--open')
-      document.documentElement.classList.add('sidebar--open')
+      document.body.classList.add('sidebar-scroll-hidden')
+      document.documentElement.classList.add('sidebar-scroll-hidden')
     } else {
-      document.body.classList.remove('sidebar--open')
-      document.documentElement.classList.remove('sidebar--open')
+      document.body.classList.remove('sidebar-scroll-hidden')
+      document.documentElement.classList.remove('sidebar-scroll-hidden')
     }
   }, [isOpen])
 

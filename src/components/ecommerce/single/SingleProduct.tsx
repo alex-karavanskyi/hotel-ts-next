@@ -30,7 +30,7 @@ const SingleProduct = () => {
         navigate.push('/')
       }, 3000)
     }
-  }, [error, navigate])
+  }, [error])
 
   if (loading) {
     return <Loading />

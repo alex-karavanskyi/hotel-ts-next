@@ -18,12 +18,11 @@ const ProductList = () => {
     const handleMediaQueryChange = (event: { matches: boolean }) => {
       setIsLargeScreen(event.matches)
     }
-    mediaQuery.addEventListener('change', handleMediaQueryChange)
 
-    return () => {
+    mediaQuery.addEventListener('change', handleMediaQueryChange)
+    return () =>
       mediaQuery.removeEventListener('change', handleMediaQueryChange)
-    }
-  }, [])
+  }, [isLargeScreen])
 
   const indexOfLastPost = pagination * postsPerPage
   const indexOfFirstPost = indexOfLastPost - postsPerPage

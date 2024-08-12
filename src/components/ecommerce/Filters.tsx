@@ -46,6 +46,7 @@ const Filters = () => {
   }, [products, dispatch])
 
   useEffect(() => {
+    console.log('first')
     dispatch(filterProducts())
   }, [category, price, text, dispatch])
 
