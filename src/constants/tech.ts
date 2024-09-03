@@ -5,7 +5,6 @@ import {
   tailwind,
   dashboard,
   ecommerce,
-  chatbot,
 } from '../assets'
 
 const services = [
@@ -82,7 +81,7 @@ const projects = [
   {
     name: 'E-Commerce',
     description:
-      'Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.',
+      'Web-based platform that allows users to search, filter, and sort products',
     tags: [
       {
         name: 'react',
@@ -98,12 +97,12 @@ const projects = [
       },
     ],
     image: ecommerce,
-    source_code_link: 'https://github.com/alexfront2007/hotel-ts-next',
+    source_code_link: 'https://github.com/alex-karavanskyi/hotel-ts-next',
   },
   {
-    name: 'Dashboard (in procces)',
+    name: 'Material-UI',
     description:
-      'Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.',
+      'Web application with Material-UI components such as autocomplete, pagination, and grid.',
     tags: [
       {
         name: 'react',
@@ -119,28 +118,7 @@ const projects = [
       },
     ],
     image: dashboard,
-    source_code_link: 'https://github.com/',
-  },
-  {
-    name: 'Messenger (in procces)',
-    description:
-      'A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.',
-    tags: [
-      {
-        name: 'next',
-        color: 'blue-text-gradient',
-      },
-      {
-        name: 'typescript',
-        color: 'green-text-gradient',
-      },
-      {
-        name: 'css',
-        color: 'pink-text-gradient',
-      },
-    ],
-    image: chatbot,
-    source_code_link: 'https://github.com/',
+    source_code_link: 'https://github.com/alex-karavanskyi/mui-ecommerce',
   },
 ]
 

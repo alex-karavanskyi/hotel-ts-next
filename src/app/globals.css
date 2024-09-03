@@ -442,6 +442,7 @@ p {
 .works__project-card-container {
   margin-top: 5rem;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1.75rem;
 }

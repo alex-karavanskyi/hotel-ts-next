@@ -8,7 +8,6 @@ import redux from './tech/redux.png'
 import next from './tech/next.png'
 import tailwind from './tech/tailwind.png'
 import typescript from './tech/typescript.png'
-
 import ecommerce from './ecommerce.png'
 import dashboard from './dashboard.png'
 import chatbot from './chatbot.jpg'
