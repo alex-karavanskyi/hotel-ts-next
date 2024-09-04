@@ -5,7 +5,7 @@ const SocialLinks = () => {
     <StyledSocial>
       <li>
         <a
-          href='https://https://github.com/alexfront2007'
+          href='https://github.com/alex-karavanskyi'
           className='social__links-icon'
         >
           <i className='fab fa-github'></i>
