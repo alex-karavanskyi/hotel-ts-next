@@ -18,7 +18,13 @@ const ListView: React.FC<ListProducts> = ({ products }) => {
           const { id, image, name, price, description } = product
           return (
             <article className='list__view-article' key={id}>
-              <Image src={image} alt={name} width={700} height={700} />
+              <Image
+                className='list__view-image'
+                src={image}
+                alt={name}
+                width={300}
+                height={200}
+              />
               <div>
                 <h4 className='list__view-products-favorite'>
                   <Favorite productId={id} name={name} products={products} />
@@ -74,7 +80,7 @@ const Wrapper = styled.section`
   .list__view-products-btn-details:hover {
     color: var(--clr-primary-1);
   }
-  .list__view-article img {
+  .list__view-image {
     width: 100%;
     display: block;
     width: 300px;

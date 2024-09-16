@@ -37,11 +37,9 @@ const ProductImages = ({ images = [{ url: '' }] }) => {
 
 const Wrapper = styled.section`
   .product__images {
-    height: 600px;
-  }
-  img {
     width: 100%;
     display: block;
+    height: 600px;
     border-radius: var(--radius);
     object-fit: cover;
   }

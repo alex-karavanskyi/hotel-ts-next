@@ -20,7 +20,13 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
           return (
             <article key={id}>
               <div className='grid__view-products-images'>
-                <Image src={image} alt={name} width={700} height={700} />
+                <Image
+                  className='grid__view-images'
+                  src={image}
+                  alt={name}
+                  width={715}
+                  height={500}
+                />
                 <Link
                   href={`/ecommerce/${id}`}
                   className='grid__view-products-link'
@@ -59,13 +65,12 @@ const Wrapper = styled.section`
     border-radius: var(--radius);
     padding: 0px;
   }
-  .grid__view-products-images img {
+  .grid__view-images {
     width: 100%;
     display: block;
     object-fit: cover;
     border-radius: var(--radius);
     transition: var(--transition);
-    height: 500px;
   }
   .grid__view-products-link {
     position: absolute;
@@ -87,7 +92,7 @@ const Wrapper = styled.section`
       color: var(--clr-white);
     }
   }
-  .grid__view-products-images:hover img {
+  .grid__view-images:hover {
     opacity: 0.5;
   }
 
