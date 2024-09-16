@@ -92,11 +92,11 @@ const Wrapper = styled.div`
   }
   .swiper-pagination .swiper-pagination-bullet {
     background: white;
-    padding: 7px;
+    padding: 0.43rem;
   }
   .swiper-pagination .swiper-pagination-bullet-active {
     background: #007aff;
-    padding: 7px;
+    padding: 0.43rem;
   }
   .slider-controler .swiper-button-next {
     position: absolute;

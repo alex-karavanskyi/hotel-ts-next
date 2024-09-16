@@ -118,8 +118,8 @@ const Wrapper = styled.section`
     margin-bottom: 0;
   }
   @media (max-width: 1500px) {
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
   @media (max-width: 768px) {
     .sort__btn {
@@ -132,7 +132,7 @@ const Wrapper = styled.section`
   }
   @media (max-width: 576px) {
     .sort__btn {
-      width: 50px;
+      width: 3.1rem;
     }
   }
 `

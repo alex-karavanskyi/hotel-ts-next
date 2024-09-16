@@ -72,12 +72,12 @@ const Wrapper = styled.section`
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    width: 148px;
+    width: 9.25rem;
   }
   .featured__products-featured:hover {
     letter-spacing: 0.35rem;
     color: #007aff;
-    box-shadow: 0 0 20px #007aff;
+    box-shadow: 0 0 1.25rem #007aff;
   }
 `
 

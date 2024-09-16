@@ -46,7 +46,6 @@ const Filters = () => {
   }, [products, dispatch])
 
   useEffect(() => {
-    console.log('first')
     dispatch(filterProducts())
   }, [category, price, text, dispatch])
 
@@ -111,7 +110,7 @@ const Filters = () => {
 const Wrapper = styled.section`
   margin: 0 auto;
   max-width: 1248px;
-  margin-bottom: 50px;
+  margin-bottom: 3.1rem;
   .filters__search {
     display: flex;
     flex-wrap: wrap;
@@ -119,14 +118,14 @@ const Wrapper = styled.section`
   }
   .filters__search button {
     display: grid;
-    grid-template-columns: 118px;
+    grid-template-columns: 7.3rem;
     text-transform: capitalize;
     background: transparent;
     border: none;
     letter-spacing: var(--spacing);
     color: var(--clr-grey-5);
     cursor: pointer;
-    padding: 14px;
+    padding: 1rem;
   }
   .filters__search-input {
     padding-left: 0.5rem;
@@ -140,12 +139,12 @@ const Wrapper = styled.section`
     text-transform: capitalize;
   }
   .filters__control-price {
-    padding-top: 30px;
-    margin-left: 14px;
+    padding-top: 1.9rem;
+    margin-left: 1rem;
   }
   .filters__clear-btn {
-    padding-top: 14px;
-    margin-left: 14px;
+    padding-top: 1rem;
+    margin-left: 1rem;
     text-transform: capitalize;
     background: transparent;
     border: none;

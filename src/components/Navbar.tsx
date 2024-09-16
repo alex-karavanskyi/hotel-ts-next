@@ -63,7 +63,7 @@ const Wrapper = styled.div`
   }
   .navbar__btn {
     position: absolute;
-    right: 14px;
+    right: 1rem;
     background: transparent;
     border-color: transparent;
     color: var(--clr-primary-5);

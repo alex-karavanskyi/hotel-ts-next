@@ -53,11 +53,11 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
 const Wrapper = styled.section`
   margin: auto;
   max-width: 1450px;
-  margin-bottom: 32px;
+  margin-bottom: 2rem;
   .grid__view-products {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 1.25rem;
   }
   .grid__view-products-images {
     position: relative;
@@ -116,8 +116,8 @@ const Wrapper = styled.section`
   }
   @media (max-width: 1500px) {
     .grid__view-products {
-      margin-left: 15px;
-      margin-right: 15px;
+      margin-left: 1rem;
+      margin-right: 1rem;
     }
   }
   @media (max-width: 768px) {

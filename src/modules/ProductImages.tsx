@@ -25,7 +25,7 @@ const ProductImages = ({ images = [{ url: '' }] }) => {
               className={`${
                 image.url === main.url ? 'product__images--active' : null
               }`}
-              width={70}
+              width={100}
               height={70}
             />
           )

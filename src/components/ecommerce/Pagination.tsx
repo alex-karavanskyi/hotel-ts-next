@@ -58,7 +58,7 @@ const Pagination: React.FC<PaginationProducts> = ({
 }
 
 const Wrapper = styled.section`
-  padding-bottom: 30px;
+  padding-bottom: 1.9rem;
   .pagination__container {
     display: flex;
     justify-content: center;
@@ -68,8 +68,8 @@ const Wrapper = styled.section`
     border: solid 1px;
     border-radius: 50%;
     display: grid;
-    grid-template-columns: 30px;
-    grid-template-rows: 30px;
+    grid-template-columns: 1.9rem;
+    grid-template-rows: 1.9rem;
   }
   .pagination--active {
     background-color: orange;

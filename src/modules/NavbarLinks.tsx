@@ -104,10 +104,10 @@ const Triangle = styled.div<{
 }>`
   width: 0;
   height: 0;
-  margin-left: 8px;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid
+  margin-left: 0.5rem;
+  border-left: 0.3rem solid transparent;
+  border-right: 0.3rem solid transparent;
+  border-top: 0.3rem solid
     ${({ isNavbarFixed }) => (isNavbarFixed ? 'black' : 'white')};
   transform: ${({ isSubmenuVisible }) =>
     isSubmenuVisible ? 'rotate(180deg)' : 'rotate(0deg)'};

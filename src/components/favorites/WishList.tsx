@@ -24,6 +24,7 @@ const WishList = () => {
             <li key={product.id}>
               <div className='wishlist__grid'>
                 <Image
+                  className='wishlist__image'
                   src={product.image}
                   alt={product.name}
                   width={700}
@@ -53,33 +54,9 @@ const WishList = () => {
 const Wrapper = styled.div`
   .wishlist__empty {
     height: 200px;
-    margin-left: 30px;
+    margin-left: 1.9rem;
   }
-  .wishlist__grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    align-items: center;
-    margin-left: 30px;
-  }
-  .wishlist__product {
-    margin-left: 14px;
-  }
-  .wishlist__btn-delete {
-    color: white;
-    cursor: pointer;
-    text-decoration: underline;
-    background: transparent;
-    border: none;
-    margin-left: 14px;
-  }
-  .wishlist__btn-delete:hover {
-    text-decoration: none;
-  }
-  h3,
-  p {
-    color: white;
-  }
-  img {
+  .wishlist__image {
     width: 100%;
     display: block;
     width: 300px;
@@ -87,6 +64,30 @@ const Wrapper = styled.div`
     object-fit: cover;
     border-radius: var(--radius);
     margin-bottom: 1rem;
+  }
+  .wishlist__grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    margin-left: 1.9rem;
+  }
+  .wishlist__product {
+    margin-left: 1rem;
+  }
+  .wishlist__btn-delete {
+    color: white;
+    cursor: pointer;
+    text-decoration: underline;
+    background: transparent;
+    border: none;
+    margin-left: 1rem;
+  }
+  .wishlist__btn-delete:hover {
+    text-decoration: none;
+  }
+  h3,
+  p {
+    color: white;
   }
   @media (max-width: 430px) {
     h2,

@@ -38,7 +38,7 @@ const Wrapper = styled.section`
   .hero__container {
     position: absolute;
     inset: 0px;
-    top: 50px;
+    top: 3.1rem;
     max-width: 80rem;
     margin-left: auto;
     margin-right: auto;

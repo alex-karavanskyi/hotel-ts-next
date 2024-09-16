@@ -98,8 +98,8 @@ const Wrapper = styled.section`
     }
   }
   @media (max-width: 990px) {
-    margin-left: 15px;
-    padding-bottom: 45px;
+    margin-left: 1rem;
+    padding-bottom: 2.8rem;
   }
 `
 
