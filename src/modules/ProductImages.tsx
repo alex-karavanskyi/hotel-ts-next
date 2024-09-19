@@ -11,8 +11,8 @@ const ProductImages = ({ images = [{ url: '' }] }) => {
         src={main.url}
         alt='main'
         className='product__images'
-        width={700}
-        height={700}
+        width={564}
+        height={500}
       />
       <div className='product__images-gallery'>
         {images.map((image, index) => {
@@ -26,7 +26,7 @@ const ProductImages = ({ images = [{ url: '' }] }) => {
                 image.url === main.url ? 'product__images--active' : null
               }`}
               width={100}
-              height={70}
+              height={75}
             />
           )
         })}
@@ -39,7 +39,6 @@ const Wrapper = styled.section`
   .product__images {
     width: 100%;
     display: block;
-    height: 600px;
     border-radius: var(--radius);
     object-fit: cover;
   }
@@ -49,32 +48,11 @@ const Wrapper = styled.section`
     grid-template-columns: repeat(5, 1fr);
     column-gap: 1rem;
     img {
-      height: 100px;
       cursor: pointer;
     }
   }
   .product__images--active {
     border: 2px solid var(--clr-primary-5);
-  }
-  @media (max-width: 576px) {
-    .product__images {
-      height: 300px;
-    }
-    .product__images-gallery {
-      img {
-        height: 50px;
-      }
-    }
-  }
-  @media (min-width: 992px) {
-    .product__images {
-      height: 500px;
-    }
-    .product__images-gallery {
-      img {
-        height: 75px;
-      }
-    }
   }
 `
 

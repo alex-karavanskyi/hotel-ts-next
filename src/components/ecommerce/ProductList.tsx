@@ -4,7 +4,7 @@ import { useAppSelector } from '@/redux/hooks'
 import { GridView, ListView, Pagination } from '@/components/ecommerce'
 
 const ProductList = () => {
-  const [postsPerPage] = useState(4)
+  const [postsPerPage] = useState(6)
   const { filtered_products: products, grid_view } = useAppSelector(
     (store) => store.filter
   )

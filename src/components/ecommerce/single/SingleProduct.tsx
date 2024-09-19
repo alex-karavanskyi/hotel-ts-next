@@ -48,7 +48,12 @@ const SingleProduct = () => {
           <ProductImages images={images} />
           <section>
             <h2 style={{ color: 'white' }}>
-              <Favorite productId={sku} name={name} products={products} />
+              <Favorite
+                productId={sku}
+                name={name}
+                products={products}
+                classIcon='single__product-favorite-icon'
+              />
             </h2>
             <h5 className='single__product-price'>{formatPrice(price)}</h5>
             <p className='single__product-description'> {description}</p>
@@ -80,20 +85,20 @@ const Wrapper = styled.main`
   }
   .single__product-info {
     text-transform: capitalize;
-    width: 300px;
-    display: grid;
-    grid-template-columns: 125px 1fr;
     color: #6c757d;
-
     span {
       font-weight: 700;
     }
+  }
+  .single__product-favorite-icon {
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
   }
 
   @media (min-width: 992px) {
     .single__product-container {
       grid-template-columns: 1fr 1fr;
-      align-items: center;
     }
     .single__product-price {
       font-size: 1.25rem;

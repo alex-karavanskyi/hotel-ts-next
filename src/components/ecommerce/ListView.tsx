@@ -27,7 +27,12 @@ const ListView: React.FC<ListProducts> = ({ products }) => {
               />
               <div>
                 <h4 className='list__view-products-favorite'>
-                  <Favorite productId={id} name={name} products={products} />
+                  <Favorite
+                    productId={id}
+                    name={name}
+                    products={products}
+                    classIcon='list__view-favorite-icon'
+                  />
                 </h4>
                 <h5 className='list__view-products-price'>
                   {formatPrice(price)}
@@ -89,6 +94,12 @@ const Wrapper = styled.section`
     border-radius: var(--radius);
     margin-bottom: 1rem;
   }
+  .list__view-favorite-icon {
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+  }
+
   @media (min-width: 992px) {
     .list__view-article {
       display: grid;

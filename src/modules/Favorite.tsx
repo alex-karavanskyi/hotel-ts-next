@@ -2,15 +2,22 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { addFavorite, removeFavorite } from '@/redux/features/favoriteSlice'
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md'
+import styled from 'styled-components'
 import Products from '@/types/productsType'
 
 interface ListProducts {
   name: string
   products: Products[]
   productId: string
+  classIcon: string
 }
 
-const Favorite: React.FC<ListProducts> = ({ name, products, productId }) => {
+const Favorite: React.FC<ListProducts> = ({
+  name,
+  products,
+  productId,
+  classIcon,
+}) => {
   const dispatch = useAppDispatch()
 
   const { favorites_products } = useAppSelector((store) => store.favorite)
@@ -24,21 +31,21 @@ const Favorite: React.FC<ListProducts> = ({ name, products, productId }) => {
   const wishList = favorites_products.some((item) => item.id === productId)
 
   return (
-    <>
+    <div>
       {name}{' '}
       {wishList ? (
         <MdFavorite
           onClick={() => handleremoveToFavorite(productId)}
           color='red'
-          style={{ cursor: 'pointer' }}
+          className={classIcon}
         />
       ) : (
         <MdFavoriteBorder
           onClick={() => handleAddToFavorite(productId, products)}
-          style={{ cursor: 'pointer' }}
+          className={classIcon}
         />
       )}
-    </>
+    </div>
   )
 }
 

@@ -24,7 +24,7 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
                   className='grid__view-images'
                   src={image}
                   alt={name}
-                  width={715}
+                  width={470}
                   height={500}
                 />
                 <Link
@@ -36,7 +36,12 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
               </div>
               <footer className='grid__view-footer'>
                 <h5 className='grid__view-favorite'>
-                  <Favorite productId={id} name={name} products={products} />
+                  <Favorite
+                    productId={id}
+                    name={name}
+                    products={products}
+                    classIcon='grid__view-favorite-icon'
+                  />
                 </h5>
                 <p className='grid__view-products-price'>
                   {formatPrice(price)}
@@ -56,7 +61,7 @@ const Wrapper = styled.section`
   margin-bottom: 2rem;
   .grid__view-products {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
   }
   .grid__view-products-images {
@@ -92,12 +97,15 @@ const Wrapper = styled.section`
       color: var(--clr-white);
     }
   }
-  .grid__view-images:hover {
+  .grid__view-images:hover,
+  .grid__view-products-images:hover .grid__view-images {
     opacity: 0.5;
   }
-
   .grid__view-products-images:hover .grid__view-products-link {
     opacity: 1;
+  }
+  .grid__view-products-link:hover ~ .grid__view-images {
+    opacity: 0.5;
   }
   .grid__view-products-price {
     color: var(--clr-primary-5);
@@ -114,6 +122,13 @@ const Wrapper = styled.section`
     margin-bottom: 0;
     font-weight: 400;
   }
+  .grid__view-favorite-icon {
+    vertical-align: text-top;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+  }
+
   @media (max-width: 1500px) {
     .grid__view-products {
       margin-left: 1rem;
