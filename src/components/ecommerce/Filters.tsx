@@ -1,7 +1,9 @@
 'use client'
 import styled from 'styled-components'
-import { useEffect, useState, memo } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
+import { useSearchParams, useRouter } from 'next/navigation'
+import { useDebouncedCallback } from 'use-debounce'
 import { getUniqueValues, formatPrice } from '@/utils/helpers'
 import { numberPagination } from '@/redux/features/paginationSlice'
 import {
@@ -11,34 +13,58 @@ import {
   filterProducts,
 } from '@/redux/features/filterSlice'
 
-type HandleValue = string | number
-
 const Filters = () => {
   const {
     filters: { text, category, min_price, price, max_price },
     all_products,
   } = useAppSelector((store) => store.filter)
+
   const [buttonColor, setButtonColor] = useState<string>(category)
   const { products } = useAppSelector((store) => store.products)
+
+  const searchParams = useSearchParams()
+  const { replace } = useRouter()
+
+  const [search, setSearch] = useState(
+    searchParams.get('search')?.toString() || ''
+  )
 
   const dispatch = useAppDispatch()
 
   const categories = getUniqueValues(all_products, 'category')
 
-  const handleFilters = (
-    e: React.FormEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>
-  ) => {
-    let name = e.currentTarget.name
-    let value: HandleValue = e.currentTarget.value
+  const debouncedUpdateFilters = useDebouncedCallback(
+    (updatedParams: URLSearchParams) => {
+      replace(`${window.location.pathname}?${updatedParams.toString()}`)
+    },
+    500
+  )
+
+  const handleFilters = (name: string, value: string | number) => {
+    const updatedParams = new URLSearchParams(searchParams)
+
     if (name === 'category') {
-      value = e.currentTarget.textContent || ''
-      setButtonColor(value)
+      setButtonColor(value as string)
+      updatedParams.set('category', value as string)
     }
+
+    if (name === 'text') {
+      setSearch(value as string)
+      if (value === '') {
+        updatedParams.delete('search')
+        dispatch(updateFilters({ name, value: '' }))
+      } else {
+        updatedParams.set('search', value as string)
+      }
+    }
+
     if (name === 'price') {
-      value = Number(value)
+      updatedParams.set('price', value.toString())
     }
+
     dispatch(updateFilters({ name, value }))
     dispatch(numberPagination(1))
+    debouncedUpdateFilters(updatedParams)
   }
 
   useEffect(() => {
@@ -58,15 +84,17 @@ const Filters = () => {
             name='text'
             placeholder='search'
             className='filters__search-input'
-            value={text}
-            onChange={handleFilters}
+            onChange={(e) => {
+              handleFilters('text', e.target.value)
+            }}
+            value={search}
           />
           {categories.map((c, index) => {
             if (typeof c === 'string') {
               return (
                 <button
                   key={index}
-                  onClick={handleFilters}
+                  onClick={() => handleFilters('category', c)}
                   type='button'
                   name='category'
                   style={{
@@ -92,7 +120,7 @@ const Filters = () => {
             min={min_price}
             max={max_price}
             value={price}
-            onChange={handleFilters}
+            onChange={(e) => handleFilters('price', Number(e.target.value))}
           />
         </div>
       </form>
@@ -154,4 +182,4 @@ const Wrapper = styled.section`
   }
 `
 
-export default memo(Filters)
+export default Filters
