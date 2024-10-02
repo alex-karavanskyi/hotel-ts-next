@@ -1,7 +1,9 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { useAppSelector } from '@/redux/hooks'
 import { GridView, ListView, Pagination } from '@/components/ecommerce'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { getProductsItems } from '@/redux/features/productSlice'
+import { url } from '@/constants/db'
 
 const ProductList = () => {
   const [postsPerPage] = useState(6)
@@ -10,6 +12,12 @@ const ProductList = () => {
   )
   const { pagination } = useAppSelector((store) => store.pagination)
   const [isLargeScreen, setIsLargeScreen] = useState(false)
+
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(getProductsItems(url))
+  }, [dispatch])
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 768px)')
