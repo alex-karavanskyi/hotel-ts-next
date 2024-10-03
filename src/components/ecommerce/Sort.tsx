@@ -1,9 +1,11 @@
 'use client'
 import styled from 'styled-components'
-import { ChangeEvent } from 'react'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
+import { useDebouncedCallback } from 'use-debounce'
 import { BsFillGridFill, BsList } from 'react-icons/bs'
 import { useEffect } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
+
 import {
   updateSort,
   setGridView,
@@ -18,10 +20,23 @@ const Sort = () => {
     sort,
   } = useAppSelector((store) => store.filter)
 
+  const { replace } = useRouter()
+  const searchParams = useSearchParams()
+
+  const debouncedUpdateFilters = useDebouncedCallback(
+    (updatedParams: URLSearchParams) => {
+      replace(`${window.location.pathname}?${updatedParams.toString()}`)
+    },
+    500
+  )
+
   const dispatch = useAppDispatch()
 
-  const handleSort = (e: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(updateSort(e.target.value))
+  const handleSort = (value: string) => {
+    const updatedParams = new URLSearchParams(searchParams)
+    updatedParams.set('sort', value as string)
+    dispatch(updateSort(value))
+    debouncedUpdateFilters(updatedParams)
   }
 
   useEffect(() => {
@@ -56,7 +71,9 @@ const Sort = () => {
             id='sort'
             className='sort__input'
             value={sort}
-            onChange={handleSort}
+            onChange={(e) => {
+              handleSort(e.target.value)
+            }}
           >
             <option value='price-lowest'>price (lowest)</option>
             <option value='price-highest'>price (highest)</option>
