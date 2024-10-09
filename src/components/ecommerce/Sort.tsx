@@ -33,8 +33,9 @@ const Sort = () => {
   const dispatch = useAppDispatch()
 
   const handleSort = (value: string) => {
-    const updatedParams = new URLSearchParams(searchParams)
+    const updatedParams = new URLSearchParams(searchParams.toString())
     updatedParams.set('sort', value as string)
+
     dispatch(updateSort(value))
     debouncedUpdateFilters(updatedParams)
   }

@@ -41,7 +41,7 @@ const Filters = () => {
   )
 
   const handleFilters = (name: string, value: string | number) => {
-    const updatedParams = new URLSearchParams(searchParams)
+    const updatedParams = new URLSearchParams(searchParams.toString())
 
     if (name === 'category') {
       setButtonColor(value as string)
