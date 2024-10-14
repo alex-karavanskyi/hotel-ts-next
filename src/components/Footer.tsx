@@ -193,26 +193,7 @@ const Wrapper = styled.footer`
 
   @media (max-width: 800px) {
     .footer__grid {
-      display: grid;
-      grid-template-columns: repeat(6, 110px);
-    }
-  }
-  @media (max-width: 660px) {
-    .footer__grid {
-      display: grid;
-      grid-template-columns: repeat(5, 110px);
-    }
-  }
-  @media (max-width: 550px) {
-    .footer__grid {
-      display: grid;
-      grid-template-columns: repeat(4, 110px);
-    }
-  }
-  @media (max-width: 440px) {
-    .footer__grid {
-      display: grid;
-      grid-template-columns: repeat(3, 110px);
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
     }
   }
 `

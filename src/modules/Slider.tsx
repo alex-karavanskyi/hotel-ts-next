@@ -11,16 +11,16 @@ import { useAppSelector } from '@/redux/hooks'
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 
 export const Slider = () => {
-  const { products } = useAppSelector((store) => store.products)
+  const { products } = useAppSelector((state) => state.products)
 
   return (
-    <Wrapper>
-      <Swiper
-        effect={'coverflow'}
-        grabCursor={true}
-        centeredSlides={true}
-        loop={true}
-        slidesPerView={'auto'}
+    <SliderWrapper>
+      <StyledSwiper
+        effect='coverflow'
+        grabCursor
+        centeredSlides
+        loop
+        slidesPerView='auto'
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
@@ -33,141 +33,130 @@ export const Slider = () => {
           prevEl: '.swiper-button-prev',
         }}
         modules={[EffectCoverflow, Pagination, Navigation]}
-        className='swiper_container'
       >
-        {products.slice(0, 5).map((item) => {
-          const { image, id } = item
-          return (
-            <SwiperSlide key={id}>
-              <Image alt='img' src={image} width={700} height={700} />
-            </SwiperSlide>
-          )
-        })}
+        {products.slice(0, 5).map(({ id, image }) => (
+          <SwiperSlide key={id}>
+            <StyledImage
+              alt='product image'
+              src={image}
+              width={700}
+              height={700}
+            />
+          </SwiperSlide>
+        ))}
 
-        <div className='slider-controler'>
-          <div className='swiper-pagination'></div>
-          <div className='swiper-button-prev slider-arrow'>
+        <Controls>
+          <div className='swiper-pagination' />
+          <ArrowButton className='swiper-button-prev'>
             <FiChevronLeft />
-          </div>
-          <div className='swiper-button-next slider-arrow'>
+          </ArrowButton>
+          <ArrowButton className='swiper-button-next'>
             <FiChevronRight />
-          </div>
-        </div>
-      </Swiper>
-    </Wrapper>
+          </ArrowButton>
+        </Controls>
+      </StyledSwiper>
+    </SliderWrapper>
   )
 }
 
-const Wrapper = styled.div`
+const SliderWrapper = styled.div`
   position: relative;
-  z-index: 0;
   max-width: 124rem;
   padding: 0 1rem;
   margin: 0 auto;
-  .swiper_container {
-    height: 52rem;
-    padding: 2rem 0;
-  }
+`
+
+const StyledSwiper = styled(Swiper)`
+  height: 52rem;
+  padding: 2rem 0;
+
   .swiper-slide {
     width: 37rem;
     height: 42rem;
   }
-  .swiper-slide img {
-    width: 37rem;
-    height: 42rem;
-    border-radius: 2rem;
-    object-fit: cover;
+
+  @media (max-width: 700px) {
+    height: 45rem;
+
+    .swiper-slide {
+      width: 28rem;
+      height: 36rem;
+    }
   }
-  .slider-controler {
-    position: relative;
+
+  @media (max-width: 500px) {
+    height: 35rem;
+
+    .swiper-slide {
+      width: 18rem;
+      height: 26rem;
+    }
   }
-  .slider-controler .slider-arrow {
-    background: rgb(74, 74, 77);
-    width: 2.3rem;
-    height: 2.3rem;
-    border-radius: 50%;
-  }
-  .slider-controler .slider-arrow::after {
-    content: '';
-  }
-  .swiper-pagination .swiper-pagination-bullet {
+`
+
+const StyledImage = styled(Image)`
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  object-fit: cover;
+`
+
+const Controls = styled.div`
+  position: relative;
+  .swiper-pagination-bullet {
     background: white;
     padding: 0.43rem;
   }
-  .swiper-pagination .swiper-pagination-bullet-active {
+  .swiper-pagination-bullet-active {
     background: #007aff;
-    padding: 0.43rem;
   }
-  .slider-controler .swiper-button-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+`
+
+const ArrowButton = styled.div`
+  background: rgb(74, 74, 77);
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+
+  &:after {
+    content: '';
+  }
+
+  &.swiper-button-next {
     right: 30rem;
-  }
-  .slider-controler .swiper-button-prev {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 30rem;
-  }
 
-  @media (max-width: 700px) {
-    .swiper_container {
-      height: 45rem;
-    }
-    .swiper-slide {
-      width: 28rem;
-      height: 36rem;
-    }
-    .swiper-slide img {
-      width: 28rem;
-      height: 36rem;
-    }
-  }
-  @media (max-width: 500px) {
-    .swiper_container {
-      height: 35rem;
-    }
-    .swiper-slide {
-      width: 18rem;
-      height: 26rem;
-    }
-    .swiper-slide img {
-      width: 18rem;
-      height: 26rem;
-    }
-  }
-
-  @media (max-width: 1230px) {
-    .slider-controler .swiper-button-next {
+    @media (max-width: 1230px) {
       right: 20rem;
     }
-  }
 
-  @media (max-width: 1230px) {
-    .slider-controler .swiper-button-prev {
-      left: 20rem;
-    }
-  }
-  @media (max-width: 920px) {
-    .slider-controler .swiper-button-next {
+    @media (max-width: 920px) {
       right: 10rem;
     }
-  }
 
-  @media (max-width: 920px) {
-    .slider-controler .swiper-button-prev {
-      left: 10rem;
-    }
-  }
-  @media (max-width: 590px) {
-    .slider-controler .swiper-button-next {
+    @media (max-width: 590px) {
       right: 5rem;
     }
   }
 
-  @media (max-width: 590px) {
-    .slider-controler .swiper-button-prev {
+  &.swiper-button-prev {
+    left: 30rem;
+
+    @media (max-width: 1230px) {
+      left: 20rem;
+    }
+
+    @media (max-width: 920px) {
+      left: 10rem;
+    }
+
+    @media (max-width: 590px) {
       left: 5rem;
     }
   }
