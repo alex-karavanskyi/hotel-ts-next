@@ -56,8 +56,6 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
 }
 
 const Wrapper = styled.section`
-  margin: auto;
-  max-width: 1450px;
   margin-bottom: 2rem;
   .grid__view-products {
     display: grid;
@@ -116,6 +114,7 @@ const Wrapper = styled.section`
     justify-content: space-between;
     align-items: center;
     margin-top: 1rem;
+    color: var(--clr-grey-dark);
   }
   .grid__view-favorite,
   .grid__view-products-price {
@@ -127,6 +126,7 @@ const Wrapper = styled.section`
     cursor: pointer;
     width: 18px;
     height: 18px;
+    color: var(--clr-grey-dark);
   }
 
   @media (max-width: 1500px) {

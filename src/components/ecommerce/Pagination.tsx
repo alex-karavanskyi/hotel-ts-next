@@ -78,6 +78,7 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
+    color: rgba(118, 59, 146, 0.8);
   }
 `
 

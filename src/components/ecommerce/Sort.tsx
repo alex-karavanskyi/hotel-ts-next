@@ -66,7 +66,6 @@ const Sort = () => {
         <p className='sort__title'>{products.length} products found</p>
         <hr />
         <form>
-          <label htmlFor='sort__price'>sort by</label>
           <select
             name='sort'
             id='sort'
@@ -88,8 +87,6 @@ const Sort = () => {
 }
 
 const Wrapper = styled.section`
-  max-width: 1450px;
-  margin: auto;
   margin-bottom: 2rem;
   .sort__container {
     display: grid;
@@ -101,10 +98,11 @@ const Wrapper = styled.section`
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 0.5rem;
+
     button {
       background: transparent;
-      border: 1px solid var(--clr-black);
-      color: var(--clr-black);
+      border: none;
+      color: var(--clr-white);
       width: 1.5rem;
       border-radius: var(--radius);
       height: 1.5rem;
@@ -112,13 +110,20 @@ const Wrapper = styled.section`
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      transition: background 0.3s ease;
+      &:hover:not(.sort__btn-active) {
+        background: rgba(211, 211, 211, 0.2);
+      }
+      &.sort__btn-active:hover {
+        background: rgba(255, 165, 0, 0.7);
+      }
       svg {
         font-size: 1rem;
       }
     }
     .sort__btn-active {
-      background: var(--clr-black);
-      color: var(--clr-white);
+      background: orange;
+      color: var(--clr-black);
     }
   }
   .sort__input {
@@ -127,13 +132,10 @@ const Wrapper = styled.section`
     text-transform: capitalize;
     padding: 0.25rem 0.5rem;
   }
-  .sort__price {
-    font-size: 1rem;
-    text-transform: capitalize;
-  }
   .sort__title {
     text-transform: capitalize;
     margin-bottom: 0;
+    color: var(--clr-grey-dark);
   }
   @media (max-width: 1500px) {
     margin-left: 1rem;

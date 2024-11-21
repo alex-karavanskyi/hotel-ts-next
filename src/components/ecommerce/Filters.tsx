@@ -100,7 +100,7 @@ const Filters = () => {
                   style={{
                     border:
                       buttonColor === c
-                        ? 'solid 2px black'
+                        ? 'solid 2px orange'
                         : 'var(--clr-grey-5)',
                   }}
                 >
@@ -136,8 +136,6 @@ const Filters = () => {
 }
 
 const Wrapper = styled.section`
-  margin: 0 auto;
-  max-width: 1248px;
   margin-bottom: 3.1rem;
   .filters__search {
     display: flex;
@@ -151,7 +149,7 @@ const Wrapper = styled.section`
     background: transparent;
     border: none;
     letter-spacing: var(--spacing);
-    color: var(--clr-grey-5);
+    color: var(--clr-grey-dark);
     cursor: pointer;
     padding: 1rem;
   }
@@ -168,16 +166,15 @@ const Wrapper = styled.section`
   }
   .filters__control-price {
     padding-top: 1.9rem;
-    margin-left: 1rem;
+    color: var(--clr-grey-dark);
   }
   .filters__clear-btn {
     padding-top: 1rem;
-    margin-left: 1rem;
     text-transform: capitalize;
     background: transparent;
     border: none;
     letter-spacing: var(--spacing);
-    color: var(--clr-grey-5);
+    color: var(--clr-grey-dark);
     cursor: pointer;
   }
 `

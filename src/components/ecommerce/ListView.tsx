@@ -56,11 +56,10 @@ const ListView: React.FC<ListProducts> = ({ products }) => {
 }
 
 const Wrapper = styled.section`
-  max-width: 1450px;
-  margin: auto;
   .list__view-products {
     display: grid;
     row-gap: 3rem;
+    color: var(--clr-grey-dark);
   }
   .list__view-products-price {
     color: var(--clr-primary-6);
@@ -98,6 +97,7 @@ const Wrapper = styled.section`
     cursor: pointer;
     width: 18px;
     height: 18px;
+    color: var(--clr-grey-dark);
   }
 
   @media (min-width: 992px) {
