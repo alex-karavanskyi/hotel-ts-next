@@ -70,15 +70,22 @@ const Wrapper = styled.section`
     display: grid;
     grid-template-columns: 1.9rem;
     grid-template-rows: 1.9rem;
+    transition: background 0.3s ease;
+    &:hover:not(.pagination--active) {
+      background: rgba(211, 211, 211, 0.2);
+    }
+    &.pagination--active:hover {
+      background-color: rgba(234, 140, 46, 0.8);
+    }
   }
   .pagination--active {
-    background-color: orange;
+    background-color: rgba(234, 140, 46, 1);
   }
   .pagination__link {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgba(118, 59, 146, 0.8);
+    color: var(--clr-grey-dark);
   }
 `
 

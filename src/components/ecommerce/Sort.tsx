@@ -122,7 +122,8 @@ const Wrapper = styled.section`
       }
     }
     .sort__btn-active {
-      background: orange;
+      background: rgba(255, 165, 0, 1);
+
       color: var(--clr-black);
     }
   }

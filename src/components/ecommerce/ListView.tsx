@@ -74,15 +74,16 @@ const Wrapper = styled.section`
   }
   .list__view-products-btn-details {
     text-transform: uppercase;
-    background: var(--clr-primary-5);
-    color: var(--clr-primary-10);
+    background-color: rgba(234, 140, 46, 1);
+    color: var(--clr-grey-dark);
     transition: var(--transition);
+    border-radius: 2px;
     cursor: pointer;
     font-size: 1rem;
     padding: 0.5rem 1.5rem;
   }
   .list__view-products-btn-details:hover {
-    color: var(--clr-primary-1);
+    background-color: rgba(234, 140, 46, 0.7);
   }
   .list__view-image {
     width: 100%;
