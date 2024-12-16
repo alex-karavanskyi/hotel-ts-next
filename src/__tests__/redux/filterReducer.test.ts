@@ -3,6 +3,7 @@ import filterReducer from '@/redux/features/filterSlice'
 describe('filterReducer', () => {
   it('should return default state when passed an empty action', () => {
     const result = filterReducer(undefined, { type: '' })
+
     expect(result).toEqual({
       all_products: [],
       filtered_products: [],

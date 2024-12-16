@@ -1,6 +1,7 @@
 import { fireEvent, render } from '@testing-library/react'
 import Contact from '@/components/home/Contact'
 import '@testing-library/jest-dom'
+
 it('should display form with Name, Email, and Message fields', () => {
   const { getByLabelText } = render(<Contact />)
 
@@ -21,14 +22,8 @@ it('should reset form after successful submission', () => {
   const submitButton = getByText('Send')
 
   fireEvent.change(nameInput, { target: { value: '' } })
-  fireEvent.change(emailInput, {
-    target: { value: '' },
-  })
-  fireEvent.change(messageInput, {
-    target: {
-      value: '',
-    },
-  })
+  fireEvent.change(emailInput, { target: { value: '' } })
+  fireEvent.change(messageInput, { target: { value: '' } })
   fireEvent.click(submitButton)
 
   expect(nameInput.value).toBe('')
