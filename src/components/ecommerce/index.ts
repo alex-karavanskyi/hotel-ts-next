@@ -1,8 +1,23 @@
-import Filters from './Filters'
-import GridView from './GridView'
-import ListView from './ListView'
-import Pagination from './Pagination'
-import ProductList from './ProductList'
-import Sort from './Sort'
+import Sort from './filters/Sort'
+import Search from './filters/Search'
+import Price from './filters/Price'
+import Category from './filters/Category'
+import ProductControls from './filters/ProductControls'
+import GridView from './list/GridView'
+import ListView from './list/ListView'
+import Pagination from './list/Pagination'
+import ProductList from './list/ProductList'
+import ProductImages from './single/ProductImages'
 
-export { Filters, GridView, ListView, Pagination, ProductList, Sort }
+export {
+  ProductList,
+  ProductControls,
+  ProductImages,
+  GridView,
+  ListView,
+  Pagination,
+  Sort,
+  Search,
+  Price,
+  Category,
+}

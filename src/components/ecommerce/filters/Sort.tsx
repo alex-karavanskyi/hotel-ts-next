@@ -1,48 +1,21 @@
 'use client'
 import styled from 'styled-components'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
-import { useDebouncedCallback } from 'use-debounce'
 import { BsFillGridFill, BsList } from 'react-icons/bs'
-import { useEffect } from 'react'
-import { useSearchParams, useRouter } from 'next/navigation'
+import { setGridView, setListView } from '@/redux/features/filterSlice'
 
-import {
-  updateSort,
-  setGridView,
-  setListView,
-  sortProducts,
-} from '@/redux/features/filterSlice'
+interface SortProps {
+  handleFilters: (filterType: string, value: string) => void
+}
 
-const Sort = () => {
+const Sort: React.FC<SortProps> = ({ handleFilters }) => {
   const {
     filtered_products: products,
     grid_view,
     sort,
   } = useAppSelector((store) => store.filter)
 
-  const { replace } = useRouter()
-  const searchParams = useSearchParams()
-
-  const debouncedUpdateFilters = useDebouncedCallback(
-    (updatedParams: URLSearchParams) => {
-      replace(`${window.location.pathname}?${updatedParams.toString()}`)
-    },
-    500
-  )
-
   const dispatch = useAppDispatch()
-
-  const handleSort = (value: string) => {
-    const updatedParams = new URLSearchParams(searchParams.toString())
-    updatedParams.set('sort', value as string)
-
-    dispatch(updateSort(value))
-    debouncedUpdateFilters(updatedParams)
-  }
-
-  useEffect(() => {
-    dispatch(sortProducts())
-  }, [sort, dispatch])
 
   return (
     <Wrapper>
@@ -71,9 +44,7 @@ const Sort = () => {
             id='sort'
             className='sort__input'
             value={sort}
-            onChange={(e) => {
-              handleSort(e.target.value)
-            }}
+            onChange={(e) => handleFilters('sort', e.target.value)}
           >
             <option value='price-lowest'>price (lowest)</option>
             <option value='price-highest'>price (highest)</option>

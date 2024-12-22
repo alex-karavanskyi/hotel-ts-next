@@ -1,7 +1,7 @@
 import './globals.css'
 import '@/fontawesome-free-5.12.1-web/css/all.css'
 import { Inter } from 'next/font/google'
-import { Navbar, Footer, Sidebar, ClientOnly } from '@/components/'
+import { Navbar, Footer, Sidebar, ClientOnly } from '@/layout'
 import { ReduxProvider } from '@/redux/provider'
 import { Metadata } from 'next'
 

@@ -1,4 +1,4 @@
-import WishList from '@/components/favorites/WishList'
+import { WishList } from '@/layout/index'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

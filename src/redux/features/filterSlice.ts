@@ -36,10 +36,10 @@ const filterSlice = createSlice({
   initialState,
   reducers: {
     loadProducts: (state, action: PayloadAction<Products[]>) => {
-      const { payload } = action
-      const maxPrice = Math.max(...payload.map((item: Products) => item.price))
-      state.all_products = payload
-      state.filtered_products = payload
+      const products = action.payload
+      const maxPrice = Math.max(...products.map((product) => product.price))
+      state.all_products = products
+      state.filtered_products = products
       state.filters.max_price = maxPrice
       state.filters.price = maxPrice
     },
@@ -52,55 +52,50 @@ const filterSlice = createSlice({
     updateSort: (state, action: PayloadAction<string>) => {
       state.sort = action.payload
     },
-    updateFilters: (state, action) => {
-      const { payload } = action
-      const { name, value } = payload
+    updateFilters: (
+      state,
+      action: PayloadAction<{ name: string; value: string | number }>
+    ) => {
+      const { name, value } = action.payload
       state.filters[name] = value
     },
     filterProducts: (state) => {
-      const { all_products } = state
-      const { text, category, price } = state.filters
-      let tempProducts = [...all_products]
+      const { all_products, filters } = state
+      const { text, category, price } = filters
+      let filtered = [...all_products]
+
       if (text) {
-        tempProducts = tempProducts.filter((product) =>
-          product.name.toLowerCase().startsWith(text)
+        filtered = filtered.filter((product) =>
+          product.name.toLowerCase().startsWith(text.toLowerCase())
         )
       }
       if (category !== 'all') {
-        tempProducts = tempProducts.filter(
-          (product) => product.category === category
-        )
+        filtered = filtered.filter((product) => product.category === category)
       }
-      tempProducts = tempProducts.filter((product) => product.price <= price)
-      state.filtered_products = tempProducts
-    },
-    clearFilters: (state) => {
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          text: '',
-          category: 'all',
-          price: state.filters.max_price,
-        },
-      }
+      filtered = filtered.filter((product) => product.price <= price)
+      state.filtered_products = filtered
     },
     sortProducts: (state) => {
       const { sort, filtered_products } = state
-      let tempProducts = [...filtered_products]
-      if (sort === 'price-lowest') {
-        tempProducts = tempProducts.sort((a, b) => a.price - b.price)
+
+      const sorted = [...filtered_products].sort((a, b) => {
+        if (sort === 'price-lowest') return a.price - b.price
+        if (sort === 'price-highest') return b.price - a.price
+        if (sort === 'name-a') return a.name.localeCompare(b.name)
+        if (sort === 'name-z') return b.name.localeCompare(a.name)
+        return 0
+      })
+      state.filtered_products = sorted
+    },
+    clearFilters: (state) => {
+      const { max_price } = state.filters
+      state.filters = {
+        ...state.filters,
+        text: '',
+        category: 'all',
+        price: max_price,
       }
-      if (sort === 'price-highest') {
-        tempProducts = tempProducts.sort((a, b) => b.price - a.price)
-      }
-      if (sort === 'name-a') {
-        tempProducts = tempProducts.sort((a, b) => a.name.localeCompare(b.name))
-      }
-      if (sort === 'name-z') {
-        tempProducts = tempProducts.sort((a, b) => b.name.localeCompare(a.name))
-      }
-      state.filtered_products = tempProducts
+      state.sort = 'price-lowest'
     },
   },
 })

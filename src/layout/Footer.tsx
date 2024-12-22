@@ -1,7 +1,7 @@
 'use client'
 import styled from 'styled-components'
 import Link from 'next/link'
-import { SocialLinks } from '@/modules'
+import { SocialLinks } from './index'
 import {
   react,
   redux,
@@ -10,7 +10,7 @@ import {
   javascript,
   typescript,
   cities,
-} from '../constants/footer'
+} from '../utils/footer'
 
 const Footer = () => {
   return (

@@ -1,4 +1,4 @@
-import { Filters, ProductList, Sort } from '@/components/ecommerce'
+import { ProductControls, ProductList } from '@/components/ecommerce'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -20,8 +20,7 @@ const Ecommerce = () => {
           PUBLIC HOTEL OFFERS ALL THE COMFORTS OF HOME, BUT BETTER.
         </div>
       </div>
-      <Filters />
-      <Sort />
+      <ProductControls />
       <ProductList />
     </div>
   )

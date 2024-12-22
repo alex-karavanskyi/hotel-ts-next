@@ -4,7 +4,7 @@ import city from '@/images/city_coast_skyscrapers_866257_1920x1200.jpg'
 import Image from 'next/image'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { closeModal } from '@/redux/features/modalSlice'
-import { NavbarLinks, SocialLinks } from '@/modules'
+import { NavbarLinks, SocialLinks } from '@/layout'
 import { useEffect } from 'react'
 
 const Sidebar = () => {

@@ -26,6 +26,7 @@ const favoriteSlice = createSlice({
     addFavorite: (state, action: PayloadAction<AddFavoritePayload>) => {
       const { productId, products } = action.payload
       const addProducts = products.find((product) => product.id === productId)
+
       if (addProducts) {
         state.favorites_products.push(addProducts)
       }

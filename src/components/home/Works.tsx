@@ -1,9 +1,9 @@
 'use client'
 import { motion } from 'framer-motion'
 import { SectionWrapper } from '@/hoc'
-import { projects } from '@/constants/tech'
+import { projects } from '@/utils/tech'
 import { fadeIn, textVariant } from '@/utils/motion'
-import { ProjectCard } from '@/components/card'
+import { ProjectCard } from '@/card'
 
 const Works = () => {
   return (

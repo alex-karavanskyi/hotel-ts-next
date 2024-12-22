@@ -1,6 +1,6 @@
 'use client'
 import styled from 'styled-components'
-import { StarsCanvas, LaptopCanvas } from '@/components/canvas'
+import { StarsCanvas, LaptopCanvas } from '@/canvas'
 import { useMediaQuery } from 'react-responsive'
 
 const Hero = () => {

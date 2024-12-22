@@ -56,6 +56,7 @@ const ProductList = () => {
   if (isLargeScreen) {
     return <ListView products={products} />
   }
+
   return (
     <>
       <GridView products={currentPosts} />

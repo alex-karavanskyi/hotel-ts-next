@@ -2,7 +2,7 @@
 import styled from 'styled-components'
 import Image from 'next/image'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
-import { formatPrice } from '@/utils/helpers'
+import { formatPrice } from '@/utils/format'
 import { removeFavorite } from '@/redux/features/favoriteSlice'
 
 const WishList = () => {

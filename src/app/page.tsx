@@ -6,7 +6,7 @@ import {
   Works,
   Contact,
 } from '@/components/home'
-import { StarsCanvas } from '@/components/canvas'
+import { StarsCanvas } from '@/canvas'
 
 const Home = () => {
   return (

@@ -1,8 +1,8 @@
 'use client'
 import { motion } from 'framer-motion'
-import { services } from '@/constants/tech'
+import { services } from '@/utils/tech'
 import { fadeIn, textVariant } from '@/utils/motion'
-import { ServiceCard } from '@/components/card'
+import { ServiceCard } from '@/card'
 
 const About = () => {
   return (

@@ -2,7 +2,6 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { addFavorite, removeFavorite } from '@/redux/features/favoriteSlice'
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md'
-import styled from 'styled-components'
 import Products from '@/types/productsType'
 
 interface ListProducts {
