@@ -39,7 +39,6 @@ const filterSlice = createSlice({
       const products = action.payload
       const maxPrice = Math.max(...products.map((product) => product.price))
       state.all_products = products
-      state.filtered_products = products
       state.filters.max_price = maxPrice
       state.filters.price = maxPrice
     },
@@ -85,6 +84,7 @@ const filterSlice = createSlice({
         if (sort === 'name-z') return b.name.localeCompare(a.name)
         return 0
       })
+
       state.filtered_products = sorted
     },
     clearFilters: (state) => {
