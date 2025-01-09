@@ -1,32 +1,52 @@
-import { fireEvent, render } from '@testing-library/react'
+import { act, fireEvent, render, screen } from '@testing-library/react'
 import Contact from '@/components/home/Contact'
 import '@testing-library/jest-dom'
 
-it('should display form with Name, Email, and Message fields', () => {
-  const { getByLabelText } = render(<Contact />)
+describe('Contact', () => {
+  it('should display form with Name, Email, and Message fields', () => {
+    const { container } = render(<Contact />)
 
-  const nameInput = getByLabelText('Name')
-  const emailInput = getByLabelText('Email')
-  const messageInput = getByLabelText('Message')
+    expect(screen.getByTestId('contact')).toBeInTheDocument()
 
-  expect(nameInput).toBeInTheDocument()
-  expect(emailInput).toBeInTheDocument()
-  expect(messageInput).toBeInTheDocument()
-})
+    const nameInput = screen.getByLabelText(/Name/)
+    const emailInput = screen.getByLabelText(/Email/)
+    const messageInput = screen.getByLabelText(/Message/)
+    const submitButton = screen.getByRole('button', { name: /Send/ })
+    const title = container.querySelector('h3')
 
-it('should reset form after successful submission', () => {
-  const { getByLabelText, getByText } = render(<Contact />)
-  const nameInput = getByLabelText('Name') as HTMLInputElement
-  const emailInput = getByLabelText('Email') as HTMLInputElement
-  const messageInput = getByLabelText('Message') as HTMLInputElement
-  const submitButton = getByText('Send')
+    expect(nameInput).toBeInTheDocument()
+    expect(emailInput).toBeInTheDocument()
+    expect(messageInput).toBeInTheDocument()
+    expect(submitButton).toBeInTheDocument()
+    expect(title).toBeInTheDocument()
+  })
+  it('should render error message when form was submit with a weak password', async () => {
+    render(<Contact />)
 
-  fireEvent.change(nameInput, { target: { value: '' } })
-  fireEvent.change(emailInput, { target: { value: '' } })
-  fireEvent.change(messageInput, { target: { value: '' } })
-  fireEvent.click(submitButton)
+    const nameInput = screen.getByLabelText(/Name/)
+    const emailInput = screen.getByLabelText(/Email/)
+    const messageInput = screen.getByLabelText(/Message/)
+    const submitButton = screen.getByRole('button', { name: /Send/ })
 
-  expect(nameInput.value).toBe('')
-  expect(emailInput.value).toBe('')
-  expect(messageInput.value).toBe('')
+    const errorName = screen.queryByText(/Name must be min 3 characters/)
+    const errorEmail = screen.queryByText(/Email must be min 3 characters/)
+    const errorMessage = screen.queryByText(/Message must be min 15 characters/)
+
+    expect(errorName).not.toBeInTheDocument()
+    expect(errorEmail).not.toBeInTheDocument()
+    expect(errorMessage).not.toBeInTheDocument()
+
+    act(() => {
+      fireEvent.change(nameInput, { target: { value: 'Alex' } })
+      fireEvent.change(emailInput, { target: { value: 'test@gmail.com' } })
+      fireEvent.change(messageInput, { target: { value: 'test' } })
+      fireEvent.click(submitButton)
+    })
+
+    const errorMessageAfterSubmit = await screen.findByText(
+      /Message must be min 15 characters/
+    )
+
+    expect(errorMessageAfterSubmit).toBeInTheDocument()
+  })
 })

@@ -10,7 +10,7 @@ const Search: React.FC<SearchProps> = ({ search, handleFilters }) => {
   return (
     <Wrapper>
       <input
-        type='text'
+        type='search'
         name='text'
         placeholder='Search'
         className='search__input'

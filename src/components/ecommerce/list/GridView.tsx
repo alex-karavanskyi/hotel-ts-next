@@ -14,7 +14,7 @@ interface GridProducts {
 const GridView: React.FC<GridProducts> = ({ products }) => {
   return (
     <Wrapper>
-      <div className='grid__view-products'>
+      <div className='grid__view-products' role='list'>
         {products.map((product) => {
           const { id, image, name, price } = product
           return (

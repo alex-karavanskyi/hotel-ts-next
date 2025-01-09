@@ -23,7 +23,7 @@ const Contact = () => {
   }
 
   return (
-    <div id='contact' className='contact'>
+    <div id='contact' className='contact' data-testid='contact'>
       <motion.div
         variants={slideIn('left', 'tween', 0.2, 1)}
         className='contact__container'
@@ -92,6 +92,7 @@ const Contact = () => {
           </div>
           <button
             type='submit'
+            value='Send'
             className={`contact__button ${
               isValid ? 'contact__button--black' : 'contact__button--white'
             }`}

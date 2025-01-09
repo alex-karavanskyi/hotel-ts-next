@@ -4,29 +4,31 @@ import modalReducer, {
 } from '@/redux/features/modalSlice'
 
 describe('modalSlice', () => {
+  const initialState = {
+    isOpen: false,
+  }
+
+  it('should return the initial state when passed an empty action', () => {
+    const result = modalReducer(undefined, { type: '' })
+    expect(result).toEqual(initialState)
+  })
+
   it('should handle openModal', () => {
-    const initialState = { isOpen: false }
-
-    const nextState = modalReducer(initialState, openModal())
-
-    expect(nextState.isOpen).toEqual(true)
+    const state = modalReducer(initialState, openModal())
+    expect(state).toEqual({ isOpen: true })
   })
 
   it('should handle closeModal', () => {
-    const initialState = { isOpen: true }
-
-    const nextState = modalReducer(initialState, closeModal())
-
-    expect(nextState.isOpen).toEqual(false)
+    const state = { isOpen: true }
+    const result = modalReducer(state, closeModal())
+    expect(result).toEqual({ isOpen: false })
   })
 
-  it('should return the initial state if no action is provided', () => {
-    const initialState = { isOpen: false }
+  it('should handle openModal and closeModal in sequence', () => {
+    let state = modalReducer(initialState, openModal())
+    expect(state).toEqual({ isOpen: true })
 
-    const nextState = modalReducer(initialState, {
-      type: undefined,
-    })
-
-    expect(nextState).toEqual(initialState)
+    state = modalReducer(state, closeModal())
+    expect(state).toEqual({ isOpen: false })
   })
 })
