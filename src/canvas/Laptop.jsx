@@ -87,12 +87,12 @@ function Model({ open, hinge, ...props }) {
 }
 
 export default function LaptopCanvas() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const props = useSpring({ open: Number(open) })
   return (
     <web.main
       style={{
-        background: props.open.to([0, 1], ['black', '#d25578']),
+        background: props.open.to([0, 1], ['black', '#000000']),
         height: '100vh',
       }}
     >
@@ -100,11 +100,12 @@ export default function LaptopCanvas() {
         <three.pointLight
           position={[10, 10, 10]}
           intensity={1.5}
-          color={props.open.to([0, 1], ['black', '#d25578'])}
+          color={props.open.to([0, 1], ['black', '#000000'])}
         />
         <Suspense fallback={null}>
           <group
             rotation={[0, Math.PI, 0]}
+            position={[0, -1, 0]}
             onClick={(e) => (e.stopPropagation(), setOpen(!open))}
           >
             <Model open={open} hinge={props.open.to([0, 1], [1.575, -0.425])} />

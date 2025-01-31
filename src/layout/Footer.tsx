@@ -152,7 +152,7 @@ const Wrapper = styled.footer`
     max-width: 1200px;
   }
   .footer__logo {
-    padding-top: 9rem;
+    padding-top: 7rem;
   }
   .footer__grid {
     display: grid;

@@ -15,9 +15,11 @@ const Hero = () => {
           <h1 style={{ color: 'white', fontWeight: 'black' }}>
             Hi, I'm <span style={{ color: '#915EFF' }}>Alex</span>
           </h1>
-          <p style={{ marginTop: '0.5 rem', fontWeight: '500' }}>
-            I develop user <br />
-            interfaces and web applications
+          <p className='layout-section__text'>
+            I'm a web developer with a strong knowledge of React.js, Next.js,
+            and JavaScript. I specialize in building modern, fast, and
+            user-friendly web applications, focusing on clean code and best
+            practices.
           </p>
         </div>
       </div>
@@ -28,7 +30,7 @@ const Hero = () => {
 
 const Wrapper = styled.section`
   position: relative;
-  width: 100%;
+  width: 70%;
   height: 100vh;
   margin-left: auto;
   margin-right: auto;

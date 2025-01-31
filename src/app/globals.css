@@ -123,7 +123,6 @@ p {
     line-height: 1;
   }
 }
-
 .section {
   padding: 5rem 0;
 }
@@ -131,6 +130,45 @@ p {
   width: 70vw;
   margin: 0 auto;
   max-width: var(--max-width);
+}
+@media screen and (min-width: 992px) {
+  .section-center {
+    width: 95vw;
+  }
+}
+.layout-section__container {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 0;
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.layout-section__title {
+  color: white;
+  font-weight: 900;
+}
+.layout-section__text {
+  margin-top: 1rem;
+  font-size: 17px;
+  max-width: 48rem;
+  line-height: 30px;
+  color: white;
+}
+@media (max-width: 430px) {
+  .layout-section__title {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .layout-section__introduction {
+    margin-left: 24px;
+  }
+  .layout-section__title {
+    margin-left: 24px;
+  }
 }
 .text-center {
   text-align: center;
@@ -170,12 +208,6 @@ p {
 }
 .page {
   min-height: calc(100vh - (20vh + 10rem));
-}
-
-@media screen and (min-width: 992px) {
-  .section-center {
-    width: 95vw;
-  }
 }
 @keyframes spinner {
   to {
@@ -230,38 +262,6 @@ p {
   z-index: 0;
 }
 
-/* ExperienceCard */
-
-.experience__card-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-.experience__card-img {
-  width: 60%;
-  height: 60%;
-  object-fit: contain;
-}
-.experience__card-title {
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-}
-.experience__card-points {
-  margin-top: 1.25rem;
-  list-style-type: disc;
-  margin-left: 1.25rem;
-}
-.experience__card-points li {
-  color: white;
-  font-size: 14px;
-  padding-left: 0.25rem;
-  letter-spacing: 0.05em;
-  padding-top: 10px;
-}
-
 /* ServiceCard */
 
 .service__card-box-color {
@@ -271,7 +271,7 @@ p {
     rgba(9, 63, 66, 1) 0%,
     rgba(10, 29, 51, 1) 53%
   );
-  border-radius: 20px;
+  border-radius: 15px;
 }
 .service__card-container {
   background: linear-gradient(
@@ -281,15 +281,12 @@ p {
   );
   width: 100%;
   padding: 1px;
-  border-radius: 20px;
+  border-radius: 15px;
 }
 .service__card-container div {
-  border-radius: 20px;
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-  padding-left: 3rem;
-  padding-right: 3rem;
-  min-height: 280px;
+  border-radius: 15px;
+  padding: 1.5rem;
+  min-height: 100px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -305,221 +302,6 @@ p {
   font-size: 20px;
   font-weight: 700;
   text-align: center;
-}
-
-/* ProjectCard */
-
-.project__card {
-  padding: 1.25rem;
-  border-radius: 1rem;
-  width: 360px;
-}
-.project__card-container {
-  position: relative;
-  width: 100%;
-  height: 230px;
-}
-.project__card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 1rem;
-}
-.project__card-flex {
-  position: absolute;
-  inset: 0px;
-  display: flex;
-  justify-content: flex-end;
-  margin: 0.75rem;
-}
-.project__card-github-container {
-  background-image: linear-gradient(to right, black, #2d3748);
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 9999px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-.project__card-github-img {
-  width: 50%;
-  height: 50%;
-  object-fit: contain;
-}
-.project__card-name {
-  color: white;
-  font-weight: 700;
-  font-size: 24px;
-}
-.project__card-description {
-  margin-top: 0.5rem;
-  color: white;
-  font-size: 14px;
-}
-.project__card-tags {
-  margin-top: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-@media (max-width: 430px) {
-  .project__card-container {
-    padding: 0;
-    width: auto;
-  }
-}
-
-/* About */
-
-.about__container {
-  max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  z-index: 0;
-  margin-top: 1.75rem /* 28px */;
-  margin-bottom: 1.75rem /* 28px */;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-.about__title {
-  color: white;
-  font-weight: 900;
-}
-.about__text {
-  margin-top: 1rem;
-  font-size: 17px;
-  max-width: 48rem;
-  line-height: 30px;
-  color: white;
-}
-.about__grid-card {
-  margin-top: 5rem;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2.5rem;
-}
-@media (max-width: 430px) {
-  .about__title {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-  .about__grid-card {
-    grid-template-columns: repeat(1, minmax(0, 300px));
-    justify-content: center;
-  }
-  .about__introduction {
-    margin-left: 24px;
-  }
-  .about__title {
-    margin-left: 24px;
-  }
-}
-
-/* Experience */
-
-.experience__title {
-  color: white;
-  font-weight: 900;
-}
-.experience__time-line {
-  margin-top: 5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Work */
-
-.works {
-  margin-top: 0.75rem;
-  color: white;
-  font-size: 17px;
-  max-width: 48rem;
-  line-height: 30px;
-}
-.works__project-card-container {
-  margin-top: 5rem;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1.75rem;
-}
-
-/* Contact */
-
-.contact {
-  padding-right: 20rem;
-  max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  z-index: 0;
-}
-.contact__container {
-  flex: 0.75;
-  background-color: black;
-  padding: 2rem;
-  border-radius: 1rem/;
-}
-.contact__form {
-  margin-top: 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-.contact__form label {
-  display: flex;
-  flex-direction: column;
-}
-.contact__form input,
-textarea {
-  display: flex;
-  flex-direction: column;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 1rem;
-  border-radius: 0.5rem;
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-  border-style: none;
-  font-weight: 500;
-}
-.contact__form input::placeholder,
-.contact__form textarea::placeholder {
-  opacity: 1;
-  color: black;
-}
-.contact__form span {
-  color: white;
-  font-weight: 500;
-  margin-bottom: 1rem;
-}
-.contact__button {
-  padding-top: 0.75rem /* 12px */;
-  padding-bottom: 0.75rem /* 12px */;
-  padding-left: 2rem /* 32px */;
-  padding-right: 2rem /* 32px */;
-  border-radius: 0.75rem /* 12px */;
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-  width: fit-content;
-  cursor: pointer;
-}
-.contact__button:disabled {
-  opacity: 0.5;
-}
-.contact__button--white {
-  color: white;
-  cursor: not-allowed;
-}
-.contact__button--black {
-  color: black;
-}
-@media (max-width: 430px) {
-  .contact {
-    padding-right: 0;
-  }
 }
 
 /* SectionWrapper */

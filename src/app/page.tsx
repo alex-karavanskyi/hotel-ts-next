@@ -1,21 +1,15 @@
-import {
-  FeaturedProducts,
-  Hero,
-  About,
-  Experience,
-  Works,
-  Contact,
-} from '@/components/home'
+import { Project, Hero, Skills, Contact } from '@/components/home'
 import { StarsCanvas } from '@/canvas'
 
 const Home = () => {
   return (
     <main>
-      <Hero />
-      <About />
-      <Experience />
-      <Works />
-      <FeaturedProducts />
+      <div className='home__contact-container'>
+        <Hero />
+        <StarsCanvas />
+      </div>
+      <Skills />
+      <Project />
       <div className='home__contact-container'>
         <Contact />
         <StarsCanvas />

@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { getProductsItems } from '@/redux/features/productSlice'
 import { url } from '@/constants/db'
 
-const FeaturedProducts = () => {
+const Project = () => {
   const { products_loading: loading, products_error: error } = useAppSelector(
     (store) => store.products
   )
@@ -27,38 +27,31 @@ const FeaturedProducts = () => {
   }
   return (
     <Wrapper>
-      <div className='featured__products-container'>
-        <h2 style={{ color: 'white' }}>E-Commerce</h2>
-        <div className='featured__products-underline'></div>
+      <div className='layout-section__container'>
+        <p className='layout-section__introduction'>My work</p>
+        <h2 className='layout-section__title'>Project.</h2>
+        <p className='layout-section__text'>
+          I developed an e-commerce application using React, Redux Toolkit,
+          Next.js, and TypeScript, implementing key features such as product
+          filtering, a favorites system, interactive sliders, a flexible
+          navigation bar, pagination, and smooth animations with Framer Motion
+          and React Three Fiber. The contact form was built with React Hook Form
+          for validation and user-friendly interactions. Additionally, I created
+          a database and organizer using Airtable, ensuring efficient data
+          management and retrieval. To maintain code quality and reliability, I
+          covered the application with unit and integration tests using Jest.
+        </p>
+        <Slider />
+        <Link href='/ecommerce' className='project-featured'>
+          view
+        </Link>
       </div>
-      <Slider />
-      <Link href='/ecommerce' className='featured__products-featured'>
-        view
-      </Link>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.section`
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-  max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  .featured__products-container {
-    text-align: center;
-  }
-  .featured__products-underline {
-    width: 6rem;
-    height: 0.25rem;
-    background: #49a6e9;
-    background: var(--clr-primary-5);
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
-  .featured__products-featured {
+  .project-featured {
     text-transform: uppercase;
     color: white;
     padding: 0.375rem 0.75rem;
@@ -74,11 +67,11 @@ const Wrapper = styled.section`
     justify-content: center;
     width: 9.25rem;
   }
-  .featured__products-featured:hover {
+  .project-featured:hover {
     letter-spacing: 0.35rem;
     color: #007aff;
     box-shadow: 0 0 1.25rem #007aff;
   }
 `
 
-export default FeaturedProducts
+export default Project

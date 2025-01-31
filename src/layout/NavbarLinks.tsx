@@ -32,11 +32,6 @@ const NavbarLinks: React.FC<{
         <li onClick={() => dispatch(closeModal())}>
           <Link href='/#contact'>contact</Link>
         </li>
-        <li onClick={() => dispatch(closeModal())}>
-          <Link href='https://mui-ecommerce-lake.vercel.app/' target='_blank'>
-            Material-UI
-          </Link>
-        </li>
         <DropdownItem
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}

@@ -100,7 +100,7 @@ const Wrapper = styled.div`
     .navbar__links {
       display: flex;
       justify-content: end;
-      gap: 3rem;
+      gap: 2rem;
     }
     .navbar__links a,
     button {

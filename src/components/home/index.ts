@@ -1,8 +1,6 @@
-import About from './About'
+import Skills from './Skills'
 import Contact from './Contact'
-import Experience from './Experience'
-import FeaturedProducts from './FeaturedProducts'
+import Project from './Project'
 import Hero from './Hero'
-import Works from './Works'
 
-export { About, Contact, Experience, FeaturedProducts, Hero, Works }
+export { Skills, Contact, Project, Hero }

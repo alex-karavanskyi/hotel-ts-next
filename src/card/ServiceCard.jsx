@@ -19,7 +19,7 @@ const ServiceCard = ({ index, title, icon }) => (
         className='service__card-box-color'
       >
         <Image src={icon} alt='web-development' className='service__card-img' />
-        <h3>{title}</h3>
+        <h3 style={{ marginTop: '2px' }}>{title}</h3>
       </div>
     </motion.div>
   </Tilt>
