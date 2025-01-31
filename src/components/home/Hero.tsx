@@ -34,9 +34,6 @@ const Wrapper = styled.section`
   height: 100vh;
   margin-left: auto;
   margin-right: auto;
-  @media (max-width: 570px) {
-    height: 50vh;
-  }
   .hero__container {
     position: absolute;
     inset: 0px;
@@ -46,6 +43,9 @@ const Wrapper = styled.section`
     margin-right: auto;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+  @media (max-width: 570px) {
+    height: 50vh;
   }
   @media (max-width: 430px) {
     .hero__container {

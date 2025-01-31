@@ -15,6 +15,10 @@ export const Slider = () => {
 
   return (
     <SliderWrapper>
+      <ArrowButton className='swiper-button-prev'>
+        <FiChevronLeft />
+      </ArrowButton>
+
       <StyledSwiper
         effect='coverflow'
         grabCursor
@@ -44,51 +48,47 @@ export const Slider = () => {
             />
           </SwiperSlide>
         ))}
-
-        <Controls>
-          <div className='swiper-pagination' />
-          <ArrowButton className='swiper-button-prev'>
-            <FiChevronLeft />
-          </ArrowButton>
-          <ArrowButton className='swiper-button-next'>
-            <FiChevronRight />
-          </ArrowButton>
-        </Controls>
       </StyledSwiper>
+
+      <ArrowButton className='swiper-button-next'>
+        <FiChevronRight />
+      </ArrowButton>
+
+      <PaginationWrapper>
+        <div className='swiper-pagination' />
+      </PaginationWrapper>
     </SliderWrapper>
   )
 }
 
 const SliderWrapper = styled.div`
   position: relative;
-  max-width: 124rem;
-  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 `
 
 const StyledSwiper = styled(Swiper)`
-  height: 52rem;
+  height: 50rem;
   padding: 2rem 0;
-
   .swiper-slide {
     width: 37rem;
     height: 42rem;
   }
-
-  @media (max-width: 700px) {
+  @media (max-width: 900px) {
     height: 45rem;
-
     .swiper-slide {
       width: 28rem;
       height: 36rem;
     }
   }
-
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     height: 35rem;
-
     .swiper-slide {
-      width: 18rem;
-      height: 26rem;
+      width: 20rem;
+      height: 28rem;
     }
   }
 `
@@ -100,8 +100,12 @@ const StyledImage = styled(Image)`
   object-fit: cover;
 `
 
-const Controls = styled.div`
-  position: relative;
+const PaginationWrapper = styled.div`
+  position: absolute;
+  bottom: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   .swiper-pagination-bullet {
     background: white;
     padding: 0.43rem;
@@ -112,52 +116,24 @@ const Controls = styled.div`
 `
 
 const ArrowButton = styled.div`
-  background: rgb(74, 74, 77);
-  width: 2.3rem;
-  height: 2.3rem;
+  background: rgba(74, 74, 77, 0.8);
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   z-index: 10;
-
+  cursor: pointer;
+  pointer-events: all;
+  color: white;
+  transition: background 0.3s ease;
+  user-select: none;
+  &:hover {
+    background: rgb(50, 50, 55);
+  }
   &:after {
     content: '';
-  }
-
-  &.swiper-button-next {
-    right: 30rem;
-
-    @media (max-width: 1230px) {
-      right: 20rem;
-    }
-
-    @media (max-width: 920px) {
-      right: 10rem;
-    }
-
-    @media (max-width: 590px) {
-      right: 5rem;
-    }
-  }
-
-  &.swiper-button-prev {
-    left: 30rem;
-
-    @media (max-width: 1230px) {
-      left: 20rem;
-    }
-
-    @media (max-width: 920px) {
-      left: 10rem;
-    }
-
-    @media (max-width: 590px) {
-      left: 5rem;
-    }
   }
 `
 
