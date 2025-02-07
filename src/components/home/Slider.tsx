@@ -69,7 +69,6 @@ const SliderWrapper = styled.div`
   justify-content: center;
   gap: 1rem;
 `
-
 const StyledSwiper = styled(Swiper)`
   height: 50rem;
   padding: 2rem 0;
@@ -92,14 +91,12 @@ const StyledSwiper = styled(Swiper)`
     }
   }
 `
-
 const StyledImage = styled(Image)`
   width: 100%;
   height: 100%;
   border-radius: 2rem;
   object-fit: cover;
 `
-
 const PaginationWrapper = styled.div`
   position: absolute;
   bottom: 1rem;
@@ -114,7 +111,6 @@ const PaginationWrapper = styled.div`
     background: #007aff;
   }
 `
-
 const ArrowButton = styled.div`
   background: rgba(74, 74, 77, 0.8);
   width: 3.5rem;

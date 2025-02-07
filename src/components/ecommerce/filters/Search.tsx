@@ -21,7 +21,7 @@ const Search: React.FC<SearchProps> = ({ search, handleFilters }) => {
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   .search__input {
     padding: 1rem;
     margin-right: 1rem;

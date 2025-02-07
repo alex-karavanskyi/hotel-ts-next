@@ -15,7 +15,7 @@ interface AddFavoritePayload {
   products: Products[]
 }
 
-interface removeFavoritePayload {
+interface RemoveFavoritePayload {
   productId: string | string[]
 }
 
@@ -25,20 +25,27 @@ const favoriteSlice = createSlice({
   reducers: {
     addFavorite: (state, action: PayloadAction<AddFavoritePayload>) => {
       const { productId, products } = action.payload
-      const addProducts = products.find((product) => product.id === productId)
+      const productIds = Array.isArray(productId) ? productId : [productId]
 
-      if (addProducts) {
-        state.favorites_products.push(addProducts)
-      }
+      productIds.forEach((id) => {
+        if (!state.favorites_products.some((product) => product.id === id)) {
+          const productToAdd = products.find((product) => product.id === id)
+          if (productToAdd) {
+            state.favorites_products.push(productToAdd)
+          }
+        }
+      })
     },
-    removeFavorite: (state, action: PayloadAction<removeFavoritePayload>) => {
+    removeFavorite: (state, action: PayloadAction<RemoveFavoritePayload>) => {
       const { productId } = action.payload
+      const productIds = Array.isArray(productId) ? productId : [productId]
+
       state.favorites_products = state.favorites_products.filter(
-        (product) => product.id !== productId
+        (product) => !productIds.includes(product.id)
       )
     },
   },
 })
-export const { addFavorite, removeFavorite } = favoriteSlice.actions
 
+export const { addFavorite, removeFavorite } = favoriteSlice.actions
 export default favoriteSlice.reducer

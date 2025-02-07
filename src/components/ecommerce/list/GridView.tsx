@@ -55,7 +55,7 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   margin-bottom: 2rem;
   .grid__view-products {
     display: grid;

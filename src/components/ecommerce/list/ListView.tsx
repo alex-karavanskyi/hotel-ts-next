@@ -55,7 +55,7 @@ const ListView: React.FC<ListProducts> = ({ products }) => {
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   .list__view-products {
     display: grid;
     row-gap: 3rem;

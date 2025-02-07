@@ -31,7 +31,7 @@ const Price: React.FC<PriceProps> = ({
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   padding-top: 1.9rem;
   color: var(--clr-grey-dark);
 `

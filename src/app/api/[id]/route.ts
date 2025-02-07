@@ -12,8 +12,29 @@ export async function GET(
 ) {
   const { id } = params
 
-  let product = await airtable.retrieve(id)
-  product = { id: product.id, ...product.fields }
+  if (!id) {
+    return NextResponse.json(
+      { message: 'Product ID is required' },
+      { status: 400 }
+    )
+  }
 
-  return NextResponse.json(product)
+  try {
+    const product = await airtable.retrieve(id)
+
+    if (!product?.fields) {
+      return NextResponse.json(
+        { message: 'Product not found' },
+        { status: 404 }
+      )
+    }
+
+    return NextResponse.json({ id: product.id, ...product.fields })
+  } catch (error) {
+    console.error('Error fetching product:', error)
+    return NextResponse.json(
+      { message: 'Failed to fetch product' },
+      { status: 500 }
+    )
+  }
 }

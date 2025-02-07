@@ -61,18 +61,15 @@ const filterSlice = createSlice({
     filterProducts: (state) => {
       const { all_products, filters } = state
       const { text, category, price } = filters
-      let filtered = [...all_products]
 
-      if (text) {
-        filtered = filtered.filter((product) =>
-          product.name.toLowerCase().startsWith(text.toLowerCase())
+      state.filtered_products = all_products.filter((product) => {
+        return (
+          (!text ||
+            product.name.toLowerCase().startsWith(text.toLowerCase())) &&
+          (category === 'all' || product.category === category) &&
+          product.price <= price
         )
-      }
-      if (category !== 'all') {
-        filtered = filtered.filter((product) => product.category === category)
-      }
-      filtered = filtered.filter((product) => product.price <= price)
-      state.filtered_products = filtered
+      })
     },
     sortProducts: (state) => {
       const { sort, filtered_products } = state

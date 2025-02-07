@@ -55,7 +55,7 @@ const ProductControls = () => {
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   margin-bottom: 3.1rem;
   .product__control-search-category {
     display: flex;

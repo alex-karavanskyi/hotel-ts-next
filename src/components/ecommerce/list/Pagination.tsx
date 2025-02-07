@@ -13,23 +13,20 @@ const Pagination: React.FC<PaginationProducts> = ({
   postsPerPage,
   totalPosts,
 }) => {
-  const pageNumbers: number[] = []
-
   const { pagination } = useAppSelector((store) => store.pagination)
-
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-    pageNumbers.push(i)
-  }
 
   const dispatch = useAppDispatch()
 
-  const paginate = (
-    pageNumber: number,
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ) => {
-    event.preventDefault()
-    dispatch(numberPagination(pageNumber))
-  }
+  const pageNumbers = Array.from(
+    { length: Math.ceil(totalPosts / postsPerPage) },
+    (_, i) => i + 1
+  )
+
+  const handleClick =
+    (pageNumber: number) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault()
+      dispatch(numberPagination(pageNumber))
+    }
 
   return (
     <Wrapper>
@@ -44,7 +41,7 @@ const Pagination: React.FC<PaginationProducts> = ({
             }`}
           >
             <Link
-              onClick={(e) => paginate(number, e)}
+              onClick={handleClick(number)}
               href='/ecommerce'
               className='pagination__link'
             >
@@ -86,6 +83,8 @@ const Wrapper = styled.section`
     justify-content: center;
     align-items: center;
     color: var(--clr-grey-dark);
+    text-decoration: none;
+    font-weight: bold;
   }
 `
 

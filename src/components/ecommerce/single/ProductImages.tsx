@@ -5,37 +5,39 @@ import { useState } from 'react'
 
 const ProductImages = ({ images = [{ url: '' }] }) => {
   const [main, setMain] = useState(images[0])
+
   return (
     <Wrapper>
       <Image
-        src={main.url}
+        src={main?.url ?? ''}
         alt='main'
         className='product__images'
         width={564}
         height={500}
+        priority
       />
-      <div className='product__images-gallery'>
-        {images.map((image, index) => {
-          return (
+      {images.length > 1 && (
+        <div className='product__images-gallery'>
+          {images.map((image, index) => (
             <Image
-              src={image.url}
-              alt='Image'
               key={index}
+              src={image?.url ?? ''}
+              alt='Image'
               onClick={() => setMain(images[index])}
-              className={`${
-                image.url === main.url ? 'product__images--active' : null
-              }`}
+              className={
+                image.url === main.url ? 'product__images--active' : ''
+              }
               width={100}
               height={75}
             />
-          )
-        })}
-      </div>
+          ))}
+        </div>
+      )}
     </Wrapper>
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   .product__images {
     width: 100%;
     display: block;

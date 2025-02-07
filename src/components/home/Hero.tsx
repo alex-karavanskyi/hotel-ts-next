@@ -5,7 +5,6 @@ import { useMediaQuery } from 'react-responsive'
 
 const Hero = () => {
   const isMobile = useMediaQuery({ maxWidth: 570 })
-
   const containerStyle = isMobile ? {} : { backgroundColor: '#0e0f13' }
 
   return (
@@ -28,7 +27,7 @@ const Hero = () => {
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   position: relative;
   width: 70%;
   height: 100vh;

@@ -9,22 +9,23 @@ import { getProductsItems } from '@/redux/features/productSlice'
 import { url } from '@/constants/db'
 
 const Project = () => {
-  const { products_loading: loading, products_error: error } = useAppSelector(
-    (store) => store.products
-  )
+  const {
+    products_loading: loading,
+    products_error: error,
+    products,
+  } = useAppSelector((store) => store.products)
 
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(getProductsItems(url))
-  }, [dispatch])
+    if (!products.length) {
+      dispatch(getProductsItems(url))
+    }
+  }, [dispatch, products.length])
 
-  if (loading) {
-    return <Loading />
-  }
-  if (error) {
-    return <Error />
-  }
+  if (loading) return <Loading />
+  if (error) return <Error />
+
   return (
     <Wrapper>
       <div className='layout-section__container'>
@@ -50,7 +51,7 @@ const Project = () => {
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   .project-featured {
     text-transform: uppercase;
     color: white;
@@ -66,11 +67,12 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: center;
     width: 9.25rem;
-  }
-  .project-featured:hover {
-    letter-spacing: 0.35rem;
-    color: #007aff;
-    box-shadow: 0 0 1.25rem #007aff;
+
+    &:hover {
+      letter-spacing: 0.35rem;
+      color: #007aff;
+      box-shadow: 0 0 1.25rem #007aff;
+    }
   }
 `
 

@@ -32,7 +32,7 @@ const Skills = () => {
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   .about__grid-card {
     margin-top: 5rem;
     display: grid;

@@ -57,7 +57,7 @@ const Sort: React.FC<SortProps> = ({ handleFilters }) => {
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   margin-bottom: 2rem;
   .sort__container {
     display: grid;

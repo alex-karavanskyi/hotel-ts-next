@@ -104,7 +104,7 @@ const Contact = () => {
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   .contact {
     padding-right: 20rem;
     max-width: 80rem;

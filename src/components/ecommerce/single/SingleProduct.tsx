@@ -11,7 +11,7 @@ import { url } from '@/constants/db'
 
 const SingleProduct = () => {
   const { id } = useParams()
-  const navigate = useRouter()
+  const router = useRouter()
   const dispatch = useAppDispatch()
   const {
     single_product_loading: loading,
@@ -21,23 +21,23 @@ const SingleProduct = () => {
   } = useAppSelector((store) => store.products)
 
   useEffect(() => {
-    dispatch(getSingeProduct(`${url}/${id}`))
-  }, [dispatch, id])
+    if (!product || product.id !== id) {
+      dispatch(getSingeProduct(`${url}/${id}`))
+    }
+  }, [dispatch, id, product])
 
   useEffect(() => {
     if (error) {
       setTimeout(() => {
-        navigate.push('/')
+        router.push('/')
       }, 3000)
     }
   }, [error])
 
-  if (loading) {
-    return <Loading />
-  }
-  if (error) {
-    return <Error />
-  }
+  if (loading) return <Loading />
+  if (error) return <Error />
+
+  if (!product) return null
 
   const { name, price, description, images, id: sku } = product
 
@@ -69,7 +69,7 @@ const SingleProduct = () => {
   )
 }
 
-const Wrapper = styled.main`
+const Wrapper = styled.div`
   .single__product-container {
     display: grid;
     gap: 4rem;
@@ -95,7 +95,6 @@ const Wrapper = styled.main`
     width: 2rem;
     height: 2rem;
   }
-
   @media (min-width: 992px) {
     .single__product-container {
       grid-template-columns: 1fr 1fr;

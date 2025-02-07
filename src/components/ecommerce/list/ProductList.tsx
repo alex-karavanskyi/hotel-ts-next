@@ -13,11 +13,18 @@ const ProductList = () => {
   const { pagination } = useAppSelector((store) => store.pagination)
   const [isLargeScreen, setIsLargeScreen] = useState(false)
 
+  const currentPosts = products.slice(
+    (pagination - 1) * postsPerPage,
+    pagination * postsPerPage
+  )
+
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(getProductsItems(url))
-  }, [dispatch])
+    if (!products.length) {
+      dispatch(getProductsItems(url))
+    }
+  }, [dispatch, products.length])
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 768px)')
@@ -26,15 +33,10 @@ const ProductList = () => {
     const handleMediaQueryChange = (event: { matches: boolean }) => {
       setIsLargeScreen(event.matches)
     }
-
     mediaQuery.addEventListener('change', handleMediaQueryChange)
     return () =>
       mediaQuery.removeEventListener('change', handleMediaQueryChange)
-  }, [isLargeScreen])
-
-  const indexOfLastPost = pagination * postsPerPage
-  const indexOfFirstPost = indexOfLastPost - postsPerPage
-  const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost)
+  }, [])
 
   if (products.length < 1) {
     return (
@@ -50,10 +52,8 @@ const ProductList = () => {
       </h5>
     )
   }
-  if (grid_view === false) {
-    return <ListView products={products} />
-  }
-  if (isLargeScreen) {
+
+  if (!grid_view || isLargeScreen) {
     return <ListView products={products} />
   }
 

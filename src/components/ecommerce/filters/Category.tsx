@@ -31,12 +31,11 @@ const Category: React.FC<CategoryProps> = ({ buttonColor, handleFilters }) => {
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 `
-
 const CategoryButton = styled.button<CategoryButtonProps>`
   display: grid;
   grid-template-columns: 7.3rem;
