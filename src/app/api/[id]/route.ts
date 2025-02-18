@@ -1,10 +1,18 @@
 import { NextResponse } from 'next/server'
+import Airtable from 'airtable'
 
-const Airtable = require('airtable-node')
+interface Product {
+  id: string
+  name: string
+  price: number
+  description?: string
+  category?: string
+  images: []
+}
 
-const airtable = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY })
-  .base(process.env.AIRTABLE_BASE_ID)
-  .table(process.env.AIRTABLE_TABLE_NAME)
+const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
+  process.env.AIRTABLE_BASE_ID!
+)
 
 export async function GET(
   req: Request,
@@ -20,18 +28,44 @@ export async function GET(
   }
 
   try {
-    const product = await airtable.retrieve(id)
+    const record = await base(process.env.AIRTABLE_TABLE_NAME!).find(id)
 
-    if (!product?.fields) {
+    if (!record?.fields) {
       return NextResponse.json(
         { message: 'Product not found' },
         { status: 404 }
       )
     }
 
-    return NextResponse.json({ id: product.id, ...product.fields })
+    const {
+      name,
+      price,
+      description,
+      category,
+      images = [],
+    } = record.fields as any
+
+    const product: Product = {
+      id: record.id,
+      name: name || 'Unknown Product',
+      price: price || 0,
+      description: description || 'No description available',
+      category: category || 'Uncategorized',
+      images: images,
+    }
+
+    return NextResponse.json(product, {
+      status: 200,
+      headers: {
+        'Cache-Control': 's-maxage=600, stale-while-revalidate', // Кэш на 10 минут
+      },
+    })
   } catch (error) {
-    console.error('Error fetching product:', error)
+    console.error('❌ Error fetching product:', {
+      message: (error as Error).message,
+      stack: (error as Error).stack,
+    })
+
     return NextResponse.json(
       { message: 'Failed to fetch product' },
       { status: 500 }

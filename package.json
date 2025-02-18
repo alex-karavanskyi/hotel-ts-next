@@ -17,7 +17,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "20.5.9",
     "@types/react-dom": "18.2.7",
-    "airtable-node": "^0.1.20",
+    "airtable": "^0.12.2",
     "autoprefixer": "10.4.15",
     "axios": "^1.5.0",
     "braces": "^3.0.3",
