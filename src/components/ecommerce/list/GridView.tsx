@@ -2,7 +2,7 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import Image from 'next/image'
-import Products from '@/types/productsType'
+import { Products } from '@/types/productsType'
 import { formatPrice } from '@/utils/format'
 import { Favorite } from '@/layout'
 import { FaSearch } from 'react-icons/fa'

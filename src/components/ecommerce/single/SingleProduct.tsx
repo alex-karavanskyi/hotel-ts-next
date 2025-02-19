@@ -10,15 +10,16 @@ import { getSingeProduct } from '@/redux/features/productSlice'
 import { url } from '@/constants/db'
 
 const SingleProduct = () => {
-  const { id } = useParams()
-  const router = useRouter()
-  const dispatch = useAppDispatch()
   const {
     single_product_loading: loading,
     single_product_error: error,
     single_product: product,
     products,
   } = useAppSelector((store) => store.products)
+
+  const { id } = useParams()
+  const router = useRouter()
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     if (!product || product.id !== id) {

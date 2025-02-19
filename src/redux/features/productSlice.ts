@@ -1,9 +1,9 @@
 'use client'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-import Products from '@/types/productsType'
+import { Products } from '@/types/productsType'
 
-export interface ProductsState {
+interface ProductsState {
   products_loading: boolean
   products_error: boolean
   products: Products[]

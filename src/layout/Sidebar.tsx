@@ -5,19 +5,17 @@ import Image from 'next/image'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { closeModal } from '@/redux/features/modalSlice'
 import { NavbarLinks, SocialLinks } from '@/layout'
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 
 const Sidebar = () => {
   const { isOpen } = useAppSelector((store) => store.modal)
+
   const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add('sidebar-scroll-hidden')
-      document.documentElement.classList.add('sidebar-scroll-hidden')
-    } else {
-      document.body.classList.remove('sidebar-scroll-hidden')
-      document.documentElement.classList.remove('sidebar-scroll-hidden')
+  useLayoutEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto'
+    return () => {
+      document.body.style.overflow = 'auto'
     }
   }, [isOpen])
 
@@ -25,11 +23,12 @@ const Sidebar = () => {
     <Wrapper>
       <aside className={isOpen ? 'sidebar sidebar--show' : 'sidebar'}>
         <Image
-          src={city}
           alt='city'
-          width={1920}
-          height={1920}
+          src={city}
+          fill
           className='img'
+          priority
+          placeholder='blur'
         />
         <div className='sidebar__dark-overlay'></div>
         <div className='sidebar__content'>

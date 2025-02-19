@@ -7,11 +7,11 @@ import { url } from '@/constants/db'
 
 const ProductList = () => {
   const [postsPerPage] = useState(6)
+  const [isLargeScreen, setIsLargeScreen] = useState(false)
   const { filtered_products: products, grid_view } = useAppSelector(
     (store) => store.filter
   )
   const { pagination } = useAppSelector((store) => store.pagination)
-  const [isLargeScreen, setIsLargeScreen] = useState(false)
 
   const currentPosts = products.slice(
     (pagination - 1) * postsPerPage,

@@ -17,9 +17,9 @@ const Favorite: React.FC<ListProducts> = ({
   productId,
   classIcon,
 }) => {
-  const dispatch = useAppDispatch()
-
   const { favorites_products } = useAppSelector((store) => store.favorite)
+
+  const dispatch = useAppDispatch()
 
   const handleAddToFavorite = (productId: string, products: Products[]) => {
     dispatch(addFavorite({ productId, products }))
@@ -27,6 +27,7 @@ const Favorite: React.FC<ListProducts> = ({
   const handleremoveToFavorite = (productId: string) => {
     dispatch(removeFavorite({ productId }))
   }
+
   const wishList = favorites_products.some((item) => item.id === productId)
 
   return (

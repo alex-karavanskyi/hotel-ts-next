@@ -10,9 +10,9 @@ import {
 } from '@/redux/features/filterSlice'
 
 export const useFilters = () => {
-  const dispatch = useAppDispatch()
   const searchParams = useSearchParams()
   const { replace } = useRouter()
+  const dispatch = useAppDispatch()
 
   const [search, setSearch] = useState(
     searchParams.get('search')?.toString() || ''

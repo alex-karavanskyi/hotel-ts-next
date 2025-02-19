@@ -1,14 +1,6 @@
 'use client'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import Products from '@/types/productsType'
-
-export interface FavoriteState {
-  favorites_products: Products[]
-}
-
-const initialState: FavoriteState = {
-  favorites_products: [],
-}
+import { Products } from '@/types/productsType'
 
 interface AddFavoritePayload {
   productId: string | string[]
@@ -17,6 +9,13 @@ interface AddFavoritePayload {
 
 interface RemoveFavoritePayload {
   productId: string | string[]
+}
+interface FavoriteState {
+  favorites_products: Products[]
+}
+
+const initialState: FavoriteState = {
+  favorites_products: [],
 }
 
 const favoriteSlice = createSlice({

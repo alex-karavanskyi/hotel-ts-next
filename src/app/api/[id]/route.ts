@@ -1,14 +1,6 @@
-import { NextResponse } from 'next/server'
 import Airtable from 'airtable'
-
-interface Product {
-  id: string
-  name: string
-  price: number
-  description?: string
-  category?: string
-  images: []
-}
+import { NextResponse } from 'next/server'
+import { Products } from '@/types/productsType'
 
 const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
   process.env.AIRTABLE_BASE_ID!
@@ -37,27 +29,22 @@ export async function GET(
       )
     }
 
-    const {
-      name,
-      price,
-      description,
-      category,
-      images = [],
-    } = record.fields as any
+    const { name, price, description, category, images } = record.fields as any
 
-    const product: Product = {
+    const product: Products = {
       id: record.id,
       name: name || 'Unknown Product',
       price: price || 0,
       description: description || 'No description available',
       category: category || 'Uncategorized',
+      image: images?.[0]?.url || '',
       images: images,
     }
 
     return NextResponse.json(product, {
       status: 200,
       headers: {
-        'Cache-Control': 's-maxage=600, stale-while-revalidate', // Кэш на 10 минут
+        'Cache-Control': 's-maxage=600, stale-while-revalidate',
       },
     })
   } catch (error) {

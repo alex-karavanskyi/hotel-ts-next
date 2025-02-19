@@ -9,16 +9,11 @@ const NavbarLinks: React.FC<{
   parentClass?: string
   isNavbarFixed?: boolean
 }> = ({ parentClass, isNavbarFixed }) => {
-  const dispatch = useAppDispatch()
   const [isSubmenuVisible, setIsSubmenuVisible] = useState(false)
 
-  const handleMouseEnter = () => {
-    setIsSubmenuVisible(true)
-  }
+  const dispatch = useAppDispatch()
 
-  const handleMouseLeave = () => {
-    setIsSubmenuVisible(false)
-  }
+  const toggleSubmenu = (isVisible: boolean) => setIsSubmenuVisible(isVisible)
 
   return (
     <Wrapper>
@@ -33,14 +28,14 @@ const NavbarLinks: React.FC<{
           <Link href='/#contact'>contact</Link>
         </li>
         <DropdownItem
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={() => toggleSubmenu(true)}
+          onMouseLeave={() => toggleSubmenu(false)}
           onClick={() => dispatch(closeModal())}
         >
           <Link href='/ecommerce'>e-commerce</Link>
           <Triangle
             isSubmenuVisible={isSubmenuVisible}
-            isNavbarFixed={isNavbarFixed}
+            color={isNavbarFixed ? 'black' : 'white'}
           />
           <Submenu isSubmenuVisible={isSubmenuVisible}>
             <li onClick={() => dispatch(closeModal())}>
@@ -93,17 +88,13 @@ const Submenu = styled.ul<{ isSubmenuVisible: boolean }>`
   }
 `
 
-const Triangle = styled.div<{
-  isSubmenuVisible: boolean
-  isNavbarFixed?: boolean
-}>`
+const Triangle = styled.div<{ isSubmenuVisible: boolean; color: string }>`
   width: 0;
   height: 0;
   margin-left: 0.5rem;
   border-left: 0.3rem solid transparent;
   border-right: 0.3rem solid transparent;
-  border-top: 0.3rem solid
-    ${({ isNavbarFixed }) => (isNavbarFixed ? 'black' : 'white')};
+  border-top: 0.3rem solid ${({ color }) => color};
   transform: ${({ isSubmenuVisible }) =>
     isSubmenuVisible ? 'rotate(180deg)' : 'rotate(0deg)'};
   transition: transform 0.2s ease, border-top-color 0.2s ease;

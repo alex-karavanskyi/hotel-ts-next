@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { NavbarLinks } from './index'
 import { useAppDispatch } from '@/redux/hooks'
-import { useState, useEffect } from 'react'
+import { useState, useLayoutEffect } from 'react'
 import { openModal } from '@/redux/features/modalSlice'
 
 const Navbar = () => {
@@ -14,27 +14,21 @@ const Navbar = () => {
 
   const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 80) {
-        setNavbar(true)
-      } else {
-        setNavbar(false)
-      }
-    }
-
+  useLayoutEffect(() => {
+    const handleScroll = () => setNavbar(window.scrollY > 80)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [navbar])
+  }, [])
 
   return (
     <Wrapper>
       <nav className={navbar ? 'navbar navbar--fixed' : 'navbar'}>
         <Link href={`/`}>
           <Image
-            src={navbar ? pngwing_red : pngwing_grey}
-            width={60}
             alt='Logo'
+            width={60}
+            priority
+            src={navbar ? pngwing_red : pngwing_grey}
           />
         </Link>
         <button className='navbar__btn' onClick={() => dispatch(openModal())}>
@@ -70,30 +64,21 @@ const Wrapper = styled.div`
     font-size: 2rem;
     cursor: pointer;
   }
+  .navbar--fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--clr-white);
+    box-shadow: var(--light-shadow);
+    transition: all 1s linear;
+    z-index: 2;
+  }
   .navbar__links {
     display: none;
   }
 
   @media screen and (min-width: 768px) {
-    .navbar {
-      height: 5rem;
-      padding: 1rem;
-      display: flex;
-      box-align: center;
-      justify-content: space-between;
-      align-items: center;
-      transition: var(--transition);
-    }
-    .navbar--fixed {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: var(--clr-white);
-      box-shadow: var(--light-shadow);
-      transition: all 1s linear;
-      z-index: 2;
-    }
     .navbar__btn {
       display: none;
     }
@@ -102,13 +87,6 @@ const Wrapper = styled.div`
       justify-content: end;
       gap: 2rem;
     }
-    .navbar__links a,
-    button {
-      color: rgba(255, 255, 255, 0.6);
-      font-weight: bold;
-      letter-spacing: var(--spacing);
-      transition: var(--transition);
-    }
     .navbar__links button {
       background: transparent;
       cursor: pointer;
@@ -116,16 +94,18 @@ const Wrapper = styled.div`
       border: none;
       outline: none;
     }
-    .navbar__links--color a {
+    .navbar__links a,
+    button {
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: bold;
+      letter-spacing: var(--spacing);
+      transition: var(--transition);
+    }
+    .navbar__links--color a,
+    button {
       color: black;
     }
-    .navbar__links--color button {
-      color: black;
-    }
-    .navbar__links a:hover {
-      color: var(--clr-primary-5);
-      text-decoration: none;
-    }
+    .navbar__links a:hover,
     .navbar__links button:hover {
       color: var(--clr-primary-5);
       text-decoration: none;

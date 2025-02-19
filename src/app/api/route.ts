@@ -1,15 +1,6 @@
-import { NextResponse } from 'next/server'
 import Airtable, { FieldSet, Records } from 'airtable'
-
-// Типизация продукта
-interface Product {
-  id: string
-  name: string
-  price: number
-  description?: string
-  category?: string
-  image: string
-}
+import { NextResponse } from 'next/server'
+import { Products } from '@/types/productsType'
 
 const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
   process.env.AIRTABLE_BASE_ID!
@@ -27,9 +18,10 @@ export async function GET() {
       })
       .all()
 
-    const products: Product[] = records.map((record) => {
+    const products: Products[] = records.map((record) => {
       const { id, fields } = record
-      const { name, price, description, category, images } = fields as any
+      const { name, price, image, description, category, images } =
+        fields as any
 
       return {
         id,
@@ -38,6 +30,7 @@ export async function GET() {
         description: description || 'No description available',
         category: category || 'Uncategorized',
         image: images?.[0]?.url || '/placeholder.jpg',
+        images: images?.map((img: { url: string }) => img.url) || [],
       }
     })
 

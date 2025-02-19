@@ -1,21 +1,7 @@
 'use client'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import Products from '@/types/productsType'
-
-export interface FilterState {
-  filtered_products: Products[]
-  all_products: Products[]
-  grid_view: boolean
-  sort: string
-  filters: {
-    text: string
-    category: string
-    min_price: number
-    max_price: number
-    price: number
-    [index: string]: string | number
-  }
-}
+import { Products } from '@/types/productsType'
+import { FilterState } from '@/types/productsType'
 
 const initialState: FilterState = {
   filtered_products: [],

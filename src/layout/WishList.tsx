@@ -24,11 +24,11 @@ const WishList = () => {
             <li key={product.id}>
               <div className='wishlist__grid'>
                 <Image
-                  className='wishlist__image'
-                  src={product.image}
                   alt={product.name}
                   width={700}
                   height={700}
+                  src={product.image}
+                  className='wishlist__image'
                 />
                 <div>
                   <h3 className='wishlist__product'>{product.name}</h3>

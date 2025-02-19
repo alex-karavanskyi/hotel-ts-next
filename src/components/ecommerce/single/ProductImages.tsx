@@ -1,34 +1,50 @@
 'use client'
 import styled from 'styled-components'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-const ProductImages = ({ images = [{ url: '' }] }) => {
-  const [main, setMain] = useState(images[0])
+interface ImageType {
+  url: string
+}
+
+interface ProductImagesProps {
+  images?: ImageType[]
+}
+
+const ProductImages: React.FC<ProductImagesProps> = ({ images = [] }) => {
+  const [main, setMain] = useState<ImageType | null>(images[0] || null)
+
+  useEffect(() => {
+    if (images.length > 0) {
+      setMain(images[0])
+    }
+  }, [images])
+
+  if (!main?.url) return null
 
   return (
     <Wrapper>
       <Image
-        src={main?.url ?? ''}
         alt='main'
-        className='product__images'
         width={564}
         height={500}
         priority
+        className='product__images'
+        src={main.url}
       />
       {images.length > 1 && (
         <div className='product__images-gallery'>
           {images.map((image, index) => (
             <Image
+              alt={`image-${index}`}
+              width={100}
+              height={75}
               key={index}
-              src={image?.url ?? ''}
-              alt='Image'
-              onClick={() => setMain(images[index])}
+              src={image.url}
+              onClick={() => setMain(image)}
               className={
                 image.url === main.url ? 'product__images--active' : ''
               }
-              width={100}
-              height={75}
             />
           ))}
         </div>

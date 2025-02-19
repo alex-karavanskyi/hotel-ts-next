@@ -7,9 +7,9 @@ import filterReducer, {
   clearFilters,
   filterProducts,
   sortProducts,
-  FilterState,
 } from '@/redux/features/filterSlice'
-import Products from '@/types/productsType'
+import { Products } from '@/types/productsType'
+import { FilterState } from '@/types/productsType'
 
 const initialState: FilterState = {
   filtered_products: [],
