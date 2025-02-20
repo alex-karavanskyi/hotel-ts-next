@@ -1,4 +1,4 @@
-export type Products = {
+export type Product = {
   id: string
   name: string
   price: number
@@ -8,9 +8,19 @@ export type Products = {
   images: []
 }
 
+export type ApiProduct = {
+  id: string
+  name: string
+  price: number
+  images: { url: string }[]
+  image?: string | null
+  description?: string
+  category?: string
+}
+
 export type FilterState = {
-  filtered_products: Products[]
-  all_products: Products[]
+  filtered_products: Product[]
+  all_products: Product[]
   grid_view: boolean
   sort: string
   filters: {

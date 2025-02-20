@@ -2,11 +2,11 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { addFavorite, removeFavorite } from '@/redux/features/favoriteSlice'
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md'
-import { Products } from '@/types/productsType'
+import { Product } from '@/types/productsType'
 
 interface ListProducts {
   name: string
-  products: Products[]
+  products: Product[]
   productId: string
   classIcon: string
 }
@@ -21,7 +21,7 @@ const Favorite: React.FC<ListProducts> = ({
 
   const dispatch = useAppDispatch()
 
-  const handleAddToFavorite = (productId: string, products: Products[]) => {
+  const handleAddToFavorite = (productId: string, products: Product[]) => {
     dispatch(addFavorite({ productId, products }))
   }
   const handleremoveToFavorite = (productId: string) => {

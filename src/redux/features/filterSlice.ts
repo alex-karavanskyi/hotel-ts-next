@@ -1,6 +1,6 @@
 'use client'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Products } from '@/types/productsType'
+import { Product } from '@/types/productsType'
 import { FilterState } from '@/types/productsType'
 
 const initialState: FilterState = {
@@ -21,7 +21,7 @@ const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-    loadProducts: (state, action: PayloadAction<Products[]>) => {
+    loadProducts: (state, action: PayloadAction<Product[]>) => {
       const products = action.payload
       const maxPrice = Math.max(...products.map((product) => product.price))
       state.all_products = products

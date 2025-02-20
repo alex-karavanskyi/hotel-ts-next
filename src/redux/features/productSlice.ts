@@ -1,15 +1,15 @@
 'use client'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { Products } from '@/types/productsType'
+import { Product } from '@/types/productsType'
 
 interface ProductsState {
   products_loading: boolean
   products_error: boolean
-  products: Products[]
+  products: Product[]
   single_product_loading: boolean
   single_product_error: boolean
-  single_product: Products
+  single_product: Product
 }
 
 const initialState: ProductsState = {
@@ -18,11 +18,11 @@ const initialState: ProductsState = {
   products: [],
   single_product_loading: false,
   single_product_error: false,
-  single_product: {} as Products,
+  single_product: {} as Product,
 }
 
 export const getProductsItems = createAsyncThunk<
-  Products[],
+  Product[],
   string,
   { rejectValue: string }
 >('products/getProductsItems', async (url, thunkAPI) => {
@@ -35,7 +35,7 @@ export const getProductsItems = createAsyncThunk<
 })
 
 export const getSingeProduct = createAsyncThunk<
-  Products,
+  Product,
   string,
   { rejectValue: string }
 >('products/getSingeProduct', async (url, thunkAPI) => {

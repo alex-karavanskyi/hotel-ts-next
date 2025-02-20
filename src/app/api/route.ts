@@ -1,51 +1,39 @@
-import Airtable, { FieldSet, Records } from 'airtable'
 import { NextResponse } from 'next/server'
-import { Products } from '@/types/productsType'
+import { ApiProduct } from '@/types/productsType'
 
-const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-  process.env.AIRTABLE_BASE_ID!
-)
+const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY
+const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
+const TABLE_NAME = 'products'
 
 export async function GET() {
   try {
-    const records: Records<FieldSet> = await base(
-      process.env.AIRTABLE_TABLE_NAME!
-    )
-      .select({
-        maxRecords: 200,
-        fields: ['name', 'price', 'description', 'category', 'images'],
-        sort: [{ field: 'name', direction: 'asc' }],
-      })
-      .all()
+    const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE_NAME}?view=Grid%20view&maxRecords=28&sort[0][field]=name&sort[0][direction]=asc`
 
-    const products: Products[] = records.map((record) => {
-      const { id, fields } = record
-      const { name, price, image, description, category, images } =
-        fields as any
-
-      return {
-        id,
-        name: name || 'Unnamed Product',
-        price: price || 0,
-        description: description || 'No description available',
-        category: category || 'Uncategorized',
-        image: images?.[0]?.url || '/placeholder.jpg',
-        images: images?.map((img: { url: string }) => img.url) || [],
-      }
-    })
-
-    return NextResponse.json(products, {
-      status: 200,
+    const response = await fetch(url, {
       headers: {
-        'Cache-Control': 's-maxage=600, stale-while-revalidate',
+        Authorization: `Bearer ${AIRTABLE_API_KEY}`,
       },
     })
-  } catch (error) {
-    console.error('❌ Error fetching products:', error)
 
-    return NextResponse.json(
-      { message: 'Failed to fetch products' },
-      { status: 500 }
-    )
+    if (!response.ok) {
+      throw new Error(`Airtable API Error: ${response.statusText}`)
+    }
+
+    const { records } = await response.json()
+
+    const data: ApiProduct[] = records.map((record: any) => ({
+      id: record.id,
+      name: record.fields.name,
+      price: record.fields.price,
+      images: record.fields.images ?? [],
+      image: record.fields.images?.[0]?.url || null,
+      description: record.fields.description,
+      category: record.fields.categoty,
+    }))
+
+    return NextResponse.json(data, { status: 200 })
+  } catch (error) {
+    console.error('Error fetching data from Airtable:', error)
+    return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 })
   }
 }

@@ -1,60 +1,49 @@
-import Airtable from 'airtable'
 import { NextResponse } from 'next/server'
-import { Products } from '@/types/productsType'
+import { ApiProduct } from '@/types/productsType'
 
-const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-  process.env.AIRTABLE_BASE_ID!
-)
+const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY
+const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
+const TABLE_NAME = 'products'
 
 export async function GET(
-  req: Request,
+  request: Request,
   { params }: { params: { id: string } }
 ) {
-  const { id } = params
-
-  if (!id) {
-    return NextResponse.json(
-      { message: 'Product ID is required' },
-      { status: 400 }
-    )
-  }
-
   try {
-    const record = await base(process.env.AIRTABLE_TABLE_NAME!).find(id)
+    const { id } = params
 
-    if (!record?.fields) {
-      return NextResponse.json(
-        { message: 'Product not found' },
-        { status: 404 }
-      )
+    if (!id) {
+      return NextResponse.json({ error: 'ID is required' }, { status: 400 })
     }
 
-    const { name, price, description, category, images } = record.fields as any
+    const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE_NAME}/${id}`
 
-    const product: Products = {
-      id: record.id,
-      name: name || 'Unknown Product',
-      price: price || 0,
-      description: description || 'No description available',
-      category: category || 'Uncategorized',
-      image: images?.[0]?.url || '',
-      images: images,
-    }
-
-    return NextResponse.json(product, {
-      status: 200,
+    const response = await fetch(url, {
       headers: {
-        'Cache-Control': 's-maxage=600, stale-while-revalidate',
+        Authorization: `Bearer ${AIRTABLE_API_KEY}`,
       },
     })
-  } catch (error) {
-    console.error('❌ Error fetching product:', {
-      message: (error as Error).message,
-      stack: (error as Error).stack,
-    })
 
+    if (!response.ok) {
+      return NextResponse.json({ error: 'Record not found' }, { status: 404 })
+    }
+
+    const record = await response.json()
+
+    const product: ApiProduct = {
+      id: record.id,
+      name: record.fields.name,
+      price: record.fields.price,
+      images: record.fields.images ?? [],
+      description: record.fields.description,
+      category: record.fields.category,
+    }
+
+    return NextResponse.json(product, { status: 200 })
+  } catch (error) {
+    console.error('Error fetching record:', error)
     return NextResponse.json(
-      { message: 'Failed to fetch product' },
+      { error: 'Internal server error' },
       { status: 500 }
     )
   }
