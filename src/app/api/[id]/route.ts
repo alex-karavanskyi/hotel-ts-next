@@ -3,7 +3,7 @@ import { ApiProduct } from '@/types/productsType'
 
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
-const TABLE_NAME = 'products'
+const AIRTABLE_TABLE_NAME = process.env.AIRTABLE_TABLE_NAME
 
 export async function GET(
   request: Request,
@@ -16,7 +16,7 @@ export async function GET(
       return NextResponse.json({ error: 'ID is required' }, { status: 400 })
     }
 
-    const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE_NAME}/${id}`
+    const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}/${id}`
 
     const response = await fetch(url, {
       headers: {

@@ -3,11 +3,11 @@ import { ApiProduct } from '@/types/productsType'
 
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
-const TABLE_NAME = 'products'
+const AIRTABLE_TABLE_NAME = process.env.AIRTABLE_TABLE_NAME
 
 export async function GET() {
   try {
-    const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE_NAME}?view=Grid%20view&maxRecords=28&sort[0][field]=name&sort[0][direction]=asc`
+    const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?view=Grid%20view&maxRecords=28&sort[0][field]=name&sort[0][direction]=asc`
 
     const response = await fetch(url, {
       headers: {
@@ -28,7 +28,7 @@ export async function GET() {
       images: record.fields.images ?? [],
       image: record.fields.images?.[0]?.url || null,
       description: record.fields.description,
-      category: record.fields.categoty,
+      category: record.fields.category,
     }))
 
     return NextResponse.json(data, { status: 200 })
