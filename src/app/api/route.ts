@@ -13,6 +13,7 @@ export async function GET() {
       headers: {
         Authorization: `Bearer ${AIRTABLE_API_KEY}`,
       },
+      cache: 'no-store',
     })
 
     if (!response.ok) {

@@ -19,11 +19,12 @@ const ListView: React.FC<ListProducts> = ({ products }) => {
           return (
             <article className='list__view-article' key={id}>
               <Image
-                className='list__view-image'
-                src={image}
                 alt={name}
                 width={300}
                 height={200}
+                priority
+                src={image}
+                className='list__view-image'
               />
               <div>
                 <h4 className='list__view-products-favorite'>

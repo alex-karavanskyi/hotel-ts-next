@@ -23,10 +23,17 @@ const filterSlice = createSlice({
   reducers: {
     loadProducts: (state, action: PayloadAction<Product[]>) => {
       const products = action.payload
-      const maxPrice = Math.max(...products.map((product) => product.price))
+      const prices = products.map((product) => product.price)
+      const maxPrice = Math.max(...prices)
+      const minPrice = Math.min(...prices)
+
       state.all_products = products
       state.filters.max_price = maxPrice
-      state.filters.price = maxPrice
+      state.filters.min_price = minPrice
+
+      if (state.filters.price > maxPrice || state.filters.price < minPrice) {
+        state.filters.price = maxPrice
+      }
     },
     setGridView: (state) => {
       state.grid_view = true
@@ -42,6 +49,7 @@ const filterSlice = createSlice({
       action: PayloadAction<{ name: string; value: string | number }>
     ) => {
       const { name, value } = action.payload
+
       state.filters[name] = value
     },
     filterProducts: (state) => {
@@ -72,6 +80,7 @@ const filterSlice = createSlice({
     },
     clearFilters: (state) => {
       const { max_price } = state.filters
+
       state.filters = {
         ...state.filters,
         text: '',

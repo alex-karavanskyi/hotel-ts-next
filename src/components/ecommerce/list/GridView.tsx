@@ -21,11 +21,12 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
             <article key={id}>
               <div className='grid__view-products-images'>
                 <Image
-                  className='grid__view-images'
-                  src={image}
                   alt={name}
                   width={470}
                   height={500}
+                  priority
+                  src={image}
+                  className='grid__view-images'
                 />
                 <Link
                   href={`/ecommerce/${id}`}
