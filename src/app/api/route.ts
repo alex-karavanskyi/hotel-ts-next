@@ -13,7 +13,7 @@ export async function GET() {
       headers: {
         Authorization: `Bearer ${AIRTABLE_API_KEY}`,
       },
-      cache: 'no-store',
+      next: { revalidate: 0 },
     })
 
     if (!response.ok) {
@@ -32,7 +32,10 @@ export async function GET() {
       category: record.fields.category,
     }))
 
-    return NextResponse.json(data, { status: 200 })
+    return NextResponse.json(data, {
+      status: 200,
+      headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate' },
+    })
   } catch (error) {
     console.error('Error fetching data from Airtable:', error)
     return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 })
