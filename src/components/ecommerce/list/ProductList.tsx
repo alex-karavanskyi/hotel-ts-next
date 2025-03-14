@@ -21,10 +21,8 @@ const ProductList = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    if (!products.length) {
-      dispatch(getProductsItems(url))
-    }
-  }, [dispatch, products.length])
+    dispatch(getProductsItems(url))
+  }, [dispatch])
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 768px)')

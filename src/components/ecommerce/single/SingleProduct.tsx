@@ -6,7 +6,7 @@ import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { useParams, useRouter } from 'next/navigation'
 import { formatPrice } from '@/utils/format'
 import { Loading, Error, Favorite } from '@/layout'
-import { getSingeProduct } from '@/redux/features/productSlice'
+import { getSingleProduct } from '@/redux/features/productSlice'
 import { url } from '@/constants/db'
 
 const SingleProduct = () => {
@@ -22,10 +22,8 @@ const SingleProduct = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    if (!product || product.id !== id) {
-      dispatch(getSingeProduct(`${url}/${id}`))
-    }
-  }, [dispatch, id, product])
+    dispatch(getSingleProduct(`${url}/${id}`))
+  }, [dispatch, id])
 
   useEffect(() => {
     if (error) {
