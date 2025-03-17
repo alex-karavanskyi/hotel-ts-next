@@ -22,6 +22,7 @@ export async function GET(
       headers: {
         Authorization: `Bearer ${AIRTABLE_API_KEY}`,
       },
+      next: { revalidate: 0 },
     })
 
     if (!response.ok) {
@@ -30,11 +31,15 @@ export async function GET(
 
     const record = await response.json()
 
+    const imageUrls = record.fields.images
+      ? JSON.parse(record.fields.images)
+      : []
+
     const product: ApiProduct = {
       id: record.id,
       name: record.fields.name,
       price: record.fields.price,
-      images: record.fields.images ?? [],
+      images: imageUrls,
       description: record.fields.description,
       category: record.fields.category,
     }

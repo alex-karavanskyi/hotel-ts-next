@@ -22,15 +22,21 @@ export async function GET() {
 
     const { records } = await response.json()
 
-    const data: ApiProduct[] = records.map((record: any) => ({
-      id: record.id,
-      name: record.fields.name,
-      price: record.fields.price,
-      images: record.fields.images ?? [],
-      image: record.fields.images?.[0]?.url || null,
-      description: record.fields.description,
-      category: record.fields.category,
-    }))
+    const data: ApiProduct[] = records.map((record: any) => {
+      const imageUrls = record.fields.images
+        ? JSON.parse(record.fields.images)
+        : []
+
+      return {
+        id: record.id,
+        name: record.fields.name,
+        price: record.fields.price,
+        images: imageUrls,
+        image: imageUrls.length > 0 ? imageUrls[0] : null,
+        description: record.fields.description,
+        category: record.fields.category,
+      }
+    })
 
     return NextResponse.json(data, {
       status: 200,
