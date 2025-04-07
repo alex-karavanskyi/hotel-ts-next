@@ -21,7 +21,7 @@ const Sidebar = () => {
 
   return (
     <Wrapper>
-      <aside className={isOpen ? 'sidebar sidebar--show' : 'sidebar'}>
+      <div className={isOpen ? 'sidebar sidebar--show' : 'sidebar'}>
         <Image
           alt='city'
           src={city}
@@ -41,12 +41,12 @@ const Sidebar = () => {
           <NavbarLinks parentClass='sidebar__links' />
           <SocialLinks />
         </div>
-      </aside>
+      </div>
     </Wrapper>
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.aside`
   .sidebar {
     top: 0;
     left: 0;

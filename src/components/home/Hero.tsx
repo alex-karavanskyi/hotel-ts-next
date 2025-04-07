@@ -27,7 +27,7 @@ const Hero = () => {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.header`
   position: relative;
   width: 70%;
   height: 100vh;

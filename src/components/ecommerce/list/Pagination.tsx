@@ -54,7 +54,7 @@ const Pagination: React.FC<PaginationProducts> = ({
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.nav`
   padding-bottom: 1.9rem;
   .pagination__container {
     display: flex;

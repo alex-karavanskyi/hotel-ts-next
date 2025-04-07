@@ -51,7 +51,7 @@ const Project = () => {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   .project-featured {
     text-transform: uppercase;
     color: white;

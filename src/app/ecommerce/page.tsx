@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 const Ecommerce = () => {
   return (
-    <div className='ecommerce'>
+    <main className='ecommerce'>
       <div className='ecommerce__container'>
         <h1>E-COMMERCE</h1>
         <div>
@@ -22,7 +22,7 @@ const Ecommerce = () => {
       </div>
       <ProductControls />
       <ProductList />
-    </div>
+    </main>
   )
 }
 

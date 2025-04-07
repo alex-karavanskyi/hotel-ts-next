@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <Wrapper>
-      <nav className={navbar ? 'navbar navbar--fixed' : 'navbar'}>
+      <div className={navbar ? 'navbar navbar--fixed' : 'navbar'}>
         <Link href={`/`}>
           <Image
             alt='Logo'
@@ -40,12 +40,12 @@ const Navbar = () => {
             navbar ? 'navbar__links navbar__links--color' : 'navbar__links'
           }
         />
-      </nav>
+      </div>
     </Wrapper>
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.nav`
   .navbar {
     position: relative;
     height: 5rem;

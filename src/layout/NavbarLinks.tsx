@@ -48,7 +48,7 @@ const NavbarLinks: React.FC<{
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.nav`
   ul {
     margin: 0;
     padding: 0;

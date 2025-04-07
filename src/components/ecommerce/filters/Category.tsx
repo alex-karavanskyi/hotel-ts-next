@@ -28,7 +28,7 @@ const Category: React.FC<CategoryProps> = ({ buttonColor, handleFilters }) => {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.nav`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

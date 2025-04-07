@@ -7,10 +7,10 @@ export const metadata: Metadata = {
 
 const Favorites = () => {
   return (
-    <div className='favorites'>
+    <main className='favorites'>
       <h2 className='favorites__title'>Wishlist</h2>
       <WishList />
-    </div>
+    </main>
   )
 }
 

@@ -11,7 +11,6 @@ const Skills = () => {
           <p className='layout-section__introduction'>Introduction</p>
           <h2 className='layout-section__title'>Skills.</h2>
         </div>
-
         <p className='layout-section__text'>
           I have strong expertise in React.js, including component-based
           development, state management with Redux, and performance
@@ -32,7 +31,7 @@ const Skills = () => {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   .about__grid-card {
     margin-top: 5rem;
     display: grid;

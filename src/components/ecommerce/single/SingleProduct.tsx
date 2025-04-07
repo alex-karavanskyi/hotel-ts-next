@@ -68,7 +68,7 @@ const SingleProduct = () => {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.main`
   .single__product-container {
     display: grid;
     gap: 4rem;
