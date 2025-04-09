@@ -1,8 +1,8 @@
 import { screen, render } from '@testing-library/react'
 import { Search } from '@/components/ecommerce'
+import { useState } from 'react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
-import { useState } from 'react'
 
 describe('Search', () => {
   const TestWrapper = () => {

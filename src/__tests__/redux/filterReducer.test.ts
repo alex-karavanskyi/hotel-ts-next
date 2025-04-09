@@ -8,7 +8,7 @@ import filterReducer, {
   filterProducts,
   sortProducts,
 } from '@/redux/features/filterSlice'
-import { Products } from '@/types/productsType'
+import { Product } from '@/types/productsType'
 import { FilterState } from '@/types/productsType'
 
 const initialState: FilterState = {
@@ -31,7 +31,7 @@ describe('filterSlice', () => {
   })
 
   it('should load products and set max price', () => {
-    const products: Products[] = [
+    const products: Product[] = [
       {
         id: '1',
         name: 'Product A',

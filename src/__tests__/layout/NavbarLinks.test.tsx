@@ -21,6 +21,6 @@ describe('NavbarLinks', () => {
     )
 
     expect(screen.getByText(/home/i)).toBeInTheDocument()
-    expect(screen.getAllByRole('link')).toHaveLength(6)
+    expect(screen.getAllByRole('link')).toHaveLength(5)
   })
 })
