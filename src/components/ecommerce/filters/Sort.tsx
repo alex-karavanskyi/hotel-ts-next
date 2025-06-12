@@ -1,5 +1,6 @@
 'use client'
 import styled from 'styled-components'
+import { containerStyles } from '@/utils/styles'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { BsFillGridFill, BsList } from 'react-icons/bs'
 import { setGridView, setListView } from '@/redux/features/filterSlice'
@@ -18,7 +19,7 @@ const Sort: React.FC<SortProps> = ({ handleFilters }) => {
   const dispatch = useAppDispatch()
 
   return (
-    <Wrapper>
+    <Container>
       <div className='sort__container'>
         <div className='sort__btn'>
           <button
@@ -53,50 +54,18 @@ const Sort: React.FC<SortProps> = ({ handleFilters }) => {
           </select>
         </form>
       </div>
-    </Wrapper>
+    </Container>
   )
 }
 
-const Wrapper = styled.div`
-  margin-bottom: 2rem;
-  .sort__container {
-    display: grid;
-    grid-template-columns: auto auto 1fr auto;
-    align-items: center;
-    column-gap: 2rem;
-  }
+const Container = styled.div`
+  ${containerStyles}
   .sort__btn {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 0.5rem;
-
-    button {
-      background: transparent;
-      border: none;
-      color: var(--clr-white);
-      width: 1.5rem;
-      border-radius: var(--radius);
-      height: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      &:hover:not(.sort__btn-active) {
-        background: rgba(211, 211, 211, 0.2);
-      }
-      &.sort__btn-active:hover {
-        background: rgba(255, 165, 0, 0.7);
-      }
-      svg {
-        font-size: 1rem;
-      }
-    }
-    .sort__btn-active {
-      background: rgba(255, 165, 0, 1);
-
-      color: var(--clr-black);
-    }
+    display: none;
+  }
+  .sort__container {
+    display: flex;
+    justify-content: space-between;
   }
   .sort__input {
     border-color: transparent;
@@ -109,23 +78,50 @@ const Wrapper = styled.div`
     margin-bottom: 0;
     color: var(--clr-grey-dark);
   }
-  @media (max-width: 1500px) {
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-  @media (max-width: 768px) {
+
+  @media (min-width: 768px) {
     .sort__btn {
-      display: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 0.5rem;
+
+      button {
+        background: transparent;
+        border: none;
+        color: var(--clr-white);
+        width: 1.5rem;
+        border-radius: var(--radius);
+        height: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.3s ease;
+
+        &:hover:not(.sort__btn-active) {
+          background: rgba(211, 211, 211, 0.2);
+        }
+
+        &.sort__btn-active:hover {
+          background: rgba(255, 165, 0, 0.7);
+        }
+      }
+
+      .sort__btn-active {
+        background: rgba(255, 165, 0, 1);
+        color: var(--clr-black);
+      }
     }
     .sort__container {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: auto auto 1fr auto;
+      align-items: center;
+      column-gap: 2rem;
     }
   }
-  @media (max-width: 576px) {
-    .sort__btn {
-      width: 3.1rem;
-    }
+
+  @media (min-width: 1400px) {
+    padding: 0;
   }
 `
 

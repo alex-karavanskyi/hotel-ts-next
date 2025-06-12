@@ -13,7 +13,7 @@ const Category: React.FC<CategoryProps> = ({ buttonColor, handleFilters }) => {
   const categories = getUniqueValues(all_products, 'category')
 
   return (
-    <Wrapper>
+    <Container>
       {categories.map((c, index) => (
         <CategoryButton
           key={index}
@@ -24,11 +24,12 @@ const Category: React.FC<CategoryProps> = ({ buttonColor, handleFilters }) => {
           {c}
         </CategoryButton>
       ))}
-    </Wrapper>
+    </Container>
   )
 }
 
-const Wrapper = styled.nav`
+const Container = styled.nav`
+  padding: 0 1rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -43,6 +44,9 @@ const CategoryButton = styled.button<{ $isActive: boolean }>`
     $isActive ? 'solid 2px orange' : 'var(--clr-grey-5)'};
   letter-spacing: var(--spacing);
   color: var(--clr-grey-dark);
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 1rem;
   cursor: pointer;
   padding: 1rem;
   &:hover {

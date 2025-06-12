@@ -13,7 +13,7 @@ interface GridProducts {
 
 const GridView: React.FC<GridProducts> = ({ products }) => {
   return (
-    <Wrapper>
+    <Container>
       <div className='grid__view-products' role='list'>
         {products.map((product) => {
           const { id, image, name, price } = product
@@ -52,23 +52,26 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
           )
         })}
       </div>
-    </Wrapper>
+    </Container>
   )
 }
 
-const Wrapper = styled.section`
-  margin-bottom: 2rem;
+const Container = styled.section`
+  padding: 0 1rem;
+  max-width: 1280px;
+  margin: 2rem auto;
   .grid__view-products {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 1.25rem;
   }
+
   .grid__view-products-images {
     position: relative;
     background: var(--clr-black);
     border-radius: var(--radius);
-    padding: 0px;
   }
+
   .grid__view-images {
     width: 100%;
     display: block;
@@ -76,6 +79,7 @@ const Wrapper = styled.section`
     border-radius: var(--radius);
     transition: var(--transition);
   }
+
   .grid__view-products-link {
     position: absolute;
     top: 50%;
@@ -88,28 +92,29 @@ const Wrapper = styled.section`
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
-    transition: var(--transition);
     opacity: 0;
+    transition: var(--transition);
     cursor: pointer;
+
     svg {
       font-size: 1.25rem;
       color: var(--clr-white);
     }
   }
+
   .grid__view-images:hover,
   .grid__view-products-images:hover .grid__view-images {
     opacity: 0.5;
   }
+
   .grid__view-products-images:hover .grid__view-products-link {
     opacity: 1;
   }
+
   .grid__view-products-link:hover ~ .grid__view-images {
     opacity: 0.5;
   }
-  .grid__view-products-price {
-    color: var(--clr-primary-5);
-    letter-spacing: var(--spacing);
-  }
+
   .grid__view-footer {
     display: flex;
     justify-content: space-between;
@@ -117,11 +122,18 @@ const Wrapper = styled.section`
     margin-top: 1rem;
     color: var(--clr-grey-dark);
   }
+
   .grid__view-favorite,
   .grid__view-products-price {
     margin-bottom: 0;
     font-weight: 400;
   }
+
+  .grid__view-products-price {
+    color: var(--clr-primary-5);
+    letter-spacing: var(--spacing);
+  }
+
   .grid__view-favorite-icon {
     vertical-align: text-top;
     cursor: pointer;
@@ -130,16 +142,20 @@ const Wrapper = styled.section`
     color: var(--clr-grey-dark);
   }
 
-  @media (max-width: 1500px) {
+  @media (min-width: 768px) {
     .grid__view-products {
-      margin-left: 1rem;
-      margin-right: 1rem;
+      grid-template-columns: repeat(2, 1fr);
     }
   }
-  @media (max-width: 768px) {
+
+  @media (min-width: 992px) {
     .grid__view-products {
-      grid-template-columns: repeat(1, 1fr);
+      grid-template-columns: repeat(3, 1fr);
     }
+  }
+
+  @media (min-width: 1400px) {
+    padding: 0;
   }
 `
 

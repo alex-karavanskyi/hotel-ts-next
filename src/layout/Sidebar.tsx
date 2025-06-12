@@ -20,7 +20,7 @@ const Sidebar = () => {
   }, [isOpen])
 
   return (
-    <Wrapper>
+    <Container>
       <div className={isOpen ? 'sidebar sidebar--show' : 'sidebar'}>
         <Image
           alt='city'
@@ -42,11 +42,11 @@ const Sidebar = () => {
           <SocialLinks />
         </div>
       </div>
-    </Wrapper>
+    </Container>
   )
 }
 
-const Wrapper = styled.aside`
+const Container = styled.aside`
   .sidebar {
     top: 0;
     left: 0;
@@ -125,7 +125,7 @@ const Wrapper = styled.aside`
   .sidebar__close-btn:hover {
     color: #e66b6b;
   }
-  @media screen and (max-width: 768px) {
+  @media (min-width: 768px) {
     .sidebar__close-btn {
       right: 2rem;
     }

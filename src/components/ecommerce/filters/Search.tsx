@@ -1,5 +1,6 @@
 'use client'
 import styled from 'styled-components'
+import { containerStyles } from '@/utils/styles'
 
 interface SearchProps {
   search: string
@@ -8,7 +9,7 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ search, handleFilters }) => {
   return (
-    <Wrapper>
+    <Container>
       <input
         type='search'
         name='text'
@@ -17,14 +18,15 @@ const Search: React.FC<SearchProps> = ({ search, handleFilters }) => {
         onChange={(e) => handleFilters('text', e.target.value)}
         value={search}
       />
-    </Wrapper>
+    </Container>
   )
 }
 
-const Wrapper = styled.div`
+const Container = styled.div`
+  ${containerStyles}
   .search__input {
+    width: 10rem;
     padding: 1rem;
-    margin-right: 1rem;
     border-color: transparent;
     border-radius: var(--radius);
     background: var(--clr-grey-10);
@@ -32,6 +34,9 @@ const Wrapper = styled.div`
   }
   .search__input::placeholder {
     text-transform: capitalize;
+  }
+  @media (min-width: 1400px) {
+    padding: 0;
   }
 `
 

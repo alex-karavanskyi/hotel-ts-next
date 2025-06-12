@@ -8,6 +8,7 @@ import Favorite from './Favorite'
 import NavbarLinks from './NavbarLinks'
 import SocialLinks from './SocialLinks'
 import WishList from './WishList'
+import Hero from './Hero'
 
 export {
   Navbar,
@@ -17,6 +18,7 @@ export {
   Loading,
   SocialLinks,
   WishList,
+  Hero,
   ClientOnly,
   Favorite,
   NavbarLinks,

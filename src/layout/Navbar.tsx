@@ -21,31 +21,34 @@ const Navbar = () => {
   }, [])
 
   return (
-    <Wrapper>
-      <div className={navbar ? 'navbar navbar--fixed' : 'navbar'}>
-        <Link href={`/`}>
-          <Image
-            alt='Logo'
-            width={60}
-            priority
-            src={navbar ? pngwing_red : pngwing_grey}
+    <>
+      <Container>
+        <div className={navbar ? 'navbar navbar--fixed' : 'navbar'}>
+          <Link href={`/`}>
+            <Image
+              alt='Logo'
+              width={60}
+              priority
+              src={navbar ? pngwing_red : pngwing_grey}
+            />
+          </Link>
+          <button className='navbar__btn' onClick={() => dispatch(openModal())}>
+            <i className='fas fa-bars'></i>
+          </button>
+          <NavbarLinks
+            isNavbarFixed={navbar}
+            parentClass={
+              navbar ? 'navbar__links navbar__links--color' : 'navbar__links'
+            }
           />
-        </Link>
-        <button className='navbar__btn' onClick={() => dispatch(openModal())}>
-          <i className='fas fa-bars'></i>
-        </button>
-        <NavbarLinks
-          isNavbarFixed={navbar}
-          parentClass={
-            navbar ? 'navbar__links navbar__links--color' : 'navbar__links'
-          }
-        />
-      </div>
-    </Wrapper>
+        </div>
+      </Container>
+      {navbar && <div style={{ height: '5rem' }} />}
+    </>
   )
 }
 
-const Wrapper = styled.nav`
+const Container = styled.nav`
   .navbar {
     position: relative;
     height: 5rem;
@@ -78,7 +81,7 @@ const Wrapper = styled.nav`
     display: none;
   }
 
-  @media screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     .navbar__btn {
       display: none;
     }

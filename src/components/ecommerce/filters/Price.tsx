@@ -1,5 +1,6 @@
 'use client'
 import styled from 'styled-components'
+import { containerStyles } from '@/utils/styles'
 import { formatPrice } from '@/utils/format'
 
 interface PriceProps {
@@ -16,7 +17,7 @@ const Price: React.FC<PriceProps> = ({
   handleFilters,
 }) => {
   return (
-    <Wrapper>
+    <Container>
       <h5>price</h5>
       <p>{formatPrice(price)}</p>
       <input
@@ -27,12 +28,17 @@ const Price: React.FC<PriceProps> = ({
         value={price}
         onChange={(e) => handleFilters('price', Number(e.target.value))}
       />
-    </Wrapper>
+    </Container>
   )
 }
 
-const Wrapper = styled.div`
-  padding-top: 1.9rem;
+const Container = styled.div`
+  ${containerStyles}
   color: var(--clr-grey-dark);
+
+  @media (min-width: 1400px) {
+    padding: 0;
+  }
 `
+
 export default Price

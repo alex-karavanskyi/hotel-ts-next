@@ -16,7 +16,7 @@ const NavbarLinks: React.FC<{
   const toggleSubmenu = (isVisible: boolean) => set$isSubmenuVisible(isVisible)
 
   return (
-    <Wrapper>
+    <Container>
       <ul className={parentClass}>
         <li onClick={() => dispatch(closeModal())}>
           <Link href='/'>home</Link>
@@ -44,11 +44,11 @@ const NavbarLinks: React.FC<{
           </Submenu>
         </DropdownItem>
       </ul>
-    </Wrapper>
+    </Container>
   )
 }
 
-const Wrapper = styled.nav`
+const Container = styled.nav`
   ul {
     margin: 0;
     padding: 0;

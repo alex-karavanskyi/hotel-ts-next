@@ -17,7 +17,7 @@ const ProductImages: React.FC<ProductImagesProps> = ({ images = [] }) => {
   if (!mainImage) return null
 
   return (
-    <Wrapper>
+    <Container>
       <Image
         alt='main product image'
         width={564}
@@ -41,24 +41,27 @@ const ProductImages: React.FC<ProductImagesProps> = ({ images = [] }) => {
           ))}
         </div>
       )}
-    </Wrapper>
+    </Container>
   )
 }
 
-const Wrapper = styled.div`
+const Container = styled.div`
   .product__images {
     width: 100%;
-    display: block;
     border-radius: var(--radius);
     object-fit: cover;
   }
   .product__images-gallery {
     margin-top: 1rem;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    column-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 0.5rem;
+
     img {
       cursor: pointer;
+      width: 100%;
+      object-fit: fill;
+      border-radius: var(--radius);
     }
   }
   .product__images--active {

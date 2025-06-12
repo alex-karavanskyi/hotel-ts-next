@@ -12,7 +12,7 @@ interface ListProducts {
 
 const ListView: React.FC<ListProducts> = ({ products }) => {
   return (
-    <Wrapper>
+    <Container>
       <div className='list__view-products'>
         {products.map((product) => {
           const { id, image, name, price, description } = product
@@ -52,48 +52,33 @@ const ListView: React.FC<ListProducts> = ({ products }) => {
           )
         })}
       </div>
-    </Wrapper>
+    </Container>
   )
 }
 
-const Wrapper = styled.section`
+const Container = styled.section`
+  padding: 0 1rem;
+  margin: 2rem auto;
+  max-width: 1280px;
   .list__view-products {
     display: grid;
     row-gap: 3rem;
     color: var(--clr-grey-dark);
   }
-  .list__view-products-price {
-    color: var(--clr-primary-6);
-    margin-bottom: 0.75rem;
-  }
-  .list__view-products-favorite {
-    margin-bottom: 0.5rem;
-  }
-  .list__view-products-description {
-    max-width: 45em;
-    margin-bottom: 1rem;
-  }
-  .list__view-products-btn-details {
-    text-transform: uppercase;
-    background-color: rgba(234, 140, 46, 1);
-    color: var(--clr-grey-dark);
-    transition: var(--transition);
-    border-radius: 2px;
-    cursor: pointer;
-    font-size: 1rem;
-    padding: 0.5rem 1.5rem;
-  }
-  .list__view-products-btn-details:hover {
-    background-color: rgba(234, 140, 46, 0.7);
+  .list__view-article {
+    display: flex;
+    flex-direction: column;
   }
   .list__view-image {
     width: 100%;
-    display: block;
-    width: 300px;
+    max-width: 300px;
     height: 200px;
     object-fit: cover;
     border-radius: var(--radius);
     margin-bottom: 1rem;
+  }
+  .list__view-products-favorite {
+    margin-bottom: 0.5rem;
   }
   .list__view-favorite-icon {
     cursor: pointer;
@@ -101,18 +86,43 @@ const Wrapper = styled.section`
     height: 18px;
     color: var(--clr-grey-dark);
   }
+  .list__view-products-price {
+    color: var(--clr-primary-6);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+  }
+  .list__view-products-description {
+    max-width: 45em;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+  .list__view-products-btn-details {
+    text-transform: uppercase;
+    background-color: rgba(234, 140, 46, 1);
+    color: var(--clr-grey-dark);
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+    transition: var(--transition);
+    display: inline-block;
+    width: max-content;
+  }
 
-  @media (min-width: 992px) {
+  .list__view-products-btn-details:hover {
+    background-color: rgba(234, 140, 46, 0.7);
+  }
+
+  @media (min-width: 768px) {
     .list__view-article {
-      display: grid;
-      grid-template-columns: auto 1fr;
+      flex-direction: row;
       column-gap: 2rem;
       align-items: center;
     }
   }
-  @media (max-width: 990px) {
-    margin-left: 1rem;
-    padding-bottom: 2.8rem;
+
+  @media (min-width: 1400px) {
+    padding: 0;
   }
 `
 

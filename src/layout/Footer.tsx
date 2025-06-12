@@ -13,129 +13,38 @@ import {
 } from '../utils/footer'
 
 const Footer = () => {
+  const sections = [
+    { title: 'react', items: react, key: 'react' },
+    { title: 'redux', items: redux, key: 'redux' },
+    { title: 'html', items: html, key: 'html' },
+    { title: 'cities', items: cities, key: 'cities' },
+    { title: 'javascript', items: javascript, key: 'javascript' },
+    { title: 'typescript', items: typescript, key: 'typescript' },
+    { title: 'css', items: css, key: 'css' },
+  ]
+
   return (
     <Wrapper>
       <div className='footer__container'>
-        <div className='footer__grid'>
-          <nav className='footer__menu'>
-            <div className='footer__grid'>
-              <div className='footer__grid-size'>
-                <ul>
-                  <li>
-                    <h3 className='footer__menu-title'>react</h3>
-                    <ul>
-                      {react.map((item) => {
-                        return (
-                          <li key={item.id}>
-                            <Link href='/ecommerce'>{item.react}</Link>
-                          </li>
-                        )
-                      })}
-                    </ul>
+        <nav className='footer__grid'>
+          {sections.map((section) => (
+            <div className='footer__column' key={section.key}>
+              <h3 className='footer__title'>{section.title}</h3>
+              <ul className='footer__list'>
+                {section.items.map((item) => (
+                  <li key={item.id}>
+                    <Link href='/ecommerce' className='footer__link'>
+                      {(item as Record<string, string | number>)[section.key]}
+                    </Link>
                   </li>
-                </ul>
-              </div>
-              <div className='footer__grid-size'>
-                <ul>
-                  <li>
-                    <h3 className='footer__menu-title'>redux</h3>
-                    <ul>
-                      {redux.map((item) => {
-                        return (
-                          <li key={item.id}>
-                            <Link href='/ecommerce'>{item.redux}</Link>
-                          </li>
-                        )
-                      })}
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <div className='footer__grid-size'>
-                <ul>
-                  <li>
-                    <h3 className='footer__menu-title'>html</h3>
-                    <ul>
-                      {html.map((item) => {
-                        return (
-                          <li key={item.id}>
-                            <Link href='/ecommerce'>{item.html}</Link>
-                          </li>
-                        )
-                      })}
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <div className='footer__grid-size'>
-                <ul>
-                  <li>
-                    <h3 className='footer__menu-title'>cities</h3>
-                    <ul>
-                      {cities.map((item) => {
-                        return (
-                          <li key={item.id}>
-                            <Link href='/ecommerce'>{item.cities}</Link>
-                          </li>
-                        )
-                      })}
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <div className='footer__grid-size'>
-                <ul>
-                  <li>
-                    <h3 className='footer__menu-title'>javascript</h3>
-                    <ul>
-                      {javascript.map((item) => {
-                        return (
-                          <li key={item.id}>
-                            <Link href='/ecommerce'>{item.javascript}</Link>
-                          </li>
-                        )
-                      })}
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <div className='footer__grid-size'>
-                <ul>
-                  <li>
-                    <h3 className='footer__menu-title'>typescript</h3>
-                    <ul>
-                      {typescript.map((item) => {
-                        return (
-                          <li key={item.id}>
-                            <Link href='/ecommerce'>{item.typescript}</Link>
-                          </li>
-                        )
-                      })}
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <div className='footer__grid-size'>
-                <ul>
-                  <li>
-                    <h3 className='footer__menu-title'>css</h3>
-                    <ul>
-                      {css.map((item) => {
-                        return (
-                          <li key={item.id}>
-                            <Link href='/ecommerce'>{item.css}</Link>
-                          </li>
-                        )
-                      })}
-                    </ul>
-                  </li>
-                </ul>
-              </div>
+                ))}
+              </ul>
             </div>
-          </nav>
-        </div>
-        <div className='footer__logo'>
-          <div className='footer__social-container'>
+          ))}
+        </nav>
+
+        <div className='footer__bottom'>
+          <div className='footer__social'>
             <SocialLinks />
           </div>
         </div>
@@ -146,54 +55,67 @@ const Footer = () => {
 
 const Wrapper = styled.footer`
   background: #151720;
-  padding-top: 30px;
+  padding: 2rem 1rem 1rem;
+
   .footer__container {
-    margin: 0 auto;
     max-width: 1200px;
+    margin: 0 auto;
   }
-  .footer__logo {
-    padding-top: 7rem;
-  }
+
   .footer__grid {
     display: grid;
-    grid-template-columns: repeat(4, 200px);
+    gap: 2rem;
   }
-  .footer__grid-size {
-    padding: 1.25rem;
+
+  .footer__column {
+    font-size: 0.95rem;
   }
-  .footer__menu {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.7);
-  }
-  .footer__menu-title {
+
+  .footer__title {
     color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 1.25rem;
-    font-weight: bold;
-    font-size: 1rem;
-  }
-  .footer__menu ul {
-    padding: 0;
     margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: capitalize;
   }
-  .footer__menu a {
+
+  .footer__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer__link {
     color: rgba(255, 255, 255, 0.35);
     text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
   }
-  .footer__menu a:hover {
+
+  .footer__link:hover {
     color: var(--clr-primary-5);
   }
-  .footer__social {
-    padding-top: 9rem;
+
+  .footer__bottom {
+    margin-top: 3rem;
   }
-  .footer__social-container {
+
+  .footer__social {
     display: flex;
     justify-content: center;
     padding-bottom: 1.25rem;
   }
 
-  @media (max-width: 800px) {
+  @media (min-width: 640px) {
     .footer__grid {
-      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .footer__grid {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 `

@@ -15,7 +15,7 @@ const WishList = () => {
   }
 
   return (
-    <Wrapper>
+    <Container>
       {favorites_products.length === 0 ? (
         <p className='wishlist__empty'>Your wishlist is empty.</p>
       ) : (
@@ -47,32 +47,28 @@ const WishList = () => {
           ))}
         </ul>
       )}
-    </Wrapper>
+    </Container>
   )
 }
 
-const Wrapper = styled.div`
+const Container = styled.div`
   .wishlist__empty {
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
     height: 200px;
-    margin-left: 1.9rem;
   }
   .wishlist__image {
     width: 100%;
     display: block;
-    width: 300px;
     height: 200px;
     object-fit: cover;
     border-radius: var(--radius);
     margin-bottom: 1rem;
   }
   .wishlist__grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    align-items: center;
-    margin-left: 1.9rem;
-  }
-  .wishlist__product {
-    margin-left: 1rem;
+    display: block;
+    margin-bottom: 10px;
   }
   .wishlist__btn-delete {
     color: white;
@@ -80,31 +76,39 @@ const Wrapper = styled.div`
     text-decoration: underline;
     background: transparent;
     border: none;
-    margin-left: 1rem;
+    margin-left: 0px;
   }
   .wishlist__btn-delete:hover {
     text-decoration: none;
   }
+  .wishlist__product {
+    margin-left: 0px;
+  }
+
   h3,
   p {
     color: white;
   }
-  @media (max-width: 430px) {
-    h2,
+
+  @media (min-width: 400px) {
     .wishlist__empty {
-      display: flex;
-      justify-content: center;
-      margin-left: 0;
+      margin-left: 1.9rem;
+      justify-content: flex-start;
+    }
+    .wishlist__image {
+      width: 300px;
     }
     .wishlist__grid {
-      display: block;
-      margin-bottom: 10px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      align-items: center;
+      margin-left: 1.9rem;
     }
     .wishlist__btn-delete {
-      margin-left: 0px;
+      margin-left: 1rem;
     }
     .wishlist__product {
-      margin-left: 0px;
+      margin-left: 1rem;
     }
   }
 `

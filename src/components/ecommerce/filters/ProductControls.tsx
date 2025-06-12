@@ -1,7 +1,13 @@
 'use client'
 import styled from 'styled-components'
 import { useFilters } from '@/hooks/useFilters'
-import { Search, Sort, Price, Category } from '@/components/ecommerce'
+import {
+  Search,
+  Sort,
+  Price,
+  Category,
+  ClearButton,
+} from '@/components/ecommerce'
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import {
@@ -30,12 +36,10 @@ const ProductControls = () => {
   }, [category, price, text, sort, dispatch])
 
   return (
-    <Wrapper>
+    <Container>
       <form onSubmit={(e) => e.preventDefault()}>
-        <div className='product__control-search-category'>
-          <Search search={search} handleFilters={handleFilters} />
-          <Category buttonColor={category} handleFilters={handleFilters} />
-        </div>
+        <Category buttonColor={category} handleFilters={handleFilters} />
+        <Search search={search} handleFilters={handleFilters} />
         <Price
           price={price}
           min_price={min_price}
@@ -43,35 +47,14 @@ const ProductControls = () => {
           handleFilters={handleFilters}
         />
       </form>
-      <button
-        type='button'
-        className='product__control-clear-btn'
-        onClick={handleClearButton}
-      >
-        clear filters
-      </button>
+      <ClearButton handleClearButton={handleClearButton} />
       <Sort handleFilters={handleFilters} />
-    </Wrapper>
+    </Container>
   )
 }
 
-const Wrapper = styled.aside`
+const Container = styled.aside`
   margin-bottom: 3.1rem;
-  .product__control-search-category {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .product__control-clear-btn {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    text-transform: capitalize;
-    background: transparent;
-    border: none;
-    letter-spacing: var(--spacing);
-    color: var(--clr-grey-dark);
-    cursor: pointer;
-  }
 `
 
 export default ProductControls

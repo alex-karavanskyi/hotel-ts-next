@@ -8,6 +8,7 @@ import ListView from './list/ListView'
 import Pagination from './list/Pagination'
 import ProductList from './list/ProductList'
 import ProductImages from './single/ProductImages'
+import ClearButton from './filters/ClearButton'
 
 export {
   ProductList,
@@ -20,4 +21,5 @@ export {
   Search,
   Price,
   Category,
+  ClearButton,
 }

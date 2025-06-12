@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const SocialLinks = () => {
   return (
-    <Wrapper>
+    <Container>
       <li>
         <a
           href='https://github.com/alex-karavanskyi'
@@ -25,11 +25,11 @@ const SocialLinks = () => {
           <i className='fab fa-instagram'></i>
         </a>
       </li>
-    </Wrapper>
+    </Container>
   )
 }
 
-const Wrapper = styled.ul`
+const Container = styled.ul`
   display: grid;
   margin-top: 3rem;
   width: 12rem;
