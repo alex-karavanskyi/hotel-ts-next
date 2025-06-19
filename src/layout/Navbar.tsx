@@ -4,7 +4,7 @@ import pngwing_grey from '@/images/pngwing_grey.png'
 import pngwing_red from '@/images/pngwing_red.png'
 import Link from 'next/link'
 import Image from 'next/image'
-import { NavbarLinks } from './index'
+import NavbarLinks from '@/components/ui/NavbarLinks'
 import { useAppDispatch } from '@/redux/hooks'
 import { useState, useLayoutEffect } from 'react'
 import { openModal } from '@/redux/features/modalSlice'
@@ -57,6 +57,7 @@ const Container = styled.nav`
     justify-content: space-between;
     align-items: center;
     transition: var(--transition);
+    background: var(--gradient-navbar-footer-bg);
   }
   .navbar__btn {
     position: absolute;
@@ -99,7 +100,7 @@ const Container = styled.nav`
     }
     .navbar__links a,
     button {
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.5);
       font-weight: bold;
       letter-spacing: var(--spacing);
       transition: var(--transition);

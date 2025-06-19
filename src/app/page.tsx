@@ -1,21 +1,20 @@
-import { Project, Hero, Skills, Contact } from '@/components/home'
-import { StarsCanvas } from '@/canvas'
+import { ProductControls, ProductList } from '@/components/home'
+import { Metadata } from 'next'
+import { Hero, Slider } from '@/components/home'
 
-const Home = () => {
+export const metadata: Metadata = {
+  title: 'E-Commerce | React App',
+}
+
+const HomePage = () => {
   return (
     <main>
-      <div className='home__contact-container'>
-        <Hero />
-        <StarsCanvas />
-      </div>
-      <Skills />
-      <Project />
-      <div className='home__contact-container'>
-        <Contact />
-        <StarsCanvas />
-      </div>
+      <Hero />
+      <Slider />
+      <ProductControls />
+      <ProductList />
     </main>
   )
 }
 
-export default Home
+export default HomePage

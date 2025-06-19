@@ -1,15 +1,12 @@
 'use client'
 import styled from 'styled-components'
-import city from '@/images/city_coast_skyscrapers_866257_1920x1200.jpg'
-import Image from 'next/image'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { closeModal } from '@/redux/features/modalSlice'
-import { NavbarLinks, SocialLinks } from '@/layout'
+import { NavbarLinks, SocialLinks } from '@/components/ui'
 import { useLayoutEffect } from 'react'
 
 const Sidebar = () => {
   const { isOpen } = useAppSelector((store) => store.modal)
-
   const dispatch = useAppDispatch()
 
   useLayoutEffect(() => {
@@ -22,14 +19,6 @@ const Sidebar = () => {
   return (
     <Container>
       <div className={isOpen ? 'sidebar sidebar--show' : 'sidebar'}>
-        <Image
-          alt='city'
-          src={city}
-          fill
-          className='img'
-          priority
-          placeholder='blur'
-        />
         <div className='sidebar__dark-overlay'></div>
         <div className='sidebar__content'>
           <button
@@ -47,23 +36,38 @@ const Sidebar = () => {
 }
 
 const Container = styled.aside`
+  --transition: all 0.3s ease-in-out;
   .sidebar {
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
     position: fixed;
-    transition: var(--transition);
+    z-index: 1000;
     transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 50%, #4a5568 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
   }
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
   .sidebar--show {
     transform: translateX(0);
-  }
-  .sidebar img {
-    max-height: 100vh;
-    position: relative;
-    z-index: 1;
+    opacity: 1;
   }
   .sidebar__dark-overlay {
     position: absolute;
@@ -73,7 +77,12 @@ const Container = styled.aside`
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     pointer-events: none;
-    z-index: 1;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .sidebar--show .sidebar__dark-overlay {
+    opacity: 1;
   }
   .sidebar__content {
     width: 100%;
@@ -83,10 +92,17 @@ const Container = styled.aside`
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 3;
   }
   .sidebar__links {
     text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  .sidebar--show .sidebar__links {
+    opacity: 1;
+    transform: translateY(0);
   }
   .sidebar__links a,
   button {
@@ -121,10 +137,19 @@ const Container = styled.aside`
     transition: var(--transition);
     color: #bb2525;
     cursor: pointer;
+    z-index: 4;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  .sidebar--show .sidebar__close-btn {
+    opacity: 1;
+    transform: scale(1);
   }
   .sidebar__close-btn:hover {
     color: #e66b6b;
   }
+
   @media (min-width: 768px) {
     .sidebar__close-btn {
       right: 2rem;

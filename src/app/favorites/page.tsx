@@ -1,17 +1,16 @@
-import { WishList } from '@/layout/index'
 import { Metadata } from 'next'
+import Favorites from '@/components/favorites/Favorites'
 
 export const metadata: Metadata = {
   title: 'Favorites | React App',
 }
 
-const Favorites = () => {
+const FavoritesPage = () => {
   return (
-    <main className='favorites'>
-      <h2 className='favorites__title'>Wishlist</h2>
-      <WishList />
+    <main>
+      <Favorites />
     </main>
   )
 }
 
-export default Favorites
+export default FavoritesPage

@@ -1,7 +1,7 @@
 'use client'
 import styled from 'styled-components'
 import Link from 'next/link'
-import { SocialLinks } from './index'
+import SocialLinks from '@/components/ui/SocialLinks'
 import {
   react,
   redux,
@@ -33,7 +33,7 @@ const Footer = () => {
               <ul className='footer__list'>
                 {section.items.map((item) => (
                   <li key={item.id}>
-                    <Link href='/ecommerce' className='footer__link'>
+                    <Link href='/' className='footer__link'>
                       {(item as Record<string, string | number>)[section.key]}
                     </Link>
                   </li>
@@ -54,23 +54,19 @@ const Footer = () => {
 }
 
 const Wrapper = styled.footer`
-  background: #151720;
+  background: var(--gradient-navbar-footer-bg);
   padding: 2rem 1rem 1rem;
-
   .footer__container {
     max-width: 1200px;
     margin: 0 auto;
   }
-
   .footer__grid {
     display: grid;
     gap: 2rem;
   }
-
   .footer__column {
     font-size: 0.95rem;
   }
-
   .footer__title {
     color: rgba(255, 255, 255, 0.6);
     margin-bottom: 1rem;
@@ -78,13 +74,11 @@ const Wrapper = styled.footer`
     font-size: 1rem;
     text-transform: capitalize;
   }
-
   .footer__list {
     list-style: none;
     padding: 0;
     margin: 0;
   }
-
   .footer__link {
     color: rgba(255, 255, 255, 0.35);
     text-decoration: none;
@@ -92,15 +86,12 @@ const Wrapper = styled.footer`
     margin-bottom: 0.5rem;
     transition: color 0.3s ease;
   }
-
   .footer__link:hover {
     color: var(--clr-primary-5);
   }
-
   .footer__bottom {
     margin-top: 3rem;
   }
-
   .footer__social {
     display: flex;
     justify-content: center;

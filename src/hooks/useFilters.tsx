@@ -20,7 +20,9 @@ export const useFilters = () => {
 
   const debouncedUpdateFilters = useDebouncedCallback(
     (updatedParams: URLSearchParams) => {
-      replace(`${window.location.pathname}?${updatedParams.toString()}`)
+      replace(`${window.location.pathname}?${updatedParams.toString()}`, {
+        scroll: false,
+      })
     },
     500
   )
@@ -57,7 +59,9 @@ export const useFilters = () => {
     dispatch(numberPagination(1))
     setSearch('')
     const updatedParams = new URLSearchParams()
-    replace(`${window.location.pathname}?${updatedParams.toString()}`)
+    replace(`${window.location.pathname}?${updatedParams.toString()}`, {
+      scroll: false,
+    })
   }
 
   return {
