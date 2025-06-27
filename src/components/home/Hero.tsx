@@ -17,6 +17,7 @@ const Container = styled.div`
   .hero__title {
     text-align: center;
   }
+
   @media (min-width: 1400px) {
     padding: 0;
   }

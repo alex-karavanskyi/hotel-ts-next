@@ -35,6 +35,7 @@ const Container = styled.div`
   .search__input::placeholder {
     text-transform: capitalize;
   }
+
   @media (min-width: 1400px) {
     padding: 0;
   }

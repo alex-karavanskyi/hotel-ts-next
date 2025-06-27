@@ -56,7 +56,6 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
     gap: 0.5rem;
-
     img {
       cursor: pointer;
       width: 100%;

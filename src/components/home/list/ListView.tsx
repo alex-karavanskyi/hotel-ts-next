@@ -108,7 +108,6 @@ const Container = styled.section`
     display: inline-block;
     width: max-content;
   }
-
   .list__view-products-btn-details:hover {
     background-color: rgba(234, 140, 46, 0.7);
   }

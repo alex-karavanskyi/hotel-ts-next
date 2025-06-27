@@ -43,7 +43,6 @@ const pop = keyframes`
 
 const Container = styled.div`
   ${containerStyles}
-
   .clear__btn {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -58,7 +57,6 @@ const Container = styled.div`
     cursor: pointer;
     transition: transform 0.2s ease;
   }
-
   .clear__btn.animate {
     animation: ${pop} 0.3s ease;
   }
