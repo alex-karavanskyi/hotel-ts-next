@@ -2,6 +2,7 @@
 import styled from 'styled-components'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 
 interface ProductImagesProps {
   images: string[]
@@ -16,6 +17,20 @@ const ProductImages: React.FC<ProductImagesProps> = ({ images = [] }) => {
 
   if (!mainImage) return null
 
+  const galleryVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  }
+
   return (
     <Container>
       <Image
@@ -27,19 +42,28 @@ const ProductImages: React.FC<ProductImagesProps> = ({ images = [] }) => {
         src={mainImage}
       />
       {images.length > 1 && (
-        <div className='product__images-gallery'>
+        <motion.div
+          className='product__images-gallery'
+          initial='hidden'
+          animate='visible'
+          variants={galleryVariants}
+        >
           {images.map((image, index) => (
-            <Image
+            <motion.div
               key={index}
-              alt={`thumbnail ${index}`}
-              width={100}
-              height={75}
-              src={image}
+              variants={itemVariants}
               onClick={() => setMainImage(image)}
-              className={image === mainImage ? 'product__images--active' : ''}
-            />
+            >
+              <Image
+                alt={`thumbnail ${index}`}
+                width={100}
+                height={75}
+                src={image}
+                className={image === mainImage ? 'product__images--active' : ''}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
     </Container>
   )
@@ -56,11 +80,23 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
     gap: 0.5rem;
-    img {
+
+    div {
       cursor: pointer;
-      width: 100%;
-      object-fit: fill;
       border-radius: var(--radius);
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.2s ease;
+      }
+
+      &:hover img {
+        transform: scale(1.05);
+      }
     }
   }
   .product__images--active {

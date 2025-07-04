@@ -5,10 +5,10 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { formatPrice } from '@/utils/format'
 import { removeFavorite } from '@/redux/features/favoriteSlice'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const Favorites = () => {
   const { favorites_products } = useAppSelector((store) => store.favorite)
-
   const dispatch = useAppDispatch()
 
   const handleRemoveFromWishlist = (productId: string) => {
@@ -23,33 +23,42 @@ const Favorites = () => {
         {favorites_products.length === 0 ? (
           <p className='favorites__empty'>Your wishlist is empty.</p>
         ) : (
-          <ul>
-            {favorites_products.map((product) => (
-              <li key={product.id}>
-                <div className='favorites__grid'>
-                  <Image
-                    alt={product.name}
-                    width={700}
-                    height={700}
-                    src={product.image}
-                    className='favorites__image'
-                  />
-                  <div>
-                    <h3 className='favorites__product'>{product.name}</h3>
-                    <p className='favorites__product'>
-                      {formatPrice(product.price)}
-                    </p>
-                    <button
-                      onClick={() => handleRemoveFromWishlist(product.id)}
-                      className='favorites__btn-delete'
-                    >
-                      Delete
-                    </button>
+          <motion.ul layout initial={false}>
+            <AnimatePresence>
+              {favorites_products.map((product) => (
+                <motion.li
+                  key={product.id}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className='favorites__grid'>
+                    <Image
+                      alt={product.name}
+                      width={700}
+                      height={700}
+                      src={product.image}
+                      className='favorites__image'
+                    />
+                    <div>
+                      <h3 className='favorites__product'>{product.name}</h3>
+                      <p className='favorites__product'>
+                        {formatPrice(product.price)}
+                      </p>
+                      <button
+                        onClick={() => handleRemoveFromWishlist(product.id)}
+                        className='favorites__btn-delete'
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+                </motion.li>
+              ))}
+            </AnimatePresence>
+          </motion.ul>
         )}
       </div>
     </Container>
@@ -95,6 +104,7 @@ const Container = styled.div`
     border: none;
     cursor: pointer;
     text-decoration: underline;
+    font-size: 1rem;
     margin: 0;
     padding: 0;
   }
@@ -105,6 +115,16 @@ const Container = styled.div`
   h3,
   p {
     color: white;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 1rem;
   }
 
   @media (min-width: 400px) {

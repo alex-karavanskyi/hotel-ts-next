@@ -36,7 +36,6 @@ const Navbar = () => {
             <i className='fas fa-bars'></i>
           </button>
           <NavbarLinks
-            isNavbarFixed={navbar}
             parentClass={
               navbar ? 'navbar__links navbar__links--color' : 'navbar__links'
             }

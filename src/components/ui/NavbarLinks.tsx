@@ -3,44 +3,44 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { closeModal } from '@/redux/features/modalSlice'
 import { useAppDispatch } from '@/redux/hooks'
-import { useState } from 'react'
+import { motion } from 'framer-motion'
 
-const NavbarLinks: React.FC<{
-  parentClass?: string
-  isNavbarFixed?: boolean
-}> = ({ parentClass, isNavbarFixed }) => {
-  const [$isSubmenuVisible, set$isSubmenuVisible] = useState(false)
-
+const NavbarLinks: React.FC<{ parentClass?: string }> = ({ parentClass }) => {
   const dispatch = useAppDispatch()
 
-  const toggleSubmenu = (isVisible: boolean) => set$isSubmenuVisible(isVisible)
+  const listVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  }
 
   return (
     <Container>
-      <ul className={parentClass}>
-        <li onClick={() => dispatch(closeModal())}>
-          <Link href='/contact'>contact</Link>
-        </li>
-        <li onClick={() => dispatch(closeModal())}>
-          <Link href='/favorites'>favorites</Link>
-        </li>
-        {/* <DropdownItem
-          onMouseEnter={() => toggleSubmenu(true)}
-          onMouseLeave={() => toggleSubmenu(false)}
-          onClick={() => dispatch(closeModal())}
-        >
-          <Link href='/ecommerce'>e-commerce</Link>
-          <Triangle
-            $isSubmenuVisible={$isSubmenuVisible}
-            color={isNavbarFixed ? 'black' : 'white'}
-          />
-          <Submenu $isSubmenuVisible={$isSubmenuVisible}>
-            <li onClick={() => dispatch(closeModal())}>
-              <Link href='/favorites'>favorites</Link>
-            </li>
-          </Submenu>
-        </DropdownItem> */}
-      </ul>
+      <motion.ul
+        className={parentClass}
+        variants={listVariants}
+        initial='hidden'
+        animate='visible'
+      >
+        {['contact', 'favorites'].map((link) => (
+          <motion.li
+            key={link}
+            variants={itemVariants}
+            whileHover={{ scale: 1.05 }}
+            onClick={() => dispatch(closeModal())}
+          >
+            <Link href={`/${link}`}>{link}</Link>
+          </motion.li>
+        ))}
+      </motion.ul>
     </Container>
   )
 }
@@ -50,51 +50,50 @@ const Container = styled.nav`
     margin: 0;
     padding: 0;
     list-style: none;
+    display: flex;
+    gap: 2rem;
   }
 
   li {
     position: relative;
-    margin: 0;
-    padding: 0;
     cursor: pointer;
+    transition: all 0.3s ease;
+
+    a {
+      text-decoration: none;
+      font-weight: bold;
+      letter-spacing: var(--spacing);
+      color: rgba(255, 255, 255, 0.5);
+      position: relative;
+    }
+
+    a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: var(--clr-primary-5);
+      transition: width 0.3s ease;
+    }
+
+    &:hover a::after {
+      width: 100%;
+    }
+
+    &:hover a {
+      color: var(--clr-primary-5);
+    }
   }
-`
 
-const DropdownItem = styled.li`
-  display: flex;
-  align-items: center;
-  position: relative;
-`
-
-const Submenu = styled.ul<{ $isSubmenuVisible: boolean }>`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  max-height: ${({ $isSubmenuVisible }) => ($isSubmenuVisible ? '200px' : '0')};
-  opacity: ${({ $isSubmenuVisible }) => ($isSubmenuVisible ? 1 : 0)};
-  transform: ${({ $isSubmenuVisible }) =>
-    $isSubmenuVisible ? 'translateY(0)' : 'translateY(-10px)'};
-  transition: max-height 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
-
-  li {
-    padding-top: 7px;
+  .navbar__links--color a {
+    color: black;
   }
-`
 
-const Triangle = styled.div<{ $isSubmenuVisible: boolean; color: string }>`
-  width: 0;
-  height: 0;
-  margin-left: 0.5rem;
-  border-left: 0.3rem solid transparent;
-  border-right: 0.3rem solid transparent;
-  border-top: 0.3rem solid ${({ color }) => color};
-  transform: ${({ $isSubmenuVisible }) =>
-    $isSubmenuVisible ? 'rotate(180deg)' : 'rotate(0deg)'};
-  transition: transform 0.2s ease, border-top-color 0.2s ease;
+  .navbar__links--color li:hover a {
+    color: var(--clr-primary-5);
+  }
 `
 
 export default NavbarLinks

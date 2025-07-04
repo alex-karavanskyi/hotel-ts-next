@@ -2,6 +2,7 @@
 import styled from 'styled-components'
 import { getUniqueValues } from '@/utils/format'
 import { useAppSelector } from '@/redux/hooks'
+import { motion } from 'framer-motion'
 
 interface CategoryProps {
   buttonColor: string
@@ -20,6 +21,9 @@ const Category: React.FC<CategoryProps> = ({ buttonColor, handleFilters }) => {
           $isActive={buttonColor === c}
           onClick={() => handleFilters('category', c)}
           type='button'
+          whileTap={{ scale: 0.95 }}
+          animate={{ opacity: buttonColor === c ? 1 : 0.85 }}
+          transition={{ type: 'spring', stiffness: 300 }}
         >
           {c}
         </CategoryButton>
@@ -33,24 +37,29 @@ const Container = styled.nav`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 0.5rem;
 `
 
-const CategoryButton = styled.button<{ $isActive: boolean }>`
-  display: grid;
+const CategoryButton = styled(motion.button)<{ $isActive: boolean }>`
   grid-template-columns: 7.3rem;
   text-transform: capitalize;
   background: transparent;
   border: ${({ $isActive }) =>
-    $isActive ? 'solid 2px orange' : 'var(--clr-grey-5)'};
-  letter-spacing: var(--spacing);
-  color: var(--clr-grey-dark);
+    $isActive ? 'solid 2px orange' : '2px solid var(--clr-grey-5)'};
+  color: ${({ $isActive }) => ($isActive ? 'orange' : 'var(--clr-grey-dark)')};
   font-family: var(--font-main);
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
   padding: 1rem;
+  border-radius: 8px;
+  box-shadow: ${({ $isActive }) =>
+    $isActive ? '0 0 8px rgba(255,165,0,0.4)' : 'none'};
+  transition: all 0.25s ease;
+
   &:hover {
     border-color: orange;
+    opacity: 1;
   }
 `
 
