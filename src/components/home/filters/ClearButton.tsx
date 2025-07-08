@@ -2,9 +2,10 @@
 import styled, { keyframes } from 'styled-components'
 import { containerStyles } from '@/utils/styles'
 import { useState } from 'react'
+import { HandleClearButtonFn } from '@/types/productsType'
 
 interface ClearButtonProps {
-  handleClearButton: () => void
+  handleClearButton: HandleClearButtonFn
 }
 
 const ClearButton: React.FC<ClearButtonProps> = ({ handleClearButton }) => {

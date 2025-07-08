@@ -1,5 +1,6 @@
 'use client'
 import styled from 'styled-components'
+import { HandleFiltersFn } from '@/types/productsType'
 import { containerStyles } from '@/utils/styles'
 import { formatPrice } from '@/utils/format'
 
@@ -7,7 +8,7 @@ interface PriceProps {
   price: number
   min_price: number
   max_price: number
-  handleFilters: (name: string, value: number) => void
+  handleFilters: HandleFiltersFn
 }
 
 const Price: React.FC<PriceProps> = ({
@@ -35,6 +36,9 @@ const Price: React.FC<PriceProps> = ({
 const Container = styled.div`
   ${containerStyles}
   color: var(--clr-grey-dark);
+  h5 {
+    font-size: 1rem;
+  }
 
   @media (min-width: 1400px) {
     padding: 0;

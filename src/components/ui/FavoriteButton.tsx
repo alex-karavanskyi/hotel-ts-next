@@ -4,14 +4,14 @@ import { addFavorite, removeFavorite } from '@/redux/features/favoriteSlice'
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md'
 import { Product } from '@/types/productsType'
 
-interface ListProducts {
+interface FavoriteButtonProps {
   name: string
   products: Product[]
   productId: string
   classIcon: string
 }
 
-const FavoriteButton: React.FC<ListProducts> = ({
+const FavoriteButton: React.FC<FavoriteButtonProps> = ({
   name,
   products,
   productId,

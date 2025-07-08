@@ -1,10 +1,11 @@
 'use client'
 import styled from 'styled-components'
+import { HandleFiltersFn } from '@/types/productsType'
 import { containerStyles } from '@/utils/styles'
 
 interface SearchProps {
   search: string
-  handleFilters: (filterType: string, value: string) => void
+  handleFilters: HandleFiltersFn
 }
 
 const Search: React.FC<SearchProps> = ({ search, handleFilters }) => {

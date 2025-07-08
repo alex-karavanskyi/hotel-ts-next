@@ -1,12 +1,13 @@
 'use client'
 import styled from 'styled-components'
+import { HandleFiltersFn } from '@/types/productsType'
 import { getUniqueValues } from '@/utils/format'
 import { useAppSelector } from '@/redux/hooks'
 import { motion } from 'framer-motion'
 
 interface CategoryProps {
   buttonColor: string
-  handleFilters: (filterType: string, value: string) => void
+  handleFilters: HandleFiltersFn
 }
 
 const Category: React.FC<CategoryProps> = ({ buttonColor, handleFilters }) => {
@@ -38,6 +39,9 @@ const Container = styled.nav`
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+  }
 `
 
 const CategoryButton = styled(motion.button)<{ $isActive: boolean }>`

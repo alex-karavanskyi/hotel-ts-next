@@ -32,3 +32,6 @@ export type FilterState = {
     [index: string]: string | number
   }
 }
+
+export type HandleFiltersFn = (name: string, value: string | number) => void
+export type HandleClearButtonFn = () => void

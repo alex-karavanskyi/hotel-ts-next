@@ -1,9 +1,9 @@
 'use client'
-import styled from 'styled-components'
 import { useFilters } from '@/hooks/useFilters'
-import { Search, Sort, Price, Category, ClearButton } from '@/components/home'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import { Sidebar, Filters } from '@/components/home/index'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { useIsMobile } from '@/hooks/useIsMobile'
 import {
   loadProducts,
   filterProducts,
@@ -11,13 +11,14 @@ import {
 } from '@/redux/features/filterSlice'
 
 const ProductControls = () => {
+  const isMobile = useIsMobile()
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const { search, handleFilters, handleClearButton } = useFilters()
   const { products } = useAppSelector((store) => store.products)
   const {
     filters: { category, price, text, min_price, max_price },
     sort,
   } = useAppSelector((store) => store.filter)
-
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -30,25 +31,33 @@ const ProductControls = () => {
   }, [category, price, text, sort, dispatch])
 
   return (
-    <Container>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <Category buttonColor={category} handleFilters={handleFilters} />
-        <Search search={search} handleFilters={handleFilters} />
-        <Price
+    <>
+      {isMobile && (
+        <Sidebar
+          isSidebarOpen={isSidebarOpen}
+          setIsSidebarOpen={setIsSidebarOpen}
+          category={category}
+          search={search}
           price={price}
           min_price={min_price}
           max_price={max_price}
           handleFilters={handleFilters}
+          handleClearButton={handleClearButton}
         />
-      </form>
-      <ClearButton handleClearButton={handleClearButton} />
-      <Sort handleFilters={handleFilters} />
-    </Container>
+      )}
+      {!isMobile && (
+        <Filters
+          category={category}
+          search={search}
+          price={price}
+          min_price={min_price}
+          max_price={max_price}
+          handleFilters={handleFilters}
+          handleClearButton={handleClearButton}
+        />
+      )}
+    </>
   )
 }
-
-const Container = styled.aside`
-  margin-bottom: 3.1rem;
-`
 
 export default ProductControls

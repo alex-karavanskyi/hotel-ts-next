@@ -1,40 +1,29 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { GridView, ListView, Pagination } from '@/components/home'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { getProductsItems } from '@/redux/features/productSlice'
 import { url } from '@/constants/db'
+import { useIsMobile } from '@/hooks/useIsMobile'
+
+const postsPerPage = 6
 
 const ProductList = () => {
-  const [postsPerPage] = useState(6)
-  const [isLargeScreen, setIsLargeScreen] = useState(false)
+  const dispatch = useAppDispatch()
+  const isMobile = useIsMobile()
   const { filtered_products: products, grid_view } = useAppSelector(
     (store) => store.filter
   )
   const { pagination } = useAppSelector((store) => store.pagination)
 
-  const currentPosts = products.slice(
-    (pagination - 1) * postsPerPage,
-    pagination * postsPerPage
-  )
-
-  const dispatch = useAppDispatch()
-
   useEffect(() => {
     dispatch(getProductsItems(url))
   }, [dispatch])
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 768px)')
-    setIsLargeScreen(mediaQuery.matches)
-
-    const handleMediaQueryChange = (event: { matches: boolean }) => {
-      setIsLargeScreen(event.matches)
-    }
-    mediaQuery.addEventListener('change', handleMediaQueryChange)
-    return () =>
-      mediaQuery.removeEventListener('change', handleMediaQueryChange)
-  }, [])
+  const currentPosts = products.slice(
+    (pagination - 1) * postsPerPage,
+    pagination * postsPerPage
+  )
 
   if (products.length < 1) {
     return (
@@ -51,7 +40,7 @@ const ProductList = () => {
     )
   }
 
-  if (!grid_view || isLargeScreen) {
+  if (!grid_view || isMobile) {
     return <ListView products={products} />
   }
 
