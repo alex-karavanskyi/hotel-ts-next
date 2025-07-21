@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { ApiProduct } from '@/types/productsType'
+import { ApiProduct } from '@/shared/types/productsType'
 
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID

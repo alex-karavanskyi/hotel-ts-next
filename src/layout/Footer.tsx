@@ -1,7 +1,7 @@
 'use client'
 import styled from 'styled-components'
 import Link from 'next/link'
-import SocialLinks from '@/components/ui/SocialLinks'
+import SocialLinks from '@/shared/ui/SocialLinks'
 import {
   react,
   redux,
@@ -10,7 +10,7 @@ import {
   javascript,
   typescript,
   cities,
-} from '../utils/footer'
+} from '../shared/utils/footer'
 
 const Footer = () => {
   const sections = [

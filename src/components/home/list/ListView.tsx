@@ -2,9 +2,9 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Product } from '@/types/productsType'
-import { FavoriteButton } from '@/components/ui'
-import { formatPrice } from '@/utils/format'
+import { Product } from '@/shared/types/productsType'
+import { FavoriteButton } from '@/shared/ui'
+import { formatPrice } from '@/shared/utils/format'
 
 interface ListProducts {
   products: Product[]

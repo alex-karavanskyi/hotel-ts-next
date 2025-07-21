@@ -1,5 +1,5 @@
 import { screen, render } from '@testing-library/react'
-import { SocialLinks } from '@/components/ui'
+import { SocialLinks } from '@/shared/ui'
 
 describe('Footer', () => {
   it('render correctly', () => {

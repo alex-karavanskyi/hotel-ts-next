@@ -1,8 +1,8 @@
 'use client'
 import styled, { keyframes } from 'styled-components'
-import { containerStyles } from '@/utils/styles'
 import { useState } from 'react'
-import { HandleClearButtonFn } from '@/types/productsType'
+import { containerStyles } from '@/shared/utils/styles'
+import { HandleClearButtonFn } from '@/shared/types/productsType'
 
 interface ClearButtonProps {
   handleClearButton: HandleClearButtonFn

@@ -1,9 +1,9 @@
 'use client'
 import styled from 'styled-components'
-import { HandleFiltersFn } from '@/types/productsType'
-import { containerStyles } from '@/utils/styles'
-import { useAppSelector, useAppDispatch } from '@/redux/hooks'
+import { HandleFiltersFn } from '@/shared/types/productsType'
+import { containerStyles } from '@/shared/utils/styles'
 import { BsFillGridFill, BsList } from 'react-icons/bs'
+import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { setGridView, setListView } from '@/redux/features/filterSlice'
 
 interface SortProps {

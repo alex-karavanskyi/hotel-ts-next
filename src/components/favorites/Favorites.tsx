@@ -1,10 +1,10 @@
 'use client'
 import styled from 'styled-components'
 import Image from 'next/image'
-import Breadcrumbs from '@/components/ui/Breadcrumbs'
-import { useAppSelector, useAppDispatch } from '@/redux/hooks'
-import { formatPrice } from '@/utils/format'
+import Breadcrumbs from '@/shared/ui/Breadcrumbs'
+import { formatPrice } from '@/shared/utils/format'
 import { removeFavorite } from '@/redux/features/favoriteSlice'
+import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const Favorites = () => {

@@ -1,7 +1,7 @@
 'use client'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
-import { Breadcrumbs } from '../ui'
+import { Breadcrumbs } from '@/shared/ui'
 
 interface FormData {
   name: string

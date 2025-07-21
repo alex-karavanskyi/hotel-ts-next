@@ -2,10 +2,10 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Product } from '@/types/productsType'
-import { formatPrice } from '@/utils/format'
-import { FavoriteButton } from '@/components/ui'
 import { FaSearch } from 'react-icons/fa'
+import { Product } from '@/shared/types/productsType'
+import { formatPrice } from '@/shared/utils/format'
+import { FavoriteButton } from '@/shared/ui'
 
 interface GridProducts {
   products: Product[]

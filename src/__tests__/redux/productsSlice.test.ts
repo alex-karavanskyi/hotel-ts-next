@@ -1,7 +1,7 @@
 import reducer, { getProductsItems } from '@/redux/features/productSlice'
 import axios from 'axios'
 import thunk from 'redux-thunk'
-import { Product } from '@/types/productsType'
+import { Product } from '@/shared/types/productsType'
 import { configureStore } from '@reduxjs/toolkit'
 
 jest.mock('axios')

@@ -1,14 +1,14 @@
 'use client'
 import styled from 'styled-components'
 import ProductImages from './ProductImages'
-import { FavoriteButton, Breadcrumbs } from '@/components/ui'
 import { useEffect } from 'react'
-import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { useParams, useRouter } from 'next/navigation'
-import { formatPrice } from '@/utils/format'
 import { Loading, Error } from '@/layout'
 import { getSingleProduct } from '@/redux/features/productSlice'
-import { url } from '@/constants/db'
+import { useAppSelector, useAppDispatch } from '@/redux/hooks'
+import { FavoriteButton, Breadcrumbs } from '@/shared/ui'
+import { formatPrice } from '@/shared/utils/format'
+import { url } from '@/shared/constants/db'
 
 const SingleProduct = () => {
   const {

@@ -1,7 +1,7 @@
 'use client'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Product } from '@/types/productsType'
-import { FilterState } from '@/types/productsType'
+import { Product } from '@/shared/types/productsType'
+import { FilterState } from '@/shared/types/productsType'
 
 const initialState: FilterState = {
   filtered_products: [],

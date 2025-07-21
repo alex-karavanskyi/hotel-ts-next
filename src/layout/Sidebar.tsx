@@ -2,7 +2,7 @@
 import styled from 'styled-components'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { closeModal } from '@/redux/features/modalSlice'
-import { NavbarLinks, SocialLinks } from '@/components/ui'
+import { NavbarLinks, SocialLinks } from '@/shared/ui'
 import { useLayoutEffect } from 'react'
 
 const Sidebar = () => {

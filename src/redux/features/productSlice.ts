@@ -1,6 +1,6 @@
 'use client'
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import { Product } from '@/types/productsType'
+import { Product } from '@/shared/types/productsType'
 import axios from 'axios'
 
 interface ProductsState {

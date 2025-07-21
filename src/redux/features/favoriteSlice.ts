@@ -1,6 +1,6 @@
 'use client'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Product } from '@/types/productsType'
+import { Product } from '@/shared/types/productsType'
 
 interface AddFavoritePayload {
   productId: string | string[]
