@@ -1,24 +1,17 @@
 'use client'
-import { useEffect } from 'react'
 import { GridView, ListView, Pagination } from '@/components/home'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { getProductsItems } from '@/redux/features/productSlice'
-import { url } from '@/shared/constants/db'
 import { useIsMobile } from '@/shared/hooks/useIsMobile'
 
 const postsPerPage = 6
 
 const ProductList = () => {
-  const dispatch = useAppDispatch()
   const isMobile = useIsMobile()
   const { filtered_products: products, grid_view } = useAppSelector(
     (store) => store.filter
   )
-  const { pagination } = useAppSelector((store) => store.pagination)
 
-  useEffect(() => {
-    dispatch(getProductsItems(url))
-  }, [dispatch])
+  const { pagination } = useAppSelector((store) => store.pagination)
 
   const currentPosts = products.slice(
     (pagination - 1) * postsPerPage,

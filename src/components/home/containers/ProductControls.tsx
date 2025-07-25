@@ -4,6 +4,8 @@ import { Sidebar, Filters } from '@/components/home/'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useFilters } from '@/shared/hooks/useFilters'
 import { useIsMobile } from '@/shared/hooks/useIsMobile'
+import { getProductsItems } from '@/redux/features/productSlice'
+import { url } from '@/shared/constants/db'
 import {
   loadProducts,
   filterProducts,
@@ -22,15 +24,17 @@ const ProductControls = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    if (products.length) {
-      dispatch(loadProducts(products))
-    }
+    dispatch(getProductsItems(url))
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(loadProducts(products))
   }, [products, dispatch])
 
   useEffect(() => {
     dispatch(filterProducts())
     dispatch(sortProducts())
-  }, [category, price, text, sort, products, dispatch])
+  }, [category, price, text, sort, dispatch])
 
   return (
     <>
