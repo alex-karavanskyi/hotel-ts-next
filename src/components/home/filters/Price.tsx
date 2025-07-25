@@ -1,8 +1,8 @@
 'use client'
 import styled from 'styled-components'
 import { HandleFiltersFn } from '@/shared/types/productsType'
-import { containerStyles } from '@/shared/utils/styles'
-import { formatPrice } from '@/shared/utils/format'
+import { containerStyles } from '@/shared/utils/containerStyles'
+import { formatPrice } from '@/shared/utils/formatPrice'
 
 interface PriceProps {
   price: number

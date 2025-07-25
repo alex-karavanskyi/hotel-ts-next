@@ -1,7 +1,7 @@
 'use client'
 import styled from 'styled-components'
 import { HandleFiltersFn } from '@/shared/types/productsType'
-import { containerStyles } from '@/shared/utils/styles'
+import { containerStyles } from '@/shared/utils/containerStyles'
 
 interface SearchProps {
   search: string

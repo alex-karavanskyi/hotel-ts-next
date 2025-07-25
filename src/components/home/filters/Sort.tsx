@@ -1,10 +1,11 @@
 'use client'
 import styled from 'styled-components'
 import { HandleFiltersFn } from '@/shared/types/productsType'
-import { containerStyles } from '@/shared/utils/styles'
+import { containerStyles } from '@/shared/utils/containerStyles'
 import { BsFillGridFill, BsList } from 'react-icons/bs'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { setGridView, setListView } from '@/redux/features/filterSlice'
+import { useEffect } from 'react'
 
 interface SortProps {
   handleFilters: HandleFiltersFn
@@ -18,6 +19,20 @@ const Sort: React.FC<SortProps> = ({ handleFilters }) => {
   } = useAppSelector((store) => store.filter)
 
   const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    const syncView = (e: StorageEvent) => {
+      if (e.key === 'grid_view') {
+        if (e.newValue === 'true') {
+          dispatch(setGridView())
+        } else {
+          dispatch(setListView())
+        }
+      }
+    }
+    window.addEventListener('storage', syncView)
+    return () => window.removeEventListener('storage', syncView)
+  }, [dispatch])
 
   return (
     <Container>

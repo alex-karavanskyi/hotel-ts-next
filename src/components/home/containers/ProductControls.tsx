@@ -22,13 +22,15 @@ const ProductControls = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(loadProducts(products))
+    if (products.length) {
+      dispatch(loadProducts(products))
+    }
   }, [products, dispatch])
 
   useEffect(() => {
     dispatch(filterProducts())
     dispatch(sortProducts())
-  }, [category, price, text, sort, dispatch])
+  }, [category, price, text, sort, products, dispatch])
 
   return (
     <>

@@ -2,7 +2,7 @@
 import styled from 'styled-components'
 import Image from 'next/image'
 import Breadcrumbs from '@/shared/ui/Breadcrumbs'
-import { formatPrice } from '@/shared/utils/format'
+import { formatPrice } from '@/shared/utils/formatPrice'
 import { removeFavorite } from '@/redux/features/favoriteSlice'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { motion, AnimatePresence } from 'framer-motion'

@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import { Navbar, Footer, Sidebar, ClientOnly } from '@/layout'
 import { ReduxProvider } from '@/redux/provider'
 import { Metadata } from 'next'
+import FiltersCleaner from '@/components/home/containers/FiltersCleaner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ClientOnly>
           <ReduxProvider>
+            <FiltersCleaner />
             <Navbar />
             {children}
             <Footer />

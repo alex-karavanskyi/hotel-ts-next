@@ -1,7 +1,7 @@
 'use client'
 import styled from 'styled-components'
 import { HandleFiltersFn } from '@/shared/types/productsType'
-import { getUniqueValues } from '@/shared/utils/format'
+import { getUniqueValues } from '@/shared/utils/formatPrice'
 import { useAppSelector } from '@/redux/hooks'
 import { motion } from 'framer-motion'
 

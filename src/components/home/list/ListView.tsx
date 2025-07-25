@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Product } from '@/shared/types/productsType'
 import { FavoriteButton } from '@/shared/ui'
-import { formatPrice } from '@/shared/utils/format'
+import { formatPrice } from '@/shared/utils/formatPrice'
 
 interface ListProducts {
   products: Product[]

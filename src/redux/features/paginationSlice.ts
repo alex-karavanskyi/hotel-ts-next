@@ -1,20 +1,20 @@
 'use client'
-import { createSlice } from '@reduxjs/toolkit'
+import { loadPaginationFromStorage } from '@/shared/utils/localStorageFilters'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const initialState = {
-  pagination: 1,
+  pagination: loadPaginationFromStorage(),
 }
 
 const paginationSlice = createSlice({
-  name: 'modal',
+  name: 'pagination',
   initialState,
   reducers: {
-    numberPagination: (state, action) => {
+    numberPagination: (state, action: PayloadAction<number>) => {
       state.pagination = action.payload
     },
   },
 })
 
 export const { numberPagination } = paginationSlice.actions
-
 export default paginationSlice.reducer

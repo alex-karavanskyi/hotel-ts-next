@@ -3,6 +3,7 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { numberPagination } from '@/redux/features/paginationSlice'
+import { useEffect } from 'react'
 
 interface PaginationProducts {
   postsPerPage: number
@@ -27,6 +28,16 @@ const Pagination: React.FC<PaginationProducts> = ({
       event.preventDefault()
       dispatch(numberPagination(pageNumber))
     }
+
+  useEffect(() => {
+    const syncStorage = (e: StorageEvent) => {
+      if (e.key === 'pagination' && e.newValue) {
+        dispatch(numberPagination(Number(e.newValue)))
+      }
+    }
+    window.addEventListener('storage', syncStorage)
+    return () => window.removeEventListener('storage', syncStorage)
+  }, [dispatch])
 
   return (
     <Wrapper>

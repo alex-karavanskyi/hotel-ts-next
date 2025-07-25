@@ -7,7 +7,7 @@ import { Loading, Error } from '@/layout'
 import { getSingleProduct } from '@/redux/features/productSlice'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { FavoriteButton, Breadcrumbs } from '@/shared/ui'
-import { formatPrice } from '@/shared/utils/format'
+import { formatPrice } from '@/shared/utils/formatPrice'
 import { url } from '@/shared/constants/db'
 
 const SingleProduct = () => {

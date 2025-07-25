@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { FaSearch } from 'react-icons/fa'
 import { Product } from '@/shared/types/productsType'
-import { formatPrice } from '@/shared/utils/format'
+import { formatPrice } from '@/shared/utils/formatPrice'
 import { FavoriteButton } from '@/shared/ui'
 
 interface GridProducts {
