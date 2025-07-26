@@ -28,7 +28,11 @@ const ProductControls = () => {
   }, [dispatch])
 
   useEffect(() => {
-    dispatch(loadProducts(products))
+    if (products.length > 0) {
+      dispatch(loadProducts(products))
+      dispatch(filterProducts())
+      dispatch(sortProducts())
+    }
   }, [products, dispatch])
 
   useEffect(() => {

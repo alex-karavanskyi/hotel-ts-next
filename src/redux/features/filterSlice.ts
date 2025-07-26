@@ -44,7 +44,9 @@ const filterSlice = createSlice({
       state.all_products = products
       state.filters.min_price = minPrice
       state.filters.max_price = maxPrice
-      state.filters.price = maxPrice
+      if (state.filters.price === 0) {
+        state.filters.price = maxPrice
+      }
     },
     setGridView: (state) => {
       state.grid_view = true
