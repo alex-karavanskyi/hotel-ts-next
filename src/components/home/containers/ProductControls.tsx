@@ -6,6 +6,7 @@ import { useFilters } from '@/shared/hooks/useFilters'
 import { useIsMobile } from '@/shared/hooks/useIsMobile'
 import { getProductsItems } from '@/redux/features/productSlice'
 import { url } from '@/shared/constants/db'
+import { Loading, Error } from '@/layout'
 import {
   loadProducts,
   filterProducts,
@@ -16,7 +17,11 @@ const ProductControls = () => {
   const isMobile = useIsMobile()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const { search, handleFilters, handleClearButton } = useFilters()
-  const { products } = useAppSelector((store) => store.products)
+  const {
+    products,
+    products_loading: loading,
+    products_error: error,
+  } = useAppSelector((store) => store.products)
   const {
     filters: { category, price, text, min_price, max_price },
     sort,
@@ -39,6 +44,9 @@ const ProductControls = () => {
     dispatch(filterProducts())
     dispatch(sortProducts())
   }, [category, price, text, sort, dispatch])
+
+  if (loading) return <Loading />
+  if (error) return <Error />
 
   return (
     <>

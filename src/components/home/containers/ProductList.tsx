@@ -1,7 +1,8 @@
 'use client'
 import { GridView, ListView, Pagination } from '@/components/home'
-import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { useAppSelector } from '@/redux/hooks'
 import { useIsMobile } from '@/shared/hooks/useIsMobile'
+import styled from 'styled-components'
 
 const postsPerPage = 6
 
@@ -19,18 +20,7 @@ const ProductList = () => {
   )
 
   if (products.length < 1) {
-    return (
-      <h5
-        style={{
-          textTransform: 'none',
-          margin: 0,
-          paddingBottom: '1rem',
-          textAlign: 'center',
-        }}
-      >
-        Sorry, no products matched your search...
-      </h5>
-    )
+    return <Message>Sorry, no products matched your search...</Message>
   }
 
   if (!grid_view || isMobile) {
@@ -45,4 +35,12 @@ const ProductList = () => {
   )
 }
 
+const Message = styled.h5`
+  text-align: center;
+  margin: 0;
+  padding-bottom: 1rem;
+  text-transform: none;
+  color: white;
+  font-size: 1rem;
+`
 export default ProductList
