@@ -29,9 +29,7 @@ const ListView: React.FC<ListProducts> = ({ products }) => {
               <div>
                 <h4 className='list__view-products-favorite'>
                   <FavoriteButton
-                    productId={id}
-                    name={name}
-                    products={products}
+                    product={product}
                     classIcon='list__view-favorite-icon'
                   />
                 </h4>

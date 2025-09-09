@@ -3,17 +3,19 @@ import styled from 'styled-components'
 import { Search, Price, Category, ClearButton, Sort } from '@/components/home'
 import { useState } from 'react'
 import {
+  FilterState,
   HandleClearButtonFn,
   HandleFiltersFn,
+  Product,
 } from '@/shared/types/productsType'
 
 interface SidebarProps {
   isSidebarOpen: boolean
-  category: string
   search: string
-  price: number
-  min_price: number
-  max_price: number
+  category: Product['category']
+  price: Product['price']
+  min_price: FilterState['filters']['min_price']
+  max_price: FilterState['filters']['max_price']
   handleFilters: HandleFiltersFn
   handleClearButton: HandleClearButtonFn
   setIsSidebarOpen: (value: boolean) => void

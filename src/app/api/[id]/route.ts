@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { ApiProduct } from '@/shared/types/productsType'
+import { Product } from '@/shared/types/productsType'
 
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
@@ -35,11 +35,12 @@ export async function GET(
       ? JSON.parse(record.fields.images)
       : []
 
-    const product: ApiProduct = {
+    const product: Product = {
       id: record.id,
       name: record.fields.name,
       price: record.fields.price,
       images: imageUrls,
+      image: imageUrls[0] ?? '',
       description: record.fields.description,
       category: record.fields.category,
     }

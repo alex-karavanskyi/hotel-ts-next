@@ -1,21 +1,22 @@
 'use client'
 import styled from 'styled-components'
 import Image from 'next/image'
+import { Product } from '@/shared/types/productsType'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 interface ProductImagesProps {
-  images: string[]
+  images: Product['images']
 }
 
 const ProductImages: React.FC<ProductImagesProps> = ({ images = [] }) => {
-  const [mainImage, setMainImage] = useState(images[0] || null)
+  const [mainImage, setMainImage] = useState<string>(images[0] ?? '')
 
   useEffect(() => {
-    setMainImage(images[0] || null)
+    if (images.length > 0) {
+      setMainImage(images[0])
+    }
   }, [images])
-
-  if (!mainImage) return null
 
   const galleryVariants = {
     hidden: {},

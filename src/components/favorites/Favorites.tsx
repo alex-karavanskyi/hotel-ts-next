@@ -2,6 +2,7 @@
 import styled from 'styled-components'
 import Image from 'next/image'
 import Breadcrumbs from '@/shared/ui/Breadcrumbs'
+import { Product } from '@/shared/types/productsType'
 import { formatPrice } from '@/shared/utils/formatPrice'
 import { removeFavorite } from '@/redux/features/favoriteSlice'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
@@ -11,8 +12,8 @@ const Favorites = () => {
   const { favorites_products } = useAppSelector((store) => store.favorite)
   const dispatch = useAppDispatch()
 
-  const handleRemoveFromWishlist = (productId: string) => {
-    dispatch(removeFavorite({ productId }))
+  const handleRemoveFromWishlist = (productId: Product['id']) => {
+    dispatch(removeFavorite(productId))
   }
 
   return (

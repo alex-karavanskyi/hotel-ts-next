@@ -2,20 +2,10 @@ export type Product = {
   id: string
   name: string
   price: number
+  images: string[]
   image: string
   description: string
   category: string
-  images: []
-}
-
-export type ApiProduct = {
-  id: string
-  name: string
-  price: number
-  images: { url: string }[]
-  image?: string | null
-  description?: string
-  category?: string
 }
 
 export type FilterState = {

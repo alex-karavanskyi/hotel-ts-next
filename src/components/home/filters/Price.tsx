@@ -1,13 +1,17 @@
 'use client'
 import styled from 'styled-components'
-import { HandleFiltersFn } from '@/shared/types/productsType'
+import {
+  HandleFiltersFn,
+  FilterState,
+  Product,
+} from '@/shared/types/productsType'
 import { containerStyles } from '@/shared/utils/containerStyles'
 import { formatPrice } from '@/shared/utils/formatPrice'
 
 interface PriceProps {
-  price: number
-  min_price: number
-  max_price: number
+  price: Product['price']
+  min_price: FilterState['filters']['min_price']
+  max_price: FilterState['filters']['max_price']
   handleFilters: HandleFiltersFn
 }
 

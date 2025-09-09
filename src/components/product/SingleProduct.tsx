@@ -15,7 +15,6 @@ const SingleProduct = () => {
     single_product_loading: loading,
     single_product_error: error,
     single_product: product,
-    products,
   } = useAppSelector((store) => store.products)
 
   const { id } = useParams()
@@ -39,7 +38,7 @@ const SingleProduct = () => {
 
   if (!product) return null
 
-  const { name, price, description, images, id: sku } = product
+  const { name, price, description, images } = product
 
   return (
     <Container>
@@ -49,9 +48,7 @@ const SingleProduct = () => {
         <section>
           <h2 style={{ color: 'white' }}>
             <FavoriteButton
-              productId={sku}
-              name={name}
-              products={products}
+              product={product}
               classIcon='single__product-favorite-icon'
             />
           </h2>

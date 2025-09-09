@@ -2,14 +2,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Product } from '@/shared/types/productsType'
 
-interface AddFavoritePayload {
-  productId: string | string[]
-  products: Product[]
-}
-
-interface RemoveFavoritePayload {
-  productId: string | string[]
-}
 interface FavoriteState {
   favorites_products: Product[]
 }
@@ -22,29 +14,34 @@ const favoriteSlice = createSlice({
   name: 'favorite',
   initialState,
   reducers: {
-    addFavorite: (state, action: PayloadAction<AddFavoritePayload>) => {
-      const { productId, products } = action.payload
-      const productIds = Array.isArray(productId) ? productId : [productId]
-
-      productIds.forEach((id) => {
-        if (!state.favorites_products.some((product) => product.id === id)) {
-          const productToAdd = products.find((product) => product.id === id)
-          if (productToAdd) {
-            state.favorites_products.push(productToAdd)
-          }
-        }
-      })
-    },
-    removeFavorite: (state, action: PayloadAction<RemoveFavoritePayload>) => {
-      const { productId } = action.payload
-      const productIds = Array.isArray(productId) ? productId : [productId]
-
-      state.favorites_products = state.favorites_products.filter(
-        (product) => !productIds.includes(product.id)
+    addFavorite: (state, action: PayloadAction<Product>) => {
+      const exists = state.favorites_products.some(
+        (product) => product.id === action.payload.id
       )
+      if (!exists) {
+        state.favorites_products.push(action.payload)
+      }
+    },
+    removeFavorite: (state, action: PayloadAction<string>) => {
+      state.favorites_products = state.favorites_products.filter(
+        (product) => product.id !== action.payload
+      )
+    },
+    toggleFavorite: (state, action: PayloadAction<Product>) => {
+      const exists = state.favorites_products.some(
+        (product) => product.id === action.payload.id
+      )
+      if (exists) {
+        state.favorites_products = state.favorites_products.filter(
+          (product) => product.id !== action.payload.id
+        )
+      } else {
+        state.favorites_products.push(action.payload)
+      }
     },
   },
 })
 
-export const { addFavorite, removeFavorite } = favoriteSlice.actions
+export const { addFavorite, removeFavorite, toggleFavorite } =
+  favoriteSlice.actions
 export default favoriteSlice.reducer

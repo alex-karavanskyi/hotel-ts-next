@@ -38,9 +38,7 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
               <footer className='grid__view-footer'>
                 <h5 className='grid__view-favorite'>
                   <FavoriteButton
-                    productId={id}
-                    name={name}
-                    products={products}
+                    product={product}
                     classIcon='grid__view-favorite-icon'
                   />
                 </h5>
