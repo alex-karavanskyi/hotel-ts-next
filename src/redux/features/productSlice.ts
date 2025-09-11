@@ -1,7 +1,12 @@
 'use client'
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import {
+  createSlice,
+  createAsyncThunk,
+  PayloadAction,
+  ActionReducerMapBuilder,
+} from '@reduxjs/toolkit'
 import { Product } from '@/shared/types/productsType'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
 interface ProductsState {
   products_loading: boolean
@@ -25,8 +30,11 @@ const fetchData = async <T>(url: string, thunkAPI: any): Promise<T> => {
   try {
     const response = await axios.get<T>(url)
     return response.data
-  } catch (error: any) {
-    return thunkAPI.rejectWithValue(error.message || 'Something went wrong')
+  } catch (error) {
+    const axiosError = error as AxiosError
+    return thunkAPI.rejectWithValue(
+      axiosError.message || 'Something went wrong'
+    )
   }
 }
 
@@ -43,11 +51,11 @@ export const getSingleProduct = createAsyncThunk<
 >('products/getSingleProduct', fetchData)
 
 const handleAsyncState = <T>(
-  builder: any,
+  builder: ActionReducerMapBuilder<ProductsState>,
   asyncThunk: any,
   loadingKey: 'products_loading' | 'single_product_loading',
   errorKey: 'products_error' | 'single_product_error',
-  dataKey?: 'products' | 'single_product'
+  dataKey: 'products' | 'single_product'
 ) => {
   builder
     .addCase(asyncThunk.pending, (state: ProductsState) => {
