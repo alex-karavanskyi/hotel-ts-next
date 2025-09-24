@@ -21,11 +21,9 @@ export const useFilters = () => {
 
   useEffect(() => {
     if (search !== undefined) {
-      if (search === '') {
-        localStorage.removeItem(SEARCH_STORAGE_KEY)
-      } else {
-        localStorage.setItem(SEARCH_STORAGE_KEY, search)
-      }
+      search === ''
+        ? localStorage.removeItem(SEARCH_STORAGE_KEY)
+        : localStorage.setItem(SEARCH_STORAGE_KEY, search)
     }
   }, [search])
 
@@ -36,11 +34,11 @@ export const useFilters = () => {
         dispatch(numberPagination(1))
 
         const updatedParams = new URLSearchParams(searchParams.toString())
-        if (e.newValue) {
-          updatedParams.set(SEARCH_STORAGE_KEY, e.newValue)
-        } else {
-          updatedParams.delete(SEARCH_STORAGE_KEY)
-        }
+
+        e.newValue
+          ? updatedParams.set(SEARCH_STORAGE_KEY, e.newValue)
+          : updatedParams.delete(SEARCH_STORAGE_KEY)
+
         debouncedUpdateFilters(updatedParams)
       }
     }
@@ -52,24 +50,29 @@ export const useFilters = () => {
   const handleFilters = <T extends string | number>(name: string, value: T) => {
     const updatedParams = new URLSearchParams(searchParams.toString())
 
-    if (name === 'category') {
-      updatedParams.set('category', String(value))
-    }
-    if (name === 'price') {
-      updatedParams.set('price', String(value))
-    }
-    if (name === 'text') {
-      if (value === '') {
-        updatedParams.delete(SEARCH_STORAGE_KEY)
-        localStorage.removeItem(SEARCH_STORAGE_KEY)
-      } else {
-        updatedParams.set(SEARCH_STORAGE_KEY, String(value))
-        localStorage.setItem(SEARCH_STORAGE_KEY, String(value))
-      }
-    }
-    if (name === 'sort') {
-      dispatch(updateSort(String(value)))
-      updatedParams.set('sort', String(value))
+    switch (name) {
+      case 'category':
+        updatedParams.set('category', String(value))
+        break
+
+      case 'price':
+        updatedParams.set('price', String(value))
+        break
+
+      case 'text':
+        if (value === '') {
+          updatedParams.delete(SEARCH_STORAGE_KEY)
+          localStorage.removeItem(SEARCH_STORAGE_KEY)
+        } else {
+          updatedParams.set(SEARCH_STORAGE_KEY, String(value))
+          localStorage.setItem(SEARCH_STORAGE_KEY, String(value))
+        }
+        break
+
+      case 'sort':
+        dispatch(updateSort(String(value)))
+        updatedParams.set('sort', String(value))
+        break
     }
 
     dispatch(updateFilters({ name, value }))
