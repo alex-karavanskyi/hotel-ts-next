@@ -39,9 +39,27 @@ const favoriteSlice = createSlice({
         state.favorites_products.push(action.payload)
       }
     },
+    reorderFavorite: (
+      state,
+      action: PayloadAction<{ from: number; to: number }>
+    ) => {
+      const { from, to } = action.payload
+      if (
+        from === to ||
+        from < 0 ||
+        to < 0 ||
+        from >= state.favorites_products.length ||
+        to > state.favorites_products.length
+      ) {
+        return
+      }
+
+      const [movedItem] = state.favorites_products.splice(from, 1)
+      state.favorites_products.splice(to, 0, movedItem)
+    },
   },
 })
 
-export const { addFavorite, removeFavorite, toggleFavorite } =
+export const { addFavorite, removeFavorite, toggleFavorite, reorderFavorite } =
   favoriteSlice.actions
 export default favoriteSlice.reducer

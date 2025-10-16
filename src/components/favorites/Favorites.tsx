@@ -7,10 +7,13 @@ import { formatPrice } from '@/shared/utils/formatPrice'
 import { removeFavorite } from '@/redux/features/favoriteSlice'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useDragAndDropFavorites } from '@/shared/hooks/useFavorites'
 
 const Favorites = () => {
   const { favorites_products } = useAppSelector((store) => store.favorite)
   const dispatch = useAppDispatch()
+  const { handleDragStart, handleDragOver, handleDragEnd } =
+    useDragAndDropFavorites()
 
   const handleRemoveFromWishlist = (productId: Product['id']) => {
     dispatch(removeFavorite(productId))
@@ -26,7 +29,7 @@ const Favorites = () => {
         ) : (
           <motion.ul layout initial={false}>
             <AnimatePresence>
-              {favorites_products.map((product) => (
+              {favorites_products.map((product, index) => (
                 <motion.li
                   key={product.id}
                   layout
@@ -34,8 +37,14 @@ const Favorites = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
+                  onDragOver={(e) => handleDragOver(e, index)}
                 >
-                  <div className='favorites__grid'>
+                  <div
+                    className='favorites__grid'
+                    draggable
+                    onDragStart={(e) => handleDragStart(e, index)}
+                    onDragEnd={handleDragEnd}
+                  >
                     <Image
                       alt={product.name}
                       width={700}
@@ -70,35 +79,50 @@ const Container = styled.div`
   padding: 0 1rem;
   max-width: 1280px;
   margin: 2rem auto;
+
   .favorites__content {
     margin-left: 1.9rem;
   }
+
   .favorites__title {
     padding-top: 15px;
     color: white;
   }
+
   .favorites__empty {
     display: flex;
     justify-content: flex-start;
     height: 200px;
     color: white;
   }
+
   .favorites__image {
     width: 100%;
     height: 200px;
     object-fit: cover;
     border-radius: var(--radius);
-    margin-bottom: 1rem;
     display: block;
   }
+
   .favorites__grid {
     display: block;
     margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    padding: 1rem;
+    cursor: grab;
+    transition: background 0.2s;
   }
+
+  .favorites__grid:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
   .favorites__product {
     margin: 0;
     color: white;
   }
+
   .favorites__btn-delete {
     color: white;
     background: transparent;
@@ -109,6 +133,7 @@ const Container = styled.div`
     margin: 0;
     padding: 0;
   }
+
   .favorites__btn-delete:hover {
     text-decoration: none;
   }
@@ -122,10 +147,6 @@ const Container = styled.div`
     list-style: none;
     padding: 0;
     margin: 0;
-  }
-
-  li {
-    margin-bottom: 1rem;
   }
 
   @media (min-width: 400px) {
