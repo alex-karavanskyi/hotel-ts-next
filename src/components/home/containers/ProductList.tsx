@@ -20,7 +20,11 @@ const ProductList = () => {
   )
 
   if (products.length < 1) {
-    return <Message>Sorry, no products matched your search...</Message>
+    return (
+      <Message data-cy='no-results'>
+        Sorry, no products matched your search...
+      </Message>
+    )
   }
 
   if (!grid_view || isMobile) {

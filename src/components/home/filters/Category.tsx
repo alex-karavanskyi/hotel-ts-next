@@ -18,6 +18,7 @@ const Category: React.FC<CategoryProps> = ({ buttonColor, handleFilters }) => {
     <Container>
       {categories.map((c, index) => (
         <CategoryButton
+          data-cy='category'
           key={index}
           $isActive={buttonColor === c}
           onClick={() => handleFilters('category', c)}

@@ -36,12 +36,13 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
                 </Link>
               </div>
               <footer className='grid__view-footer'>
-                <h5 className='grid__view-favorite'>
+                <div className='grid__view-left'>
+                  <h5 className='grid__view-name'>{name}</h5>
                   <FavoriteButton
                     product={product}
                     classIcon='grid__view-favorite-icon'
                   />
-                </h5>
+                </div>
                 <p className='grid__view-products-price'>
                   {formatPrice(price)}
                 </p>
@@ -112,21 +113,27 @@ const Container = styled.section`
     margin-top: 1rem;
     color: var(--clr-grey-dark);
   }
-  .grid__view-favorite,
-  .grid__view-products-price {
-    margin-bottom: 0;
-    font-weight: 400;
-  }
-  .grid__view-products-price {
-    color: var(--clr-primary-5);
-    letter-spacing: var(--spacing);
+  .grid__view-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
   .grid__view-favorite-icon {
-    vertical-align: text-top;
     cursor: pointer;
     width: 18px;
     height: 18px;
     color: var(--clr-grey-dark);
+  }
+  .grid__view-name {
+    margin: 0;
+    font-weight: 500;
+    color: var(--clr-grey-dark);
+  }
+  .grid__view-products-price {
+    margin-bottom: 0;
+    color: var(--clr-primary-5);
+    letter-spacing: var(--spacing);
+    font-weight: 400;
   }
 
   @media (min-width: 1400px) {

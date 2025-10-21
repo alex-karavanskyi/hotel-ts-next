@@ -27,12 +27,13 @@ const ListView: React.FC<ListProducts> = ({ products }) => {
                 className='list__view-image'
               />
               <div>
-                <h4 className='list__view-products-favorite'>
+                <div className='list__view-header'>
+                  <h5 className='list__view-name'>{name}</h5>
                   <FavoriteButton
                     product={product}
                     classIcon='list__view-favorite-icon'
                   />
-                </h4>
+                </div>
                 <h5 className='list__view-products-price'>
                   {formatPrice(price)}
                 </h5>
@@ -63,10 +64,12 @@ const Container = styled.section`
     row-gap: 3rem;
     color: var(--clr-grey-dark);
   }
+
   .list__view-article {
     display: flex;
     flex-direction: column;
   }
+
   .list__view-image {
     width: 100%;
     max-width: 300px;
@@ -75,7 +78,10 @@ const Container = styled.section`
     border-radius: var(--radius);
     margin-bottom: 1rem;
   }
-  .list__view-products-favorite {
+  .list__view-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     margin-bottom: 0.5rem;
   }
   .list__view-favorite-icon {
@@ -84,10 +90,16 @@ const Container = styled.section`
     height: 18px;
     color: var(--clr-grey-dark);
   }
-  .list__view-products-price {
-    color: var(--clr-primary-6);
-    margin-bottom: 0.75rem;
+  .list__view-name {
+    margin: 0;
     font-weight: 500;
+    color: var(--clr-grey-dark);
+  }
+  .list__view-products-price {
+    color: var(--clr-primary-5);
+    margin-bottom: 0.75rem;
+    font-weight: 400;
+    letter-spacing: var(--spacing);
   }
   .list__view-products-description {
     max-width: 45em;

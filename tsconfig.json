@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/canvas/Ball.jsx", "src/canvas/Stars.jsx", "src/hoc/SectionWrapper.jsx", "src/canvas/index.jsx", "src/canvas/Earth.jsx", "src/components/card/index.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

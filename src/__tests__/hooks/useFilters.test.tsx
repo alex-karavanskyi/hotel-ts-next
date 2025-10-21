@@ -30,12 +30,10 @@ describe('useFilters', () => {
     const { result } = renderHook(() => useFilters(), { wrapper })
 
     expect(result.current).toHaveProperty('search')
-    expect(result.current).toHaveProperty('setSearch')
     expect(result.current).toHaveProperty('handleFilters')
     expect(result.current).toHaveProperty('handleClearButton')
 
     expect(typeof result.current.search).toBe('string')
-    expect(typeof result.current.setSearch).toBe('function')
     expect(typeof result.current.handleFilters).toBe('function')
     expect(typeof result.current.handleClearButton).toBe('function')
   })

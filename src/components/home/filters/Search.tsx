@@ -12,6 +12,7 @@ const Search: React.FC<SearchProps> = ({ search, handleFilters }) => {
   return (
     <Container>
       <input
+        data-cy='search'
         type='search'
         name='text'
         placeholder='Search'

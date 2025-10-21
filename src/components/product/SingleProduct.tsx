@@ -31,11 +31,10 @@ const SingleProduct = () => {
         router.push('/')
       }, 3000)
     }
-  }, [error])
+  }, [error, router])
 
   if (loading) return <Loading />
   if (error) return <Error />
-
   if (!product) return null
 
   const { name, price, description, images } = product
@@ -46,14 +45,15 @@ const SingleProduct = () => {
       <div className='single__product-container'>
         <ProductImages images={images} />
         <section>
-          <h2 style={{ color: 'white' }}>
+          <div className='single__product-header'>
+            <h5 className='single__product-name'>{name}</h5>
             <FavoriteButton
               product={product}
               classIcon='single__product-favorite-icon'
             />
-          </h2>
+          </div>
           <h5 className='single__product-price'>{formatPrice(price)}</h5>
-          <p className='single__product-description'> {description}</p>
+          <p className='single__product-description'>{description}</p>
           <hr />
         </section>
       </div>
@@ -70,25 +70,45 @@ const Container = styled.main`
     gap: 4rem;
     margin-top: 2rem;
   }
-  .single__product-price {
-    color: var(--clr-primary-5);
+  .single__product-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
   }
-  .single__product-description {
-    line-height: 2;
-    color: #acb4be;
+  .single__product-name {
+    color: var(--clr-grey-dark);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
   }
   .single__product-favorite-icon {
     cursor: pointer;
     width: 2rem;
     height: 2rem;
+    color: var(--clr-grey-dark);
+  }
+  .single__product-price {
+    color: var(--clr-primary-5);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    letter-spacing: var(--spacing);
+  }
+  .single__product-description {
+    line-height: 1.8;
+    color: #acb4be;
   }
 
   @media (min-width: 992px) {
     .single__product-container {
       grid-template-columns: 1fr 1fr;
     }
-    .single__product-price {
-      font-size: 1.25rem;
+    .single__product-name {
+      font-size: 2rem;
+    }
+    .single__product-favorite-icon {
+      width: 2.2rem;
+      height: 2.2rem;
     }
   }
 `
