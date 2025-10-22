@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { numberPagination } from '@/redux/features/paginationSlice'
-import { useDebouncedUpdateFilters } from '@/shared/utils/debounceFilters'
+import { useDebouncedUpdateFilters } from '@/shared/hooks/useDebounceFilters'
 import {
   updateFilters,
   updateSort,

@@ -5,7 +5,7 @@ import {
   FilterState,
   Product,
 } from '@/shared/types/productsType'
-import { containerStyles } from '@/shared/utils/containerStyles'
+import { containerStyles } from '@/shared/ui/styles/containerStyles'
 import { formatPrice } from '@/shared/utils/formatPrice'
 
 interface PriceProps {

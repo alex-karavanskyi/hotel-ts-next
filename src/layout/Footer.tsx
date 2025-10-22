@@ -10,7 +10,7 @@ import {
   javascript,
   typescript,
   cities,
-} from '../shared/utils/footerData'
+} from '../shared/constants/footerData'
 
 const Footer = () => {
   const sections = [

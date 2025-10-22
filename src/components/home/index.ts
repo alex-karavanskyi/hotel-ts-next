@@ -9,10 +9,10 @@ import Search from './filters/Search'
 import Price from './filters/Price'
 import Category from './filters/Category'
 import ClearButton from './filters/ClearButton'
-import Filters from './containers/Filters'
+import Filters from './filters/Filters'
 import ProductControls from './containers/ProductControls'
 import ProductList from './containers/ProductList'
-import Sidebar from './containers/Sidebar'
+import Sidebar from './filters/Sidebar'
 
 export {
   Hero,

@@ -1,9 +1,10 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
-import { Navbar, Footer, Sidebar, ClientOnly } from '@/layout'
+import { Navbar, Footer, Sidebar } from '@/layout'
 import { ReduxProvider } from '@/redux/provider'
 import { Metadata } from 'next'
-import FiltersCleaner from '@/components/home/containers/FiltersCleaner'
+import FiltersCleaner from '@/shared/lib/FiltersCleaner'
+import ClientOnly from '@/shared/lib/ClientOnly'
 
 const inter = Inter({ subsets: ['latin'] })
 

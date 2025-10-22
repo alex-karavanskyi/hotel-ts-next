@@ -4,7 +4,7 @@ import { Product, FilterState } from '@/shared/types/productsType'
 import {
   loadFiltersFromStorage,
   loadGridViewFromStorage,
-} from '@/shared/utils/localStorageFilters'
+} from '@/shared/lib/localStorageFilters'
 
 const initialGridView = loadGridViewFromStorage()
 

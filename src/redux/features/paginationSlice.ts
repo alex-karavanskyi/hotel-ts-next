@@ -1,5 +1,5 @@
 'use client'
-import { loadPaginationFromStorage } from '@/shared/utils/localStorageFilters'
+import { loadPaginationFromStorage } from '@/shared/lib/localStorageFilters'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const initialState = {

@@ -1,7 +1,7 @@
 'use client'
 import styled from 'styled-components'
 import { HandleFiltersFn } from '@/shared/types/productsType'
-import { containerStyles } from '@/shared/utils/containerStyles'
+import { containerStyles } from '@/shared/ui/styles/containerStyles'
 import { BsFillGridFill, BsList } from 'react-icons/bs'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { setGridView, setListView } from '@/redux/features/filterSlice'
