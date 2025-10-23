@@ -8,6 +8,7 @@ import { removeFavorite } from '@/redux/features/favoriteSlice'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useDragAndDropFavorites } from '@/shared/hooks/useFavorites'
+import ProductInfo from '@/shared/ui/ProductInfo'
 
 const Favorites = () => {
   const { favorites_products } = useAppSelector((store) => store.favorite)
@@ -53,10 +54,13 @@ const Favorites = () => {
                       className='favorites__image'
                     />
                     <div>
-                      <h3 className='favorites__product'>{product.name}</h3>
-                      <p className='favorites__product'>
-                        {formatPrice(product.price)}
-                      </p>
+                      <ProductInfo
+                        product={product}
+                        variant='compact'
+                        showHeader={true}
+                        showPrice={true}
+                        showFavorite={false}
+                      />
                       <button
                         onClick={() => handleRemoveFromWishlist(product.id)}
                         className='favorites__btn-delete'
@@ -79,23 +83,19 @@ const Container = styled.div`
   padding: 0 1rem;
   max-width: 1280px;
   margin: 2rem auto;
-
   .favorites__content {
     margin-left: 1.9rem;
   }
-
   .favorites__title {
     padding-top: 15px;
     color: white;
   }
-
   .favorites__empty {
     display: flex;
     justify-content: flex-start;
     height: 200px;
     color: white;
   }
-
   .favorites__image {
     width: 100%;
     height: 200px;
@@ -103,7 +103,6 @@ const Container = styled.div`
     border-radius: var(--radius);
     display: block;
   }
-
   .favorites__grid {
     display: block;
     margin-bottom: 10px;
@@ -113,16 +112,13 @@ const Container = styled.div`
     cursor: grab;
     transition: background 0.2s;
   }
-
   .favorites__grid:hover {
     background: rgba(255, 255, 255, 0.1);
   }
-
   .favorites__product {
     margin: 0;
     color: white;
   }
-
   .favorites__btn-delete {
     color: white;
     background: transparent;
@@ -133,7 +129,6 @@ const Container = styled.div`
     margin: 0;
     padding: 0;
   }
-
   .favorites__btn-delete:hover {
     text-decoration: none;
   }

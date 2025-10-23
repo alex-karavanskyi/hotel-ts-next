@@ -2,9 +2,8 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import Image from 'next/image'
+import ProductInfo from '@/shared/ui/ProductInfo'
 import { Product } from '@/shared/types/productsType'
-import { FavoriteButton } from '@/shared/ui'
-import { formatPrice } from '@/shared/utils/formatPrice'
 
 interface ListProducts {
   products: Product[]
@@ -15,11 +14,11 @@ const ListView: React.FC<ListProducts> = ({ products }) => {
     <Container>
       <div className='list__view-products'>
         {products.map((product) => {
-          const { id, image, name, price, description } = product
+          const { id, image, description } = product
           return (
             <article className='list__view-article' key={id}>
               <Image
-                alt={name}
+                alt={product.name}
                 width={300}
                 height={200}
                 priority
@@ -27,16 +26,18 @@ const ListView: React.FC<ListProducts> = ({ products }) => {
                 className='list__view-image'
               />
               <div>
-                <div className='list__view-header'>
-                  <h5 className='list__view-name'>{name}</h5>
-                  <FavoriteButton
-                    product={product}
-                    classIcon='list__view-favorite-icon'
-                  />
-                </div>
-                <h5 className='list__view-products-price'>
-                  {formatPrice(price)}
-                </h5>
+                <ProductInfo
+                  product={product}
+                  variant='compact'
+                  showHeader={true}
+                  showPrice={false}
+                />
+                <ProductInfo
+                  product={product}
+                  variant='compact'
+                  showHeader={false}
+                  showPrice={true}
+                />
                 <p className='list__view-products-description'>
                   {description.substring(0, 150)}...
                 </p>
@@ -78,28 +79,14 @@ const Container = styled.section`
     border-radius: var(--radius);
     margin-bottom: 1rem;
   }
-  .list__view-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-  .list__view-favorite-icon {
-    cursor: pointer;
+  .product-info-favorite-icon {
     width: 18px;
     height: 18px;
     color: var(--clr-grey-dark);
+    cursor: pointer;
   }
-  .list__view-name {
-    margin: 0;
-    font-weight: 500;
-    color: var(--clr-grey-dark);
-  }
-  .list__view-products-price {
-    color: var(--clr-primary-5);
+  .product-info-price {
     margin-bottom: 0.75rem;
-    font-weight: 400;
-    letter-spacing: var(--spacing);
   }
   .list__view-products-description {
     max-width: 45em;

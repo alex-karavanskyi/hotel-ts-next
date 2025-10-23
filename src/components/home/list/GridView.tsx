@@ -2,10 +2,9 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import Image from 'next/image'
+import ProductInfo from '@/shared/ui/ProductInfo'
 import { FaSearch } from 'react-icons/fa'
 import { Product } from '@/shared/types/productsType'
-import { formatPrice } from '@/shared/utils/formatPrice'
-import { FavoriteButton } from '@/shared/ui'
 
 interface GridProducts {
   products: Product[]
@@ -16,12 +15,12 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
     <Container>
       <div className='grid__view-products' role='list'>
         {products.map((product) => {
-          const { id, image, name, price } = product
+          const { id, image } = product
           return (
             <article key={id}>
               <div className='grid__view-products-images'>
                 <Image
-                  alt={name}
+                  alt={product.name}
                   width={470}
                   height={500}
                   priority
@@ -36,16 +35,18 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
                 </Link>
               </div>
               <footer className='grid__view-footer'>
-                <div className='grid__view-left'>
-                  <h5 className='grid__view-name'>{name}</h5>
-                  <FavoriteButton
-                    product={product}
-                    classIcon='grid__view-favorite-icon'
-                  />
-                </div>
-                <p className='grid__view-products-price'>
-                  {formatPrice(price)}
-                </p>
+                <ProductInfo
+                  product={product}
+                  variant='compact'
+                  showHeader={true}
+                  showPrice={false}
+                />
+                <ProductInfo
+                  product={product}
+                  variant='compact'
+                  showHeader={false}
+                  showPrice={true}
+                />
               </footer>
             </article>
           )
@@ -111,29 +112,15 @@ const Container = styled.section`
     justify-content: space-between;
     align-items: center;
     margin-top: 1rem;
-    color: var(--clr-grey-dark);
   }
-  .grid__view-left {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .grid__view-favorite-icon {
-    cursor: pointer;
+  .product-info-favorite-icon {
     width: 18px;
     height: 18px;
     color: var(--clr-grey-dark);
+    cursor: pointer;
   }
-  .grid__view-name {
-    margin: 0;
-    font-weight: 500;
-    color: var(--clr-grey-dark);
-  }
-  .grid__view-products-price {
+  .product-info-price {
     margin-bottom: 0;
-    color: var(--clr-primary-5);
-    letter-spacing: var(--spacing);
-    font-weight: 400;
   }
 
   @media (min-width: 1400px) {

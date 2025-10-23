@@ -1,13 +1,13 @@
 'use client'
 import styled from 'styled-components'
 import ProductImages from './ProductImages'
+import ProductInfo from '@/shared/ui/ProductInfo'
 import { useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { Loading, Error } from '@/layout'
 import { getSingleProduct } from '@/redux/features/productSlice'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
-import { FavoriteButton, Breadcrumbs } from '@/shared/ui'
-import { formatPrice } from '@/shared/utils/formatPrice'
+import { Breadcrumbs } from '@/shared/ui'
 import { url } from '@/shared/constants/db'
 
 const SingleProduct = () => {
@@ -37,22 +37,21 @@ const SingleProduct = () => {
   if (error) return <Error />
   if (!product) return null
 
-  const { name, price, description, images } = product
+  const { description, images } = product
 
   return (
     <Container>
-      <Breadcrumbs name={name} />
+      <Breadcrumbs name={product.name} />
       <div className='single__product-container'>
         <ProductImages images={images} />
         <section>
-          <div className='single__product-header'>
-            <h5 className='single__product-name'>{name}</h5>
-            <FavoriteButton
-              product={product}
-              classIcon='single__product-favorite-icon'
-            />
-          </div>
-          <h5 className='single__product-price'>{formatPrice(price)}</h5>
+          <ProductInfo
+            product={product}
+            variant='detailed'
+            showHeader={true}
+            showPrice={true}
+            priceTag='h5'
+          />
           <p className='single__product-description'>{description}</p>
           <hr />
         </section>
@@ -70,29 +69,14 @@ const Container = styled.main`
     gap: 4rem;
     margin-top: 2rem;
   }
-  .single__product-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-  }
-  .single__product-name {
-    color: var(--clr-grey-dark);
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 0;
-  }
-  .single__product-favorite-icon {
-    cursor: pointer;
+  .product-info-favorite-icon {
     width: 2rem;
     height: 2rem;
     color: var(--clr-grey-dark);
+    cursor: pointer;
   }
-  .single__product-price {
-    color: var(--clr-primary-5);
-    font-size: 1.25rem;
+  .product-info-price {
     margin-bottom: 1rem;
-    letter-spacing: var(--spacing);
   }
   .single__product-description {
     line-height: 1.8;
@@ -103,10 +87,7 @@ const Container = styled.main`
     .single__product-container {
       grid-template-columns: 1fr 1fr;
     }
-    .single__product-name {
-      font-size: 2rem;
-    }
-    .single__product-favorite-icon {
+    .product-info-favorite-icon {
       width: 2.2rem;
       height: 2.2rem;
     }
