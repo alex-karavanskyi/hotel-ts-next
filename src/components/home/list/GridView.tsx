@@ -121,6 +121,7 @@ const Container = styled.section`
   }
   .product-info-price {
     margin-bottom: 0;
+    font-weight: 500;
   }
 
   @media (min-width: 1400px) {

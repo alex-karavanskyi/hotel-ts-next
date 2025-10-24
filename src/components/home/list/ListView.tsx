@@ -86,7 +86,8 @@ const Container = styled.section`
     cursor: pointer;
   }
   .product-info-price {
-    margin-bottom: 0.75rem;
+    margin-top: 0.75rem;
+    font-weight: 500;
   }
   .list__view-products-description {
     max-width: 45em;

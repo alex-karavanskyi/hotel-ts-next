@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import Breadcrumbs from '@/shared/ui/Breadcrumbs'
 import { Product } from '@/shared/types/productsType'
-import { formatPrice } from '@/shared/utils/formatPrice'
 import { removeFavorite } from '@/redux/features/favoriteSlice'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -53,7 +52,7 @@ const Favorites = () => {
                       src={product.image}
                       className='favorites__image'
                     />
-                    <div>
+                    <div className='favorites__info'>
                       <ProductInfo
                         product={product}
                         variant='compact'
@@ -104,7 +103,9 @@ const Container = styled.div`
     display: block;
   }
   .favorites__grid {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     margin-bottom: 10px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: var(--radius);
@@ -115,9 +116,13 @@ const Container = styled.div`
   .favorites__grid:hover {
     background: rgba(255, 255, 255, 0.1);
   }
-  .favorites__product {
-    margin: 0;
-    color: white;
+  .favorites__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .product-info-price {
+    margin-top: 0.75rem;
   }
   .favorites__btn-delete {
     color: white;
@@ -126,8 +131,7 @@ const Container = styled.div`
     cursor: pointer;
     text-decoration: underline;
     font-size: 1rem;
-    margin: 0;
-    padding: 0;
+    align-self: flex-start;
   }
   .favorites__btn-delete:hover {
     text-decoration: none;
@@ -144,18 +148,20 @@ const Container = styled.div`
     margin: 0;
   }
 
-  @media (min-width: 400px) {
-    .favorites__image {
-      width: 300px;
-    }
+  @media (min-width: 600px) {
     .favorites__grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      align-items: center;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 1.5rem;
     }
-    .favorites__product,
-    .favorites__btn-delete {
-      margin-left: 1rem;
+    .favorites__image {
+      width: 280px;
+      flex-shrink: 0;
+    }
+    .favorites__info {
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-between;
     }
   }
 `
