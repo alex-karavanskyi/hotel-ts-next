@@ -24,8 +24,9 @@ const Sidebar = () => {
           <button
             className='sidebar__close-btn'
             onClick={() => dispatch(closeModal())}
+            aria-label='Close sidebar'
           >
-            <i className='fas fa-times'></i>
+            <CloseIcon />
           </button>
           <NavbarLinks parentClass='sidebar__links' />
           <SocialLinks />
@@ -34,6 +35,25 @@ const Sidebar = () => {
     </Container>
   )
 }
+
+const CloseIcon = () => (
+  <svg
+    width='28'
+    height='28'
+    viewBox='0 0 28 28'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    className='close-icon'
+  >
+    <path
+      d='M6 6L22 22M6 22L22 6'
+      stroke='currentColor'
+      strokeWidth='3'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+)
 
 const Container = styled.aside`
   --transition: all 0.3s ease-in-out;
@@ -64,7 +84,6 @@ const Container = styled.aside`
       background-position: 0% 50%;
     }
   }
-
   .sidebar--show {
     transform: translateX(0);
     opacity: 1;
@@ -105,7 +124,7 @@ const Container = styled.aside`
     transform: translateY(0);
   }
   .sidebar__links a,
-  button {
+  .sidebar__links button {
     font-size: 2rem;
     transition: var(--transition);
     color: var(--clr-grey-5);
@@ -113,17 +132,13 @@ const Container = styled.aside`
     display: inline-block;
     text-decoration: none;
     margin-bottom: 1.5rem;
-  }
-  .sidebar__links button {
     background: transparent;
     cursor: pointer;
     text-transform: capitalize;
     border: none;
     outline: none;
   }
-  .sidebar__links a:hover {
-    color: var(--clr-primary-5);
-  }
+  .sidebar__links a:hover,
   .sidebar__links button:hover {
     color: var(--clr-primary-5);
   }
@@ -131,16 +146,14 @@ const Container = styled.aside`
     position: absolute;
     top: 1rem;
     right: 1rem;
-    font-size: 3rem;
     background: transparent;
-    border: transparent;
-    transition: var(--transition);
-    color: #bb2525;
+    border: none;
     cursor: pointer;
     z-index: 4;
     opacity: 0;
     transform: scale(0.8);
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    color: #bb2525;
   }
   .sidebar--show .sidebar__close-btn {
     opacity: 1;
@@ -148,6 +161,15 @@ const Container = styled.aside`
   }
   .sidebar__close-btn:hover {
     color: #e66b6b;
+  }
+  .sidebar__close-btn:hover .close-icon {
+    transform: rotate(90deg);
+  }
+  .close-icon {
+    width: 28px;
+    height: 28px;
+    color: currentColor;
+    transition: transform 0.3s ease, color 0.3s ease;
   }
 
   @media (min-width: 768px) {
