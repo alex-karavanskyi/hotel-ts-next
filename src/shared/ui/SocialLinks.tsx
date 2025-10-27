@@ -1,36 +1,28 @@
 'use client'
 import styled from 'styled-components'
-import { FaLinkedin } from 'react-icons/fa'
-import { FaGithub } from 'react-icons/fa'
-import { FaTelegram } from 'react-icons/fa'
+import { FaLinkedin, FaGithub, FaTelegram } from 'react-icons/fa'
+import { socialLinks } from '@/shared/constants/socialLinksData'
 
-const SocialLinks = () => {
-  return (
-    <Container>
-      <li>
-        <a
-          href='https://github.com/alex-karavanskyi'
-          className='social__links-icon'
-        >
-          <FaGithub />
-        </a>
-      </li>
-      <li>
-        <a
-          href='https://linkedin.com/in/oleksandr-karavanskyi-710770309'
-          className='social__links-icon'
-        >
-          <FaLinkedin />
-        </a>
-      </li>
-      <li>
-        <a href='https://t.me/alex_karavanskyi' className='social__links-icon'>
-          <FaTelegram />
-        </a>
-      </li>
-    </Container>
-  )
+const SocialLinks = () => (
+  <Container>
+    <SocialLink href={socialLinks.github} icon={<FaGithub />} />
+    <SocialLink href={socialLinks.linkedin} icon={<FaLinkedin />} />
+    <SocialLink href={socialLinks.telegram} icon={<FaTelegram />} />
+  </Container>
+)
+
+interface SocialLinkProps {
+  href: string
+  icon: React.ReactNode
 }
+
+const SocialLink = ({ href, icon }: SocialLinkProps) => (
+  <li>
+    <a href={href} className='social__links-icon'>
+      {icon}
+    </a>
+  </li>
+)
 
 const Container = styled.ul`
   display: grid;
@@ -41,7 +33,6 @@ const Container = styled.ul`
   .social__links-icon {
     font-size: 1.5rem;
     color: var(--clr-grey-3);
-    -webkit-transition: var(--transition);
     transition: var(--transition);
   }
   .social__links-icon:hover {
