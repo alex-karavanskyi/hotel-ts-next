@@ -3,35 +3,30 @@ import styled from 'styled-components'
 import { Search, Price, Category, ClearButton, Sort } from '@/components/home'
 import { useState } from 'react'
 import {
-  FilterState,
+  FilterFields,
   HandleClearButtonFn,
   HandleFiltersFn,
-  Product,
 } from '@/shared/types/productsType'
 
-interface SidebarProps {
+interface SidebarProps extends FilterFields {
   isSidebarOpen: boolean
   search: string
-  category: Product['category']
-  price: Product['price']
-  min_price: FilterState['filters']['min_price']
-  max_price: FilterState['filters']['max_price']
   handleFilters: HandleFiltersFn
   handleClearButton: HandleClearButtonFn
   setIsSidebarOpen: (value: boolean) => void
 }
 
-const Sidebar = ({
+const Sidebar: React.FC<SidebarProps> = ({
   isSidebarOpen,
-  setIsSidebarOpen,
-  category,
   search,
+  category,
   price,
   min_price,
   max_price,
   handleFilters,
   handleClearButton,
-}: SidebarProps) => {
+  setIsSidebarOpen,
+}) => {
   const [isSortOpen, setIsSortOpen] = useState(false)
 
   return (

@@ -1,11 +1,10 @@
-export type Product = {
-  id: string
-  name: string
-  price: number
-  images: string[]
-  image: string
-  description: string
+type ProductFilters = {
+  text: string
   category: string
+  price: number
+  min_price: number
+  max_price: number
+  [key: string]: string | number
 }
 
 export type FilterState = {
@@ -13,15 +12,36 @@ export type FilterState = {
   all_products: Product[]
   grid_view: boolean
   sort: string
-  filters: {
-    text: string
-    category: string
-    min_price: number
-    max_price: number
-    price: number
-    [index: string]: string | number
-  }
+  filters: ProductFilters
 }
 
-export type HandleFiltersFn = (name: string, value: string | number) => void
+export type FilterFields = {
+  category: string
+  price: number
+  min_price: number
+  max_price: number
+}
+
+export type Product = {
+  id: string
+  name: string
+  description: string
+  image: string
+  images: string[]
+  price: number
+  category: string
+}
+
+export enum FilterName {
+  Category = 'category',
+  Price = 'price',
+  Text = 'text',
+  Sort = 'sort',
+}
+
+export type HandleFiltersFn = <T extends string | number>(
+  name: FilterName,
+  value: T
+) => void
+
 export type HandleClearButtonFn = () => void

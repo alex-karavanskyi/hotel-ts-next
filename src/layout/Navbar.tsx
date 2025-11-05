@@ -5,7 +5,7 @@ import pngwing_red from '@/images/pngwing_red.png'
 import Link from 'next/link'
 import Image from 'next/image'
 import NavbarLinks from '@/shared/ui/NavbarLinks'
-import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { useAppDispatch } from '@/redux/hooks'
 import { useState, useLayoutEffect } from 'react'
 import { openModal } from '@/redux/features/modalSlice'
 

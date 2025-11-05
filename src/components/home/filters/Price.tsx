@@ -1,17 +1,15 @@
 'use client'
 import styled from 'styled-components'
 import {
+  FilterFields,
+  FilterName,
   HandleFiltersFn,
-  FilterState,
-  Product,
 } from '@/shared/types/productsType'
 import { containerStyles } from '@/shared/ui/styles/containerStyles'
 import { formatPrice } from '@/shared/utils/formatPrice'
 
-interface PriceProps {
-  price: Product['price']
-  min_price: FilterState['filters']['min_price']
-  max_price: FilterState['filters']['max_price']
+interface PriceProps
+  extends Pick<FilterFields, 'price' | 'min_price' | 'max_price'> {
   handleFilters: HandleFiltersFn
 }
 
@@ -31,7 +29,9 @@ const Price: React.FC<PriceProps> = ({
         min={min_price}
         max={max_price}
         value={price}
-        onChange={(e) => handleFilters('price', Number(e.target.value))}
+        onChange={(e) =>
+          handleFilters(FilterName.Price, Number(e.target.value))
+        }
       />
     </Container>
   )

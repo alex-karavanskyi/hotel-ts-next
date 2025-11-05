@@ -1,6 +1,6 @@
 'use client'
 import styled from 'styled-components'
-import { HandleFiltersFn } from '@/shared/types/productsType'
+import { FilterName, HandleFiltersFn } from '@/shared/types/productsType'
 import { getUniqueValues } from '@/shared/utils/formatPrice'
 import { useAppSelector } from '@/redux/hooks'
 import { motion } from 'framer-motion'
@@ -21,7 +21,7 @@ const Category: React.FC<CategoryProps> = ({ buttonColor, handleFilters }) => {
           data-cy='category'
           key={index}
           $isActive={buttonColor === c}
-          onClick={() => handleFilters('category', c)}
+          onClick={() => handleFilters(FilterName.Category, c)}
           type='button'
           whileTap={{ scale: 0.95 }}
           animate={{ opacity: buttonColor === c ? 1 : 0.85 }}

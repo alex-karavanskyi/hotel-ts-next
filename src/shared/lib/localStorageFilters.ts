@@ -1,8 +1,9 @@
 import { FilterState } from '@/shared/types/productsType'
-
-const GRID_VIEW_STORAGE_KEY = 'grid_view'
-const FILTERS_STORAGE_KEY = 'filters_state'
-const PAGINATION_STORAGE_KEY = 'pagination'
+import {
+  FILTERS_STORAGE_KEY,
+  GRID_VIEW_STORAGE_KEY,
+  PAGINATION_STORAGE_KEY,
+} from '@/shared/constants/localStorage'
 
 export const loadFiltersFromStorage = (): Pick<
   FilterState,

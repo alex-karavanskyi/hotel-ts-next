@@ -4,13 +4,13 @@ import { useSearchParams } from 'next/navigation'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { numberPagination } from '@/redux/features/paginationSlice'
 import { useDebouncedUpdateFilters } from '@/shared/hooks/useDebounceFilters'
+import { FilterName } from '@/shared/types/productsType'
+import { SEARCH_STORAGE_KEY } from '@/shared/constants/localStorage'
 import {
   updateFilters,
   updateSort,
   clearFilters,
 } from '@/redux/features/filterSlice'
-
-const SEARCH_STORAGE_KEY = 'search'
 
 export const useFilters = () => {
   const dispatch = useAppDispatch()
@@ -47,19 +47,22 @@ export const useFilters = () => {
     return () => window.removeEventListener('storage', syncStorage)
   }, [dispatch, debouncedUpdateFilters, searchParams])
 
-  const handleFilters = <T extends string | number>(name: string, value: T) => {
+  const handleFilters = <T extends string | number>(
+    name: FilterName,
+    value: T
+  ) => {
     const updatedParams = new URLSearchParams(searchParams.toString())
 
     switch (name) {
-      case 'category':
-        updatedParams.set('category', String(value))
+      case FilterName.Category:
+        updatedParams.set(FilterName.Category, String(value))
         break
 
-      case 'price':
-        updatedParams.set('price', String(value))
+      case FilterName.Price:
+        updatedParams.set(FilterName.Price, String(value))
         break
 
-      case 'text':
+      case FilterName.Text:
         if (value === '') {
           updatedParams.delete(SEARCH_STORAGE_KEY)
           localStorage.removeItem(SEARCH_STORAGE_KEY)
@@ -69,9 +72,9 @@ export const useFilters = () => {
         }
         break
 
-      case 'sort':
+      case FilterName.Sort:
         dispatch(updateSort(String(value)))
-        updatedParams.set('sort', String(value))
+        updatedParams.set(FilterName.Sort, String(value))
         break
     }
 

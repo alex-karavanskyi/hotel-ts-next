@@ -1,6 +1,6 @@
 'use client'
 import styled from 'styled-components'
-import { HandleFiltersFn } from '@/shared/types/productsType'
+import { FilterName, HandleFiltersFn } from '@/shared/types/productsType'
 import { containerStyles } from '@/shared/ui/styles/containerStyles'
 
 interface SearchProps {
@@ -17,7 +17,7 @@ const Search: React.FC<SearchProps> = ({ search, handleFilters }) => {
         name='text'
         placeholder='Search'
         className='search__input'
-        onChange={(e) => handleFilters('text', e.target.value)}
+        onChange={(e) => handleFilters(FilterName.Text, e.target.value)}
         value={search}
       />
     </Container>

@@ -1,6 +1,6 @@
 'use client'
 import styled from 'styled-components'
-import { HandleFiltersFn } from '@/shared/types/productsType'
+import { FilterName, HandleFiltersFn } from '@/shared/types/productsType'
 import { containerStyles } from '@/shared/ui/styles/containerStyles'
 import { BsFillGridFill, BsList } from 'react-icons/bs'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
@@ -61,7 +61,7 @@ const Sort: React.FC<SortProps> = ({ handleFilters }) => {
             id='sort'
             className='sort__select'
             value={sort}
-            onChange={(e) => handleFilters('sort', e.target.value)}
+            onChange={(e) => handleFilters(FilterName.Sort, e.target.value)}
           >
             <option value='price-lowest'>price (lowest)</option>
             <option value='price-highest'>price (highest)</option>

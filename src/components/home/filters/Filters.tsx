@@ -2,23 +2,18 @@
 import styled from 'styled-components'
 import { Search, Sort, Price, Category, ClearButton } from '@/components/home'
 import {
-  FilterState,
+  FilterFields,
   HandleClearButtonFn,
   HandleFiltersFn,
-  Product,
 } from '@/shared/types/productsType'
 
-interface FiltersProps {
+interface FiltersProps extends FilterFields {
   search: string
-  category: Product['category']
-  price: Product['price']
-  min_price: FilterState['filters']['min_price']
-  max_price: FilterState['filters']['max_price']
   handleFilters: HandleFiltersFn
   handleClearButton: HandleClearButtonFn
 }
 
-const Filters = ({
+const Filters: React.FC<FiltersProps> = ({
   category,
   search,
   price,
@@ -26,7 +21,7 @@ const Filters = ({
   max_price,
   handleFilters,
   handleClearButton,
-}: FiltersProps) => {
+}) => {
   return (
     <Container>
       <form onSubmit={(e) => e.preventDefault()}>
