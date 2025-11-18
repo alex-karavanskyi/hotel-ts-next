@@ -1,13 +1,11 @@
 'use client'
 import styled from 'styled-components'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
-import { closeModal } from '@/redux/features/modalSlice'
 import { NavbarLinks, SocialLinks } from '@/shared/ui'
 import { useLayoutEffect } from 'react'
 
 const Sidebar = () => {
   const { isOpen } = useAppSelector((store) => store.modal)
-  const dispatch = useAppDispatch()
 
   useLayoutEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'auto'
@@ -21,13 +19,6 @@ const Sidebar = () => {
       <div className={isOpen ? 'sidebar sidebar--show' : 'sidebar'}>
         <div className='sidebar__dark-overlay'></div>
         <div className='sidebar__content'>
-          <button
-            className='sidebar__close-btn'
-            onClick={() => dispatch(closeModal())}
-            aria-label='Close sidebar'
-          >
-            <CloseIcon />
-          </button>
           <NavbarLinks parentClass='sidebar__links' />
           <SocialLinks />
         </div>
@@ -35,25 +26,6 @@ const Sidebar = () => {
     </Container>
   )
 }
-
-const CloseIcon = () => (
-  <svg
-    width='28'
-    height='28'
-    viewBox='0 0 28 28'
-    fill='none'
-    xmlns='http://www.w3.org/2000/svg'
-    className='close-icon'
-  >
-    <path
-      d='M6 6L22 22M6 22L22 6'
-      stroke='currentColor'
-      strokeWidth='3'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-  </svg>
-)
 
 const Container = styled.aside`
   --transition: all 0.3s ease-in-out;

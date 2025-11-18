@@ -5,19 +5,31 @@ import pngwing_red from '@/images/pngwing_red.png'
 import Link from 'next/link'
 import Image from 'next/image'
 import NavbarLinks from '@/shared/ui/NavbarLinks'
-import { useAppDispatch } from '@/redux/hooks'
-import { useState, useLayoutEffect } from 'react'
-import { openModal } from '@/redux/features/modalSlice'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { useState, useLayoutEffect, useEffect } from 'react'
+import { closeModal, toggleModal } from '@/redux/features/modalSlice'
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false)
   const dispatch = useAppDispatch()
+
+  const isModalOpen = useAppSelector((state) => state.modal.isOpen)
 
   useLayoutEffect(() => {
     const handleScroll = () => setNavbar(window.scrollY > 80)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) {
+        dispatch(closeModal())
+      }
+    }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [dispatch])
 
   return (
     <>
@@ -34,10 +46,10 @@ const Navbar = () => {
           </Link>
           <button
             className='navbar__btn'
-            onClick={() => dispatch(openModal())}
-            aria-label='Open menu'
+            onClick={() => dispatch(toggleModal())}
+            aria-label={isModalOpen ? 'Close menu' : 'Open menu'}
           >
-            <HamburgerIcon />
+            <HamburgerIcon isOpen={isModalOpen} />
           </button>
           <NavbarLinks
             parentClass={
@@ -51,7 +63,7 @@ const Navbar = () => {
   )
 }
 
-const HamburgerIcon = () => (
+const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
   <svg
     width='28'
     height='28'
@@ -60,9 +72,27 @@ const HamburgerIcon = () => (
     xmlns='http://www.w3.org/2000/svg'
     className='hamburger-icon'
   >
-    <path d='M4 8H24' className='line line-1' />
-    <path d='M4 14H24' className='line line-2' />
-    <path d='M4 20H24' className='line line-3' />
+    <path
+      d='M4 8H24'
+      className='line line-1'
+      stroke='currentColor'
+      strokeWidth='3'
+      strokeLinecap='round'
+    />
+    <path
+      d='M4 14H24'
+      className='line line-2'
+      stroke='currentColor'
+      strokeWidth='3'
+      strokeLinecap='round'
+    />
+    <path
+      d='M4 20H24'
+      className='line line-3'
+      stroke='currentColor'
+      strokeWidth='3'
+      strokeLinecap='round'
+    />
   </svg>
 )
 
@@ -77,7 +107,7 @@ const Container = styled.nav`
     align-items: center;
     background: var(--gradient-navbar-footer-bg);
     transition: var(--transition);
-    z-index: 10;
+    z-index: 3000;
   }
   .navbar--fixed {
     position: fixed;
@@ -87,7 +117,7 @@ const Container = styled.nav`
     background: var(--clr-white);
     box-shadow: var(--light-shadow);
     transition: all 0.3s ease;
-    z-index: 10;
+    z-index: 3000;
   }
   .navbar__btn {
     position: absolute;
@@ -95,7 +125,6 @@ const Container = styled.nav`
     background: transparent;
     border: none;
     cursor: pointer;
-    z-index: 11;
     color: var(--clr-primary-5);
     transition: color 0.3s ease;
   }
@@ -127,6 +156,37 @@ const Container = styled.nav`
   }
   .navbar__links {
     display: none;
+  }
+  .hamburger-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--clr-primary-5);
+  }
+  .line {
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+  .navbar__btn[aria-label='Close menu'] .line-1 {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .navbar__btn[aria-label='Close menu'] .line-2 {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .navbar__btn[aria-label='Close menu'] .line-3 {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+  .navbar__btn[aria-label='Open menu']:hover .line-1 {
+    stroke-width: 4;
+    transform: translateY(-2px) scaleX(1.1);
+  }
+  .navbar__btn[aria-label='Open menu']:hover .line-2 {
+    stroke-width: 4;
+    transform: scaleX(1.2);
+  }
+  .navbar__btn[aria-label='Open menu']:hover .line-3 {
+    stroke-width: 4;
+    transform: translateY(2px) scaleX(1.1);
   }
 
   @media (min-width: 768px) {
