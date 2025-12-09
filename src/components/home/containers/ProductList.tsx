@@ -1,8 +1,8 @@
 'use client'
+import styled from 'styled-components'
 import { GridView, ListView, Pagination } from '@/components/home'
 import { useAppSelector } from '@/redux/hooks'
 import { useIsMobile } from '@/shared/hooks/useIsMobile'
-import styled from 'styled-components'
 
 const postsPerPage = 6
 
@@ -41,7 +41,6 @@ const ProductList = () => {
 
 const Message = styled.h5`
   text-align: center;
-  margin: 0;
   padding-bottom: 1rem;
   text-transform: none;
   color: white;

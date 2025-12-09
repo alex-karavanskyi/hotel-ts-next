@@ -5,6 +5,7 @@ import pngwing_red from '@/images/pngwing_red.png'
 import Link from 'next/link'
 import Image from 'next/image'
 import NavbarLinks from '@/shared/ui/NavbarLinks'
+import { device } from '@/shared/constants/device'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useState, useLayoutEffect, useEffect } from 'react'
 import { closeModal, toggleModal } from '@/redux/features/modalSlice'
@@ -100,7 +101,7 @@ const Container = styled.nav`
   --transition: all 0.3s ease;
   .navbar {
     position: relative;
-    height: 5rem;
+    height: var(--navbar-height);
     padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -189,7 +190,7 @@ const Container = styled.nav`
     transform: translateY(2px) scaleX(1.1);
   }
 
-  @media (min-width: 768px) {
+  @media ${device.mobile} {
     .navbar__btn {
       display: none;
     }

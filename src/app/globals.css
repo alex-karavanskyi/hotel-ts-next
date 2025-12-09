@@ -32,10 +32,9 @@
   --clr-black: #222;
   --transition: all 0.3s linear;
   --spacing: 0.1rem;
-  --radius: 0.25rem;
+  --radius: 0.3rem;
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  --max-width: 1280px;
   --font-main: 'Intel', sans-serif;
   /* dark gradient background for navbar and footer */
   --gradient-navbar-footer-bg: linear-gradient(
@@ -44,6 +43,8 @@
     #2d3748 50%,
     #1f2632 50% 100%
   );
+  /* height of navbar */
+  --navbar-height: 5rem;
 }
 
 /*
@@ -98,14 +99,12 @@ h5 {
   letter-spacing: var(--spacing);
   text-transform: capitalize;
   line-height: 1.25;
-  margin-bottom: 0.75rem;
 }
 p {
-  margin-bottom: 1.25rem;
   color: var(--clr-grey-dark);
 }
 
-@media (min-width: 800px) {
+@media (min-width: 768px) {
   h1 {
     font-size: 3rem;
   }

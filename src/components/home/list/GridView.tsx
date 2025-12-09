@@ -3,8 +3,10 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import Image from 'next/image'
 import ProductInfo from '@/shared/ui/ProductInfo'
+import { device } from '@/shared/constants/device'
 import { FaSearch } from 'react-icons/fa'
 import { Product } from '@/shared/types/productsType'
+import { containerStyles } from '@/shared/ui/styles/containerStyles'
 
 interface GridProducts {
   products: Product[]
@@ -17,7 +19,7 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
         {products.map((product) => {
           const { id, image } = product
           return (
-            <article key={id}>
+            <article key={id} className='grid__view-product'>
               <div className='grid__view-products-images'>
                 <Image
                   alt={product.name}
@@ -57,13 +59,18 @@ const GridView: React.FC<GridProducts> = ({ products }) => {
 }
 
 const Container = styled.section`
-  padding: 0 1rem;
-  max-width: 1280px;
-  margin: 2rem auto;
+  ${containerStyles}
+  padding-left: 1rem;
+  padding-right: 1rem;
   .grid__view-products {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 1.25rem;
+    gap: 1.5rem;
+  }
+  .grid__view-product {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
   .grid__view-products-images {
     position: relative;
@@ -111,7 +118,7 @@ const Container = styled.section`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1rem;
+    gap: 1rem;
   }
   .product-info-favorite-icon {
     width: 18px;
@@ -120,11 +127,10 @@ const Container = styled.section`
     cursor: pointer;
   }
   .product-info-price {
-    margin-bottom: 0;
     font-weight: 500;
   }
 
-  @media (min-width: 1400px) {
+  @media ${device.desktop} {
     padding: 0;
   }
 `

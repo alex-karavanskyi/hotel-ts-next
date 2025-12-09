@@ -23,7 +23,7 @@ const Contact = () => {
   }
 
   return (
-    <Wrapper>
+    <Container>
       <div id='contact' className='contact' data-testid='contact'>
         <div className='contact__container'>
           <Breadcrumbs name='Contact' />
@@ -99,13 +99,15 @@ const Contact = () => {
           </form>
         </div>
       </div>
-    </Wrapper>
+    </Container>
   )
 }
 
-const Wrapper = styled.section`
-  margin: 2rem auto;
-  max-width: 992px;
+const Container = styled.section`
+  margin: 0 auto;
+  max-width: 1024px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   .contact {
     position: relative;
     z-index: 0;
@@ -117,14 +119,14 @@ const Wrapper = styled.section`
     border-radius: 1rem;
   }
   .contact__form {
-    margin-top: 3rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
   }
   .contact__form label {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
   }
   .contact__form input,
   textarea {
@@ -147,7 +149,6 @@ const Wrapper = styled.section`
   .contact__form span {
     color: white;
     font-weight: 500;
-    margin-bottom: 1rem;
   }
   .contact__button {
     padding-top: 0.75rem;

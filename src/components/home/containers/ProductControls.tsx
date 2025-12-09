@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { Sidebar, Filters } from '@/components/home/'
+import { Sidebar, Filters, Category, Sort } from '@/components/home/'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useFilters } from '@/shared/hooks/useFilters'
 import { useIsMobile } from '@/shared/hooks/useIsMobile'
@@ -64,15 +64,19 @@ const ProductControls = () => {
         />
       )}
       {!isMobile && (
-        <Filters
-          category={category}
-          search={search}
-          price={price}
-          min_price={min_price}
-          max_price={max_price}
-          handleFilters={handleFilters}
-          handleClearButton={handleClearButton}
-        />
+        <>
+          <Category buttonColor={category} handleFilters={handleFilters} />
+          <Filters
+            category={category}
+            search={search}
+            price={price}
+            min_price={min_price}
+            max_price={max_price}
+            handleFilters={handleFilters}
+            handleClearButton={handleClearButton}
+          />
+          <Sort handleFilters={handleFilters} />
+        </>
       )}
     </>
   )

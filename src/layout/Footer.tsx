@@ -2,6 +2,8 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import SocialLinks from '@/shared/ui/SocialLinks'
+import { device } from '@/shared/constants/device'
+import { containerStyles } from '@/shared/ui/styles/containerStyles'
 import {
   react,
   redux,
@@ -24,7 +26,7 @@ const Footer = () => {
   ]
 
   return (
-    <Wrapper>
+    <Container>
       <div className='footer__container'>
         <nav className='footer__grid'>
           {sections.map((section) => (
@@ -42,23 +44,19 @@ const Footer = () => {
             </div>
           ))}
         </nav>
-
-        <div className='footer__bottom'>
-          <div className='footer__social'>
-            <SocialLinks />
-          </div>
-        </div>
       </div>
-    </Wrapper>
+      <SocialLinks />
+    </Container>
   )
 }
 
-const Wrapper = styled.footer`
+const Container = styled.footer`
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
   background: var(--gradient-navbar-footer-bg);
-  padding: 2rem 1rem 1rem;
   .footer__container {
-    max-width: 1200px;
-    margin: 0 auto;
+    ${containerStyles}
   }
   .footer__grid {
     display: grid;
@@ -69,42 +67,35 @@ const Wrapper = styled.footer`
   }
   .footer__title {
     color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 1rem;
     font-weight: 600;
     font-size: 1rem;
     text-transform: capitalize;
+    margin-bottom: 1.5rem;
   }
   .footer__list {
     list-style: none;
-    padding: 0;
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
   .footer__link {
     color: rgba(255, 255, 255, 0.35);
     text-decoration: none;
-    display: block;
-    margin-bottom: 0.5rem;
     transition: color 0.3s ease;
   }
   .footer__link:hover {
     color: var(--clr-primary-5);
   }
-  .footer__bottom {
-    margin-top: 3rem;
-  }
-  .footer__social {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 1.25rem;
-  }
 
-  @media (min-width: 640px) {
+  @media ${device.mobile} {
+    padding-left: 1rem;
     .footer__grid {
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     }
   }
 
-  @media (min-width: 1200px) {
+  @media ${device.desktop} {
+    padding-left: 0;
     .footer__grid {
       grid-template-columns: repeat(4, 1fr);
     }

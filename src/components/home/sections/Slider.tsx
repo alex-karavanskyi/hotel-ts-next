@@ -10,6 +10,7 @@ import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules'
 import { useAppSelector } from '@/redux/hooks'
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 import { useRef, useEffect } from 'react'
+import { containerStyles } from '@/shared/ui/styles/containerStyles'
 
 const Slider = () => {
   const { products } = useAppSelector((state) => state.products)
@@ -52,9 +53,9 @@ const Slider = () => {
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
-          depth: 50,
-          modifier: 2.5,
-          slideShadows: false,
+          depth: 200,
+          modifier: 3,
+          slideShadows: true,
         }}
         pagination={{ el: '.swiper-pagination', clickable: true }}
         modules={[EffectCoverflow, Pagination, Navigation]}
@@ -86,17 +87,13 @@ const Slider = () => {
 }
 
 const Container = styled.div`
-  margin: 2rem auto;
-  max-width: 1280px;
+  ${containerStyles}
   position: relative;
 `
 
 const StyledSwiper = styled(Swiper)`
   height: 35rem;
-  padding: 2rem 0;
   .swiper-slide {
-    width: 20rem;
-    height: 28rem;
     display: flex;
     align-items: center;
     justify-content: center;

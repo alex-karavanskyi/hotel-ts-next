@@ -1,5 +1,6 @@
 import { useRouter } from 'next/navigation'
 import styled from 'styled-components'
+import { device } from '../constants/device'
 
 interface BreadcrumbsProps {
   name: string
@@ -19,7 +20,7 @@ const Breadcrumbs = ({ name }: BreadcrumbsProps) => {
 }
 
 const Container = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   font-size: 0.9rem;
   color: #ccc;
   display: flex;
@@ -40,6 +41,10 @@ const Container = styled.div`
   .breadcrumbs__current {
     color: #fff;
     text-transform: capitalize;
+  }
+
+  @media ${device.desktop} {
+    padding-left: 0;
   }
 `
 

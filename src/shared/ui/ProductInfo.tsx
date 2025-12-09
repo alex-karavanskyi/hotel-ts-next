@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import { Product } from '@/shared/types/productsType'
 import { FavoriteButton } from '@/shared/ui'
 import { formatPrice } from '@/shared/utils/formatPrice'
+import { device } from '../constants/device'
 
 interface ProductInfoProps {
   product: Product
@@ -28,7 +29,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
   const isDetailed = variant === 'detailed'
 
   return (
-    <Wrapper className={className} $isDetailed={isDetailed}>
+    <Container className={className} $isDetailed={isDetailed}>
       {showHeader && (
         <Header $isDetailed={isDetailed}>
           <Name $isDetailed={isDetailed}>{name}</Name>
@@ -43,7 +44,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
       {showPrice && (
         <PriceTag className='product-info-price'>{formatPrice(price)}</PriceTag>
       )}
-    </Wrapper>
+    </Container>
   )
 }
 
@@ -51,7 +52,10 @@ const baseStyles = css`
   color: var(--clr-grey-dark);
 `
 
-const Wrapper = styled.div<{ $isDetailed: boolean }>`
+const Container = styled.div<{ $isDetailed: boolean }>`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ $isDetailed }) => ($isDetailed ? '0.75rem' : '0.5rem')};
   ${baseStyles}
 `
 
@@ -59,16 +63,14 @@ const Header = styled.div<{ $isDetailed: boolean }>`
   display: flex;
   align-items: center;
   gap: ${({ $isDetailed }) => ($isDetailed ? '0.75rem' : '0.5rem')};
-  margin-bottom: ${({ $isDetailed }) => ($isDetailed ? '1rem' : '0')};
 `
 
 const Name = styled.h5<{ $isDetailed: boolean }>`
-  margin: 0;
   font-weight: 500;
   color: var(--clr-grey-dark);
   font-size: ${({ $isDetailed }) => ($isDetailed ? '1.5rem' : 'inherit')};
 
-  @media (min-width: 992px) {
+  @media ${device.laptop} {
     font-size: ${({ $isDetailed }) => ($isDetailed ? '2rem' : 'inherit')};
   }
 `

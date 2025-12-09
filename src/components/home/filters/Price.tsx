@@ -1,12 +1,12 @@
 'use client'
 import styled from 'styled-components'
+import { device } from '@/shared/constants/device'
+import { formatPrice } from '@/shared/utils/formatPrice'
 import {
   FilterFields,
   FilterName,
   HandleFiltersFn,
 } from '@/shared/types/productsType'
-import { containerStyles } from '@/shared/ui/styles/containerStyles'
-import { formatPrice } from '@/shared/utils/formatPrice'
 
 interface PriceProps
   extends Pick<FilterFields, 'price' | 'min_price' | 'max_price'> {
@@ -29,6 +29,7 @@ const Price: React.FC<PriceProps> = ({
         min={min_price}
         max={max_price}
         value={price}
+        className='price__input'
         onChange={(e) =>
           handleFilters(FilterName.Price, Number(e.target.value))
         }
@@ -38,13 +39,18 @@ const Price: React.FC<PriceProps> = ({
 }
 
 const Container = styled.div`
-  ${containerStyles}
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
   color: var(--clr-grey-dark);
   h5 {
     font-size: 1rem;
   }
+  .price__input {
+    width: 7rem;
+  }
 
-  @media (min-width: 1400px) {
+  @media ${device.desktop} {
     padding: 0;
   }
 `

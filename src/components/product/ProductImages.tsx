@@ -1,9 +1,9 @@
 'use client'
 import styled from 'styled-components'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 import { Product } from '@/shared/types/productsType'
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
 
 interface ProductImagesProps {
   images: Product['images']
@@ -77,7 +77,6 @@ const Container = styled.div`
     object-fit: cover;
   }
   .product__images-gallery {
-    margin-top: 1rem;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
     gap: 0.5rem;

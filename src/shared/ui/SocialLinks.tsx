@@ -25,11 +25,10 @@ const SocialLink = ({ href, icon }: SocialLinkProps) => (
 )
 
 const Container = styled.ul`
-  display: grid;
-  margin-top: 3rem;
-  width: 12rem;
-  justify-items: center;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 5rem;
   .social__links-icon {
     font-size: 1.5rem;
     color: var(--clr-grey-3);

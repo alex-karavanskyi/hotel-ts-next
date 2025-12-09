@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import Image from 'next/image'
 import ProductInfo from '@/shared/ui/ProductInfo'
+import { device } from '@/shared/constants/device'
 import { Product } from '@/shared/types/productsType'
+import { containerStyles } from '@/shared/ui/styles/containerStyles'
 
 interface ListProducts {
   products: Product[]
@@ -25,7 +27,7 @@ const ListView: React.FC<ListProducts> = ({ products }) => {
                 src={image}
                 className='list__view-image'
               />
-              <div>
+              <div className='list__view-products-info'>
                 <ProductInfo
                   product={product}
                   variant='compact'
@@ -57,41 +59,33 @@ const ListView: React.FC<ListProducts> = ({ products }) => {
 }
 
 const Container = styled.section`
-  padding: 0 1rem;
-  margin: 2rem auto;
-  max-width: 1280px;
+  ${containerStyles}
+  padding-bottom: 1rem;
+  padding-left: 1rem;
   .list__view-products {
     display: grid;
-    row-gap: 3rem;
+    row-gap: 1.5rem;
     color: var(--clr-grey-dark);
   }
-
   .list__view-article {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
   }
-
+  .list__view-products-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
   .list__view-image {
     width: 100%;
     max-width: 300px;
     height: 200px;
     object-fit: cover;
     border-radius: var(--radius);
-    margin-bottom: 1rem;
-  }
-  .product-info-favorite-icon {
-    width: 18px;
-    height: 18px;
-    color: var(--clr-grey-dark);
-    cursor: pointer;
-  }
-  .product-info-price {
-    margin-top: 0.75rem;
-    font-weight: 500;
   }
   .list__view-products-description {
     max-width: 45em;
-    margin-bottom: 1rem;
     line-height: 1.6;
   }
   .list__view-products-btn-details {
@@ -109,8 +103,17 @@ const Container = styled.section`
   .list__view-products-btn-details:hover {
     background-color: rgba(234, 140, 46, 0.7);
   }
+  .product-info-favorite-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--clr-grey-dark);
+    cursor: pointer;
+  }
+  .product-info-price {
+    font-weight: 500;
+  }
 
-  @media (min-width: 768px) {
+  @media ${device.mobile} {
     .list__view-article {
       flex-direction: row;
       column-gap: 2rem;
@@ -118,8 +121,8 @@ const Container = styled.section`
     }
   }
 
-  @media (min-width: 1400px) {
-    padding: 0;
+  @media ${device.desktop} {
+    padding-left: 0;
   }
 `
 

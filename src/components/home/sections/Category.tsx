@@ -1,9 +1,10 @@
 'use client'
 import styled from 'styled-components'
+import { device } from '@/shared/constants/device'
+import { motion } from 'framer-motion'
 import { FilterName, HandleFiltersFn } from '@/shared/types/productsType'
 import { getUniqueValues } from '@/shared/utils/formatPrice'
 import { useAppSelector } from '@/redux/hooks'
-import { motion } from 'framer-motion'
 
 interface CategoryProps {
   buttonColor: string
@@ -35,13 +36,16 @@ const Category: React.FC<CategoryProps> = ({ buttonColor, handleFilters }) => {
 }
 
 const Container = styled.nav`
-  padding: 0 1rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: start;
   gap: 0.5rem;
-  @media (max-width: 768px) {
-    justify-content: flex-start;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  @media ${device.tablet} {
+    justify-content: center;
+    padding-top: 2rem;
   }
 `
 

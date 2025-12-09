@@ -44,17 +44,15 @@ const Sidebar: React.FC<SidebarProps> = ({
       {isSidebarOpen && (
         <SidebarOverlay onClick={() => setIsSidebarOpen(false)}>
           <SidebarContent side='right' onClick={(e) => e.stopPropagation()}>
-            <form onSubmit={(e) => e.preventDefault()}>
-              <Category buttonColor={category} handleFilters={handleFilters} />
-              <Search search={search} handleFilters={handleFilters} />
-              <Price
-                price={price}
-                min_price={min_price}
-                max_price={max_price}
-                handleFilters={handleFilters}
-              />
-              <ClearButton handleClearButton={handleClearButton} />
-            </form>
+            <Category buttonColor={category} handleFilters={handleFilters} />
+            <Search search={search} handleFilters={handleFilters} />
+            <Price
+              price={price}
+              min_price={min_price}
+              max_price={max_price}
+              handleFilters={handleFilters}
+            />
+            <ClearButton handleClearButton={handleClearButton} />
           </SidebarContent>
         </SidebarOverlay>
       )}
@@ -73,6 +71,8 @@ const Sidebar: React.FC<SidebarProps> = ({
 const Conteiner = styled.aside`
   display: flex;
   justify-content: space-evenly;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 `
 const HorizontalLine = styled.hr`
   width: 50%;
@@ -98,15 +98,17 @@ const SidebarOverlay = styled.div`
 `
 
 const SidebarContent = styled.div<{ side: 'left' | 'right' }>`
-  position: fixed;
-  top: 0;
   ${(props) => props.side}: 0;
-  width: 80%;
-  max-width: 320px;
+  position: fixed;
+  top: var(--navbar-height);
+  width: 50%;
   height: 100%;
   background: var(--gradient-navbar-footer-bg);
-  padding: 1.5rem;
+  padding-left: 1rem;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `
 
 export default Sidebar

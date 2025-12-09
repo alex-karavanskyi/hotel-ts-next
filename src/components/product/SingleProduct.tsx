@@ -2,13 +2,15 @@
 import styled from 'styled-components'
 import ProductImages from './ProductImages'
 import ProductInfo from '@/shared/ui/ProductInfo'
+import { url } from '@/shared/constants/db'
+import { device } from '@/shared/constants/device'
 import { useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { Loading, Error } from '@/layout'
 import { getSingleProduct } from '@/redux/features/productSlice'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { Breadcrumbs } from '@/shared/ui'
-import { url } from '@/shared/constants/db'
+import { containerStyles } from '@/shared/ui/styles/containerStyles'
 
 const SingleProduct = () => {
   const {
@@ -44,7 +46,7 @@ const SingleProduct = () => {
       <Breadcrumbs name={product.name} />
       <div className='single__product-container'>
         <ProductImages images={images} />
-        <section>
+        <section className='single__product-info'>
           <ProductInfo
             product={product}
             variant='detailed'
@@ -61,13 +63,20 @@ const SingleProduct = () => {
 }
 
 const Container = styled.main`
-  width: 70vw;
-  margin: 2rem auto;
-  max-width: 1280px;
+  ${containerStyles}
+  padding: 1rem;
   .single__product-container {
     display: grid;
     gap: 4rem;
-    margin-top: 2rem;
+  }
+  .single__product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .single__product-description {
+    line-height: 1.8;
+    color: #acb4be;
   }
   .product-info-favorite-icon {
     width: 2rem;
@@ -75,15 +84,8 @@ const Container = styled.main`
     color: var(--clr-grey-dark);
     cursor: pointer;
   }
-  .product-info-price {
-    margin-bottom: 1rem;
-  }
-  .single__product-description {
-    line-height: 1.8;
-    color: #acb4be;
-  }
 
-  @media (min-width: 992px) {
+  @media ${device.laptop} {
     .single__product-container {
       grid-template-columns: 1fr 1fr;
     }
@@ -91,6 +93,11 @@ const Container = styled.main`
       width: 2.2rem;
       height: 2.2rem;
     }
+  }
+
+  @media ${device.desktop} {
+    padding-left: 0;
+    padding-right: 0;
   }
 `
 

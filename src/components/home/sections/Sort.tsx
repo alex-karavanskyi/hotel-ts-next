@@ -1,11 +1,12 @@
 'use client'
 import styled from 'styled-components'
+import { device } from '@/shared/constants/device'
 import { FilterName, HandleFiltersFn } from '@/shared/types/productsType'
-import { containerStyles } from '@/shared/ui/styles/containerStyles'
 import { BsFillGridFill, BsList } from 'react-icons/bs'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { setGridView, setListView } from '@/redux/features/filterSlice'
 import { useEffect } from 'react'
+import { containerStyles } from '@/shared/ui/styles/containerStyles'
 
 interface SortProps {
   handleFilters: HandleFiltersFn
@@ -76,29 +77,27 @@ const Sort: React.FC<SortProps> = ({ handleFilters }) => {
 
 const Container = styled.div`
   ${containerStyles}
-
+  padding-left: 1rem;
+  padding-right: 1rem;
   .sort__btn {
     display: none;
   }
-
   .sort__container {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
-
   .sort__title {
     text-transform: capitalize;
-    margin-bottom: 0;
     color: white;
     font-weight: 500;
   }
-
   .sort__select-wrapper {
     width: max-content;
     position: relative;
   }
-
   .sort__select {
     appearance: none;
     background-color: #1e1e1e;
@@ -123,7 +122,7 @@ const Container = styled.div`
     }
   }
 
-  @media (min-width: 768px) {
+  @media ${device.tablet} {
     .sort__btn {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -156,7 +155,6 @@ const Container = styled.div`
         }
       }
     }
-
     .sort__container {
       display: grid;
       grid-template-columns: auto auto 1fr auto;
@@ -165,8 +163,9 @@ const Container = styled.div`
     }
   }
 
-  @media (min-width: 1400px) {
-    padding: 0;
+  @media ${device.desktop} {
+    padding-left: 0;
+    padding-right: 0;
   }
 `
 

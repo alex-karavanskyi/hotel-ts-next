@@ -1,5 +1,7 @@
 'use client'
 import styled from 'styled-components'
+import { device } from '@/shared/constants/device'
+import { containerStyles } from '@/shared/ui/styles/containerStyles'
 
 const Hero = () => {
   return (
@@ -10,15 +12,15 @@ const Hero = () => {
 }
 
 const Container = styled.div`
-  padding: 0 1rem;
-  margin: 2rem auto;
-  max-width: 1280px;
+  ${containerStyles}
   color: var(--clr-grey-dark);
   .hero__title {
     text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
-  @media (min-width: 1400px) {
+  @media ${device.desktop} {
     padding: 0;
   }
 `

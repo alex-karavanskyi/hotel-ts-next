@@ -1,6 +1,7 @@
 'use client'
 import styled from 'styled-components'
-import { useAppSelector, useAppDispatch } from '@/redux/hooks'
+import { device } from '@/shared/constants/device'
+import { useAppSelector } from '@/redux/hooks'
 import { NavbarLinks, SocialLinks } from '@/shared/ui'
 import { useLayoutEffect } from 'react'
 
@@ -103,7 +104,6 @@ const Container = styled.aside`
     letter-spacing: var(--spacing);
     display: inline-block;
     text-decoration: none;
-    margin-bottom: 1.5rem;
     background: transparent;
     cursor: pointer;
     text-transform: capitalize;
@@ -144,7 +144,7 @@ const Container = styled.aside`
     transition: transform 0.3s ease, color 0.3s ease;
   }
 
-  @media (min-width: 768px) {
+  @media ${device.mobile} {
     .sidebar__close-btn {
       right: 2rem;
     }

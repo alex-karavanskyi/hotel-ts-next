@@ -1,6 +1,8 @@
 'use client'
 import styled from 'styled-components'
-import { Search, Sort, Price, Category, ClearButton } from '@/components/home'
+import { device } from '@/shared/constants/device'
+import { Search, Price, ClearButton } from '@/components/home'
+import { containerStyles } from '@/shared/ui/styles/containerStyles'
 import {
   FilterFields,
   HandleClearButtonFn,
@@ -14,7 +16,6 @@ interface FiltersProps extends FilterFields {
 }
 
 const Filters: React.FC<FiltersProps> = ({
-  category,
   search,
   price,
   min_price,
@@ -24,24 +25,28 @@ const Filters: React.FC<FiltersProps> = ({
 }) => {
   return (
     <Container>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <Category buttonColor={category} handleFilters={handleFilters} />
-        <Search search={search} handleFilters={handleFilters} />
-        <Price
-          price={price}
-          min_price={min_price}
-          max_price={max_price}
-          handleFilters={handleFilters}
-        />
-      </form>
+      <Search search={search} handleFilters={handleFilters} />
+      <Price
+        price={price}
+        min_price={min_price}
+        max_price={max_price}
+        handleFilters={handleFilters}
+      />
       <ClearButton handleClearButton={handleClearButton} />
-      <Sort handleFilters={handleFilters} />
     </Container>
   )
 }
 
 const Container = styled.aside`
-  margin-bottom: 3.1rem;
+  ${containerStyles}
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-left: 1rem;
+
+  @media ${device.desktop} {
+    padding-left: 0;
+  }
 `
 
 export default Filters

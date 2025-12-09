@@ -1,7 +1,7 @@
 'use client'
 import styled, { keyframes } from 'styled-components'
+import { device } from '@/shared/constants/device'
 import { useState } from 'react'
-import { containerStyles } from '@/shared/ui/styles/containerStyles'
 import { HandleClearButtonFn } from '@/shared/types/productsType'
 
 interface ClearButtonProps {
@@ -43,10 +43,7 @@ const pop = keyframes`
 `
 
 const Container = styled.div`
-  ${containerStyles}
   .clear__btn {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
     text-transform: capitalize;
     background: transparent;
     border: none;
@@ -62,7 +59,7 @@ const Container = styled.div`
     animation: ${pop} 0.3s ease;
   }
 
-  @media (min-width: 1400px) {
+  @media ${device.desktop} {
     padding: 0;
   }
 `

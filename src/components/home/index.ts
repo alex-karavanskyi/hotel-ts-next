@@ -1,18 +1,18 @@
 import Hero from './sections/Hero'
 import Slider from './sections/Slider'
+import Category from './sections/Category'
 import ProductImages from '../product/ProductImages'
 import GridView from './list/GridView'
 import ListView from './list/ListView'
 import Pagination from './list/Pagination'
-import Sort from './filters/Sort'
+import Sort from './sections/Sort'
 import Search from './filters/Search'
 import Price from './filters/Price'
-import Category from './filters/Category'
 import ClearButton from './filters/ClearButton'
 import Filters from './filters/Filters'
 import ProductControls from './containers/ProductControls'
 import ProductList from './containers/ProductList'
-import Sidebar from './filters/Sidebar'
+import Sidebar from './sections/Sidebar'
 
 export {
   Hero,

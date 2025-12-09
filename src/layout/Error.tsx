@@ -1,5 +1,7 @@
 'use client'
 import styled from 'styled-components'
+import { device } from '@/shared/constants/device'
+import { containerStyles } from '@/shared/ui/styles/containerStyles'
 
 const Error = () => {
   return (
@@ -10,13 +12,12 @@ const Error = () => {
 }
 
 const Container = styled.div`
+  ${containerStyles}
   width: 70vw;
-  margin: 0 auto;
-  max-width: 1280px;
   padding: 5rem 0;
   text-align: center;
 
-  @media (min-width: 992px) {
+  @media ${device.laptop} {
     width: 95vw;
   }
 `

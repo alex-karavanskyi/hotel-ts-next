@@ -40,7 +40,7 @@ const Pagination: React.FC<PaginationProducts> = ({
   }, [dispatch])
 
   return (
-    <Wrapper>
+    <Container>
       <ul className='pagination__container'>
         {pageNumbers.map((number) => (
           <li
@@ -61,12 +61,13 @@ const Pagination: React.FC<PaginationProducts> = ({
           </li>
         ))}
       </ul>
-    </Wrapper>
+    </Container>
   )
 }
 
-const Wrapper = styled.nav`
-  padding-bottom: 1.9rem;
+const Container = styled.nav`
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   .pagination__container {
     display: flex;
     justify-content: center;
