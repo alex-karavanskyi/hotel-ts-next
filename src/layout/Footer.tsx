@@ -61,6 +61,7 @@ const Container = styled.footer`
   .footer__grid {
     display: grid;
     gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 2fr));
   }
   .footer__column {
     font-size: 0.95rem;
@@ -89,16 +90,10 @@ const Container = styled.footer`
 
   @media ${device.mobile} {
     padding-left: 1rem;
-    .footer__grid {
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    }
   }
 
   @media ${device.desktop} {
     padding-left: 0;
-    .footer__grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
   }
 `
 

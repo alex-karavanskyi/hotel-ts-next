@@ -4,34 +4,44 @@ import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import Image from 'next/image'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules'
 import { useAppSelector } from '@/redux/hooks'
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { containerStyles } from '@/shared/ui/styles/containerStyles'
+import { device } from '@/shared/constants/device'
 
 const Slider = () => {
-  const { products } = useAppSelector((state) => state.products)
+  const [hasLoaded, setHasLoaded] = useState(false)
+  const [slides, setSlides] = useState<any[]>([])
+
   const swiperRef = useRef<any>(null)
 
-  useEffect(() => {
-    const handleResize = () => {
-      swiperRef.current?.swiper?.update()
-    }
+  const { products, products_loading: loading } = useAppSelector(
+    (state) => state.products
+  )
 
+  useEffect(() => {
+    if (!loading && products.length > 0) {
+      setSlides(products.slice(0, 5))
+      setHasLoaded(true)
+      setTimeout(() => {
+        swiperRef.current?.swiper?.update?.()
+      }, 50)
+    }
+  }, [loading, products])
+
+  useEffect(() => {
     const autoSlide = setInterval(() => {
       swiperRef.current?.swiper?.slideNext()
     }, 3000)
 
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-      clearInterval(autoSlide)
-    }
+    return () => clearInterval(autoSlide)
   }, [])
+
+  const showSkeleton = loading && !hasLoaded
 
   return (
     <Container>
@@ -60,16 +70,22 @@ const Slider = () => {
         pagination={{ el: '.swiper-pagination', clickable: true }}
         modules={[EffectCoverflow, Pagination, Navigation]}
       >
-        {products.slice(0, 5).map(({ id, image }) => (
-          <SwiperSlide key={id}>
-            <StyledImage
-              alt='product image'
-              src={image}
-              width={700}
-              height={700}
-            />
-          </SwiperSlide>
-        ))}
+        {showSkeleton
+          ? [...Array(5)].map((_, i) => (
+              <SwiperSlide key={i}>
+                <SkeletonSlide />
+              </SwiperSlide>
+            ))
+          : slides.map(({ id, image }) => (
+              <SwiperSlide key={id}>
+                <StyledImage
+                  alt='product image'
+                  src={image}
+                  width={700}
+                  height={700}
+                />
+              </SwiperSlide>
+            ))}
       </StyledSwiper>
 
       <ArrowButton
@@ -92,11 +108,14 @@ const Container = styled.div`
 `
 
 const StyledSwiper = styled(Swiper)`
-  height: 35rem;
+  height: 20rem;
   .swiper-slide {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  @media ${device.mobile} {
+    height: 35rem;
   }
 `
 
@@ -105,6 +124,20 @@ const StyledImage = styled(Image)`
   height: 100%;
   border-radius: 2rem;
   object-fit: cover;
+`
+
+const shimmer = keyframes`
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+`
+
+const SkeletonSlide = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: ${shimmer} 1.2s infinite;
 `
 
 const PaginationWrapper = styled.div`
@@ -138,7 +171,6 @@ const ArrowButton = styled.button`
   color: white;
   border: none;
   transition: background 0.3s ease;
-  user-select: none;
 
   &:hover {
     background: rgb(50, 50, 55);

@@ -9,28 +9,37 @@ import { useAppSelector } from '@/redux/hooks'
 interface CategoryProps {
   buttonColor: string
   handleFilters: HandleFiltersFn
+  loading: boolean
 }
 
-const Category: React.FC<CategoryProps> = ({ buttonColor, handleFilters }) => {
+const Category: React.FC<CategoryProps> = ({
+  buttonColor,
+  handleFilters,
+  loading,
+}) => {
   const { all_products } = useAppSelector((store) => store.filter)
   const categories = getUniqueValues(all_products, 'category')
 
   return (
     <Container>
-      {categories.map((c, index) => (
-        <CategoryButton
-          data-cy='category'
-          key={index}
-          $isActive={buttonColor === c}
-          onClick={() => handleFilters(FilterName.Category, c)}
-          type='button'
-          whileTap={{ scale: 0.95 }}
-          animate={{ opacity: buttonColor === c ? 1 : 0.85 }}
-          transition={{ type: 'spring', stiffness: 300 }}
-        >
-          {c}
-        </CategoryButton>
-      ))}
+      {loading ? (
+        <SkeletonList />
+      ) : (
+        categories.map((c, index) => (
+          <CategoryButton
+            data-cy='category'
+            key={index}
+            $isActive={buttonColor === c}
+            onClick={() => handleFilters(FilterName.Category, c)}
+            type='button'
+            whileTap={{ scale: 0.95 }}
+            animate={{ opacity: buttonColor === c ? 1 : 0.85 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+          >
+            {c}
+          </CategoryButton>
+        ))
+      )}
     </Container>
   )
 }
@@ -48,6 +57,8 @@ const Container = styled.nav`
     padding-top: 2rem;
   }
 `
+
+// ─── CATEGORY BUTTON ───────────────────────────────────────────────
 
 const CategoryButton = styled(motion.button)<{ $isActive: boolean }>`
   grid-template-columns: 7.3rem;
@@ -69,6 +80,36 @@ const CategoryButton = styled(motion.button)<{ $isActive: boolean }>`
   &:hover {
     border-color: orange;
     opacity: 1;
+  }
+`
+
+// ─── SKELETONS ───────────────────────────────────────────────
+
+const SkeletonList = () => (
+  <>
+    <SkeletonButton />
+    <SkeletonButton />
+    <SkeletonButton />
+    <SkeletonButton />
+    <SkeletonButton />
+  </>
+)
+
+const SkeletonButton = styled.div`
+  width: 115px;
+  height: 52px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #e0e0e0 0%, #f5f5f5 50%, #e0e0e0 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
   }
 `
 

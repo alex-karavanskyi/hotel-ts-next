@@ -36,13 +36,15 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
           {showFavorite && (
             <FavoriteButton
               product={product}
-              classIcon='product-info-favorite-icon'
+              classIcon='product__info-favorite-icon'
             />
           )}
         </Header>
       )}
       {showPrice && (
-        <PriceTag className='product-info-price'>{formatPrice(price)}</PriceTag>
+        <PriceTag className='product__info-price'>
+          {formatPrice(price)}
+        </PriceTag>
       )}
     </Container>
   )

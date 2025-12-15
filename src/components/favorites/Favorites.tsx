@@ -85,7 +85,6 @@ const Favorites = () => {
 const Container = styled.div`
   ${containerStyles}
   padding-top: 1rem;
-  padding-bottom: 1rem;
   .favorites__breadcrumbs {
     padding-left: 1rem;
   }

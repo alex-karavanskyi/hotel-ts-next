@@ -2,6 +2,7 @@
 import styled from 'styled-components'
 import { Search, Price, Category, ClearButton, Sort } from '@/components/home'
 import { useState } from 'react'
+import { useAppSelector } from '@/redux/hooks'
 import {
   FilterFields,
   HandleClearButtonFn,
@@ -29,6 +30,10 @@ const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const [isSortOpen, setIsSortOpen] = useState(false)
 
+  const { products_loading: loading } = useAppSelector(
+    (store) => store.products
+  )
+
   return (
     <>
       <Conteiner>
@@ -44,7 +49,11 @@ const Sidebar: React.FC<SidebarProps> = ({
       {isSidebarOpen && (
         <SidebarOverlay onClick={() => setIsSidebarOpen(false)}>
           <SidebarContent side='right' onClick={(e) => e.stopPropagation()}>
-            <Category buttonColor={category} handleFilters={handleFilters} />
+            <Category
+              buttonColor={category}
+              handleFilters={handleFilters}
+              loading={loading}
+            />
             <Search search={search} handleFilters={handleFilters} />
             <Price
               price={price}

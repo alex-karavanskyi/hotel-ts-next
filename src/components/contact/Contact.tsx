@@ -1,5 +1,6 @@
 'use client'
 import styled from 'styled-components'
+import { device } from '@/shared/constants/device'
 import { useForm } from 'react-hook-form'
 import { Breadcrumbs } from '@/shared/ui'
 
@@ -106,8 +107,6 @@ const Contact = () => {
 const Container = styled.section`
   margin: 0 auto;
   max-width: 1024px;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
   .contact {
     position: relative;
     z-index: 0;
@@ -116,7 +115,6 @@ const Container = styled.section`
     flex: 0.75;
     background-color: black;
     padding: 2rem;
-    border-radius: 1rem;
   }
   .contact__form {
     display: flex;
@@ -170,6 +168,14 @@ const Container = styled.section`
   }
   .contact__button--black {
     color: black;
+  }
+
+  @media ${device.desktop} {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    .contact__container {
+      border-radius: 1rem;
+    }
   }
 `
 

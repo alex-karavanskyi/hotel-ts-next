@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { Hero, Slider, ProductControls, ProductList } from '@/components/home'
+import { Slider, ProductControls, ProductList } from '@/components/home'
 
 export const metadata: Metadata = {
   title: 'E-Commerce | React App',
@@ -8,7 +8,6 @@ export const metadata: Metadata = {
 const HomePage = () => {
   return (
     <main>
-      <Hero />
       <Slider />
       <ProductControls />
       <ProductList />

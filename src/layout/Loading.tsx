@@ -1,5 +1,6 @@
 'use client'
 import styled, { keyframes } from 'styled-components'
+import { containerStyles } from '@/shared/ui/styles/containerStyles'
 
 const Loading = () => {
   return (
@@ -25,7 +26,7 @@ const pulse = keyframes`
 `
 
 const Container = styled.div`
-  width: 100vw;
+  ${containerStyles}
   height: 100vh;
   display: flex;
   justify-content: center;

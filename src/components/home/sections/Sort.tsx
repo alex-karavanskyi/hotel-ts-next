@@ -19,6 +19,10 @@ const Sort: React.FC<SortProps> = ({ handleFilters }) => {
     sort,
   } = useAppSelector((store) => store.filter)
 
+  const { products_loading: loading } = useAppSelector(
+    (store) => store.products
+  )
+
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -54,7 +58,9 @@ const Sort: React.FC<SortProps> = ({ handleFilters }) => {
             <BsList />
           </button>
         </div>
-        <p className='sort__title'>{products.length} products found</p>
+        <p className='sort__title'>
+          {loading ? 'loading…' : `${products.length} products found`}
+        </p>
         <hr />
         <div className='sort__select-wrapper'>
           <select

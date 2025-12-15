@@ -3,46 +3,52 @@ import styled from 'styled-components'
 import { device } from '@/shared/constants/device'
 import { useAppSelector } from '@/redux/hooks'
 import { NavbarLinks, SocialLinks } from '@/shared/ui'
-import { useLayoutEffect } from 'react'
+import { useEffect } from 'react'
 
 const Sidebar = () => {
   const { isOpen } = useAppSelector((store) => store.modal)
 
-  useLayoutEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'auto'
-    return () => {
-      document.body.style.overflow = 'auto'
-    }
-  }, [isOpen])
-
   return (
     <Container>
-      <div className={isOpen ? 'sidebar sidebar--show' : 'sidebar'}>
-        <div className='sidebar__dark-overlay'></div>
+      <aside className={`sidebar ${isOpen ? 'sidebar--show' : ''}`}>
+        <div className='sidebar__dark-overlay' />
         <div className='sidebar__content'>
           <NavbarLinks parentClass='sidebar__links' />
           <SocialLinks />
         </div>
-      </div>
+      </aside>
     </Container>
   )
 }
 
-const Container = styled.aside`
+const Container = styled.div`
   --transition: all 0.3s ease-in-out;
   .sidebar {
-    top: 0;
-    left: 0;
+    position: fixed;
+    inset: 0;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
-    position: fixed;
     z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     transform: translateX(-100%);
     opacity: 0;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
     background: linear-gradient(135deg, #1a202c 0%, #2d3748 50%, #4a5568 100%);
     background-size: 200% 200%;
+
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    will-change: transform, opacity;
+
+    pointer-events: none;
+  }
+  .sidebar--show {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
     animation: gradientShift 15s ease infinite;
   }
 
@@ -57,34 +63,24 @@ const Container = styled.aside`
       background-position: 0% 50%;
     }
   }
-  .sidebar--show {
-    transform: translateX(0);
-    opacity: 1;
-  }
   .sidebar__dark-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    pointer-events: none;
-    z-index: 2;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .sidebar--show .sidebar__dark-overlay {
     opacity: 1;
   }
   .sidebar__content {
+    position: relative;
+    z-index: 2;
     width: 100%;
     height: 100%;
     display: grid;
     place-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 3;
   }
   .sidebar__links {
     text-align: center;
@@ -99,54 +95,24 @@ const Container = styled.aside`
   .sidebar__links a,
   .sidebar__links button {
     font-size: 2rem;
-    transition: var(--transition);
     color: var(--clr-grey-5);
-    letter-spacing: var(--spacing);
-    display: inline-block;
-    text-decoration: none;
     background: transparent;
-    cursor: pointer;
-    text-transform: capitalize;
     border: none;
-    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: capitalize;
+    letter-spacing: var(--spacing);
+    transition: color 0.3s ease;
   }
   .sidebar__links a:hover,
   .sidebar__links button:hover {
     color: var(--clr-primary-5);
   }
-  .sidebar__close-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    z-index: 4;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    color: #bb2525;
-  }
-  .sidebar--show .sidebar__close-btn {
-    opacity: 1;
-    transform: scale(1);
-  }
-  .sidebar__close-btn:hover {
-    color: #e66b6b;
-  }
-  .sidebar__close-btn:hover .close-icon {
-    transform: rotate(90deg);
-  }
-  .close-icon {
-    width: 28px;
-    height: 28px;
-    color: currentColor;
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
 
   @media ${device.mobile} {
-    .sidebar__close-btn {
-      right: 2rem;
+    .sidebar__links a,
+    .sidebar__links button {
+      font-size: 2.4rem;
     }
   }
 `

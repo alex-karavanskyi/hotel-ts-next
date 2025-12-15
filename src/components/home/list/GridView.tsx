@@ -7,52 +7,56 @@ import { device } from '@/shared/constants/device'
 import { FaSearch } from 'react-icons/fa'
 import { Product } from '@/shared/types/productsType'
 import { containerStyles } from '@/shared/ui/styles/containerStyles'
+import GridViewSkeleton from '@/shared/ui/skeletons/GridViewSkeleton'
 
 interface GridProducts {
   products: Product[]
+  isLoading: boolean
 }
 
-const GridView: React.FC<GridProducts> = ({ products }) => {
+const GridView: React.FC<GridProducts> = ({ products, isLoading }) => {
   return (
     <Container>
       <div className='grid__view-products' role='list'>
-        {products.map((product) => {
-          const { id, image } = product
-          return (
-            <article key={id} className='grid__view-product'>
-              <div className='grid__view-products-images'>
-                <Image
-                  alt={product.name}
-                  width={470}
-                  height={500}
-                  priority
-                  src={image}
-                  className='grid__view-images'
-                />
-                <Link
-                  href={`/product/${id}`}
-                  className='grid__view-products-link'
-                >
-                  <FaSearch />
-                </Link>
-              </div>
-              <footer className='grid__view-footer'>
-                <ProductInfo
-                  product={product}
-                  variant='compact'
-                  showHeader={true}
-                  showPrice={false}
-                />
-                <ProductInfo
-                  product={product}
-                  variant='compact'
-                  showHeader={false}
-                  showPrice={true}
-                />
-              </footer>
-            </article>
-          )
-        })}
+        {isLoading && <GridViewSkeleton />}
+        {!isLoading &&
+          products.map((product) => {
+            const { id, image } = product
+            return (
+              <article key={id} className='grid__view-product'>
+                <div className='grid__view-products-images'>
+                  <Image
+                    alt={product.name}
+                    width={470}
+                    height={500}
+                    priority
+                    src={image}
+                    className='grid__view-images'
+                  />
+                  <Link
+                    href={`/product/${id}`}
+                    className='grid__view-products-link'
+                  >
+                    <FaSearch />
+                  </Link>
+                </div>
+                <footer className='grid__view-footer'>
+                  <ProductInfo
+                    product={product}
+                    variant='compact'
+                    showHeader={true}
+                    showPrice={false}
+                  />
+                  <ProductInfo
+                    product={product}
+                    variant='compact'
+                    showHeader={false}
+                    showPrice={true}
+                  />
+                </footer>
+              </article>
+            )
+          })}
       </div>
     </Container>
   )
@@ -120,14 +124,11 @@ const Container = styled.section`
     align-items: center;
     gap: 1rem;
   }
-  .product-info-favorite-icon {
+  .product__info-favorite-icon {
     width: 18px;
     height: 18px;
     color: var(--clr-grey-dark);
     cursor: pointer;
-  }
-  .product-info-price {
-    font-weight: 500;
   }
 
   @media ${device.desktop} {

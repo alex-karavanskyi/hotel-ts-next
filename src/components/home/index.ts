@@ -1,4 +1,3 @@
-import Hero from './sections/Hero'
 import Slider from './sections/Slider'
 import Category from './sections/Category'
 import ProductImages from '../product/ProductImages'
@@ -15,7 +14,6 @@ import ProductList from './containers/ProductList'
 import Sidebar from './sections/Sidebar'
 
 export {
-  Hero,
   Slider,
   Filters,
   ProductControls,

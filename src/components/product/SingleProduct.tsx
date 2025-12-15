@@ -78,7 +78,7 @@ const Container = styled.main`
     line-height: 1.8;
     color: #acb4be;
   }
-  .product-info-favorite-icon {
+  .product__info-favorite-icon {
     width: 2rem;
     height: 2rem;
     color: var(--clr-grey-dark);
@@ -89,7 +89,7 @@ const Container = styled.main`
     .single__product-container {
       grid-template-columns: 1fr 1fr;
     }
-    .product-info-favorite-icon {
+    .product__info-favorite-icon {
       width: 2.2rem;
       height: 2.2rem;
     }

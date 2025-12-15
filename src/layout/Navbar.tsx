@@ -16,7 +16,7 @@ const Navbar = () => {
 
   const isModalOpen = useAppSelector((state) => state.modal.isOpen)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const handleScroll = () => setNavbar(window.scrollY > 80)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)

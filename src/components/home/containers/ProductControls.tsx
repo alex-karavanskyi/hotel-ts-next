@@ -17,11 +17,9 @@ const ProductControls = () => {
   const isMobile = useIsMobile()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const { search, handleFilters, handleClearButton } = useFilters()
-  const {
-    products,
-    products_loading: loading,
-    products_error: error,
-  } = useAppSelector((store) => store.products)
+  const { products, products_loading: loading } = useAppSelector(
+    (store) => store.products
+  )
   const {
     filters: { category, price, text, min_price, max_price },
     sort,
@@ -45,9 +43,6 @@ const ProductControls = () => {
     dispatch(sortProducts())
   }, [category, price, text, sort, dispatch])
 
-  if (loading) return <Loading />
-  if (error) return <Error />
-
   return (
     <>
       {isMobile && (
@@ -65,7 +60,11 @@ const ProductControls = () => {
       )}
       {!isMobile && (
         <>
-          <Category buttonColor={category} handleFilters={handleFilters} />
+          <Category
+            buttonColor={category}
+            handleFilters={handleFilters}
+            loading={loading}
+          />
           <Filters
             category={category}
             search={search}
