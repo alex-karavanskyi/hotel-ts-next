@@ -28,7 +28,7 @@ export default function RootLayout({
           <ReduxProvider>
             <FiltersCleaner />
             <Navbar />
-            {children}
+            <main style={{ flex: 1 }}>{children}</main>
             <Footer />
             <Sidebar />
           </ReduxProvider>

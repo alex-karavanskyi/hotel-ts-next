@@ -35,7 +35,7 @@ const Navbar = () => {
   return (
     <>
       <Container>
-        <div className={navbar ? 'navbar navbar--fixed' : 'navbar'}>
+        <div className={navbar ? 'navbar navbar--scrolled' : 'navbar'}>
           <Link href={`/`}>
             <Image
               alt='Logo'
@@ -100,25 +100,22 @@ const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
 const Container = styled.nav`
   --transition: all 0.3s ease;
   .navbar {
-    position: relative;
-    height: var(--navbar-height);
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--gradient-navbar-footer-bg);
-    transition: var(--transition);
-    z-index: 3000;
-  }
-  .navbar--fixed {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    height: var(--navbar-height);
+    z-index: 3000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--gradient-navbar-footer-bg);
+    padding: 0 1rem;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  .navbar--scrolled {
     background: var(--clr-white);
     box-shadow: var(--light-shadow);
-    transition: all 0.3s ease;
-    z-index: 3000;
   }
   .navbar__btn {
     position: absolute;

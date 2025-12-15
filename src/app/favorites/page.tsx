@@ -7,9 +7,9 @@ export const metadata: Metadata = {
 
 const FavoritesPage = () => {
   return (
-    <main>
+    <>
       <Favorites />
-    </main>
+    </>
   )
 }
 

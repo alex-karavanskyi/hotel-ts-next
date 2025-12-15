@@ -7,11 +7,11 @@ export const metadata: Metadata = {
 
 const HomePage = () => {
   return (
-    <main>
+    <>
       <Slider />
       <ProductControls />
       <ProductList />
-    </main>
+    </>
   )
 }
 

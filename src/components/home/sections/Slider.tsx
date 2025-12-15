@@ -41,6 +41,30 @@ const Slider = () => {
     return () => clearInterval(autoSlide)
   }, [])
 
+  useEffect(() => {
+    let resizeTimeout: NodeJS.Timeout
+
+    const handleResize = () => {
+      const swiper = swiperRef.current?.swiper
+      if (!swiper) return
+
+      swiper.setTransition(0)
+      swiper.update()
+
+      clearTimeout(resizeTimeout)
+      resizeTimeout = setTimeout(() => {
+        swiper.setTransition(600)
+      }, 150)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      clearTimeout(resizeTimeout)
+    }
+  }, [])
+
   const showSkeleton = loading && !hasLoaded
 
   return (
@@ -114,6 +138,7 @@ const StyledSwiper = styled(Swiper)`
     align-items: center;
     justify-content: center;
   }
+
   @media ${device.mobile} {
     height: 35rem;
   }
@@ -122,8 +147,12 @@ const StyledSwiper = styled(Swiper)`
 const StyledImage = styled(Image)`
   width: 100%;
   height: 100%;
-  border-radius: 2rem;
+  border-radius: 0;
   object-fit: cover;
+
+  @media ${device.mobile} {
+    border-radius: 2rem;
+  }
 `
 
 const shimmer = keyframes`
@@ -134,10 +163,14 @@ const shimmer = keyframes`
 const SkeletonSlide = styled.div`
   width: 100%;
   height: 100%;
-  border-radius: 2rem;
+  border-radius: 0;
   background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
   background-size: 200% 100%;
   animation: ${shimmer} 1.2s infinite;
+
+  @media ${device.mobile} {
+    border-radius: 2rem;
+  }
 `
 
 const PaginationWrapper = styled.div`

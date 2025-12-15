@@ -29,7 +29,7 @@ const Favorites = () => {
       <h2 className='favorites__title'>Wishlist</h2>
 
       {favorites_products.length === 0 ? (
-        <p className='favorites__empty'>Your wishlist is empty.</p>
+        <p className='favorites__empty'>Your wishlist is empty</p>
       ) : (
         <motion.ul layout initial={false} className='favorites__list'>
           <AnimatePresence>
@@ -96,10 +96,10 @@ const Container = styled.div`
   }
   .favorites__empty {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    height: 200px;
-    color: white;
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
   }
   .favorites__list {
     display: flex;
@@ -146,11 +146,6 @@ const Container = styled.div`
   }
   .favorites__btn-delete:hover {
     text-decoration: none;
-  }
-
-  h3,
-  p {
-    color: white;
   }
 
   @media ${device.mobile} {

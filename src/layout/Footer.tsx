@@ -88,13 +88,19 @@ const Container = styled.footer`
     color: var(--clr-primary-5);
   }
 
-  @media ${device.mobile} {
+  /* @media ${device.mobile} {
     padding-left: 1rem;
+    .footer__grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
   }
 
   @media ${device.desktop} {
     padding-left: 0;
-  }
+    .footer__grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  } */
 `
 
 export default Footer
