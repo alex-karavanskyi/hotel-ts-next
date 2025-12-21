@@ -1,8 +1,10 @@
 'use client'
 import styled, { css } from 'styled-components'
+
 import { Product } from '@/shared/types/productsType'
 import { FavoriteButton } from '@/shared/ui'
 import { formatPrice } from '@/shared/utils/formatPrice'
+
 import { device } from '../constants/device'
 
 interface ProductInfoProps {
@@ -36,13 +38,13 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
           {showFavorite && (
             <FavoriteButton
               product={product}
-              classIcon='product__info-favorite-icon'
+              classIcon="product__info-favorite-icon"
             />
           )}
         </Header>
       )}
       {showPrice && (
-        <PriceTag className='product__info-price'>
+        <PriceTag className="product__info-price">
           {formatPrice(price)}
         </PriceTag>
       )}

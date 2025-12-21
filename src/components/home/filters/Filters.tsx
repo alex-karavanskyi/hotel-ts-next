@@ -1,13 +1,14 @@
 'use client'
 import styled from 'styled-components'
+
+import { ClearButton, Price, Search } from '@/components/home'
 import { device } from '@/shared/constants/device'
-import { Search, Price, ClearButton } from '@/components/home'
-import { containerStyles } from '@/shared/ui/styles/containerStyles'
 import {
   FilterFields,
   HandleClearButtonFn,
   HandleFiltersFn,
 } from '@/shared/types/productsType'
+import { containerStyles } from '@/shared/ui/styles/containerStyles'
 
 interface FiltersProps extends FilterFields {
   search: string

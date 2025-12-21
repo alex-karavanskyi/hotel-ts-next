@@ -1,9 +1,11 @@
-import modalReducer from '@/redux/features/modalSlice'
-import filterReducer from '@/redux/features/filterSlice'
-import productReducer from '@/redux/features/productSlice'
-import paginationSlice from '@/redux/features/paginationSlice'
-import favoriteSlice from '@/redux/features/favoriteSlice'
 import { configureStore } from '@reduxjs/toolkit'
+
+import favoriteSlice from '@/redux/features/favoriteSlice'
+import filterReducer from '@/redux/features/filterSlice'
+import modalReducer from '@/redux/features/modalSlice'
+import paginationSlice from '@/redux/features/paginationSlice'
+import productReducer from '@/redux/features/productSlice'
+
 import { persistFiltersMiddleware } from './middleware/persistFiltersMiddleware'
 import { persistGridViewMiddleware } from './middleware/persistGridViewMiddleware'
 import { persistPaginationMiddleware } from './middleware/persistPaginationMiddleware'
@@ -16,7 +18,7 @@ export const store = configureStore({
     pagination: paginationSlice,
     products: productReducer,
   },
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(
       persistFiltersMiddleware,
       persistGridViewMiddleware,

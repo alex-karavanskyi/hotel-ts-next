@@ -1,9 +1,11 @@
 'use client'
 import { useEffect } from 'react'
+
 import { usePathname } from 'next/navigation'
-import { useAppDispatch } from '@/redux/hooks'
+
 import { clearFilters } from '@/redux/features/filterSlice'
 import { numberPagination } from '@/redux/features/paginationSlice'
+import { useAppDispatch } from '@/redux/hooks'
 
 const FiltersCleaner = () => {
   const pathname = usePathname()

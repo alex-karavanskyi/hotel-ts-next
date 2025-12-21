@@ -1,11 +1,12 @@
 'use client'
 import styled, { keyframes } from 'styled-components'
+
 import { containerStyles } from '@/shared/ui/styles/containerStyles'
 
 const Loading = () => {
   return (
     <Container>
-      <div className='pulse-ring' />
+      <div className="pulse-ring" />
     </Container>
   )
 }
@@ -38,7 +39,9 @@ const Container = styled.div`
     border-radius: 50%;
     background: radial-gradient(circle, #2d3748 30%, #00161a 100%);
     animation: ${pulse} 1.5s infinite;
-    box-shadow: 0 0 15px #2d3748, inset 0 0 10px #2d3748;
+    box-shadow:
+      0 0 15px #2d3748,
+      inset 0 0 10px #2d3748;
   }
 `
 export default Loading

@@ -1,7 +1,9 @@
 'use client'
-import styled, { keyframes } from 'styled-components'
-import { device } from '@/shared/constants/device'
 import { useState } from 'react'
+
+import styled, { keyframes } from 'styled-components'
+
+import { device } from '@/shared/constants/device'
 import { HandleClearButtonFn } from '@/shared/types/productsType'
 
 interface ClearButtonProps {
@@ -20,7 +22,7 @@ const ClearButton: React.FC<ClearButtonProps> = ({ handleClearButton }) => {
   return (
     <Container>
       <button
-        type='button'
+        type="button"
         className={`clear__btn ${clicked ? 'animate' : ''}`}
         onClick={handleClick}
       >
@@ -55,6 +57,7 @@ const Container = styled.div`
     cursor: pointer;
     transition: transform 0.2s ease;
   }
+
   .clear__btn.animate {
     animation: ${pop} 0.3s ease;
   }

@@ -1,10 +1,11 @@
 'use client'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Product, FilterState } from '@/shared/types/productsType'
+
 import {
   loadFiltersFromStorage,
   loadGridViewFromStorage,
 } from '@/shared/lib/localStorageFilters'
+import { FilterState, Product } from '@/shared/types/productsType'
 
 const initialGridView = loadGridViewFromStorage()
 
@@ -37,7 +38,7 @@ const filterSlice = createSlice({
   reducers: {
     loadProducts: (state, action: PayloadAction<Product[]>) => {
       const products = action.payload
-      const prices = products.map((product) => product.price)
+      const prices = products.map(product => product.price)
       const maxPrice = Math.max(...prices)
       const minPrice = Math.min(...prices)
 
@@ -48,10 +49,10 @@ const filterSlice = createSlice({
         state.filters.price = maxPrice
       }
     },
-    setGridView: (state) => {
+    setGridView: state => {
       state.grid_view = true
     },
-    setListView: (state) => {
+    setListView: state => {
       state.grid_view = false
     },
     updateSort: (state, action: PayloadAction<string>) => {
@@ -64,11 +65,11 @@ const filterSlice = createSlice({
       const { name, value } = action.payload
       state.filters[name] = value
     },
-    filterProducts: (state) => {
+    filterProducts: state => {
       const { all_products, filters } = state
       const { text, category, price } = filters
 
-      state.filtered_products = all_products.filter((product) => {
+      state.filtered_products = all_products.filter(product => {
         return (
           (!text ||
             product.name.toLowerCase().startsWith(text.toLowerCase())) &&
@@ -77,7 +78,7 @@ const filterSlice = createSlice({
         )
       })
     },
-    sortProducts: (state) => {
+    sortProducts: state => {
       const { sort, filtered_products } = state
 
       const sorted = [...filtered_products].sort((a, b) => {
@@ -90,7 +91,7 @@ const filterSlice = createSlice({
 
       state.filtered_products = sorted
     },
-    clearFilters: (state) => {
+    clearFilters: state => {
       const { max_price } = state.filters
 
       state.filters = {

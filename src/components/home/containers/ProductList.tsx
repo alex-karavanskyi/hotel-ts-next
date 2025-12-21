@@ -1,23 +1,23 @@
 'use client'
 import styled from 'styled-components'
+
 import { GridView, ListView, Pagination } from '@/components/home'
 import { useAppSelector } from '@/redux/hooks'
 import { useIsMobile } from '@/shared/hooks/useIsMobile'
-import { useEffect, useState } from 'react'
 
 const postsPerPage = 6
 
 const ProductList = () => {
   const isMobile = useIsMobile()
 
-  const { pagination } = useAppSelector((store) => store.pagination)
+  const { pagination } = useAppSelector(store => store.pagination)
 
   const { filtered_products: products, grid_view } = useAppSelector(
-    (store) => store.filter
+    store => store.filter
   )
 
   const { products_loading: loading, products_error: error } = useAppSelector(
-    (store) => store.products
+    store => store.products
   )
 
   const currentPosts = products.slice(
@@ -27,7 +27,7 @@ const ProductList = () => {
 
   if (!loading && !error && products.length < 1) {
     return (
-      <Message data-cy='no-results'>
+      <Message data-cy="no-results">
         Sorry, no products matched your search...
       </Message>
     )

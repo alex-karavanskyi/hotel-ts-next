@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+
 import Favorites from '@/components/favorites/Favorites'
 
 export const metadata: Metadata = {

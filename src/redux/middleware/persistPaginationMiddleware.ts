@@ -1,10 +1,11 @@
 import { Middleware } from '@reduxjs/toolkit'
+
 import { numberPagination } from '../features/paginationSlice'
 
 const PAGINATION_STORAGE_KEY = 'pagination'
 
 export const persistPaginationMiddleware: Middleware =
-  (store) => (next) => (action) => {
+  store => next => action => {
     const result = next(action)
 
     if (action.type === numberPagination.type) {

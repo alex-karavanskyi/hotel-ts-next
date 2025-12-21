@@ -1,10 +1,12 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
-import { Navbar, Footer, Sidebar } from '@/layout'
-import { ReduxProvider } from '@/redux/provider'
+
 import { Metadata } from 'next'
-import FiltersCleaner from '@/shared/lib/FiltersCleaner'
+
+import { Footer, Navbar, Sidebar } from '@/layout'
+import { ReduxProvider } from '@/redux/provider'
 import ClientOnly from '@/shared/lib/ClientOnly'
+import FiltersCleaner from '@/shared/lib/FiltersCleaner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,9 +21,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <head>
-        <base href='#' target='_blank' />
+        <base href="#" target="_blank" />
       </head>
       <body className={inter.className}>
         <ClientOnly>

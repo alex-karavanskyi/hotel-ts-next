@@ -1,29 +1,29 @@
 'use client'
-import { useState, useEffect } from 'react'
-import { Sidebar, Filters, Category, Sort } from '@/components/home/'
-import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { useFilters } from '@/shared/hooks/useFilters'
-import { useIsMobile } from '@/shared/hooks/useIsMobile'
-import { getProductsItems } from '@/redux/features/productSlice'
-import { url } from '@/shared/constants/db'
-import { Loading, Error } from '@/layout'
+import { useEffect, useState } from 'react'
+
+import { Category, Filters, Sidebar, Sort } from '@/components/home/'
 import {
-  loadProducts,
   filterProducts,
+  loadProducts,
   sortProducts,
 } from '@/redux/features/filterSlice'
+import { getProductsItems } from '@/redux/features/productSlice'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { url } from '@/shared/constants/db'
+import { useFilters } from '@/shared/hooks/useFilters'
+import { useIsMobile } from '@/shared/hooks/useIsMobile'
 
 const ProductControls = () => {
   const isMobile = useIsMobile()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const { search, handleFilters, handleClearButton } = useFilters()
   const { products, products_loading: loading } = useAppSelector(
-    (store) => store.products
+    store => store.products
   )
   const {
     filters: { category, price, text, min_price, max_price },
     sort,
-  } = useAppSelector((store) => store.filter)
+  } = useAppSelector(store => store.filter)
   const dispatch = useAppDispatch()
 
   useEffect(() => {

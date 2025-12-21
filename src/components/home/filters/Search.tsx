@@ -1,5 +1,6 @@
 'use client'
 import styled from 'styled-components'
+
 import { device } from '@/shared/constants/device'
 import { FilterName, HandleFiltersFn } from '@/shared/types/productsType'
 
@@ -12,12 +13,12 @@ const Search: React.FC<SearchProps> = ({ search, handleFilters }) => {
   return (
     <Container>
       <input
-        data-cy='search'
-        type='search'
-        name='text'
-        placeholder='Search'
-        className='search__input'
-        onChange={(e) => handleFilters(FilterName.Text, e.target.value)}
+        data-cy="search"
+        type="search"
+        name="text"
+        placeholder="Search"
+        className="search__input"
+        onChange={e => handleFilters(FilterName.Text, e.target.value)}
         value={search}
       />
     </Container>
@@ -34,6 +35,7 @@ const Container = styled.div`
     letter-spacing: var(--spacing);
     outline: none;
   }
+
   .search__input::placeholder {
     text-transform: capitalize;
   }

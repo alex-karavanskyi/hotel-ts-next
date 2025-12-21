@@ -1,6 +1,6 @@
 import modalReducer, {
-  openModal,
   closeModal,
+  toggleModal,
 } from '@/redux/features/modalSlice'
 
 describe('modalSlice', () => {
@@ -14,7 +14,7 @@ describe('modalSlice', () => {
   })
 
   it('should handle openModal', () => {
-    const state = modalReducer(initialState, openModal())
+    const state = modalReducer(initialState, toggleModal())
     expect(state).toEqual({ isOpen: true })
   })
 
@@ -25,7 +25,7 @@ describe('modalSlice', () => {
   })
 
   it('should handle openModal and closeModal in sequence', () => {
-    let state = modalReducer(initialState, openModal())
+    let state = modalReducer(initialState, toggleModal())
     expect(state).toEqual({ isOpen: true })
 
     state = modalReducer(state, closeModal())

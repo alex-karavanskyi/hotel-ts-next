@@ -1,7 +1,8 @@
 'use client'
-import styled from 'styled-components'
-import { device } from '@/shared/constants/device'
 import { useForm } from 'react-hook-form'
+import styled from 'styled-components'
+
+import { device } from '@/shared/constants/device'
 import { Breadcrumbs } from '@/shared/ui'
 
 interface FormData {
@@ -25,10 +26,10 @@ const Contact = () => {
 
   return (
     <Container>
-      <div id='contact' className='contact' data-testid='contact'>
-        <div className='contact__container'>
-          <Breadcrumbs name='Contact' />
-          <form onSubmit={handleSubmit(onSubmit)} className='contact__form'>
+      <div id="contact" className="contact" data-testid="contact">
+        <div className="contact__container">
+          <Breadcrumbs name="Contact" />
+          <form onSubmit={handleSubmit(onSubmit)} className="contact__form">
             <label>
               <span>Name</span>
               <input
@@ -88,8 +89,8 @@ const Contact = () => {
               )}
             </div>
             <button
-              type='submit'
-              value='Send'
+              type="submit"
+              value="Send"
               className={`contact__button ${
                 isValid ? 'contact__button--black' : 'contact__button--white'
               }`}
@@ -107,25 +108,30 @@ const Contact = () => {
 const Container = styled.section`
   margin: 0 auto;
   max-width: 1024px;
+
   .contact {
     position: relative;
     z-index: 0;
   }
+
   .contact__container {
     flex: 0.75;
     background-color: black;
     padding: 2rem;
   }
+
   .contact__form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
   }
+
   .contact__form label {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
+
   .contact__form input,
   textarea {
     display: flex;
@@ -139,33 +145,36 @@ const Container = styled.section`
     border-style: none;
     font-weight: 500;
   }
+
   .contact__form input::placeholder,
   .contact__form textarea::placeholder {
     opacity: 1;
     color: black;
   }
+
   .contact__form span {
     color: white;
     font-weight: 500;
   }
+
   .contact__button {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding: 0.75rem 2rem;
     border-radius: 0.75rem;
     outline: 2px solid transparent;
     outline-offset: 2px;
     width: fit-content;
     cursor: pointer;
   }
+
   .contact__button:disabled {
     opacity: 0.5;
   }
+
   .contact__button--white {
     color: white;
     cursor: not-allowed;
   }
+
   .contact__button--black {
     color: black;
   }
@@ -173,6 +182,7 @@ const Container = styled.section`
   @media ${device.desktop} {
     padding-top: 1rem;
     padding-bottom: 1rem;
+
     .contact__container {
       border-radius: 1rem;
     }

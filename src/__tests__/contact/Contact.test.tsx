@@ -1,4 +1,5 @@
 import { act, fireEvent, render, screen } from '@testing-library/react'
+
 import Contact from '@/components/contact/Contact'
 import '@testing-library/jest-dom'
 

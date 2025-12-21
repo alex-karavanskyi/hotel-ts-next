@@ -1,0 +1,19 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "customSyntax": "postcss-styled-syntax",
+  "rules": {
+    "nesting-selector-no-missing-scoping-root": null,
+    "selector-class-pattern": null,
+    "media-query-no-invalid": null,
+    "declaration-empty-line-before": null,
+    "color-function-notation": null,
+    "alpha-value-notation": null,
+    "rule-empty-line-before": [
+      "always",
+      {
+        "except": ["first-nested"],
+        "ignore": ["after-comment"]
+      }
+    ]
+  }
+}

@@ -1,5 +1,6 @@
-import { useDebouncedCallback } from 'use-debounce'
 import { useRouter } from 'next/navigation'
+
+import { useDebouncedCallback } from 'use-debounce'
 
 export const useDebouncedUpdateFilters = () => {
   const { replace } = useRouter()

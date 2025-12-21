@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+
 import Contact from '@/components/contact/Contact'
 
 export const metadata: Metadata = {

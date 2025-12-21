@@ -1,9 +1,12 @@
 'use client'
-import Link from 'next/link'
-import styled from 'styled-components'
-import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { numberPagination } from '@/redux/features/paginationSlice'
 import { useEffect } from 'react'
+
+import Link from 'next/link'
+
+import styled from 'styled-components'
+
+import { numberPagination } from '@/redux/features/paginationSlice'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 
 interface PaginationProducts {
   postsPerPage: number
@@ -14,7 +17,7 @@ const Pagination: React.FC<PaginationProducts> = ({
   postsPerPage,
   totalPosts,
 }) => {
-  const { pagination } = useAppSelector((store) => store.pagination)
+  const { pagination } = useAppSelector(store => store.pagination)
 
   const dispatch = useAppDispatch()
 
@@ -41,8 +44,8 @@ const Pagination: React.FC<PaginationProducts> = ({
 
   return (
     <Container>
-      <ul className='pagination__container'>
-        {pageNumbers.map((number) => (
+      <ul className="pagination__container">
+        {pageNumbers.map(number => (
           <li
             key={number}
             className={`${
@@ -53,8 +56,8 @@ const Pagination: React.FC<PaginationProducts> = ({
           >
             <Link
               onClick={handleClick(number)}
-              href='/'
-              className='pagination__link'
+              href="/"
+              className="pagination__link"
             >
               {number}
             </Link>
@@ -68,11 +71,13 @@ const Pagination: React.FC<PaginationProducts> = ({
 const Container = styled.nav`
   padding-top: 2rem;
   padding-bottom: 2rem;
+
   .pagination__container {
     display: flex;
     justify-content: center;
     gap: 0.25rem;
   }
+
   .pagination {
     border: solid 1px;
     border-radius: 50%;
@@ -80,16 +85,20 @@ const Container = styled.nav`
     grid-template-columns: 1.9rem;
     grid-template-rows: 1.9rem;
     transition: background 0.3s ease;
+
     &:hover:not(.pagination--active) {
-      background: rgba(211, 211, 211, 0.2);
+      background: rgb(211, 211, 211, 0.2);
     }
+
     &.pagination--active:hover {
-      background-color: rgba(234, 140, 46, 0.8);
+      background-color: rgb(234, 140, 46, 0.8);
     }
   }
+
   .pagination--active {
-    background-color: rgba(234, 140, 46, 1);
+    background-color: rgb(234, 140, 46, 1);
   }
+
   .pagination__link {
     display: flex;
     justify-content: center;

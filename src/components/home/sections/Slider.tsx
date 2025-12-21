@@ -3,15 +3,18 @@ import 'swiper/css'
 import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
+import { useEffect, useRef, useState } from 'react'
+
 import Image from 'next/image'
+
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import styled, { keyframes } from 'styled-components'
+import { EffectCoverflow, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules'
+
 import { useAppSelector } from '@/redux/hooks'
-import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
-import { useRef, useEffect, useState } from 'react'
-import { containerStyles } from '@/shared/ui/styles/containerStyles'
 import { device } from '@/shared/constants/device'
+import { containerStyles } from '@/shared/ui/styles/containerStyles'
 
 const Slider = () => {
   const [hasLoaded, setHasLoaded] = useState(false)
@@ -20,7 +23,7 @@ const Slider = () => {
   const swiperRef = useRef<any>(null)
 
   const { products, products_loading: loading } = useAppSelector(
-    (state) => state.products
+    state => state.products
   )
 
   useEffect(() => {
@@ -70,7 +73,7 @@ const Slider = () => {
   return (
     <Container>
       <ArrowButton
-        className='prev'
+        className="prev"
         onClick={() => swiperRef.current?.swiper?.slidePrev()}
       >
         <FiChevronLeft />
@@ -78,7 +81,7 @@ const Slider = () => {
 
       <StyledSwiper
         ref={swiperRef}
-        effect='coverflow'
+        effect="coverflow"
         grabCursor
         centeredSlides
         loop
@@ -103,7 +106,7 @@ const Slider = () => {
           : slides.map(({ id, image }) => (
               <SwiperSlide key={id}>
                 <StyledImage
-                  alt='product image'
+                  alt="product image"
                   src={image}
                   width={700}
                   height={700}
@@ -113,14 +116,14 @@ const Slider = () => {
       </StyledSwiper>
 
       <ArrowButton
-        className='next'
+        className="next"
         onClick={() => swiperRef.current?.swiper?.slideNext()}
       >
         <FiChevronRight />
       </ArrowButton>
 
       <PaginationWrapper>
-        <div className='swiper-pagination' />
+        <div className="swiper-pagination" />
       </PaginationWrapper>
     </Container>
   )
@@ -132,11 +135,14 @@ const Container = styled.div`
 `
 
 const StyledSwiper = styled(Swiper)`
-  height: 20rem;
-  .swiper-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  & {
+    height: 20rem;
+
+    & .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   @media ${device.mobile} {
@@ -145,10 +151,12 @@ const StyledSwiper = styled(Swiper)`
 `
 
 const StyledImage = styled(Image)`
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
-  object-fit: cover;
+  & {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    object-fit: cover;
+  }
 
   @media ${device.mobile} {
     border-radius: 2rem;
@@ -161,12 +169,14 @@ const shimmer = keyframes`
 `
 
 const SkeletonSlide = styled.div`
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
-  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
-  background-size: 200% 100%;
-  animation: ${shimmer} 1.2s infinite;
+  & {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+    background-size: 200% 100%;
+    animation: ${shimmer} 1.2s infinite;
+  }
 
   @media ${device.mobile} {
     border-radius: 2rem;
@@ -179,11 +189,13 @@ const PaginationWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  .swiper-pagination-bullet {
+
+  & .swiper-pagination-bullet {
     background: white;
     padding: 0.43rem;
   }
-  .swiper-pagination-bullet-active {
+
+  & .swiper-pagination-bullet-active {
     background: #007aff;
   }
 `
@@ -192,7 +204,7 @@ const ArrowButton = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(74, 74, 77, 0.8);
+  background: rgb(74, 74, 77, 0.8);
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
@@ -217,7 +229,7 @@ const ArrowButton = styled.button`
     right: 0.5rem;
   }
 
-  svg {
+  & svg {
     width: 1.5rem;
     height: 1.5rem;
   }

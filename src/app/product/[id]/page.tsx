@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+
 import SingleProduct from '@/components/product/SingleProduct'
 
 export const metadata: Metadata = {

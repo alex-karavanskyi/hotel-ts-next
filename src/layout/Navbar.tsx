@@ -1,20 +1,23 @@
 'use client'
+import { useEffect, useState } from 'react'
+
+import Image from 'next/image'
+import Link from 'next/link'
+
 import styled from 'styled-components'
+
 import pngwing_grey from '@/images/pngwing_grey.png'
 import pngwing_red from '@/images/pngwing_red.png'
-import Link from 'next/link'
-import Image from 'next/image'
-import NavbarLinks from '@/shared/ui/NavbarLinks'
-import { device } from '@/shared/constants/device'
-import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { useState, useLayoutEffect, useEffect } from 'react'
 import { closeModal, toggleModal } from '@/redux/features/modalSlice'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { device } from '@/shared/constants/device'
+import NavbarLinks from '@/shared/ui/NavbarLinks'
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false)
   const dispatch = useAppDispatch()
 
-  const isModalOpen = useAppSelector((state) => state.modal.isOpen)
+  const isModalOpen = useAppSelector(state => state.modal.isOpen)
 
   useEffect(() => {
     const handleScroll = () => setNavbar(window.scrollY > 80)
@@ -38,7 +41,7 @@ const Navbar = () => {
         <div className={navbar ? 'navbar navbar--scrolled' : 'navbar'}>
           <Link href={`/`}>
             <Image
-              alt='Logo'
+              alt="Logo"
               width={60}
               height={60}
               priority
@@ -46,7 +49,7 @@ const Navbar = () => {
             />
           </Link>
           <button
-            className='navbar__btn'
+            className="navbar__btn"
             onClick={() => dispatch(toggleModal())}
             aria-label={isModalOpen ? 'Close menu' : 'Open menu'}
           >
@@ -66,39 +69,40 @@ const Navbar = () => {
 
 const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
   <svg
-    width='28'
-    height='28'
-    viewBox='0 0 28 28'
-    fill='none'
-    xmlns='http://www.w3.org/2000/svg'
-    className='hamburger-icon'
+    width="28"
+    height="28"
+    viewBox="0 0 28 28"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="hamburger-icon"
   >
     <path
-      d='M4 8H24'
-      className='line line-1'
-      stroke='currentColor'
-      strokeWidth='3'
-      strokeLinecap='round'
+      d="M4 8H24"
+      className="line line-1"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
     />
     <path
-      d='M4 14H24'
-      className='line line-2'
-      stroke='currentColor'
-      strokeWidth='3'
-      strokeLinecap='round'
+      d="M4 14H24"
+      className="line line-2"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
     />
     <path
-      d='M4 20H24'
-      className='line line-3'
-      stroke='currentColor'
-      strokeWidth='3'
-      strokeLinecap='round'
+      d="M4 20H24"
+      className="line line-3"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
     />
   </svg>
 )
 
 const Container = styled.nav`
   --transition: all 0.3s ease;
+
   .navbar {
     position: fixed;
     top: 0;
@@ -111,12 +115,16 @@ const Container = styled.nav`
     align-items: center;
     background: var(--gradient-navbar-footer-bg);
     padding: 0 1rem;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      background 0.3s ease,
+      box-shadow 0.3s ease;
   }
+
   .navbar--scrolled {
     background: var(--clr-white);
     box-shadow: var(--light-shadow);
   }
+
   .navbar__btn {
     position: absolute;
     right: 1rem;
@@ -126,76 +134,83 @@ const Container = styled.nav`
     color: var(--clr-primary-5);
     transition: color 0.3s ease;
   }
+
   .navbar__btn:hover {
     color: var(--clr-primary-5);
   }
-  .hamburger-icon {
-    width: 28px;
-    height: 28px;
-  }
-  .line {
-    stroke: currentColor;
-    stroke-width: 3;
-    stroke-linecap: round;
-    transform-origin: center;
-    transition: all 0.3s ease;
-  }
+
   .navbar__btn:hover .line-1 {
     stroke-width: 4;
     transform: translateY(-2px) scaleX(1.1);
   }
+
   .navbar__btn:hover .line-2 {
     stroke-width: 4;
     transform: scaleX(1.2);
   }
+
   .navbar__btn:hover .line-3 {
     stroke-width: 4;
     transform: translateY(2px) scaleX(1.1);
   }
+
   .navbar__links {
     display: none;
   }
+
+  .navbar__btn[aria-label='Close menu'] .line-1 {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .navbar__btn[aria-label='Close menu'] .line-2 {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .navbar__btn[aria-label='Close menu'] .line-3 {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  .navbar__btn[aria-label='Open menu']:hover .line-1 {
+    stroke-width: 4;
+    transform: translateY(-2px) scaleX(1.1);
+  }
+
+  .navbar__btn[aria-label='Open menu']:hover .line-2 {
+    stroke-width: 4;
+    transform: scaleX(1.2);
+  }
+
+  .navbar__btn[aria-label='Open menu']:hover .line-3 {
+    stroke-width: 4;
+    transform: translateY(2px) scaleX(1.1);
+  }
+
   .hamburger-icon {
     width: 28px;
     height: 28px;
     color: var(--clr-primary-5);
   }
+
   .line {
-    transition: all 0.3s ease;
+    stroke: currentcolor;
+    stroke-width: 3;
+    stroke-linecap: round;
     transform-origin: center;
-  }
-  .navbar__btn[aria-label='Close menu'] .line-1 {
-    transform: translateY(6px) rotate(45deg);
-  }
-  .navbar__btn[aria-label='Close menu'] .line-2 {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-  .navbar__btn[aria-label='Close menu'] .line-3 {
-    transform: translateY(-6px) rotate(-45deg);
-  }
-  .navbar__btn[aria-label='Open menu']:hover .line-1 {
-    stroke-width: 4;
-    transform: translateY(-2px) scaleX(1.1);
-  }
-  .navbar__btn[aria-label='Open menu']:hover .line-2 {
-    stroke-width: 4;
-    transform: scaleX(1.2);
-  }
-  .navbar__btn[aria-label='Open menu']:hover .line-3 {
-    stroke-width: 4;
-    transform: translateY(2px) scaleX(1.1);
+    transition: all 0.3s ease;
   }
 
   @media ${device.mobile} {
     .navbar__btn {
       display: none;
     }
+
     .navbar__links {
       display: flex;
       justify-content: end;
       gap: 2rem;
     }
+
     .navbar__links button {
       background: transparent;
       cursor: pointer;
@@ -203,17 +218,20 @@ const Container = styled.nav`
       border: none;
       outline: none;
     }
+
     .navbar__links a,
     .navbar__links button {
-      color: rgba(255, 255, 255, 0.5);
+      color: rgb(255, 255, 255, 0.5);
       font-weight: bold;
       letter-spacing: var(--spacing);
       transition: var(--transition);
     }
+
     .navbar__links--color a,
     .navbar__links--color button {
       color: black;
     }
+
     .navbar__links a:hover,
     .navbar__links button:hover {
       color: var(--clr-primary-5);

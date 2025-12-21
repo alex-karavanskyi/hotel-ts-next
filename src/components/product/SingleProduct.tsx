@@ -1,23 +1,27 @@
 'use client'
+import { useEffect } from 'react'
+
+import { useParams, useRouter } from 'next/navigation'
+
 import styled from 'styled-components'
-import ProductImages from './ProductImages'
-import ProductInfo from '@/shared/ui/ProductInfo'
+
+import { Error, Loading } from '@/layout'
+import { getSingleProduct } from '@/redux/features/productSlice'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { url } from '@/shared/constants/db'
 import { device } from '@/shared/constants/device'
-import { useEffect } from 'react'
-import { useParams, useRouter } from 'next/navigation'
-import { Loading, Error } from '@/layout'
-import { getSingleProduct } from '@/redux/features/productSlice'
-import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { Breadcrumbs } from '@/shared/ui'
+import ProductInfo from '@/shared/ui/ProductInfo'
 import { containerStyles } from '@/shared/ui/styles/containerStyles'
+
+import ProductImages from './ProductImages'
 
 const SingleProduct = () => {
   const {
     single_product_loading: loading,
     single_product_error: error,
     single_product: product,
-  } = useAppSelector((store) => store.products)
+  } = useAppSelector(store => store.products)
 
   const { id } = useParams()
   const router = useRouter()
@@ -44,17 +48,17 @@ const SingleProduct = () => {
   return (
     <Container>
       <Breadcrumbs name={product.name} />
-      <div className='single__product-container'>
+      <div className="single__product-container">
         <ProductImages images={images} />
-        <section className='single__product-info'>
+        <section className="single__product-info">
           <ProductInfo
             product={product}
-            variant='detailed'
+            variant="detailed"
             showHeader={true}
             showPrice={true}
-            priceTag='h5'
+            priceTag="h5"
           />
-          <p className='single__product-description'>{description}</p>
+          <p className="single__product-description">{description}</p>
           <hr />
         </section>
       </div>
@@ -65,19 +69,23 @@ const SingleProduct = () => {
 const Container = styled.main`
   ${containerStyles}
   padding: 1rem;
+
   .single__product-container {
     display: grid;
     gap: 4rem;
   }
+
   .single__product-info {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
   }
+
   .single__product-description {
     line-height: 1.8;
     color: #acb4be;
   }
+
   .product__info-favorite-icon {
     width: 2rem;
     height: 2rem;
@@ -89,6 +97,7 @@ const Container = styled.main`
     .single__product-container {
       grid-template-columns: 1fr 1fr;
     }
+
     .product__info-favorite-icon {
       width: 2.2rem;
       height: 2.2rem;

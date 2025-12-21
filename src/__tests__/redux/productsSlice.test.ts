@@ -1,8 +1,9 @@
-import reducer, { getProductsItems } from '@/redux/features/productSlice'
+import { configureStore } from '@reduxjs/toolkit'
 import axios from 'axios'
 import thunk from 'redux-thunk'
+
+import reducer, { getProductsItems } from '@/redux/features/productSlice'
 import { Product } from '@/shared/types/productsType'
-import { configureStore } from '@reduxjs/toolkit'
 
 jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>

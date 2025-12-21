@@ -1,11 +1,13 @@
 'use client'
+import { useEffect } from 'react'
+
+import { BsFillGridFill, BsList } from 'react-icons/bs'
 import styled from 'styled-components'
+
+import { setGridView, setListView } from '@/redux/features/filterSlice'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { device } from '@/shared/constants/device'
 import { FilterName, HandleFiltersFn } from '@/shared/types/productsType'
-import { BsFillGridFill, BsList } from 'react-icons/bs'
-import { useAppSelector, useAppDispatch } from '@/redux/hooks'
-import { setGridView, setListView } from '@/redux/features/filterSlice'
-import { useEffect } from 'react'
 import { containerStyles } from '@/shared/ui/styles/containerStyles'
 
 interface SortProps {
@@ -17,11 +19,9 @@ const Sort: React.FC<SortProps> = ({ handleFilters }) => {
     filtered_products: products,
     grid_view,
     sort,
-  } = useAppSelector((store) => store.filter)
+  } = useAppSelector(store => store.filter)
 
-  const { products_loading: loading } = useAppSelector(
-    (store) => store.products
-  )
+  const { products_loading: loading } = useAppSelector(store => store.products)
 
   const dispatch = useAppDispatch()
 
@@ -41,39 +41,39 @@ const Sort: React.FC<SortProps> = ({ handleFilters }) => {
 
   return (
     <Container>
-      <div className='sort__container'>
-        <div className='sort__btn'>
+      <div className="sort__container">
+        <div className="sort__btn">
           <button
-            type='button'
+            type="button"
             className={`${grid_view ? 'sort__btn-active' : ''}`}
             onClick={() => dispatch(setGridView())}
           >
             <BsFillGridFill />
           </button>
           <button
-            type='button'
+            type="button"
             className={`${!grid_view ? 'sort__btn-active' : ''}`}
             onClick={() => dispatch(setListView())}
           >
             <BsList />
           </button>
         </div>
-        <p className='sort__title'>
+        <p className="sort__title">
           {loading ? 'loading…' : `${products.length} products found`}
         </p>
         <hr />
-        <div className='sort__select-wrapper'>
+        <div className="sort__select-wrapper">
           <select
-            name='sort'
-            id='sort'
-            className='sort__select'
+            name="sort"
+            id="sort"
+            className="sort__select"
             value={sort}
-            onChange={(e) => handleFilters(FilterName.Sort, e.target.value)}
+            onChange={e => handleFilters(FilterName.Sort, e.target.value)}
           >
-            <option value='price-lowest'>price (lowest)</option>
-            <option value='price-highest'>price (highest)</option>
-            <option value='name-a'>name (a-z)</option>
-            <option value='name-z'>name (z-a)</option>
+            <option value="price-lowest">price (lowest)</option>
+            <option value="price-highest">price (highest)</option>
+            <option value="name-a">name (a-z)</option>
+            <option value="name-z">name (z-a)</option>
           </select>
         </div>
       </div>
@@ -85,9 +85,11 @@ const Container = styled.div`
   ${containerStyles}
   padding-left: 1rem;
   padding-right: 1rem;
+
   .sort__btn {
     display: none;
   }
+
   .sort__container {
     display: flex;
     flex-direction: column;
@@ -95,15 +97,18 @@ const Container = styled.div`
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
+
   .sort__title {
     text-transform: capitalize;
     color: white;
     font-weight: 500;
   }
+
   .sort__select-wrapper {
     width: max-content;
     position: relative;
   }
+
   .sort__select {
     appearance: none;
     background-color: #1e1e1e;
@@ -113,11 +118,13 @@ const Container = styled.div`
     font-size: 1rem;
     color: #f1f1f1;
     cursor: pointer;
-    transition: border 0.2s ease, background-color 0.2s ease;
+    transition:
+      border 0.2s ease,
+      background-color 0.2s ease;
 
     &:hover,
     &:focus {
-      border-color: rgba(255, 165, 0, 1);
+      border-color: rgb(255, 165, 0, 1);
       background-color: #2a2a2a;
       outline: none;
     }
@@ -148,19 +155,20 @@ const Container = styled.div`
         transition: background 0.3s ease;
 
         &:hover:not(.sort__btn-active) {
-          background: rgba(211, 211, 211, 0.2);
+          background: rgb(211, 211, 211, 0.2);
         }
 
         &.sort__btn-active {
-          background: rgba(255, 165, 0, 1);
+          background: rgb(255, 165, 0, 1);
           color: var(--clr-black);
         }
 
         &.sort__btn-active:hover {
-          background: rgba(255, 165, 0, 0.7);
+          background: rgb(255, 165, 0, 0.7);
         }
       }
     }
+
     .sort__container {
       display: grid;
       grid-template-columns: auto auto 1fr auto;

@@ -1,23 +1,25 @@
 'use client'
 import { useEffect } from 'react'
+
 import { useSearchParams } from 'next/navigation'
-import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { numberPagination } from '@/redux/features/paginationSlice'
-import { useDebouncedUpdateFilters } from '@/shared/hooks/useDebounceFilters'
-import { FilterName } from '@/shared/types/productsType'
-import { SEARCH_STORAGE_KEY } from '@/shared/constants/localStorage'
+
 import {
+  clearFilters,
   updateFilters,
   updateSort,
-  clearFilters,
 } from '@/redux/features/filterSlice'
+import { numberPagination } from '@/redux/features/paginationSlice'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { SEARCH_STORAGE_KEY } from '@/shared/constants/localStorage'
+import { useDebouncedUpdateFilters } from '@/shared/hooks/useDebounceFilters'
+import { FilterName } from '@/shared/types/productsType'
 
 export const useFilters = () => {
   const dispatch = useAppDispatch()
   const searchParams = useSearchParams()
   const debouncedUpdateFilters = useDebouncedUpdateFilters()
 
-  const search = useAppSelector((state) => state.filter.filters.text)
+  const search = useAppSelector(state => state.filter.filters.text)
 
   useEffect(() => {
     if (search !== undefined) {

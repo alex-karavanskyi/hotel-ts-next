@@ -1,12 +1,13 @@
 'use client'
 import {
-  createSlice,
-  createAsyncThunk,
-  PayloadAction,
   ActionReducerMapBuilder,
+  createAsyncThunk,
+  createSlice,
+  PayloadAction,
 } from '@reduxjs/toolkit'
-import { Product } from '@/shared/types/productsType'
 import axios, { AxiosError } from 'axios'
+
+import { Product } from '@/shared/types/productsType'
 
 interface ProductsState {
   products_loading: boolean
@@ -79,7 +80,7 @@ const productSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     handleAsyncState(
       builder,
       getProductsItems,

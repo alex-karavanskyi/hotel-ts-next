@@ -1,12 +1,12 @@
 import filterReducer, {
+  clearFilters,
+  filterProducts,
   loadProducts,
   setGridView,
   setListView,
-  updateSort,
-  updateFilters,
-  clearFilters,
-  filterProducts,
   sortProducts,
+  updateFilters,
+  updateSort,
 } from '@/redux/features/filterSlice'
 import { Product } from '@/shared/types/productsType'
 import { FilterState } from '@/shared/types/productsType'

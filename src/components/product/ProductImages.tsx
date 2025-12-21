@@ -1,9 +1,12 @@
 'use client'
-import styled from 'styled-components'
+import { useEffect, useState } from 'react'
+
 import Image from 'next/image'
+
 import { motion } from 'framer-motion'
+import styled from 'styled-components'
+
 import { Product } from '@/shared/types/productsType'
-import { useState, useEffect } from 'react'
 
 interface ProductImagesProps {
   images: Product['images']
@@ -35,18 +38,18 @@ const ProductImages: React.FC<ProductImagesProps> = ({ images = [] }) => {
   return (
     <Container>
       <Image
-        alt='main product image'
+        alt="main product image"
         width={564}
         height={500}
         priority
-        className='product__images'
+        className="product__images"
         src={mainImage}
       />
       {images.length > 1 && (
         <motion.div
-          className='product__images-gallery'
-          initial='hidden'
-          animate='visible'
+          className="product__images-gallery"
+          initial="hidden"
+          animate="visible"
           variants={galleryVariants}
         >
           {images.map((image, index) => (
@@ -76,6 +79,7 @@ const Container = styled.div`
     border-radius: var(--radius);
     object-fit: cover;
   }
+
   .product__images-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
@@ -99,6 +103,7 @@ const Container = styled.div`
       }
     }
   }
+
   .product__images--active {
     border: 2px solid var(--clr-primary-5);
   }

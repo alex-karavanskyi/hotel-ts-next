@@ -1,13 +1,15 @@
 'use client'
-import styled from 'styled-components'
-import Link from 'next/link'
 import Image from 'next/image'
-import ProductInfo from '@/shared/ui/ProductInfo'
-import { device } from '@/shared/constants/device'
+import Link from 'next/link'
+
 import { FaSearch } from 'react-icons/fa'
+import styled from 'styled-components'
+
+import { device } from '@/shared/constants/device'
 import { Product } from '@/shared/types/productsType'
-import { containerStyles } from '@/shared/ui/styles/containerStyles'
+import ProductInfo from '@/shared/ui/ProductInfo'
 import GridViewSkeleton from '@/shared/ui/skeletons/GridViewSkeleton'
+import { containerStyles } from '@/shared/ui/styles/containerStyles'
 
 interface GridProducts {
   products: Product[]
@@ -17,39 +19,39 @@ interface GridProducts {
 const GridView: React.FC<GridProducts> = ({ products, isLoading }) => {
   return (
     <Container>
-      <div className='grid__view-products' role='list'>
+      <div className="grid__view-products" role="list">
         {isLoading && <GridViewSkeleton />}
         {!isLoading &&
-          products.map((product) => {
+          products.map(product => {
             const { id, image } = product
             return (
-              <article key={id} className='grid__view-product'>
-                <div className='grid__view-products-images'>
+              <article key={id} className="grid__view-product">
+                <div className="grid__view-products-images">
                   <Image
                     alt={product.name}
                     width={470}
                     height={500}
                     priority
                     src={image}
-                    className='grid__view-images'
+                    className="grid__view-images"
                   />
                   <Link
                     href={`/product/${id}`}
-                    className='grid__view-products-link'
+                    className="grid__view-products-link"
                   >
                     <FaSearch />
                   </Link>
                 </div>
-                <footer className='grid__view-footer'>
+                <footer className="grid__view-footer">
                   <ProductInfo
                     product={product}
-                    variant='compact'
+                    variant="compact"
                     showHeader={true}
                     showPrice={false}
                   />
                   <ProductInfo
                     product={product}
-                    variant='compact'
+                    variant="compact"
                     showHeader={false}
                     showPrice={true}
                   />
@@ -66,21 +68,25 @@ const Container = styled.section`
   ${containerStyles}
   padding-left: 1rem;
   padding-right: 1rem;
+
   .grid__view-products {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 1.5rem;
   }
+
   .grid__view-product {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
+
   .grid__view-products-images {
     position: relative;
     background: var(--clr-black);
     border-radius: var(--radius);
   }
+
   .grid__view-images {
     width: 100%;
     display: block;
@@ -88,6 +94,7 @@ const Container = styled.section`
     border-radius: var(--radius);
     transition: var(--transition);
   }
+
   .grid__view-products-link {
     position: absolute;
     top: 50%;
@@ -103,27 +110,33 @@ const Container = styled.section`
     opacity: 0;
     transition: var(--transition);
     cursor: pointer;
+
     svg {
       font-size: 1.25rem;
       color: var(--clr-white);
     }
   }
+
   .grid__view-images:hover,
   .grid__view-products-images:hover .grid__view-images {
     opacity: 0.5;
   }
+
   .grid__view-products-images:hover .grid__view-products-link {
     opacity: 1;
   }
+
   .grid__view-products-link:hover ~ .grid__view-images {
     opacity: 0.5;
   }
+
   .grid__view-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
   }
+
   .product__info-favorite-icon {
     width: 18px;
     height: 18px;

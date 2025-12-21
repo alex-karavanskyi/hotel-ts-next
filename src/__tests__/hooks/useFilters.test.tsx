@@ -1,9 +1,10 @@
+import { configureStore } from '@reduxjs/toolkit'
 import { act, renderHook } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import { configureStore } from '@reduxjs/toolkit'
-import { useFilters } from '@/shared/hooks/useFilters'
+
 import filterReducer from '@/redux/features/filterSlice'
 import paginationReducer from '@/redux/features/paginationSlice'
+import { useFilters } from '@/shared/hooks/useFilters'
 
 jest.mock('next/navigation', () => ({
   useRouter: jest.fn(() => ({

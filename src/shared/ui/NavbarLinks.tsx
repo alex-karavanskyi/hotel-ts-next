@@ -1,9 +1,11 @@
 'use client'
 import Link from 'next/link'
+
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
+
 import { closeModal } from '@/redux/features/modalSlice'
 import { useAppDispatch } from '@/redux/hooks'
-import { motion } from 'framer-motion'
 
 const NavbarLinks: React.FC<{ parentClass?: string }> = ({ parentClass }) => {
   const dispatch = useAppDispatch()
@@ -27,10 +29,10 @@ const NavbarLinks: React.FC<{ parentClass?: string }> = ({ parentClass }) => {
       <motion.ul
         className={parentClass}
         variants={listVariants}
-        initial='hidden'
-        animate='visible'
+        initial="hidden"
+        animate="visible"
       >
-        {['contact', 'favorites'].map((link) => (
+        {['contact', 'favorites'].map(link => (
           <motion.li
             key={link}
             variants={itemVariants}
@@ -63,7 +65,7 @@ const Container = styled.nav`
       text-decoration: none;
       font-weight: bold;
       letter-spacing: var(--spacing);
-      color: rgba(255, 255, 255, 0.5);
+      color: rgb(255 255 255 / 0.5);
       position: relative;
     }
 
@@ -87,12 +89,16 @@ const Container = styled.nav`
     }
   }
 
-  .navbar__links--color a {
-    color: black;
-  }
+  &.navbar__links--color {
+    li {
+      a {
+        color: black;
+      }
 
-  .navbar__links--color li:hover a {
-    color: var(--clr-primary-5);
+      &:hover a {
+        color: var(--clr-primary-5);
+      }
+    }
   }
 `
 

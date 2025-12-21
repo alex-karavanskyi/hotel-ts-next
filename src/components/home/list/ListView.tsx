@@ -1,13 +1,16 @@
 'use client'
-import styled from 'styled-components'
-import Link from 'next/link'
+import { useState } from 'react'
+
 import Image from 'next/image'
-import ProductInfo from '@/shared/ui/ProductInfo'
-import ListViewSkeleton from '@/shared/ui/skeletons/ListViewSkeleton'
+import Link from 'next/link'
+
+import styled from 'styled-components'
+
 import { device } from '@/shared/constants/device'
 import { Product } from '@/shared/types/productsType'
+import ProductInfo from '@/shared/ui/ProductInfo'
+import ListViewSkeleton from '@/shared/ui/skeletons/ListViewSkeleton'
 import { containerStyles } from '@/shared/ui/styles/containerStyles'
-import { useState } from 'react'
 
 interface ListProductsProps {
   products: Product[]
@@ -19,48 +22,48 @@ const ListView = ({ products, isLoading }: ListProductsProps) => {
   const visibleProducts: Product[] = products.slice(0, visibleCount)
 
   const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + 7)
+    setVisibleCount(prev => prev + 7)
   }
 
   return (
     <Container>
-      <div className='list__view-products'>
+      <div className="list__view-products">
         {isLoading && <ListViewSkeleton />}
         {!isLoading &&
-          visibleProducts.map((product) => {
+          visibleProducts.map(product => {
             const { id, image, description } = product
             return (
-              <article className='list__view-article' key={id}>
+              <article className="list__view-article" key={id}>
                 <Image
                   alt={product.name}
                   width={300}
                   height={200}
                   priority
                   src={image}
-                  className='list__view-image'
+                  className="list__view-image"
                 />
 
-                <div className='list__view-products-info'>
+                <div className="list__view-products-info">
                   <ProductInfo
                     product={product}
-                    variant='compact'
+                    variant="compact"
                     showHeader={true}
                     showPrice={false}
                   />
                   <ProductInfo
                     product={product}
-                    variant='compact'
+                    variant="compact"
                     showHeader={false}
                     showPrice={true}
                   />
 
-                  <p className='list__view-products-description'>
+                  <p className="list__view-products-description">
                     {description.substring(0, 150)}...
                   </p>
 
                   <Link
                     href={`/product/${id}`}
-                    className='list__view-products-btn-details'
+                    className="list__view-products-btn-details"
                   >
                     Details
                   </Link>
@@ -70,7 +73,7 @@ const ListView = ({ products, isLoading }: ListProductsProps) => {
           })}
       </div>
       {!isLoading && visibleCount < products.length && (
-        <button className='list__view-load-more-btn' onClick={handleLoadMore}>
+        <button className="list__view-load-more-btn" onClick={handleLoadMore}>
           Load More
         </button>
       )}
@@ -82,21 +85,25 @@ const Container = styled.section`
   ${containerStyles}
   padding-bottom: 1rem;
   padding-left: 1rem;
+
   .list__view-products {
     display: grid;
     row-gap: 1.5rem;
     color: var(--clr-grey-dark);
   }
+
   .list__view-article {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
+
   .list__view-products-info {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
+
   .list__view-image {
     width: 100%;
     max-width: 300px;
@@ -104,13 +111,15 @@ const Container = styled.section`
     object-fit: cover;
     border-radius: var(--radius);
   }
+
   .list__view-products-description {
     max-width: 45em;
     line-height: 1.6;
   }
+
   .list__view-products-btn-details {
     text-transform: uppercase;
-    background-color: rgba(234, 140, 46, 1);
+    background-color: rgb(234, 140, 46, 1);
     color: var(--clr-grey-dark);
     border-radius: 2px;
     cursor: pointer;
@@ -120,9 +129,11 @@ const Container = styled.section`
     display: inline-block;
     width: max-content;
   }
+
   .list__view-products-btn-details:hover {
-    background-color: rgba(234, 140, 46, 0.7);
+    background-color: rgb(234, 140, 46, 0.7);
   }
+
   .list__view-load-more-btn {
     margin: 2.5rem auto 0;
     display: flex;
@@ -144,23 +155,27 @@ const Container = styled.section`
     letter-spacing: 0.5px;
     backdrop-filter: blur(3px);
   }
+
   .list__view-load-more-btn:hover {
     background: var(--clr-primary-5);
     color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(234, 140, 46, 0.3);
+    box-shadow: 0 4px 12px rgb(234, 140, 46, 0.3);
   }
+
   .list__view-load-more-btn:active {
     transform: translateY(0);
     box-shadow: none;
     opacity: 0.9;
   }
+
   .product__info-favorite-icon {
     width: 18px;
     height: 18px;
     color: var(--clr-grey-dark);
     cursor: pointer;
   }
+
   .product__info-price {
     font-weight: 500;
   }

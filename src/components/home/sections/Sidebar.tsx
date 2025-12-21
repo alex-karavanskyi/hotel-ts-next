@@ -1,7 +1,9 @@
 'use client'
-import styled from 'styled-components'
-import { Search, Price, Category, ClearButton, Sort } from '@/components/home'
 import { useState } from 'react'
+
+import styled from 'styled-components'
+
+import { Category, ClearButton, Price, Search, Sort } from '@/components/home'
 import { useAppSelector } from '@/redux/hooks'
 import {
   FilterFields,
@@ -30,9 +32,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const [isSortOpen, setIsSortOpen] = useState(false)
 
-  const { products_loading: loading } = useAppSelector(
-    (store) => store.products
-  )
+  const { products_loading: loading } = useAppSelector(store => store.products)
 
   return (
     <>
@@ -48,7 +48,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
       {isSidebarOpen && (
         <SidebarOverlay onClick={() => setIsSidebarOpen(false)}>
-          <SidebarContent side='right' onClick={(e) => e.stopPropagation()}>
+          <SidebarContent side="right" onClick={e => e.stopPropagation()}>
             <Category
               buttonColor={category}
               handleFilters={handleFilters}
@@ -68,7 +68,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
       {isSortOpen && (
         <SidebarOverlay onClick={() => setIsSortOpen(false)}>
-          <SidebarContent side='left' onClick={(e) => e.stopPropagation()}>
+          <SidebarContent side="left" onClick={e => e.stopPropagation()}>
             <Sort handleFilters={handleFilters} />
           </SidebarContent>
         </SidebarOverlay>
@@ -107,7 +107,7 @@ const SidebarOverlay = styled.div`
 `
 
 const SidebarContent = styled.div<{ side: 'left' | 'right' }>`
-  ${(props) => props.side}: 0;
+  ${props => props.side}: 0;
   position: fixed;
   top: var(--navbar-height);
   width: 50%;

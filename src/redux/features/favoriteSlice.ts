@@ -1,5 +1,6 @@
 'use client'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
 import { Product } from '@/shared/types/productsType'
 
 interface FavoriteState {
@@ -16,7 +17,7 @@ const favoriteSlice = createSlice({
   reducers: {
     addFavorite: (state, action: PayloadAction<Product>) => {
       const exists = state.favorites_products.some(
-        (product) => product.id === action.payload.id
+        product => product.id === action.payload.id
       )
       if (!exists) {
         state.favorites_products.push(action.payload)
@@ -24,16 +25,16 @@ const favoriteSlice = createSlice({
     },
     removeFavorite: (state, action: PayloadAction<string>) => {
       state.favorites_products = state.favorites_products.filter(
-        (product) => product.id !== action.payload
+        product => product.id !== action.payload
       )
     },
     toggleFavorite: (state, action: PayloadAction<Product>) => {
       const exists = state.favorites_products.some(
-        (product) => product.id === action.payload.id
+        product => product.id === action.payload.id
       )
       if (exists) {
         state.favorites_products = state.favorites_products.filter(
-          (product) => product.id !== action.payload.id
+          product => product.id !== action.payload.id
         )
       } else {
         state.favorites_products.push(action.payload)
