@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { skeletonBaseStyles } from '@/shared/ui/styles/containerStyles'
+
 const ListViewSkeleton = () => {
   return Array.from({ length: 5 }).map((_, i) => (
     <Container key={i}>
@@ -18,14 +20,19 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  animation: pulse 1.5s infinite ease-in-out;
+
+  .list__view-skeleton-img,
+  .list__view-skeleton-title,
+  .list__view-skeleton-price,
+  .list__view-skeleton-desc,
+  .list__view-skeleton-btn {
+    ${skeletonBaseStyles}
+  }
 
   .list__view-skeleton-img {
     width: 100%;
     max-width: 300px;
     height: 200px;
-    border-radius: var(--radius);
-    background: var(--clr-grey-4);
   }
 
   .list__view-skeleton-info {
@@ -33,14 +40,6 @@ const Container = styled.div`
     flex-direction: column;
     gap: 1rem;
     width: 100%;
-  }
-
-  .list__view-skeleton-title,
-  .list__view-skeleton-price,
-  .list__view-skeleton-desc,
-  .list__view-skeleton-btn {
-    border-radius: 4px;
-    background: var(--clr-grey-4);
   }
 
   .list__view-skeleton-title {
@@ -62,20 +61,6 @@ const Container = styled.div`
     height: 36px;
     width: 120px;
     border-radius: 6px;
-  }
-
-  @keyframes pulse {
-    0% {
-      opacity: 1;
-    }
-
-    50% {
-      opacity: 0.4;
-    }
-
-    100% {
-      opacity: 1;
-    }
   }
 `
 

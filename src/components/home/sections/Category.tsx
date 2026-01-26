@@ -34,6 +34,7 @@ const Category: React.FC<CategoryProps> = ({
             $isActive={buttonColor === c}
             onClick={() => handleFilters(FilterName.Category, c)}
             type="button"
+            aria-pressed={buttonColor === c}
             whileTap={{ scale: 0.95 }}
             animate={{ opacity: buttonColor === c ? 1 : 0.85 }}
             transition={{ type: 'spring', stiffness: 300 }}

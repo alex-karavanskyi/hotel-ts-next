@@ -30,7 +30,7 @@ const Contact = () => {
         <div className="contact__container">
           <Breadcrumbs name="Contact" />
           <form onSubmit={handleSubmit(onSubmit)} className="contact__form">
-            <label>
+            <label htmlFor="name">
               <span>Name</span>
               <input
                 {...register('name', {
@@ -49,7 +49,7 @@ const Contact = () => {
                 </p>
               )}
             </div>
-            <label>
+            <label htmlFor="email">
               <span>Email</span>
               <input
                 {...register('email', {
@@ -68,7 +68,7 @@ const Contact = () => {
                 </p>
               )}
             </div>
-            <label>
+            <label htmlFor="message">
               <span>Message</span>
               <textarea
                 rows={7}

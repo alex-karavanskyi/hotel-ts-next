@@ -1,23 +1,19 @@
 import { Middleware } from '@reduxjs/toolkit'
 
-import { setGridView, setListView } from '../features/filterSlice'
+import { GRID_VIEW_STORAGE_KEY } from '@/shared/constants/localStorage'
 
-const GRID_VIEW_STORAGE_KEY = 'grid_view'
+import { setGridView, setListView } from '../features/filterSlice'
 
 export const persistGridViewMiddleware: Middleware =
   store => next => action => {
     const result = next(action)
 
     if (typeof window !== 'undefined') {
-      try {
-        if (action.type === setGridView.type) {
-          localStorage.setItem(GRID_VIEW_STORAGE_KEY, 'true')
-        }
-        if (action.type === setListView.type) {
-          localStorage.setItem(GRID_VIEW_STORAGE_KEY, 'false')
-        }
-      } catch (err) {
-        console.error('Failed to persist grid view:', err)
+      if (action.type === setGridView.type) {
+        localStorage.setItem(GRID_VIEW_STORAGE_KEY, 'true')
+      }
+      if (action.type === setListView.type) {
+        localStorage.setItem(GRID_VIEW_STORAGE_KEY, 'false')
       }
     }
 

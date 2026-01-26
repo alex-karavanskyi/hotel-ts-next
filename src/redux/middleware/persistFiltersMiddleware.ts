@@ -1,5 +1,7 @@
 import { Middleware } from '@reduxjs/toolkit'
 
+import { FILTERS_STORAGE_KEY } from '@/shared/constants/localStorage'
+
 import {
   clearFilters,
   loadProducts,
@@ -7,18 +9,16 @@ import {
   updateSort,
 } from '../features/filterSlice'
 
-const FILTERS_STORAGE_KEY = 'filters_state'
-
 export const persistFiltersMiddleware: Middleware = store => next => action => {
   const result = next(action)
 
-  if (
-    action.type === updateFilters.type ||
-    action.type === updateSort.type ||
-    action.type === clearFilters.type ||
-    action.type === loadProducts.type
-  ) {
-    if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined') {
+    if (
+      action.type === updateFilters.type ||
+      action.type === updateSort.type ||
+      action.type === clearFilters.type ||
+      action.type === loadProducts.type
+    ) {
       const state = store.getState()
       const { filters, sort } = state.filter
       localStorage.setItem(

@@ -32,7 +32,7 @@ export type Product = {
   category: string
 }
 
-export enum FilterName {
+export const enum FilterName {
   Category = 'category',
   Price = 'price',
   Text = 'text',

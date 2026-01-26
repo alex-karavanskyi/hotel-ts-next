@@ -25,7 +25,7 @@ const GridView: React.FC<GridProducts> = ({ products, isLoading }) => {
           products.map(product => {
             const { id, image } = product
             return (
-              <article key={id} className="grid__view-product">
+              <article key={id} className="grid__view-product" role="listitem">
                 <div className="grid__view-products-images">
                   <Image
                     alt={product.name}

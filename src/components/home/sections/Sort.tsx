@@ -63,6 +63,9 @@ const Sort: React.FC<SortProps> = ({ handleFilters }) => {
         </p>
         <hr />
         <div className="sort__select-wrapper">
+          <label htmlFor="sort-select" className="sort__label">
+            Sort by:
+          </label>
           <select
             name="sort"
             id="sort"
@@ -102,6 +105,14 @@ const Container = styled.div`
     text-transform: capitalize;
     color: white;
     font-weight: 500;
+  }
+
+  .sort__label {
+    text-transform: capitalize;
+    color: white;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-right: 0.5rem;
   }
 
   .sort__select-wrapper {
