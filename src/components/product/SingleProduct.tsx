@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 
-import { useParams, useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 
 import styled from 'styled-components'
 
@@ -24,23 +24,23 @@ const SingleProduct = () => {
   } = useAppSelector(store => store.products)
 
   const { id } = useParams()
-  const router = useRouter()
+
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(getSingleProduct(`${url}/${id}`))
   }, [dispatch, id])
 
-  useEffect(() => {
-    if (error) {
-      setTimeout(() => {
-        router.push('/')
-      }, 3000)
-    }
-  }, [error, router])
-
   if (loading) return <Loading />
-  if (error) return <Error />
+  if (error) {
+    return (
+      <Error
+        message="Oops! Something went wrong. Try again later."
+        redirectTo="/"
+        redirectDelay={3000}
+      />
+    )
+  }
   if (!product) return null
 
   const { description, images } = product
