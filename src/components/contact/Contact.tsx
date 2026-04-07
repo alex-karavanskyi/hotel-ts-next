@@ -1,15 +1,22 @@
 'use client'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
+import { z } from 'zod'
 
 import { device } from '@/shared/constants/device'
 import { Breadcrumbs } from '@/shared/ui'
 
-interface FormData {
-  name: string
-  email: string
-  message: string
-}
+const contactSchema = z.object({
+  name: z.string().min(3, 'Name must be min 3 characters'),
+  email: z
+    .string()
+    .email('Email must be valid')
+    .min(3, 'Email must be min 3 characters'),
+  message: z.string().min(15, 'Message must be min 15 characters'),
+})
+
+type FormData = z.infer<typeof contactSchema>
 
 const Contact = () => {
   const {
@@ -17,7 +24,10 @@ const Contact = () => {
     formState: { errors, isValid },
     handleSubmit,
     reset,
-  } = useForm<FormData>({ mode: 'onChange' })
+  } = useForm<FormData>({
+    mode: 'onChange',
+    resolver: zodResolver(contactSchema),
+  })
 
   const onSubmit = (data: FormData) => {
     alert(JSON.stringify(data))
@@ -32,15 +42,7 @@ const Contact = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="contact__form">
             <label htmlFor="name">
               <span>Name</span>
-              <input
-                {...register('name', {
-                  required: true,
-                  minLength: {
-                    value: 3,
-                    message: 'Name must be min 3 characters',
-                  },
-                })}
-              />
+              <input {...register('name')} />
             </label>
             <div>
               {errors.name && (
@@ -51,15 +53,7 @@ const Contact = () => {
             </div>
             <label htmlFor="email">
               <span>Email</span>
-              <input
-                {...register('email', {
-                  required: true,
-                  minLength: {
-                    value: 3,
-                    message: 'Email must be min 3 characters',
-                  },
-                })}
-              />
+              <input {...register('email')} />
             </label>
             <div>
               {errors.email && (
@@ -70,16 +64,7 @@ const Contact = () => {
             </div>
             <label htmlFor="message">
               <span>Message</span>
-              <textarea
-                rows={7}
-                {...register('message', {
-                  required: true,
-                  minLength: {
-                    value: 15,
-                    message: 'Message must be min 15 characters',
-                  },
-                })}
-              />
+              <textarea rows={7} {...register('message')} />
             </label>
             <div>
               {errors.message && (
