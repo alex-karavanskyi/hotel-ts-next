@@ -30,8 +30,15 @@ const Chat = ({ product }: { product: Product | null }) => {
         part.state === 'streaming'
     )
 
-    return status === 'streaming' || hasStreamingPart
+    return status === 'streaming' || status === 'submitted' || hasStreamingPart
   }
+
+  const lastMessage = messages[messages.length - 1]
+  const shouldShowTypingPlaceholder =
+    (status === 'streaming' || status === 'submitted') &&
+    (!lastMessage ||
+      lastMessage.role === 'user' ||
+      !isStreamingMessage(lastMessage, messages.length - 1))
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -95,6 +102,13 @@ const Chat = ({ product }: { product: Product | null }) => {
                 </Message>
               )
             })}
+            {shouldShowTypingPlaceholder && (
+              <Message key="typing-placeholder" $isUser={false} $isStreaming>
+                <div>
+                  <TypingCursor />
+                </div>
+              </Message>
+            )}
             <div ref={messagesEndRef} />
           </>
         )}

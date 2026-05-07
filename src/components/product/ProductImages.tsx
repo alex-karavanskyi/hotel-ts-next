@@ -110,15 +110,19 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
     gap: 0.5rem;
+    align-items: start;
 
     div {
       cursor: pointer;
       border-radius: var(--radius);
       overflow: hidden;
+      aspect-ratio: 4 / 3;
+      min-height: 0;
+      position: relative;
 
       img {
         width: 100%;
-        height: auto;
+        height: 100%;
         object-fit: cover;
         display: block;
         transition: transform 0.2s ease;
