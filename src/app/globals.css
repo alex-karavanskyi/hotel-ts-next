@@ -36,6 +36,12 @@
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   --font-main: 'Intel', sans-serif;
+  --nav-link-color: rgb(255 255 255 / 0.5);
+  --nav-link-color-inverse: var(--clr-white);
+  --nav-link-hover-color: var(--clr-primary-5);
+  --nav-link-transition: color 0.3s ease;
+  --nav-link-font-size: 1.0625rem;
+  --nav-link-mobile-font-size: 2rem;
   /* dark gradient background for navbar and footer */
   --gradient-navbar-footer-bg: linear-gradient(
     135deg,
@@ -80,13 +86,38 @@ body {
   color: var(--clr-grey-1);
   line-height: 1.2;
   font-size: 0.875rem;
-  background: #21333d;
-  background: linear-gradient(
-    90deg,
-    rgba(33, 51, 61, 1) 0%,
-    rgba(13, 13, 13, 1) 75%
-  );
 }
+body {
+  min-height: 100vh;
+
+  background: linear-gradient(#0f1724, #1a2742, #1a3a3a, #402235, #111827);
+
+  background-size: 400% 400%;
+  animation: gradient 25s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  25% {
+    background-position: 100% 50%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  75% {
+    background-position: 0% 100%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 body.sidebar-scroll-hidden {
   overflow: hidden;
 }

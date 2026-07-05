@@ -35,11 +35,16 @@ const Navbar = () => {
     return () => window.removeEventListener('resize', onResize)
   }, [dispatch])
 
+  const navClassName = navbar ? 'navbar navbar--scrolled' : 'navbar'
+  const linksClassName = navbar
+    ? 'navbar__links navbar__links--color'
+    : 'navbar__links'
+
   return (
     <>
       <Container>
-        <div className={navbar ? 'navbar navbar--scrolled' : 'navbar'}>
-          <Link href={`/`}>
+        <div className={navClassName}>
+          <Link href="/">
             <Image
               alt="Logo"
               width={60}
@@ -53,13 +58,9 @@ const Navbar = () => {
             onClick={() => dispatch(toggleModal())}
             aria-label={isModalOpen ? 'Close menu' : 'Open menu'}
           >
-            <HamburgerIcon isOpen={isModalOpen} />
+            <HamburgerIcon />
           </button>
-          <NavbarLinks
-            parentClass={
-              navbar ? 'navbar__links navbar__links--color' : 'navbar__links'
-            }
-          />
+          <NavbarLinks parentClass={linksClassName} />
         </div>
       </Container>
       {navbar && <div style={{ height: '5rem' }} />}
@@ -67,42 +68,21 @@ const Navbar = () => {
   )
 }
 
-const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
+const HamburgerIcon = () => (
   <svg
     width="28"
     height="28"
     viewBox="0 0 28 28"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className="hamburger-icon"
   >
-    <path
-      d="M4 8H24"
-      className="line line-1"
-      stroke="currentColor"
-      strokeWidth="3"
-      strokeLinecap="round"
-    />
-    <path
-      d="M4 14H24"
-      className="line line-2"
-      stroke="currentColor"
-      strokeWidth="3"
-      strokeLinecap="round"
-    />
-    <path
-      d="M4 20H24"
-      className="line line-3"
-      stroke="currentColor"
-      strokeWidth="3"
-      strokeLinecap="round"
-    />
+    <path d="M4 8H24" className="line line-1" />
+    <path d="M4 14H24" className="line line-2" />
+    <path d="M4 20H24" className="line line-3" />
   </svg>
 )
 
 const Container = styled.nav`
-  --transition: all 0.3s ease;
-
   .navbar {
     position: fixed;
     top: 0;
@@ -132,25 +112,21 @@ const Container = styled.nav`
     border: none;
     cursor: pointer;
     color: var(--clr-primary-5);
-    transition: color 0.3s ease;
   }
 
-  .navbar__btn:hover {
-    color: var(--clr-primary-5);
+  .navbar__btn:hover .line {
+    stroke-width: 4;
   }
 
   .navbar__btn:hover .line-1 {
-    stroke-width: 4;
     transform: translateY(-2px) scaleX(1.1);
   }
 
   .navbar__btn:hover .line-2 {
-    stroke-width: 4;
     transform: scaleX(1.2);
   }
 
   .navbar__btn:hover .line-3 {
-    stroke-width: 4;
     transform: translateY(2px) scaleX(1.1);
   }
 
@@ -171,33 +147,15 @@ const Container = styled.nav`
     transform: translateY(-6px) rotate(-45deg);
   }
 
-  .navbar__btn[aria-label='Open menu']:hover .line-1 {
-    stroke-width: 4;
-    transform: translateY(-2px) scaleX(1.1);
-  }
-
-  .navbar__btn[aria-label='Open menu']:hover .line-2 {
-    stroke-width: 4;
-    transform: scaleX(1.2);
-  }
-
-  .navbar__btn[aria-label='Open menu']:hover .line-3 {
-    stroke-width: 4;
-    transform: translateY(2px) scaleX(1.1);
-  }
-
-  .hamburger-icon {
-    width: 28px;
-    height: 28px;
-    color: var(--clr-primary-5);
-  }
-
   .line {
-    stroke: currentcolor;
+    stroke: currentColor;
     stroke-width: 3;
     stroke-linecap: round;
     transform-origin: center;
-    transition: all 0.3s ease;
+    transition:
+      opacity 0.3s ease,
+      stroke-width 0.3s ease,
+      transform 0.3s ease;
   }
 
   @media ${device.mobile} {
@@ -209,33 +167,6 @@ const Container = styled.nav`
       display: flex;
       justify-content: end;
       gap: 2rem;
-    }
-
-    .navbar__links button {
-      background: transparent;
-      cursor: pointer;
-      text-transform: capitalize;
-      border: none;
-      outline: none;
-    }
-
-    .navbar__links a,
-    .navbar__links button {
-      color: rgb(255, 255, 255, 0.5);
-      font-weight: bold;
-      letter-spacing: var(--spacing);
-      transition: var(--transition);
-    }
-
-    .navbar__links--color a,
-    .navbar__links--color button {
-      color: black;
-    }
-
-    .navbar__links a:hover,
-    .navbar__links button:hover {
-      color: var(--clr-primary-5);
-      text-decoration: none;
     }
   }
 `

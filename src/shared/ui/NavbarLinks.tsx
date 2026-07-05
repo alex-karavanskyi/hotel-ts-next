@@ -7,6 +7,11 @@ import styled from 'styled-components'
 import { closeModal } from '@/redux/features/modalSlice'
 import { useAppDispatch } from '@/redux/hooks'
 
+const links = [
+  { href: '/contact', label: 'contact' },
+  { href: '/favorites', label: 'favorites' },
+]
+
 const NavbarLinks: React.FC<{ parentClass?: string }> = ({ parentClass }) => {
   const dispatch = useAppDispatch()
 
@@ -32,14 +37,14 @@ const NavbarLinks: React.FC<{ parentClass?: string }> = ({ parentClass }) => {
         initial="hidden"
         animate="visible"
       >
-        {['contact', 'favorites'].map(link => (
+        {links.map(link => (
           <motion.li
-            key={link}
+            key={link.href}
             variants={itemVariants}
             whileHover={{ scale: 1.05 }}
             onClick={() => dispatch(closeModal())}
           >
-            <Link href={`/${link}`}>{link}</Link>
+            <Link href={link.href}>{link.label}</Link>
           </motion.li>
         ))}
       </motion.ul>
@@ -59,46 +64,49 @@ const Container = styled.nav`
   li {
     position: relative;
     cursor: pointer;
-    transition: all 0.3s ease;
-
-    a {
-      text-decoration: none;
-      font-weight: bold;
-      letter-spacing: var(--spacing);
-      color: rgb(255 255 255 / 0.5);
-      position: relative;
-    }
-
-    a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background-color: var(--clr-primary-5);
-      transition: width 0.3s ease;
-    }
-
-    &:hover a::after {
-      width: 100%;
-    }
-
-    &:hover a {
-      color: var(--clr-primary-5);
-    }
+    transition: var(--nav-link-transition);
   }
 
-  &.navbar__links--color {
-    li {
-      a {
-        color: black;
-      }
+  a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: var(--nav-link-font-size);
+    letter-spacing: var(--spacing);
+    color: var(--clr-grey-dark);
+    transition: color 0.3s ease;
+  }
 
-      &:hover a {
-        color: var(--clr-primary-5);
-      }
-    }
+  a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #84436c;
+    transition: width 0.3s ease;
+  }
+
+  li:hover a::after {
+    width: 100%;
+  }
+
+  .navbar__links--color a {
+    color: black;
+  }
+
+  .sidebar__links {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .sidebar__links a {
+    font-size: var(--nav-link-mobile-font-size);
   }
 `
 

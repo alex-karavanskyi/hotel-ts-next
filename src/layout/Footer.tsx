@@ -1,6 +1,9 @@
 'use client'
+import { useRef } from 'react'
+
 import Link from 'next/link'
 
+import { motion, useInView } from 'framer-motion'
 import styled from 'styled-components'
 
 import SocialLinks from '@/shared/ui/SocialLinks'
@@ -17,6 +20,9 @@ import {
 } from '../shared/constants/footerData'
 
 const Footer = () => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.2 })
+
   const sections = [
     { title: 'react', items: react, key: 'react' },
     { title: 'redux', items: redux, key: 'redux' },
@@ -29,23 +35,70 @@ const Footer = () => {
 
   return (
     <Container>
-      <div className="footer__container">
-        <nav className="footer__grid">
-          {sections.map(section => (
-            <div className="footer__column" key={section.key}>
-              <h3 className="footer__title">{section.title}</h3>
+      <div className="footer__container" ref={ref}>
+        <motion.nav
+          className="footer__grid"
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+            },
+          }}
+        >
+          {sections.map((section, sectionIndex) => (
+            <motion.div
+              className="footer__column"
+              key={section.key}
+              initial="hidden"
+              animate={isInView ? 'visible' : 'hidden'}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.4, delay: sectionIndex * 0.05 }}
+            >
+              <motion.h3
+                className="footer__title"
+                initial="hidden"
+                animate={isInView ? 'visible' : 'hidden'}
+                variants={{
+                  hidden: { opacity: 0, y: 12 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                transition={{
+                  duration: 0.35,
+                  delay: 0.12 + sectionIndex * 0.04,
+                }}
+              >
+                {section.title}
+              </motion.h3>
               <ul className="footer__list">
-                {section.items.map(item => (
-                  <li key={item.id}>
+                {section.items.map((item, itemIndex) => (
+                  <motion.li
+                    key={item.id}
+                    initial="hidden"
+                    animate={isInView ? 'visible' : 'hidden'}
+                    variants={{
+                      hidden: { opacity: 0, y: 10 },
+                      visible: { opacity: 1, y: 0 },
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      delay: 0.16 + itemIndex * 0.03,
+                    }}
+                  >
                     <Link href="/" className="footer__link">
                       {(item as Record<string, string | number>)[section.key]}
                     </Link>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
-        </nav>
+        </motion.nav>
       </div>
       <SocialLinks />
     </Container>

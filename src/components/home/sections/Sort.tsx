@@ -42,11 +42,13 @@ const Sort: React.FC<SortProps> = ({ handleFilters }) => {
   return (
     <Container>
       <div className="sort__container">
-        <div className="sort__btn">
+        <div className="sort__btn" role="group" aria-label="View mode toggle">
           <button
             type="button"
             className={`${grid_view ? 'sort__btn-active' : ''}`}
             onClick={() => dispatch(setGridView())}
+            aria-label="Grid view"
+            aria-pressed={grid_view}
           >
             <BsFillGridFill />
           </button>
@@ -54,6 +56,8 @@ const Sort: React.FC<SortProps> = ({ handleFilters }) => {
             type="button"
             className={`${!grid_view ? 'sort__btn-active' : ''}`}
             onClick={() => dispatch(setListView())}
+            aria-label="List view"
+            aria-pressed={!grid_view}
           >
             <BsList />
           </button>
@@ -122,60 +126,80 @@ const Container = styled.div`
 
   .sort__select {
     appearance: none;
-    background-color: #1e1e1e;
-    border: 1px solid #444;
-    border-radius: var(--radius);
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    color: #f1f1f1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 77px;
+    padding: 0.65rem 1rem;
+    font-size: 0.95rem;
+    color: var(--clr-grey-10);
     cursor: pointer;
-    transition:
-      border 0.2s ease,
-      background-color 0.2s ease;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 8px 24px rgba(2, 6, 23, 0.25);
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
 
     &:hover,
     &:focus {
-      border-color: rgb(255, 165, 0, 1);
-      background-color: #2a2a2a;
+      border-color: rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.14);
+      box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.08),
+        0 10px 30px rgba(0, 0, 0, 0.3);
       outline: none;
     }
 
     option {
-      background-color: #1e1e1e;
-      color: #f1f1f1;
+      background-color: #111827;
+      color: #f8fafc;
     }
   }
 
   @media ${device.tablet} {
     .sort__btn {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      column-gap: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
 
       button {
-        background: #2a2a2a;
-        border: none;
-        color: var(--clr-white);
-        width: 1.5rem;
-        height: 1.5rem;
+        background: transparent;
+        border: 1px solid transparent;
+        color: rgba(248, 250, 252, 0.78);
+        width: 2.1rem;
+        height: 2.1rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: var(--radius);
+        border-radius: 999px;
         cursor: pointer;
-        transition: background 0.3s ease;
+        transition:
+          background 0.25s ease,
+          color 0.25s ease,
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
 
         &:hover:not(.sort__btn-active) {
-          background: rgb(211, 211, 211, 0.2);
+          background: rgba(255, 255, 255, 0.12);
+          color: var(--clr-white);
+          transform: translateY(-1px);
         }
 
         &.sort__btn-active {
-          background: rgb(255, 165, 0, 1);
-          color: var(--clr-black);
+          background: linear-gradient(135deg, #38bdf8, #6366f1);
+          color: #f8fafc;
+          box-shadow: 0 8px 18px rgba(99, 102, 241, 0.28);
+          border-color: rgba(255, 255, 255, 0.24);
         }
 
         &.sort__btn-active:hover {
-          background: rgb(255, 165, 0, 0.7);
+          background: linear-gradient(135deg, #60a5fa, #818cf8);
+          transform: translateY(-1px);
         }
       }
     }
