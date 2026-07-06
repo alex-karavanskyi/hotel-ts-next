@@ -1,7 +1,6 @@
 'use client'
 import styled from 'styled-components'
 
-import { device } from '@/shared/constants/device'
 import {
   FilterFields,
   FilterName,
@@ -24,8 +23,10 @@ const Price: React.FC<PriceProps> = ({
 }) => {
   return (
     <Container>
-      <h5>price</h5>
-      <p>{formatPrice(price)}</p>
+      <div className="price__header">
+        <h5>price</h5>
+        <p>{formatPrice(price)}</p>
+      </div>
       <input
         type="range"
         name="price"
@@ -33,6 +34,15 @@ const Price: React.FC<PriceProps> = ({
         max={max_price}
         value={price}
         className="price__input"
+        style={{
+          background: `linear-gradient(
+      to right,
+      #ff680a 0%,
+      #ff680a ${((price - min_price) / (max_price - min_price)) * 100}%,
+      #d1d5db ${((price - min_price) / (max_price - min_price)) * 100}%,
+      #d1d5db 100%
+    )`,
+        }}
         onChange={e => handleFilters(FilterName.Price, Number(e.target.value))}
       />
     </Container>
@@ -42,19 +52,44 @@ const Price: React.FC<PriceProps> = ({
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.65rem;
   color: var(--clr-grey-dark);
-
+  .price__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   h5 {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    color: var(--clr-white);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
-
+  p {
+    color: var(--clr-white);
+    font-weight: 600;
+  }
   .price__input {
-    width: 7rem;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 999px;
+    outline: none;
   }
-
-  @media ${device.desktop} {
-    padding: 0;
+  .price__input::-webkit-slider-runnable-track {
+    height: 6px;
+    background: transparent;
+  }
+  .price__input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    margin-top: -6px;
+    border-radius: 50%;
+    background: #ff680a;
+    border: none;
+    cursor: pointer;
   }
 `
 

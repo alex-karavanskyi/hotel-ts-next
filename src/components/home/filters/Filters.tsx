@@ -2,13 +2,11 @@
 import styled from 'styled-components'
 
 import { ClearButton, Price, Search } from '@/components/home'
-import { device } from '@/shared/constants/device'
 import {
   FilterFields,
   HandleClearButtonFn,
   HandleFiltersFn,
 } from '@/shared/types/productsType'
-import { containerStyles } from '@/shared/ui/styles/containerStyles'
 
 interface FiltersProps extends FilterFields {
   search: string
@@ -26,6 +24,7 @@ const Filters: React.FC<FiltersProps> = ({
 }) => {
   return (
     <Container>
+      <SectionTitle>Search & price</SectionTitle>
       <Search search={search} handleFilters={handleFilters} />
       <Price
         price={price}
@@ -39,15 +38,21 @@ const Filters: React.FC<FiltersProps> = ({
 }
 
 const Container = styled.aside`
-  ${containerStyles}
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding-left: 1rem;
+  gap: 1.2rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.1rem;
+  background: rgba(255, 255, 255, 0.04);
+`
 
-  @media ${device.desktop} {
-    padding-left: 0;
-  }
+const SectionTitle = styled.h5`
+  color: var(--clr-white);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
 `
 
 export default Filters

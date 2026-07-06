@@ -110,14 +110,15 @@ const SidebarContent = styled.div<{ side: 'left' | 'right' }>`
   ${props => props.side}: 0;
   position: fixed;
   top: var(--navbar-height);
-  width: 50%;
+  width: min(320px, 85vw);
   height: 100%;
   background: var(--gradient-navbar-footer-bg);
-  padding-left: 1rem;
+  padding: 1rem 1.25rem 2rem;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  box-sizing: border-box;
 `
 
 export default Sidebar

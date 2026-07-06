@@ -69,43 +69,50 @@ const Pagination: React.FC<PaginationProducts> = ({
 }
 
 const Container = styled.nav`
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-
+  padding: 2rem 0;
   .pagination__container {
     display: flex;
     justify-content: center;
-    gap: 0.25rem;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
-
   .pagination {
-    border: solid 1px;
+    width: 2.2rem;
+    height: 2.2rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 50%;
-    display: grid;
-    grid-template-columns: 1.9rem;
-    grid-template-rows: 1.9rem;
-    transition: background 0.3s ease;
-
-    &:hover:not(.pagination--active) {
-      background: rgb(211, 211, 211, 0.2);
+    overflow: hidden;
+    transition:
+      background-color 0.25s ease,
+      border-color 0.25s ease,
+      transform 0.2s ease;
+    &:not(.pagination--active):hover {
+      background-color: rgba(59, 130, 246, 0.12);
+      border-color: rgba(59, 130, 246, 0.35);
+      transform: translateY(-2px);
     }
-
-    &.pagination--active:hover {
-      background-color: rgb(234, 140, 46, 0.8);
+    &.pagination--active {
+      background-color: #3b82f6;
+      border-color: #3b82f6;
+      .pagination__link {
+        color: #fff;
+      }
+      &:hover {
+        background-color: #2563eb;
+      }
     }
   }
-
-  .pagination--active {
-    background-color: rgb(234, 140, 46, 1);
-  }
-
   .pagination__link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--clr-grey-dark);
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    color: var(--clr-grey-dark);
+    transition: color 0.25s ease;
   }
 `
 

@@ -75,6 +75,7 @@ const ListView = ({ products, isLoading }: ListProductsProps) => {
       {!isLoading && visibleCount < products.length && (
         <button className="list__view-load-more-btn" onClick={handleLoadMore}>
           Load More
+          <span>→</span>
         </button>
       )}
     </Container>
@@ -85,25 +86,21 @@ const Container = styled.section`
   ${containerStyles}
   padding-bottom: 1rem;
   padding-left: 1rem;
-
   .list__view-products {
     display: grid;
     row-gap: 1.5rem;
     color: var(--clr-grey-dark);
   }
-
   .list__view-article {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
-
   .list__view-products-info {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
-
   .list__view-image {
     width: 100%;
     max-width: 300px;
@@ -111,71 +108,106 @@ const Container = styled.section`
     object-fit: cover;
     border-radius: var(--radius);
   }
-
   .list__view-products-description {
     max-width: 45em;
     line-height: 1.6;
   }
-
   .list__view-products-btn-details {
+    padding: 0.7rem 1.6rem;
+
+    color: #f8fafc;
     text-transform: uppercase;
-    background-color: rgb(234, 140, 46, 1);
-    color: var(--clr-grey-dark);
-    border-radius: 2px;
-    cursor: pointer;
-    font-size: 1rem;
-    padding: 0.5rem 1.5rem;
-    transition: var(--transition);
-    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(234, 140, 46, 0.5);
+    border-radius: 8px;
     width: max-content;
-  }
 
+    backdrop-filter: blur(8px);
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    box-shadow:
+      0 0 0 rgba(234, 140, 46, 0),
+      inset 0 0 0 rgba(255, 255, 255, 0.1);
+  }
   .list__view-products-btn-details:hover {
-    background-color: rgb(234, 140, 46, 0.7);
-  }
+    background: rgba(234, 140, 46, 0.15);
+    border-color: rgb(234, 140, 46);
 
+    box-shadow: 0 0 7px rgba(234, 140, 46, 0.45);
+
+    transform: translateY(-2px);
+  }
+  .list__view-products-btn-details:active {
+    transform: translateY(0);
+  }
   .list__view-load-more-btn {
-    margin: 2.5rem auto 0;
+    margin: 3rem auto 0;
+
     display: flex;
     align-items: center;
     justify-content: center;
 
-    padding: 0.75rem 2rem;
-    font-size: 1rem;
-    font-weight: 500;
-    border-radius: 24px;
+    min-width: 180px;
+    padding: 0.9rem 2.2rem;
 
-    background: transparent;
-    border: 1px solid var(--clr-primary-5);
-    color: var(--clr-primary-5);
+    border: 1px solid rgba(234, 140, 46, 0.5);
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+
+    color: #f8fafc;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 
     cursor: pointer;
-    transition: all 0.25s ease;
 
-    letter-spacing: 0.5px;
-    backdrop-filter: blur(3px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 0 0 rgba(234, 140, 46, 0);
+
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
   }
-
   .list__view-load-more-btn:hover {
-    background: var(--clr-primary-5);
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgb(234, 140, 46, 0.3);
+    background: rgba(234, 140, 46, 0.15);
+    border-color: #ea8c2e;
+
+    box-shadow: 0 0 18px rgba(234, 140, 46, 0.45);
+
+    transform: translateY(-3px);
+  }
+  .list__view-load-more-btn {
+    gap: 0.75rem;
   }
 
+  .list__view-load-more-btn span {
+    transition: transform 0.3s ease;
+  }
+
+  .list__view-load-more-btn:hover span {
+    transform: translateX(5px);
+  }
   .list__view-load-more-btn:active {
     transform: translateY(0);
-    box-shadow: none;
-    opacity: 0.9;
   }
-
   .product__info-favorite-icon {
     width: 18px;
     height: 18px;
     color: var(--clr-grey-dark);
     cursor: pointer;
   }
-
   .product__info-price {
     font-weight: 500;
   }

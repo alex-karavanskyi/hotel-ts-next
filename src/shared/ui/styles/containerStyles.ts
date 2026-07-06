@@ -22,6 +22,7 @@ export const shimmerAnimation = keyframes`
 `
 
 export const containerStyles = css`
+  width: 100%;
   margin: 0 auto;
   max-width: 1280px;
 `

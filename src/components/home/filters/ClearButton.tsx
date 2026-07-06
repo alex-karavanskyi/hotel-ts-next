@@ -3,7 +3,6 @@ import { useState } from 'react'
 
 import styled, { keyframes } from 'styled-components'
 
-import { device } from '@/shared/constants/device'
 import { HandleClearButtonFn } from '@/shared/types/productsType'
 
 interface ClearButtonProps {
@@ -37,7 +36,7 @@ const pop = keyframes`
     transform: scale(1);
   }
   50% {
-    transform: scale(1.12);
+    transform: scale(1.08);
   }
   100% {
     transform: scale(1);
@@ -46,24 +45,31 @@ const pop = keyframes`
 
 const Container = styled.div`
   .clear__btn {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
     text-transform: capitalize;
-    background: transparent;
-    border: none;
+    background: linear-gradient(
+      135deg,
+      rgba(56, 189, 248, 0.16),
+      rgba(99, 102, 241, 0.16)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 77px;
     letter-spacing: var(--spacing);
-    color: var(--clr-grey-dark);
+    color: var(--clr-white);
     font-family: var(--font-main);
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.95rem;
     cursor: pointer;
     transition: transform 0.2s ease;
   }
 
-  .clear__btn.animate {
-    animation: ${pop} 0.3s ease;
+  .clear__btn:hover {
+    transform: translateY(-1px);
   }
 
-  @media ${device.desktop} {
-    padding: 0;
+  .clear__btn.animate {
+    animation: ${pop} 0.3s ease;
   }
 `
 

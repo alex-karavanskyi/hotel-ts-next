@@ -58,25 +58,6 @@ const ProductControls = () => {
           handleClearButton={handleClearButton}
         />
       )}
-      {!isMobile && (
-        <>
-          <Category
-            buttonColor={category}
-            handleFilters={handleFilters}
-            loading={loading}
-          />
-          <Filters
-            category={category}
-            search={search}
-            price={price}
-            min_price={min_price}
-            max_price={max_price}
-            handleFilters={handleFilters}
-            handleClearButton={handleClearButton}
-          />
-          <Sort handleFilters={handleFilters} />
-        </>
-      )}
     </>
   )
 }

@@ -28,19 +28,20 @@ const Category: React.FC<CategoryProps> = ({
         <SkeletonList />
       ) : (
         categories.map((c, index) => (
-          <CategoryButton
+          <CategoryLabel
+            key={c}
             data-cy="category"
-            key={index}
             $isActive={buttonColor === c}
-            onClick={() => handleFilters(FilterName.Category, c)}
-            type="button"
-            aria-pressed={buttonColor === c}
             whileTap={{ scale: 0.95 }}
-            animate={{ opacity: buttonColor === c ? 1 : 0.85 }}
-            transition={{ type: 'spring', stiffness: 300 }}
           >
-            {c}
-          </CategoryButton>
+            <CategoryInput
+              type="checkbox"
+              checked={buttonColor === c}
+              onChange={() => handleFilters(FilterName.Category, c)}
+            />
+            <CheckboxIndicator $isActive={buttonColor === c} />
+            <LabelText>{c}</LabelText>
+          </CategoryLabel>
         ))
       )}
     </Container>
@@ -49,38 +50,85 @@ const Category: React.FC<CategoryProps> = ({
 
 const Container = styled.nav`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.75rem;
   padding-top: 1rem;
-  padding-bottom: 1rem;
 
   @media ${device.tablet} {
     justify-content: center;
-    padding-top: 2rem;
   }
 `
 
-const CategoryButton = styled(motion.button)<{ $isActive: boolean }>`
-  text-transform: capitalize;
-  background: transparent;
-  border: ${({ $isActive }) =>
-    $isActive ? 'solid 2px orange' : '2px solid var(--clr-grey-5)'};
-  color: ${({ $isActive }) => ($isActive ? 'orange' : 'var(--clr-grey-dark)')};
-  font-family: var(--font-main);
-  font-weight: 700;
-  font-size: 1rem;
+const CategoryLabel = styled(motion.label)<{ $isActive: boolean }>`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--clr-grey-dark);
+  font: 700 1rem var(--font-main);
+  border-radius: 1rem;
   cursor: pointer;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: ${({ $isActive }) =>
-    $isActive ? '0 0 8px rgb(255 165 0 / 0.4)' : 'none'};
-  transition: all 0.25s ease;
-
+  transition: color 0.25s ease;
   &:hover {
-    border-color: orange;
-    opacity: 1;
+    color: ${({ $isActive }) => ($isActive ? '#ff680a' : '#e65c00')};
   }
+`
+
+const CategoryInput = styled.input`
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+`
+
+const CheckboxIndicator = styled.span<{ $isActive: boolean }>`
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid
+    ${({ $isActive }) => ($isActive ? '#ff680a' : 'var(--clr-grey-5)')};
+
+  border-radius: 0.4rem;
+
+  background-color: ${({ $isActive }) =>
+    $isActive ? '#ff680a' : 'transparent'};
+
+  box-shadow: ${({ $isActive }) =>
+    $isActive ? '0 0 0 6px rgba(255, 104, 10, 0.15)' : 'none'};
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
+
+  ${CategoryLabel}:hover & {
+    border-color: #e65c00;
+    transform: scale(1.05);
+  }
+
+  &::after {
+    content: '';
+    width: 0.45rem;
+    height: 0.25rem;
+
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+
+    opacity: ${({ $isActive }) => ($isActive ? 1 : 0)};
+    transform: rotate(-45deg) scale(${({ $isActive }) => ($isActive ? 1 : 0)});
+
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+`
+
+const LabelText = styled.span`
+  text-transform: capitalize;
 `
 
 export default Category

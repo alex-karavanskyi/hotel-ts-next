@@ -1,4 +1,5 @@
 'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -21,20 +22,23 @@ const GridView: React.FC<GridProducts> = ({ products, isLoading }) => {
     <Container>
       <div className="grid__view-products" role="list">
         {isLoading && <GridViewSkeleton />}
+
         {!isLoading &&
           products.map(product => {
             const { id, image } = product
+
             return (
               <article key={id} className="grid__view-product" role="listitem">
                 <div className="grid__view-products-images">
                   <Image
+                    src={image}
                     alt={product.name}
                     width={470}
                     height={500}
                     priority
-                    src={image}
                     className="grid__view-images"
                   />
+
                   <Link
                     href={`/product/${id}`}
                     className="grid__view-products-link"
@@ -42,18 +46,20 @@ const GridView: React.FC<GridProducts> = ({ products, isLoading }) => {
                     <FaSearch />
                   </Link>
                 </div>
+
                 <footer className="grid__view-footer">
                   <ProductInfo
                     product={product}
                     variant="compact"
-                    showHeader={true}
+                    showHeader
                     showPrice={false}
                   />
+
                   <ProductInfo
                     product={product}
                     variant="compact"
                     showHeader={false}
-                    showPrice={true}
+                    showPrice
                   />
                 </footer>
               </article>
@@ -65,78 +71,82 @@ const GridView: React.FC<GridProducts> = ({ products, isLoading }) => {
 }
 
 const Container = styled.section`
-  ${containerStyles}
-  padding-left: 1rem;
-  padding-right: 1rem;
-
+  ${containerStyles};
+  padding-inline: 1rem;
   .grid__view-products {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 1.5rem;
   }
-
   .grid__view-product {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
-
   .grid__view-products-images {
     position: relative;
     background: var(--clr-black);
     border-radius: var(--radius);
-  }
+    overflow: hidden;
+    &:hover {
+      .grid__view-images {
+        opacity: 0.5;
+      }
 
+      .grid__view-products-link {
+        opacity: 1;
+      }
+    }
+  }
   .grid__view-images {
-    width: 100%;
     display: block;
+    width: 100%;
     object-fit: cover;
-    border-radius: var(--radius);
-    transition: var(--transition);
+    border-radius: inherit;
+    transition: opacity 0.3s ease;
   }
-
   .grid__view-products-link {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    inset: 50% auto auto 50%;
     transform: translate(-50%, -50%);
-    background: var(--clr-primary-5);
+
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
+
+    width: 2.75rem;
+    height: 2.75rem;
+
     border-radius: 50%;
+    background: rgba(234, 140, 46, 0.85);
+    backdrop-filter: blur(8px);
+
     opacity: 0;
-    transition: var(--transition);
     cursor: pointer;
 
+    box-shadow: 0 0 18px rgba(234, 140, 46, 0.35);
+
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      background-color 0.3s ease,
+      box-shadow 0.3s ease;
     svg {
-      font-size: 1.25rem;
-      color: var(--clr-white);
+      font-size: 1.2rem;
+      color: #111827;
+    }
+    &:hover {
+      background: #ea8c2e;
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 0 20px rgba(234, 140, 46, 0.6);
     }
   }
-
-  .grid__view-images:hover,
-  .grid__view-products-images:hover .grid__view-images {
-    opacity: 0.5;
-  }
-
-  .grid__view-products-images:hover .grid__view-products-link {
-    opacity: 1;
-  }
-
-  .grid__view-products-link:hover ~ .grid__view-images {
-    opacity: 0.5;
-  }
-
   .grid__view-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
   }
-
   .product__info-favorite-icon {
     width: 18px;
     height: 18px;
@@ -145,7 +155,7 @@ const Container = styled.section`
   }
 
   @media ${device.desktop} {
-    padding: 0;
+    padding-inline: 0;
   }
 `
 

@@ -92,11 +92,9 @@ const Container = styled.div`
   ${containerStyles}
   padding-left: 1rem;
   padding-right: 1rem;
-
   .sort__btn {
     display: none;
   }
-
   .sort__container {
     display: flex;
     flex-direction: column;
@@ -104,13 +102,11 @@ const Container = styled.div`
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
-
   .sort__title {
     text-transform: capitalize;
     color: white;
     font-weight: 500;
   }
-
   .sort__label {
     text-transform: capitalize;
     color: white;
@@ -118,12 +114,10 @@ const Container = styled.div`
     font-size: 0.95rem;
     margin-right: 0.5rem;
   }
-
   .sort__select-wrapper {
     width: max-content;
     position: relative;
   }
-
   .sort__select {
     appearance: none;
     background: rgba(255, 255, 255, 0.08);
@@ -138,7 +132,6 @@ const Container = styled.div`
       0 8px 24px rgba(2, 6, 23, 0.25);
     backdrop-filter: blur(10px);
     transition: var(--transition);
-
     &:hover,
     &:focus {
       border-color: rgba(255, 255, 255, 0.28);
@@ -148,7 +141,6 @@ const Container = styled.div`
         0 10px 30px rgba(0, 0, 0, 0.3);
       outline: none;
     }
-
     option {
       background-color: #111827;
       color: #f8fafc;
@@ -203,7 +195,6 @@ const Container = styled.div`
         }
       }
     }
-
     .sort__container {
       display: grid;
       grid-template-columns: auto auto 1fr auto;

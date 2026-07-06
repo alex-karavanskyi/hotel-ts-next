@@ -99,54 +99,43 @@ const Container = styled.nav`
       background 0.3s ease,
       box-shadow 0.3s ease;
   }
-
   .navbar--scrolled {
     background: var(--clr-white);
     box-shadow: var(--light-shadow);
   }
-
   .navbar__btn {
     position: absolute;
     right: 1rem;
     background: transparent;
     border: none;
     cursor: pointer;
-    color: var(--clr-primary-5);
+    color: #84436c;
   }
-
   .navbar__btn:hover .line {
     stroke-width: 4;
   }
-
   .navbar__btn:hover .line-1 {
     transform: translateY(-2px) scaleX(1.1);
   }
-
   .navbar__btn:hover .line-2 {
     transform: scaleX(1.2);
   }
-
   .navbar__btn:hover .line-3 {
     transform: translateY(2px) scaleX(1.1);
   }
-
   .navbar__links {
     display: none;
   }
-
   .navbar__btn[aria-label='Close menu'] .line-1 {
     transform: translateY(6px) rotate(45deg);
   }
-
   .navbar__btn[aria-label='Close menu'] .line-2 {
     opacity: 0;
     transform: scaleX(0);
   }
-
   .navbar__btn[aria-label='Close menu'] .line-3 {
     transform: translateY(-6px) rotate(-45deg);
   }
-
   .line {
     stroke: currentColor;
     stroke-width: 3;
@@ -162,7 +151,6 @@ const Container = styled.nav`
     .navbar__btn {
       display: none;
     }
-
     .navbar__links {
       display: flex;
       justify-content: end;
