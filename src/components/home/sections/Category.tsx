@@ -9,13 +9,13 @@ import SkeletonList from '@/shared/ui/skeletons/CategorySkeleton'
 import { getUniqueValues } from '@/shared/utils/formatPrice'
 
 interface CategoryProps {
-  buttonColor: string
+  selectedCategories: string[]
   handleFilters: HandleFiltersFn
   loading: boolean
 }
 
 const Category: React.FC<CategoryProps> = ({
-  buttonColor,
+  selectedCategories,
   handleFilters,
   loading,
 }) => {
@@ -27,22 +27,26 @@ const Category: React.FC<CategoryProps> = ({
       {loading ? (
         <SkeletonList />
       ) : (
-        categories.map((c, index) => (
-          <CategoryLabel
-            key={c}
-            data-cy="category"
-            $isActive={buttonColor === c}
-            whileTap={{ scale: 0.95 }}
-          >
-            <CategoryInput
-              type="checkbox"
-              checked={buttonColor === c}
-              onChange={() => handleFilters(FilterName.Category, c)}
-            />
-            <CheckboxIndicator $isActive={buttonColor === c} />
-            <LabelText>{c}</LabelText>
-          </CategoryLabel>
-        ))
+        categories.map(c => {
+          const isActive = selectedCategories.includes(c)
+
+          return (
+            <CategoryLabel
+              key={c}
+              data-cy="category"
+              $isActive={isActive}
+              whileTap={{ scale: 0.95 }}
+            >
+              <CategoryInput
+                type="checkbox"
+                checked={isActive}
+                onChange={() => handleFilters(FilterName.Category, c)}
+              />
+              <CheckboxIndicator $isActive={isActive} />
+              <LabelText>{c}</LabelText>
+            </CategoryLabel>
+          )
+        })
       )}
     </Container>
   )

@@ -14,12 +14,27 @@ import { SEARCH_STORAGE_KEY } from '@/shared/constants/localStorage'
 import { useDebouncedUpdateFilters } from '@/shared/hooks/useDebounceFilters'
 import { FilterName } from '@/shared/types/productsType'
 
+const normalizeCategories = (value: string | string[] | undefined) => {
+  if (Array.isArray(value)) {
+    return value.filter(Boolean)
+  }
+
+  if (typeof value === 'string' && value) {
+    return [value]
+  }
+
+  return []
+}
+
 export const useFilters = () => {
   const dispatch = useAppDispatch()
   const searchParams = useSearchParams()
   const debouncedUpdateFilters = useDebouncedUpdateFilters()
 
   const search = useAppSelector(state => state.filter.filters.text)
+  const selectedCategories = useAppSelector(
+    state => state.filter.filters.category
+  )
 
   useEffect(() => {
     if (search !== undefined) {
@@ -49,17 +64,31 @@ export const useFilters = () => {
     return () => window.removeEventListener('storage', syncStorage)
   }, [dispatch, debouncedUpdateFilters, searchParams])
 
-  const handleFilters = <T extends string | number>(
+  const handleFilters = <T extends string | number | string[]>(
     name: FilterName,
     value: T
   ) => {
     const updatedParams = new URLSearchParams(searchParams.toString())
 
-    switch (name) {
-      case FilterName.Category:
-        updatedParams.set(FilterName.Category, String(value))
-        break
+    if (name === FilterName.Category) {
+      const currentCategories = normalizeCategories(selectedCategories)
+      const categoryValue = String(value)
+      const nextCategories = currentCategories.includes(categoryValue)
+        ? currentCategories.filter(category => category !== categoryValue)
+        : [...currentCategories, categoryValue]
 
+      updatedParams.delete(FilterName.Category)
+      nextCategories.forEach(category =>
+        updatedParams.append(FilterName.Category, category)
+      )
+
+      dispatch(updateFilters({ name, value: nextCategories }))
+      dispatch(numberPagination(1))
+      debouncedUpdateFilters(updatedParams)
+      return
+    }
+
+    switch (name) {
       case FilterName.Price:
         updatedParams.set(FilterName.Price, String(value))
         break

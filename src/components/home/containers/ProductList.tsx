@@ -64,7 +64,7 @@ const ProductList = () => {
       <FilterPanel>
         <PanelHeading>Refine your search</PanelHeading>
         <Category
-          buttonColor={category}
+          selectedCategories={category}
           handleFilters={handleFilters}
           loading={loading}
         />

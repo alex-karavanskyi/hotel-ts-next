@@ -1,10 +1,10 @@
 type ProductFilters = {
   text: string
-  category: string
+  category: string[]
   price: number
   min_price: number
   max_price: number
-  [key: string]: string | number
+  [key: string]: string | number | string[]
 }
 
 export type FilterState = {
@@ -16,7 +16,7 @@ export type FilterState = {
 }
 
 export type FilterFields = {
-  category: string
+  category: string[]
   price: number
   min_price: number
   max_price: number

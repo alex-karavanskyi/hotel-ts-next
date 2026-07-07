@@ -18,7 +18,7 @@ const initialState: FilterState = {
   sort: 'price-lowest',
   filters: {
     text: '',
-    category: 'all',
+    category: [],
     min_price: 0,
     max_price: 0,
     price: 0,
@@ -92,7 +92,7 @@ describe('filterSlice', () => {
     expect(nextState.filters.text).toBe('new')
   })
 
-  it('should filter products based on text, category, and price', () => {
+  it('should filter products based on selected categories and price', () => {
     const stateWithProducts: FilterState = {
       ...initialState,
       all_products: [
@@ -117,7 +117,7 @@ describe('filterSlice', () => {
       ],
       filters: {
         text: 'Product A',
-        category: 'electronics',
+        category: ['electronics'],
         min_price: 0,
         max_price: 200,
         price: 150,
@@ -137,6 +137,43 @@ describe('filterSlice', () => {
         images: [],
       },
     ])
+  })
+
+  it('should show all products when no categories are selected', () => {
+    const stateWithProducts: FilterState = {
+      ...initialState,
+      all_products: [
+        {
+          id: '1',
+          name: 'Product A',
+          category: 'electronics',
+          price: 100,
+          image: '',
+          description: '',
+          images: [],
+        },
+        {
+          id: '2',
+          name: 'Product B',
+          category: 'clothing',
+          price: 200,
+          image: '',
+          description: '',
+          images: [],
+        },
+      ],
+      filters: {
+        text: '',
+        category: [],
+        min_price: 0,
+        max_price: 200,
+        price: 200,
+      },
+    }
+
+    const nextState = filterReducer(stateWithProducts, filterProducts())
+
+    expect(nextState.filtered_products).toHaveLength(2)
   })
 
   it('should sort products', () => {
@@ -206,7 +243,7 @@ describe('filterSlice', () => {
     const nextState = filterReducer(stateWithFilters, clearFilters())
 
     expect(nextState.filters.text).toBe('')
-    expect(nextState.filters.category).toBe('all')
+    expect(nextState.filters.category).toEqual([])
     expect(nextState.filters.price).toBe(200)
     expect(nextState.sort).toBe('price-lowest')
   })

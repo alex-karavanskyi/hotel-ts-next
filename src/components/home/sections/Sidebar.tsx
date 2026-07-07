@@ -50,7 +50,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         <SidebarOverlay onClick={() => setIsSidebarOpen(false)}>
           <SidebarContent side="right" onClick={e => e.stopPropagation()}>
             <Category
-              buttonColor={category}
+              selectedCategories={category}
               handleFilters={handleFilters}
               loading={loading}
             />

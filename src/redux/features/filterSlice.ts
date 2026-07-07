@@ -16,7 +16,7 @@ const initialState: FilterState = {
   sort: 'price-lowest',
   filters: {
     text: '',
-    category: 'all',
+    category: [],
     min_price: 0,
     max_price: 0,
     price: 0,
@@ -60,7 +60,7 @@ const filterSlice = createSlice({
     },
     updateFilters: (
       state,
-      action: PayloadAction<{ name: string; value: string | number }>
+      action: PayloadAction<{ name: string; value: string | number | string[] }>
     ) => {
       const { name, value } = action.payload
       state.filters[name] = value
@@ -68,14 +68,17 @@ const filterSlice = createSlice({
     filterProducts: state => {
       const { all_products, filters } = state
       const { text, category, price } = filters
+      const selectedCategories = Array.isArray(category) ? category : []
 
       state.filtered_products = all_products.filter(product => {
-        return (
-          (!text ||
-            product.name.toLowerCase().startsWith(text.toLowerCase())) &&
-          (category === 'all' || product.category === category) &&
-          product.price <= price
-        )
+        const matchesText =
+          !text || product.name.toLowerCase().startsWith(text.toLowerCase())
+        const matchesCategory =
+          selectedCategories.length === 0 ||
+          selectedCategories.includes(product.category)
+        const matchesPrice = product.price <= price
+
+        return matchesText && matchesCategory && matchesPrice
       })
     },
     sortProducts: state => {
@@ -97,7 +100,7 @@ const filterSlice = createSlice({
       state.filters = {
         ...state.filters,
         text: '',
-        category: 'all',
+        category: [],
         price: max_price,
       }
       state.sort = 'price-lowest'
