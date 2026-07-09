@@ -4,7 +4,6 @@ import { useState } from 'react'
 import styled from 'styled-components'
 
 import { Category, ClearButton, Price, Search, Sort } from '@/components/home'
-import { useAppSelector } from '@/redux/hooks'
 import {
   FilterFields,
   HandleClearButtonFn,
@@ -14,6 +13,7 @@ import {
 interface SidebarProps extends FilterFields {
   isSidebarOpen: boolean
   search: string
+  loading: boolean
   handleFilters: HandleFiltersFn
   handleClearButton: HandleClearButtonFn
   setIsSidebarOpen: (value: boolean) => void
@@ -24,6 +24,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   search,
   category,
   price,
+  loading,
   min_price,
   max_price,
   handleFilters,
@@ -31,8 +32,6 @@ const Sidebar: React.FC<SidebarProps> = ({
   setIsSidebarOpen,
 }) => {
   const [isSortOpen, setIsSortOpen] = useState(false)
-
-  const { products_loading: loading } = useAppSelector(store => store.products)
 
   return (
     <>

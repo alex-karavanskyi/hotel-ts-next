@@ -1,34 +1,25 @@
 'use client'
-import { useEffect } from 'react'
 
 import { useSearchParams } from 'next/navigation'
 
-import {
-  clearFilters,
-  updateFilters,
-  updateSort,
-} from '@/redux/features/filterSlice'
-import { numberPagination } from '@/redux/features/paginationSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { SEARCH_STORAGE_KEY } from '@/shared/constants/localStorage'
+import {
+  clearAllFilters,
+  updateCategoryFilters,
+  updatePriceFilter,
+  updateSortFilter,
+  updateTextFilter,
+} from '@/shared/actions/filterActions'
 import { useDebouncedUpdateFilters } from '@/shared/hooks/useDebounceFilters'
+import { useSearchStorage } from '@/shared/hooks/useSearchStorage'
+import { useStorageSync } from '@/shared/hooks/useStorageSync'
 import { FilterName } from '@/shared/types/productsType'
-
-const normalizeCategories = (value: string | string[] | undefined) => {
-  if (Array.isArray(value)) {
-    return value.filter(Boolean)
-  }
-
-  if (typeof value === 'string' && value) {
-    return [value]
-  }
-
-  return []
-}
+import { createSearchParams } from '@/shared/utils/createSearchParams'
 
 export const useFilters = () => {
   const dispatch = useAppDispatch()
   const searchParams = useSearchParams()
+
   const debouncedUpdateFilters = useDebouncedUpdateFilters()
 
   const search = useAppSelector(state => state.filter.filters.text)
@@ -36,90 +27,56 @@ export const useFilters = () => {
     state => state.filter.filters.category
   )
 
-  useEffect(() => {
-    if (search !== undefined) {
-      search === ''
-        ? localStorage.removeItem(SEARCH_STORAGE_KEY)
-        : localStorage.setItem(SEARCH_STORAGE_KEY, search)
-    }
-  }, [search])
+  useSearchStorage(search)
+  useStorageSync()
 
-  useEffect(() => {
-    const syncStorage = (e: StorageEvent) => {
-      if (e.key === SEARCH_STORAGE_KEY && typeof e.newValue === 'string') {
-        dispatch(updateFilters({ name: 'text', value: e.newValue }))
-        dispatch(numberPagination(1))
-
-        const updatedParams = new URLSearchParams(searchParams.toString())
-
-        e.newValue
-          ? updatedParams.set(SEARCH_STORAGE_KEY, e.newValue)
-          : updatedParams.delete(SEARCH_STORAGE_KEY)
-
-        debouncedUpdateFilters(updatedParams)
-      }
-    }
-
-    window.addEventListener('storage', syncStorage)
-    return () => window.removeEventListener('storage', syncStorage)
-  }, [dispatch, debouncedUpdateFilters, searchParams])
-
-  const handleFilters = <T extends string | number | string[]>(
+  const handleFilters = (
     name: FilterName,
-    value: T
+    value: string | number | string[]
   ) => {
-    const updatedParams = new URLSearchParams(searchParams.toString())
-
-    if (name === FilterName.Category) {
-      const currentCategories = normalizeCategories(selectedCategories)
-      const categoryValue = String(value)
-      const nextCategories = currentCategories.includes(categoryValue)
-        ? currentCategories.filter(category => category !== categoryValue)
-        : [...currentCategories, categoryValue]
-
-      updatedParams.delete(FilterName.Category)
-      nextCategories.forEach(category =>
-        updatedParams.append(FilterName.Category, category)
-      )
-
-      dispatch(updateFilters({ name, value: nextCategories }))
-      dispatch(numberPagination(1))
-      debouncedUpdateFilters(updatedParams)
-      return
-    }
+    const params = createSearchParams(searchParams)
 
     switch (name) {
       case FilterName.Price:
-        updatedParams.set(FilterName.Price, String(value))
-        break
+        return updatePriceFilter({
+          value: Number(value),
+          params,
+          dispatch,
+          debouncedUpdateFilters,
+        })
 
       case FilterName.Text:
-        if (value === '') {
-          updatedParams.delete(SEARCH_STORAGE_KEY)
-          localStorage.removeItem(SEARCH_STORAGE_KEY)
-        } else {
-          updatedParams.set(SEARCH_STORAGE_KEY, String(value))
-          localStorage.setItem(SEARCH_STORAGE_KEY, String(value))
-        }
-        break
+        return updateTextFilter({
+          value: String(value),
+          params,
+          dispatch,
+          debouncedUpdateFilters,
+        })
 
       case FilterName.Sort:
-        dispatch(updateSort(String(value)))
-        updatedParams.set(FilterName.Sort, String(value))
-        break
-    }
+        return updateSortFilter({
+          value: String(value),
+          params,
+          dispatch,
+          debouncedUpdateFilters,
+        })
 
-    dispatch(updateFilters({ name, value }))
-    dispatch(numberPagination(1))
-    debouncedUpdateFilters(updatedParams)
+      case FilterName.Category:
+        return updateCategoryFilters({
+          value: String(value),
+          params,
+          dispatch,
+          selectedCategories,
+          debouncedUpdateFilters,
+        })
+
+      default:
+        return
+    }
   }
 
   const handleClearButton = () => {
-    dispatch(clearFilters())
-    dispatch(numberPagination(1))
-    localStorage.removeItem(SEARCH_STORAGE_KEY)
-    const updatedParams = new URLSearchParams()
-    debouncedUpdateFilters(updatedParams)
+    clearAllFilters(dispatch, debouncedUpdateFilters)
   }
 
   return {

@@ -19,12 +19,12 @@ const Pagination: React.FC<PaginationProducts> = ({
 }) => {
   const { pagination } = useAppSelector(store => store.pagination)
 
-  const dispatch = useAppDispatch()
-
   const pageNumbers = Array.from(
     { length: Math.ceil(totalPosts / postsPerPage) },
     (_, i) => i + 1
   )
+
+  const dispatch = useAppDispatch()
 
   const handleClick =
     (pageNumber: number) => (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -70,6 +70,7 @@ const Pagination: React.FC<PaginationProducts> = ({
 
 const Container = styled.nav`
   padding: 2rem 0;
+
   .pagination__container {
     display: flex;
     justify-content: center;
@@ -78,6 +79,7 @@ const Container = styled.nav`
     padding: 0;
     margin: 0;
   }
+
   .pagination {
     width: 2.2rem;
     height: 2.2rem;
@@ -88,22 +90,26 @@ const Container = styled.nav`
       background-color 0.25s ease,
       border-color 0.25s ease,
       transform 0.2s ease;
+
     &:not(.pagination--active):hover {
       background-color: rgba(59, 130, 246, 0.12);
       border-color: rgba(59, 130, 246, 0.35);
       transform: translateY(-2px);
     }
+
     &.pagination--active {
       background-color: #3b82f6;
       border-color: #3b82f6;
       .pagination__link {
         color: #fff;
       }
+
       &:hover {
         background-color: #2563eb;
       }
     }
   }
+
   .pagination__link {
     display: grid;
     place-items: center;

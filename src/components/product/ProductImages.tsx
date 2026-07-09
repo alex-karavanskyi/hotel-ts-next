@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
 import { motion } from 'framer-motion'
+import { RiRobot2Line } from 'react-icons/ri'
 import styled from 'styled-components'
 
 import { Product } from '@/shared/types/productsType'
@@ -53,21 +54,10 @@ const ProductImages: React.FC<ProductImagesProps> = ({
         {onChatOpen && (
           <ChatButton
             onClick={onChatOpen}
-            title="Open the assistant chat"
+            title="Open AI Assistant"
             aria-label="Open chat"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            </svg>
+            <RiRobot2Line />
           </ChatButton>
         )}
       </ImageWrapper>
@@ -176,6 +166,32 @@ const ChatButton = styled.button`
 
   &:active {
     transform: scale(0.95);
+  }
+
+  animation: pulse 3s infinite;
+
+  @keyframes pulse {
+    0% {
+      box-shadow:
+        0 0 0 0 rgba(59, 130, 246, 0.45),
+        0 10px 30px rgba(59, 130, 246, 0.35);
+    }
+
+    70% {
+      box-shadow:
+        0 0 0 14px rgba(59, 130, 246, 0),
+        0 10px 30px rgba(59, 130, 246, 0.35);
+    }
+
+    100% {
+      box-shadow:
+        0 0 0 0 rgba(59, 130, 246, 0),
+        0 10px 30px rgba(59, 130, 246, 0.35);
+    }
+  }
+
+  &:hover {
+    animation: none;
   }
 
   @media (max-width: 640px) {

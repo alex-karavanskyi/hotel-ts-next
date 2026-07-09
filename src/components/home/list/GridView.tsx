@@ -73,21 +73,25 @@ const GridView: React.FC<GridProducts> = ({ products, isLoading }) => {
 const Container = styled.section`
   ${containerStyles};
   padding-inline: 1rem;
+
   .grid__view-products {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 1.5rem;
   }
+
   .grid__view-product {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
+
   .grid__view-products-images {
     position: relative;
     background: var(--clr-black);
     border-radius: var(--radius);
     overflow: hidden;
+
     &:hover {
       .grid__view-images {
         opacity: 0.5;
@@ -98,6 +102,7 @@ const Container = styled.section`
       }
     }
   }
+
   .grid__view-images {
     display: block;
     width: 100%;
@@ -105,6 +110,7 @@ const Container = styled.section`
     border-radius: inherit;
     transition: opacity 0.3s ease;
   }
+
   .grid__view-products-link {
     position: absolute;
     inset: 50% auto auto 50%;
@@ -131,22 +137,26 @@ const Container = styled.section`
       transform 0.3s ease,
       background-color 0.3s ease,
       box-shadow 0.3s ease;
+
     svg {
       font-size: 1.2rem;
       color: #111827;
     }
+
     &:hover {
       background: #ea8c2e;
       transform: translate(-50%, -50%) scale(1.1);
       box-shadow: 0 0 20px rgba(234, 140, 46, 0.6);
     }
   }
+
   .grid__view-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
   }
+
   .product__info-favorite-icon {
     width: 18px;
     height: 18px;

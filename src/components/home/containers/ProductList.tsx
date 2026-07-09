@@ -20,18 +20,16 @@ const postsPerPage = 6
 const ProductList = () => {
   const isMobile = useIsMobile()
   const { search, handleFilters, handleClearButton } = useFilters()
-
   const { pagination } = useAppSelector(store => store.pagination)
 
+  const { products_loading: loading, products_error: error } = useAppSelector(
+    store => store.products
+  )
   const {
     filtered_products: products,
     grid_view,
     filters: { category, price, min_price, max_price },
   } = useAppSelector(store => store.filter)
-
-  const { products_loading: loading, products_error: error } = useAppSelector(
-    store => store.products
-  )
 
   const currentPosts = products.slice(
     (pagination - 1) * postsPerPage,

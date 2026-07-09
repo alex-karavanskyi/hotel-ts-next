@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 
-import { Category, Filters, Sidebar, Sort } from '@/components/home/'
+import { Sidebar } from '@/components/home/'
 import {
   filterProducts,
   loadProducts,
@@ -47,13 +47,14 @@ const ProductControls = () => {
     <>
       {isMobile && (
         <Sidebar
-          isSidebarOpen={isSidebarOpen}
-          setIsSidebarOpen={setIsSidebarOpen}
+          loading={loading}
           category={category}
           search={search}
           price={price}
           min_price={min_price}
           max_price={max_price}
+          isSidebarOpen={isSidebarOpen}
+          setIsSidebarOpen={setIsSidebarOpen}
           handleFilters={handleFilters}
           handleClearButton={handleClearButton}
         />

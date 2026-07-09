@@ -72,6 +72,7 @@ const CategoryLabel = styled(motion.label)<{ $isActive: boolean }>`
   border-radius: 1rem;
   cursor: pointer;
   transition: color 0.25s ease;
+
   &:hover {
     color: ${({ $isActive }) => ($isActive ? '#ff680a' : '#e65c00')};
   }

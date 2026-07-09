@@ -2,21 +2,25 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { useChat } from '@ai-sdk/react'
+import { IoSend } from 'react-icons/io5'
 import styled from 'styled-components'
 
 import { Product } from '@/shared/types/productsType'
+
+import { Cursor, Header, EmptyState } from './index'
 
 const Chat = ({ product }: { product: Product | null }) => {
   const [input, setInput] = useState('')
   const { messages, sendMessage, status } = useChat()
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }
+  const lastMessage = messages[messages.length - 1]
+  const isDisabled = !product || !input.trim()
 
   useEffect(() => {
-    scrollToBottom()
+    messagesEndRef.current?.scrollIntoView({
+      behavior: 'smooth',
+    })
   }, [messages])
 
   const isStreamingMessage = (message: any, index: number) => {
@@ -33,7 +37,6 @@ const Chat = ({ product }: { product: Product | null }) => {
     return status === 'streaming' || status === 'submitted' || hasStreamingPart
   }
 
-  const lastMessage = messages[messages.length - 1]
   const shouldShowTypingPlaceholder =
     (status === 'streaming' || status === 'submitted') &&
     (!lastMessage ||
@@ -43,7 +46,7 @@ const Chat = ({ product }: { product: Product | null }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!product || !input.trim()) return
+    if (isDisabled) return
 
     sendMessage({
       text: input,
@@ -57,7 +60,13 @@ const Chat = ({ product }: { product: Product | null }) => {
 
   return (
     <Container>
-      <Header>💬 Product Assistant</Header>
+      <Header>
+        <span>🤖</span>
+        <div>
+          <strong>Product Assistant</strong>
+          <small>Ask anything about this product</small>
+        </div>
+      </Header>
 
       <MessagesContainer>
         {messages.length === 0 ? (
@@ -97,7 +106,7 @@ const Chat = ({ product }: { product: Product | null }) => {
                       }
                       return null
                     })}
-                    {isStreaming && <TypingCursor />}
+                    {isStreaming && <Cursor />}
                   </div>
                 </Message>
               )
@@ -105,7 +114,7 @@ const Chat = ({ product }: { product: Product | null }) => {
             {shouldShowTypingPlaceholder && (
               <Message key="typing-placeholder" $isUser={false} $isStreaming>
                 <div>
-                  <TypingCursor />
+                  <Cursor />
                 </div>
               </Message>
             )}
@@ -121,8 +130,8 @@ const Chat = ({ product }: { product: Product | null }) => {
           onChange={e => setInput(e.currentTarget.value)}
           disabled={!product}
         />
-        <SendButton type="submit" disabled={!product || !input.trim()}>
-          ➤
+        <SendButton type="submit" disabled={isDisabled}>
+          <IoSend size={20} />
         </SendButton>
       </FormContainer>
     </Container>
@@ -133,86 +142,51 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  max-height: 600px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-`
+  max-height: 650px;
 
-const Header = styled.div`
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-align: center;
+  background: #121418;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  overflow: hidden;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.35),
+    inset 0 1px rgba(255, 255, 255, 0.04);
 `
 
 const MessagesContainer = styled.div`
+  flex: 1;
+
+  padding: 24px;
+
+  overflow: auto;
+
   display: flex;
   flex-direction: column;
-  flex: 1;
-  overflow-y: auto;
-  padding: 1rem;
-  gap: 0.75rem;
+  gap: 18px;
 
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.5);
-    }
-  }
+  background: linear-gradient(180deg, #17191f, #111317);
 `
 
-const Message = styled.div<{ $isUser: boolean; $isStreaming?: boolean }>`
+const Message = styled.div<{ $isUser: boolean; $isStreaming: boolean }>`
   display: flex;
-  justify-content: ${props => (props.$isUser ? 'flex-end' : 'flex-start')};
-  margin-bottom: 0;
+  align-items: flex-end;
+  gap: 0.75rem;
+  color: ${({ $isUser }) => ($isUser ? '#3b82f6' : 'white')};
 
-  > div {
-    max-width: 80%;
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    font-size: 0.9rem;
-    line-height: 1.4;
-    background: ${props =>
-      props.$isUser ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.2)'};
-    color: ${props => (props.$isUser ? '#333' : 'white')};
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    position: relative;
-  }
-`
+  flex-direction: ${({ $isUser }) => ($isUser ? 'row-reverse' : 'row')};
 
-const TypingCursor = styled.span`
-  display: inline-block;
-  width: 0.55rem;
-  height: 1rem;
-  margin-left: 0.25rem;
-  vertical-align: bottom;
-  background: currentColor;
-  border-radius: 999px;
-  animation: blink 1s steps(2, start) infinite;
+  animation: fadeUp 0.25s ease;
 
-  @keyframes blink {
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
     to {
-      visibility: hidden;
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 `
@@ -228,72 +202,42 @@ const FormContainer = styled.form`
 
 const Input = styled.input`
   flex: 1;
-  padding: 0.75rem 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.95);
-  color: #333;
-  font-size: 0.9rem;
-  outline: none;
-  transition: all 0.2s ease;
-
-  &:focus {
-    background: white;
-    border-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
-  }
+  padding: 15px 20px;
+  background: #23272f;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 15px;
+  transition: 0.25s;
 
   &::placeholder {
-    color: #999;
+    color: #8b95a7;
+  }
+
+  &:focus {
+    border-color: #4f8cff;
+    background: #292e38;
+    box-shadow: 0 0 0 4px rgba(79, 140, 255, 0.15);
   }
 `
 
 const SendButton = styled.button`
-  padding: 0.75rem 1.5rem;
-  background: rgba(255, 255, 255, 0.9);
-  color: #667eea;
-  border: none;
-  border-radius: 24px;
-  font-weight: 600;
-  font-size: 0.9rem;
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+
+  background: #3b82f6;
+
+  color: white;
   cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+  transition: 0.25s;
 
   &:hover {
-    background: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
+    transform: translateY(-2px) scale(1.05);
 
-  &:active {
-    transform: translateY(0);
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-`
-
-const EmptyState = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  color: rgba(255, 255, 255, 0.7);
-  text-align: center;
-  padding: 2rem;
-  font-size: 0.95rem;
-
-  svg {
-    width: 3rem;
-    height: 3rem;
-    margin-bottom: 1rem;
-    opacity: 0.5;
+    background: #4b91ff;
   }
 `
 
