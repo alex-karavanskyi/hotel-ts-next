@@ -2,6 +2,21 @@ import { NextResponse } from 'next/server'
 
 import { Product } from '@/shared/types/productsType'
 
+interface AirtableRecord {
+  id: string
+  fields: {
+    name: string
+    price: number
+    images?: string
+    description: string
+    category: string
+  }
+}
+
+interface AirtableResponse {
+  records: AirtableRecord[]
+}
+
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
 const AIRTABLE_TABLE_NAME = process.env.AIRTABLE_TABLE_NAME
@@ -21,9 +36,10 @@ export async function GET() {
       throw new Error(`Airtable API Error: ${response.statusText}`)
     }
 
-    const { records } = await response.json()
+    const result: AirtableResponse = await response.json()
+    const { records } = result
 
-    const data: Product[] = records.map((record: any) => {
+    const data: Product[] = records.map(record => {
       const imageUrls = record.fields.images
         ? JSON.parse(record.fields.images)
         : []

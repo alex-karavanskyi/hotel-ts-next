@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { HiOutlineShoppingCart } from 'react-icons/hi2'
 import styled from 'styled-components'
 
 import { device } from '@/shared/constants/device'
@@ -50,12 +51,22 @@ const ListView = ({ products, isLoading }: ListProductsProps) => {
                     showHeader={true}
                     showPrice={false}
                   />
-                  <ProductInfo
-                    product={product}
-                    variant="compact"
-                    showHeader={false}
-                    showPrice={true}
-                  />
+                  <div className="list__view-price">
+                    <ProductInfo
+                      product={product}
+                      variant="compact"
+                      showHeader={false}
+                      showPrice
+                    />
+
+                    <button
+                      type="button"
+                      className="list__view-cart-button"
+                      aria-label={`Add ${product.name} to cart`}
+                    >
+                      <HiOutlineShoppingCart />
+                    </button>
+                  </div>
 
                   <p className="list__view-products-description">
                     {description.substring(0, 150)}...
@@ -90,7 +101,7 @@ const Container = styled.section`
   .list__view-products {
     display: grid;
     row-gap: 1.5rem;
-    color: var(--clr-grey-dark);
+    color: var(--clr-primary-4);
   }
 
   .list__view-article {
@@ -120,34 +131,28 @@ const Container = styled.section`
 
   .list__view-products-btn-details {
     padding: 0.7rem 1.6rem;
-
     color: #f8fafc;
     text-transform: uppercase;
     font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: 1px;
-
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--clr-secondary-1);
     border: 1px solid rgba(234, 140, 46, 0.5);
     border-radius: 8px;
     width: max-content;
-
     backdrop-filter: blur(8px);
-
     cursor: pointer;
     transition: all 0.3s ease;
 
     box-shadow:
       0 0 0 rgba(234, 140, 46, 0),
-      inset 0 0 0 rgba(255, 255, 255, 0.1);
+      inset 0 0 0 var(--clr-secondary-6);
   }
 
   .list__view-products-btn-details:hover {
-    background: rgba(234, 140, 46, 0.15);
+    background: var(--clr-list-hover-background);
     border-color: rgb(234, 140, 46);
-
-    box-shadow: 0 0 7px rgba(234, 140, 46, 0.45);
-
+    box-shadow: 0 0 7px var(--clr-list-hover-shadow);
     transform: translateY(-2px);
   }
 
@@ -157,30 +162,25 @@ const Container = styled.section`
 
   .list__view-load-more-btn {
     margin: 3rem auto 0;
-
     display: flex;
     align-items: center;
     justify-content: center;
 
     min-width: 180px;
     padding: 0.9rem 2.2rem;
-
     border: 1px solid rgba(234, 140, 46, 0.5);
     border-radius: 999px;
-
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--clr-secondary-1);
     backdrop-filter: blur(10px);
-
     color: #f8fafc;
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-
     cursor: pointer;
 
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      inset 0 1px 0 var(--clr-secondary-2),
       0 0 0 rgba(234, 140, 46, 0);
 
     transition:
@@ -191,11 +191,9 @@ const Container = styled.section`
   }
 
   .list__view-load-more-btn:hover {
-    background: rgba(234, 140, 46, 0.15);
+    background: var(--clr-list-hover-background);
     border-color: #ea8c2e;
-
-    box-shadow: 0 0 18px rgba(234, 140, 46, 0.45);
-
+    box-shadow: 0 0 18px var(--clr-list-hover-shadow);
     transform: translateY(-3px);
   }
 
@@ -218,12 +216,43 @@ const Container = styled.section`
   .product__info-favorite-icon {
     width: 18px;
     height: 18px;
-    color: var(--clr-grey-dark);
+    color: var(--clr-primary-4);
     cursor: pointer;
   }
 
   .product__info-price {
     font-weight: 500;
+  }
+
+  .list__view-price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .list__view-cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .list__view-cart-button svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    color: var(--clr-primary-5);
+    transition:
+      color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .list__view-cart-button:hover svg {
+    color: var(--clr-primary-4);
+    transform: scale(1.15);
   }
 
   @media ${device.mobile} {

@@ -125,7 +125,7 @@ const Container = styled.div`
   }
 
   .product__images--active {
-    border: 2px solid var(--clr-primary-5);
+    border: 2px solid var(--clr-primary-2);
   }
 `
 

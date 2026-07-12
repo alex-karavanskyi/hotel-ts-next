@@ -11,9 +11,11 @@ import { getProductsItems } from '@/redux/features/productSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { url } from '@/shared/constants/db'
 import { useFilters } from '@/shared/hooks/useFilters'
+import { useInitializeFiltersFromUrl } from '@/shared/hooks/useInitializeFiltersFromUrl'
 import { useIsMobile } from '@/shared/hooks/useIsMobile'
 
 const ProductControls = () => {
+  useInitializeFiltersFromUrl()
   const isMobile = useIsMobile()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const { search, handleFilters, handleClearButton } = useFilters()

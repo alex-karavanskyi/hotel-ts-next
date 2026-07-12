@@ -26,7 +26,7 @@ export const Header = styled.div`
 
   background: #1a1d23;
 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--clr-secondary-1);
 
   color: white;
 
@@ -50,7 +50,7 @@ export const EmptyState = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--clr-secondary-4);
   text-align: center;
   padding: 2rem;
   font-size: 0.95rem;

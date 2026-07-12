@@ -64,7 +64,7 @@ const Container = styled.nav`
   li {
     position: relative;
     cursor: pointer;
-    transition: var(--nav-link-transition);
+    transition: color 0.3s ease;
   }
 
   a {
@@ -74,9 +74,9 @@ const Container = styled.nav`
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
-    font-size: var(--nav-link-font-size);
+    font-size: 1.0625rem;
     letter-spacing: var(--spacing);
-    color: var(--clr-grey-dark);
+    color: var(--clr-primary-4);
     transition: color 0.3s ease;
   }
 
@@ -106,7 +106,7 @@ const Container = styled.nav`
   }
 
   .sidebar__links a {
-    font-size: var(--nav-link-mobile-font-size);
+    font-size: 2rem;
   }
 `
 

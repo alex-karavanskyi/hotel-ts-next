@@ -1,63 +1,61 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700&display=swap');
 
 :root {
-  /* dark shades of primary color*/
-  --clr-primary-1: hsl(22, 28%, 21%);
-  --clr-primary-2: hsl(22, 28%, 29%);
-  --clr-primary-3: hsl(22, 28%, 37%);
-  --clr-primary-4: hsl(22, 28%, 45%);
-  /* primary/main color */
-  --clr-primary-5: hsl(22, 31%, 52%);
-  /* lighter shades of primary color */
-  --clr-primary-6: hsl(22, 31%, 60%);
-  --clr-primary-7: hsl(22, 31%, 67%);
-  --clr-primary-8: hsl(20, 31%, 74%);
-  --clr-primary-9: hsl(22, 31%, 81%);
-  --clr-primary-10: hsl(22, 31%, 88%);
-  /* darkest grey - used for headings */
+  /* Primary */
+  --clr-primary-1: #3b82f6;
+  --clr-primary-2: hsl(22, 31%, 52%);
+  --clr-primary-3: #fff;
+  --clr-primary-4: rgb(220, 220, 220);
+  --clr-primary-5: #ff680a;
+  /* Secondary */
+  --clr-secondary-1: rgba(255, 255, 255, 0.06);
+  --clr-secondary-2: rgba(255, 255, 255, 0.08);
+  --clr-secondary-3: rgba(255, 255, 255, 0.12);
+  --clr-secondary-4: rgba(255, 255, 255, 0.7);
+  --clr-secondary-5: rgba(255, 255, 255, 0.04);
+  --clr-secondary-6: rgba(255, 255, 255, 0.1);
+  --clr-secondary-7: rgba(255, 255, 255, 0.24);
+  --clr-secondary-8: rgba(255, 255, 255, 0.14);
+  --clr-secondary-9: rgba(255, 255, 255, 0.16);
+  --clr-secondary-10: rgba(255, 255, 255, 0.28);
+  --clr-secondary-11: rgba(255, 255, 255, 0.35);
+  /* Grey */
   --clr-grey-1: hsl(209, 61%, 16%);
   --clr-grey-2: hsl(211, 39%, 23%);
   --clr-grey-3: hsl(209, 34%, 30%);
   --clr-grey-4: hsl(209, 28%, 39%);
-  /* grey used for paragraphs */
   --clr-grey-5: hsl(210, 22%, 49%);
   --clr-grey-6: hsl(209, 23%, 60%);
   --clr-grey-7: hsl(211, 27%, 70%);
   --clr-grey-8: hsl(210, 31%, 80%);
-  --clr-grey-9: hsl(212, 33%, 89%);
+  --clr-grey-9: hsl(93, 32%, 89%);
   --clr-grey-10: hsl(210, 36%, 96%);
-  --clr-white: #fff;
-  --clr-grey: #272936;
-  --clr-grey-dark: rgb(220, 220, 220);
-  --clr-black: #222;
-  --transition: all 0.3s linear;
+  --clr-grey-11: hsl(220, 13%, 85%);
+  /* Hover */
+  --clr-list-hover-shadow: rgba(234, 140, 46, 0.45);
+  --clr-list-hover-background: rgba(234, 140, 46, 0.15);
+  --clr-pagination-hover-border: rgba(59, 130, 246, 0.35);
+  --clr-pagination-hover-background: rgba(59, 130, 246, 0.12);
+  /* Layout */
   --spacing: 0.1rem;
   --radius: 0.3rem;
-  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --navbar-height: 5rem;
   --font-main: 'Intel', sans-serif;
-  --nav-link-color: rgb(255 255 255 / 0.5);
-  --nav-link-color-inverse: var(--clr-white);
-  --nav-link-hover-color: var(--clr-primary-5);
-  --nav-link-transition: color 0.3s ease;
-  --nav-link-font-size: 1.0625rem;
-  --nav-link-mobile-font-size: 2rem;
-  /* dark gradient background for navbar and footer */
+  --transition: all 0.3s linear;
+  /* Dark gradient background for navbar and footer */
   --gradient-navbar-footer-bg: linear-gradient(
     135deg,
     #0d0d0d 0%,
     #2d3748 50%,
     #1f2632 50% 100%
   );
-  /* skeleton loading gradient */
+  /* Skeleton loading gradient */
   --skeleton-gradient: linear-gradient(
     90deg,
     #2a2a2a 25%,
     #3a3a3a 50%,
     #2a2a2a 75%
   );
-  /* height of navbar */
-  --navbar-height: 5rem;
 }
 
 /*
@@ -148,7 +146,7 @@ h5 {
   line-height: 1.25;
 }
 p {
-  color: var(--clr-grey-dark);
+  color: var(--clr-primary-4);
 }
 
 @media (min-width: 768px) {

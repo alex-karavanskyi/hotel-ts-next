@@ -6,13 +6,12 @@ const SkeletonList = () => (
     <SkeletonButton />
     <SkeletonButton />
     <SkeletonButton />
-    <SkeletonButton />
   </>
 )
 
 const SkeletonButton = styled.div`
   width: 115px;
-  height: 52px;
+  height: 18px;
   border-radius: 8px;
   background: linear-gradient(90deg, #e0e0e0 0%, #f5f5f5 50%, #e0e0e0 100%);
   background-size: 200% 100%;

@@ -92,9 +92,11 @@ const Container = styled.div`
   ${containerStyles}
   padding-left: 1rem;
   padding-right: 1rem;
+
   .sort__btn {
     display: none;
   }
+
   .sort__container {
     display: flex;
     flex-direction: column;
@@ -102,11 +104,13 @@ const Container = styled.div`
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
+
   .sort__title {
     text-transform: capitalize;
     color: white;
     font-weight: 500;
   }
+
   .sort__label {
     text-transform: capitalize;
     color: white;
@@ -114,33 +118,37 @@ const Container = styled.div`
     font-size: 0.95rem;
     margin-right: 0.5rem;
   }
+
   .sort__select-wrapper {
     width: max-content;
     position: relative;
   }
+
   .sort__select {
     appearance: none;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: var(--clr-secondary-2);
+    border: 1px solid var(--clr-secondary-9);
     border-radius: 77px;
     padding: 0.65rem 1rem;
     font-size: 0.95rem;
     color: var(--clr-grey-10);
     cursor: pointer;
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 1px 0 var(--clr-secondary-6),
       0 8px 24px rgba(2, 6, 23, 0.25);
     backdrop-filter: blur(10px);
     transition: var(--transition);
+
     &:hover,
     &:focus {
-      border-color: rgba(255, 255, 255, 0.28);
-      background: rgba(255, 255, 255, 0.14);
+      border-color: var(--clr-secondary-10);
+      background: var(--clr-secondary-8);
       box-shadow:
-        0 0 0 3px rgba(255, 255, 255, 0.08),
+        0 0 0 3px var(--clr-secondary-2),
         0 10px 30px rgba(0, 0, 0, 0.3);
       outline: none;
     }
+
     option {
       background-color: #111827;
       color: #f8fafc;
@@ -153,10 +161,10 @@ const Container = styled.div`
       align-items: center;
       gap: 0.35rem;
       padding: 0.3rem;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: var(--clr-secondary-2);
+      border: 1px solid var(--clr-secondary-3);
       border-radius: 999px;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 var(--clr-secondary-2);
       backdrop-filter: blur(10px);
 
       button {
@@ -177,8 +185,8 @@ const Container = styled.div`
           box-shadow 0.25s ease;
 
         &:hover:not(.sort__btn-active) {
-          background: rgba(255, 255, 255, 0.12);
-          color: var(--clr-white);
+          background: var(--clr-secondary-3);
+          color: var(--clr-primary-3);
           transform: translateY(-1px);
         }
 
@@ -186,7 +194,7 @@ const Container = styled.div`
           background: linear-gradient(135deg, #38bdf8, #6366f1);
           color: #f8fafc;
           box-shadow: 0 8px 18px rgba(99, 102, 241, 0.28);
-          border-color: rgba(255, 255, 255, 0.24);
+          border-color: var(--clr-secondary-7);
         }
 
         &.sort__btn-active:hover {

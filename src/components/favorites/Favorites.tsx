@@ -121,7 +121,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background: rgb(255, 255, 255, 0.05);
+    background: var(--clr-secondary-1);
     border-radius: var(--radius);
     padding: 1rem;
     cursor: grab;
@@ -129,7 +129,7 @@ const Container = styled.div`
   }
 
   .favorites__grid:hover {
-    background: rgb(255, 255, 255, 0.1);
+    background: var(--clr-secondary-6);
   }
 
   .favorites__image {

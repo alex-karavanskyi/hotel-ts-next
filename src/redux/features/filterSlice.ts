@@ -65,6 +65,22 @@ const filterSlice = createSlice({
       const { name, value } = action.payload
       state.filters[name] = value
     },
+    initializeFilters: (
+      state,
+      action: PayloadAction<{
+        text: string
+        category: string[]
+        price: number
+        sort: string
+      }>
+    ) => {
+      const { text, category, price, sort } = action.payload
+
+      state.filters.text = text
+      state.filters.category = category
+      state.filters.price = price
+      state.sort = sort
+    },
     filterProducts: state => {
       const { all_products, filters } = state
       const { text, category, price } = filters
@@ -115,6 +131,7 @@ export const {
   updateSort,
   updateFilters,
   clearFilters,
+  initializeFilters,
   filterProducts,
   sortProducts,
 } = filterSlice.actions

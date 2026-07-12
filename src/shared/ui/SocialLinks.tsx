@@ -38,7 +38,7 @@ const Container = styled.ul`
   }
 
   .social__links-icon:hover {
-    color: var(--clr-primary-5);
+    color: var(--clr-primary-2);
   }
 `
 

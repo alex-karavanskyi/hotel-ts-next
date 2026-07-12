@@ -14,11 +14,12 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { useAppSelector } from '@/redux/hooks'
 import { device } from '@/shared/constants/device'
+import { Product } from '@/shared/types/productsType'
 import { containerStyles } from '@/shared/ui/styles/containerStyles'
 
 const Slider = () => {
   const [hasLoaded, setHasLoaded] = useState(false)
-  const [slides, setSlides] = useState<any[]>([])
+  const [slides, setSlides] = useState<Product[]>([])
 
   const swiperRef = useRef<any>(null)
 

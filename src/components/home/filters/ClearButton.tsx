@@ -53,10 +53,10 @@ const Container = styled.div`
       rgba(56, 189, 248, 0.16),
       rgba(99, 102, 241, 0.16)
     );
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid var(--clr-secondary-3);
     border-radius: 77px;
     letter-spacing: var(--spacing);
-    color: var(--clr-white);
+    color: var(--clr-primary-3);
     font-family: var(--font-main);
     font-weight: 700;
     font-size: 0.95rem;

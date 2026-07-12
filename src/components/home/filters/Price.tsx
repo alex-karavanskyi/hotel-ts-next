@@ -26,10 +26,10 @@ const Price: React.FC<PriceProps> = ({
   const rangeStyle = {
     background: `linear-gradient(
     to right,
-    #ff680a 0%,
-    #ff680a ${progress}%,
-    #d1d5db ${progress}%,
-    #d1d5db 100%
+    var(--clr-primary-5) 0%,
+    var(--clr-primary-5) ${progress}%,
+    var(--clr-grey-11) ${progress}%,
+    var(--clr-grey-11) 100%
   )`,
   }
 
@@ -57,7 +57,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
-  color: var(--clr-grey-dark);
+  color: var(--clr-primary-4);
 
   .price__header {
     display: flex;
@@ -67,13 +67,13 @@ const Container = styled.div`
 
   h5 {
     font-size: 0.95rem;
-    color: var(--clr-white);
+    color: var(--clr-primary-3);
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
 
   p {
-    color: var(--clr-white);
+    color: var(--clr-primary-3);
     font-weight: 600;
   }
 
@@ -97,7 +97,7 @@ const Container = styled.div`
     height: 18px;
     margin-top: -6px;
     border-radius: 50%;
-    background: #ff680a;
+    background: var(--clr-primary-5);
     border: none;
     cursor: pointer;
   }

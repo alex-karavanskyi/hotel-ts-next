@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 
 import { useParams } from 'next/navigation'
 
+import { HiOutlineShoppingCart } from 'react-icons/hi2'
 import styled from 'styled-components'
 
 import Chat from '@/components/chat/Chat'
@@ -56,10 +57,19 @@ const SingleProduct = () => {
           <ProductInfo
             product={product}
             variant="detailed"
-            showHeader={true}
-            showPrice={true}
+            showHeader
+            showPrice
             priceTag="h5"
           />
+
+          <button
+            type="button"
+            className="single__product-buy-button"
+            aria-label={`Buy ${product.name}`}
+          >
+            <HiOutlineShoppingCart />
+            <span>Buy now</span>
+          </button>
           <p className="single__product-description">{description}</p>
           <hr />
         </section>
@@ -110,8 +120,49 @@ const Container = styled.main`
   .product__info-favorite-icon {
     width: 2rem;
     height: 2rem;
-    color: var(--clr-grey-dark);
+    color: var(--clr-primary-4);
     cursor: pointer;
+  }
+
+  .single__product-buy-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+
+    width: fit-content;
+    padding: 0.9rem 1.8rem;
+
+    border: none;
+    border-radius: var(--radius);
+
+    background: var(--clr-primary-5);
+    color: #fff;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+      background-color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .single__product-buy-button svg {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .single__product-buy-button:hover {
+    background: #d95700;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .single__product-buy-button:active {
+    transform: translateY(0);
   }
 
   @media ${device.laptop} {
@@ -228,7 +279,7 @@ const CloseButton = styled.button`
   }
 
   &:active {
-    background: #d1d5db;
+    background: var(--clr-grey-11);
   }
 `
 

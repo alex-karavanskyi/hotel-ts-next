@@ -1,4 +1,5 @@
 'use client'
+import { RxCross2 } from 'react-icons/rx'
 import styled from 'styled-components'
 
 import { FilterName, HandleFiltersFn } from '@/shared/types/productsType'
@@ -9,6 +10,8 @@ interface SearchProps {
 }
 
 const Search: React.FC<SearchProps> = ({ search, handleFilters }) => {
+  const clearSearch = () => handleFilters(FilterName.Text, '')
+
   return (
     <Container>
       <input
@@ -20,22 +23,40 @@ const Search: React.FC<SearchProps> = ({ search, handleFilters }) => {
         onChange={e => handleFilters(FilterName.Text, e.target.value)}
         value={search}
       />
+
+      {search && (
+        <button
+          type="button"
+          className="search__clear"
+          onClick={clearSearch}
+          aria-label="Clear search"
+        >
+          <RxCross2 size={18} />
+        </button>
+      )}
     </Container>
   )
 }
 
 const Container = styled.div`
+  position: relative;
+
   .search__input {
     width: 100%;
-    padding: 0.8rem 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.8rem 3.25rem 0.8rem 1rem;
+    border: 1px solid var(--clr-secondary-3);
     border-radius: 77px;
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--clr-secondary-2);
     color: var(--clr-grey-10);
     letter-spacing: var(--spacing);
     outline: none;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 1px 0 var(--clr-secondary-2);
     transition: var(--transition);
+
+    &::-webkit-search-cancel-button {
+      display: none;
+      -webkit-appearance: none;
+    }
   }
 
   .search__input::placeholder {
@@ -45,9 +66,48 @@ const Container = styled.div`
 
   .search__input:hover,
   .search__input:focus {
-    border-color: rgba(255, 255, 255, 0.24);
-    background: rgba(255, 255, 255, 0.14);
+    border-color: var(--clr-secondary-7);
+    background: var(--clr-secondary-8);
     box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.16);
+  }
+
+  .search__clear {
+    position: absolute;
+    top: 50%;
+    right: 0.8rem;
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    border-radius: 50%;
+    background: var(--clr-secondary-2);
+    color: var(--clr-secondary-4);
+    cursor: pointer;
+
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .search__clear:hover {
+    background: var(--clr-primary-5);
+    color: white;
+    transform: translateY(-50%) scale(1.08);
+  }
+
+  .search__clear:active {
+    transform: translateY(-50%) scale(0.94);
+  }
+
+  .search__clear svg {
+    pointer-events: none;
   }
 `
 

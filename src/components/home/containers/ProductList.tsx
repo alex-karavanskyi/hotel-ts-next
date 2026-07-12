@@ -122,19 +122,19 @@ const FilterPanel = styled.aside`
   flex-direction: column;
   gap: 1rem;
   padding: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid var();
   border-radius: 1.5rem;
   background: rgba(15, 23, 42, 0.7);
   box-shadow:
     0 20px 45px rgba(2, 6, 23, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    inset 0 1px 0 var(--clr-secondary-1);
   backdrop-filter: blur(18px);
   position: sticky;
   top: calc(var(--navbar-height) + 1rem);
 `
 
 const PanelHeading = styled.h4`
-  color: var(--clr-white);
+  color: var(--clr-primary-3);
   font-size: 1.05rem;
   text-align: center;
 `

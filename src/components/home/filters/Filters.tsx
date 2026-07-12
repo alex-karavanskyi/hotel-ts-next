@@ -42,13 +42,13 @@ const Container = styled.aside`
   flex-direction: column;
   gap: 1.2rem;
   padding: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--clr-secondary-2);
   border-radius: 1.1rem;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--clr-secondary-5);
 `
 
 const SectionTitle = styled.h5`
-  color: var(--clr-white);
+  color: var(--clr-primary-3);
   font-size: 0.95rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { FaSearch } from 'react-icons/fa'
+import { HiOutlineShoppingCart } from 'react-icons/hi2'
 import styled from 'styled-components'
 
 import { device } from '@/shared/constants/device'
@@ -55,12 +56,22 @@ const GridView: React.FC<GridProducts> = ({ products, isLoading }) => {
                     showPrice={false}
                   />
 
-                  <ProductInfo
-                    product={product}
-                    variant="compact"
-                    showHeader={false}
-                    showPrice
-                  />
+                  <div className="grid__view-price">
+                    <ProductInfo
+                      product={product}
+                      variant="compact"
+                      showHeader={false}
+                      showPrice
+                    />
+
+                    <button
+                      type="button"
+                      className="grid__view-cart-button"
+                      aria-label={`Add ${product.name} to cart`}
+                    >
+                      <HiOutlineShoppingCart />
+                    </button>
+                  </div>
                 </footer>
               </article>
             )
@@ -88,7 +99,7 @@ const Container = styled.section`
 
   .grid__view-products-images {
     position: relative;
-    background: var(--clr-black);
+    background: #222;
     border-radius: var(--radius);
     overflow: hidden;
 
@@ -157,10 +168,41 @@ const Container = styled.section`
     gap: 1rem;
   }
 
+  .grid__view-price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .grid__view-cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    svg {
+      width: 1.3rem;
+      height: 1.3rem;
+      color: var(--clr-primary-5);
+      transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    &:hover svg {
+      color: var(--clr-primary-4);
+      transform: scale(1.15);
+    }
+  }
+
   .product__info-favorite-icon {
     width: 18px;
     height: 18px;
-    color: var(--clr-grey-dark);
+    color: var(--clr-primary-4);
     cursor: pointer;
   }
 

@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 
 import Link from 'next/link'
 
+import { IoChevronBack, IoChevronForward } from 'react-icons/io5'
 import styled from 'styled-components'
 
 import { numberPagination } from '@/redux/features/paginationSlice'
@@ -17,12 +18,10 @@ const Pagination: React.FC<PaginationProducts> = ({
   postsPerPage,
   totalPosts,
 }) => {
-  const { pagination } = useAppSelector(store => store.pagination)
+  const { pagination: currentPage } = useAppSelector(store => store.pagination)
 
-  const pageNumbers = Array.from(
-    { length: Math.ceil(totalPosts / postsPerPage) },
-    (_, i) => i + 1
-  )
+  const totalPages = Math.ceil(totalPosts / postsPerPage)
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1)
 
   const dispatch = useAppDispatch()
 
@@ -30,7 +29,20 @@ const Pagination: React.FC<PaginationProducts> = ({
     (pageNumber: number) => (event: React.MouseEvent<HTMLAnchorElement>) => {
       event.preventDefault()
       dispatch(numberPagination(pageNumber))
+
+      if (typeof window !== 'undefined') {
+        window.scrollTo({ top: 500, behavior: 'smooth' })
+      }
+      event.currentTarget.blur()
     }
+
+  const goToPrev = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (currentPage > 1) handleClick(currentPage - 1)(e)
+  }
+
+  const goToNext = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (currentPage < totalPages) handleClick(currentPage + 1)(e)
+  }
 
   useEffect(() => {
     const syncStorage = (e: StorageEvent) => {
@@ -45,11 +57,23 @@ const Pagination: React.FC<PaginationProducts> = ({
   return (
     <Container>
       <ul className="pagination__container">
+        <li
+          className={`pagination pagination-arrow ${currentPage === 1 ? 'pagination--disabled' : ''}`}
+        >
+          <Link
+            href="/"
+            className="pagination__link"
+            onClick={goToPrev}
+            aria-disabled={currentPage === 1}
+          >
+            <IoChevronBack size={20} />
+          </Link>
+        </li>
         {pageNumbers.map(number => (
           <li
             key={number}
             className={`${
-              number === pagination
+              number === currentPage
                 ? 'pagination pagination--active'
                 : 'pagination'
             }`}
@@ -63,6 +87,18 @@ const Pagination: React.FC<PaginationProducts> = ({
             </Link>
           </li>
         ))}
+        <li
+          className={`pagination pagination-arrow ${currentPage === totalPages ? 'pagination--disabled' : ''}`}
+        >
+          <Link
+            href="/"
+            className="pagination__link"
+            onClick={goToNext}
+            aria-disabled={currentPage === totalPages}
+          >
+            <IoChevronForward size={20} />
+          </Link>
+        </li>
       </ul>
     </Container>
   )
@@ -74,6 +110,7 @@ const Container = styled.nav`
   .pagination__container {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 0.5rem;
     list-style: none;
     padding: 0;
@@ -81,25 +118,21 @@ const Container = styled.nav`
   }
 
   .pagination {
-    width: 2.2rem;
-    height: 2.2rem;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--clr-grey-5);
     border-radius: 50%;
     overflow: hidden;
-    transition:
-      background-color 0.25s ease,
-      border-color 0.25s ease,
-      transform 0.2s ease;
+    transition: all 0.25s ease;
 
-    &:not(.pagination--active):hover {
-      background-color: rgba(59, 130, 246, 0.12);
-      border-color: rgba(59, 130, 246, 0.35);
+    &:not(.pagination--active):not(.pagination--disabled):hover {
+      border-color: var(--clr-pagination-hover-border);
+      background-color: var(--clr-pagination-hover-background);
       transform: translateY(-2px);
     }
 
     &.pagination--active {
-      background-color: #3b82f6;
-      border-color: #3b82f6;
+      background-color: var(--clr-primary-1);
+      border-color: var(--clr-primary-1);
+
       .pagination__link {
         color: #fff;
       }
@@ -108,6 +141,28 @@ const Container = styled.nav`
         background-color: #2563eb;
       }
     }
+
+    &.pagination-arrow {
+      border: 1px solid transparent;
+      background-color: transparent;
+
+      &:not(.pagination--disabled):hover {
+        border-color: var(--clr-pagination-hover-border);
+        background-color: var(--clr-pagination-hover-background);
+      }
+    }
+
+    &.pagination--disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  .pagination,
+  .pagination-arrow {
+    width: 2.3rem;
+    height: 2.3rem;
   }
 
   .pagination__link {
@@ -116,9 +171,15 @@ const Container = styled.nav`
     width: 100%;
     height: 100%;
     text-decoration: none;
-    font-weight: 600;
-    color: var(--clr-grey-dark);
+    color: var(--clr-primary-4);
     transition: color 0.25s ease;
+  }
+
+  .pagination-arrow:first-child {
+    margin-right: 0.75rem;
+  }
+  .pagination-arrow:last-child {
+    margin-left: 0.75rem;
   }
 `
 

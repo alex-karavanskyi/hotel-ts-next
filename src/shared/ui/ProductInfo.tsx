@@ -53,7 +53,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
 }
 
 const baseStyles = css`
-  color: var(--clr-grey-dark);
+  color: var(--clr-primary-4);
 `
 
 const Container = styled.div<{ $isDetailed: boolean }>`
@@ -71,7 +71,7 @@ const Header = styled.div<{ $isDetailed: boolean }>`
 
 const Name = styled.h5<{ $isDetailed: boolean }>`
   font-weight: 500;
-  color: var(--clr-grey-dark);
+  color: var(--clr-primary-4);
   font-size: ${({ $isDetailed }) => ($isDetailed ? '1.5rem' : 'inherit')};
 
   @media ${device.laptop} {

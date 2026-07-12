@@ -67,14 +67,15 @@ const CategoryLabel = styled(motion.label)<{ $isActive: boolean }>`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--clr-grey-dark);
+  color: var(--clr-primary-4);
   font: 700 1rem var(--font-main);
   border-radius: 1rem;
   cursor: pointer;
   transition: color 0.25s ease;
 
   &:hover {
-    color: ${({ $isActive }) => ($isActive ? '#ff680a' : '#e65c00')};
+    color: ${({ $isActive }) =>
+      $isActive ? 'var(--clr-primary-5)' : '#e65c00'};
   }
 `
 
@@ -94,12 +95,13 @@ const CheckboxIndicator = styled.span<{ $isActive: boolean }>`
   justify-content: center;
 
   border: 2px solid
-    ${({ $isActive }) => ($isActive ? '#ff680a' : 'var(--clr-grey-5)')};
+    ${({ $isActive }) =>
+      $isActive ? 'var(--clr-primary-5)' : 'var(--clr-grey-5)'};
 
   border-radius: 0.4rem;
 
   background-color: ${({ $isActive }) =>
-    $isActive ? '#ff680a' : 'transparent'};
+    $isActive ? 'var(--clr-primary-5)' : 'transparent'};
 
   box-shadow: ${({ $isActive }) =>
     $isActive ? '0 0 0 6px rgba(255, 104, 10, 0.15)' : 'none'};

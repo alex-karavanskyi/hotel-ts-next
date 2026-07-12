@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { useChat } from '@ai-sdk/react'
+import { HiOutlineChatBubbleLeftRight } from 'react-icons/hi2'
 import { IoSend } from 'react-icons/io5'
 import styled from 'styled-components'
 
@@ -71,19 +72,7 @@ const Chat = ({ product }: { product: Product | null }) => {
       <MessagesContainer>
         {messages.length === 0 ? (
           <EmptyState>
-            <svg
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-              />
-            </svg>
+            <HiOutlineChatBubbleLeftRight size={56} />
             <p>Hi! 👋 Ask a question about the product</p>
           </EmptyState>
         ) : (
@@ -143,28 +132,22 @@ const Container = styled.div`
   flex-direction: column;
   height: 100%;
   max-height: 650px;
-
   background: #121418;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-
+  border: 1px solid var(--clr-secondary-2);
   overflow: hidden;
 
   box-shadow:
     0 20px 50px rgba(0, 0, 0, 0.35),
-    inset 0 1px rgba(255, 255, 255, 0.04);
+    inset 0 1px var(--clr-secondary-5);
 `
 
 const MessagesContainer = styled.div`
   flex: 1;
-
   padding: 24px;
-
   overflow: auto;
-
   display: flex;
   flex-direction: column;
   gap: 18px;
-
   background: linear-gradient(180deg, #17191f, #111317);
 `
 
@@ -172,7 +155,7 @@ const Message = styled.div<{ $isUser: boolean; $isStreaming: boolean }>`
   display: flex;
   align-items: flex-end;
   gap: 0.75rem;
-  color: ${({ $isUser }) => ($isUser ? '#3b82f6' : 'white')};
+  color: ${({ $isUser }) => ($isUser ? 'var(--clr-primary-1)' : 'white')};
 
   flex-direction: ${({ $isUser }) => ($isUser ? 'row-reverse' : 'row')};
 
@@ -195,9 +178,9 @@ const FormContainer = styled.form`
   display: flex;
   gap: 0.5rem;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--clr-secondary-6);
   backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid var(--clr-secondary-6);
 `
 
 const Input = styled.input`
@@ -224,14 +207,10 @@ const Input = styled.input`
 const SendButton = styled.button`
   width: 50px;
   height: 50px;
-
   border-radius: 50%;
-
-  background: #3b82f6;
-
+  background: var(--clr-primary-1);
   color: white;
   cursor: pointer;
-
   transition: 0.25s;
 
   &:hover {
