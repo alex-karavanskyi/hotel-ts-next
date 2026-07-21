@@ -12,7 +12,6 @@ import {
 
 interface SidebarProps extends FilterFields {
   isSidebarOpen: boolean
-  search: string
   loading: boolean
   handleFilters: HandleFiltersFn
   handleClearButton: HandleClearButtonFn
@@ -21,7 +20,6 @@ interface SidebarProps extends FilterFields {
 
 const Sidebar: React.FC<SidebarProps> = ({
   isSidebarOpen,
-  search,
   category,
   price,
   loading,
@@ -53,7 +51,7 @@ const Sidebar: React.FC<SidebarProps> = ({
               handleFilters={handleFilters}
               loading={loading}
             />
-            <Search search={search} handleFilters={handleFilters} />
+            <Search handleFilters={handleFilters} />
             <Price
               price={price}
               min_price={min_price}

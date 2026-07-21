@@ -15,7 +15,6 @@ const FiltersCleaner = () => {
     const isHomePage = pathname === '/' || pathname === '/home'
 
     if (!isHomePage) {
-      localStorage.removeItem('filters_state')
       localStorage.removeItem('pagination')
       localStorage.removeItem('grid_view')
 

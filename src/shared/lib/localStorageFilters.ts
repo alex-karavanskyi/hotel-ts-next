@@ -1,23 +1,7 @@
 import {
-  FILTERS_STORAGE_KEY,
   GRID_VIEW_STORAGE_KEY,
   PAGINATION_STORAGE_KEY,
 } from '@/shared/constants/localStorage'
-import { FilterState } from '@/shared/types/productsType'
-
-export const loadFiltersFromStorage = (): Pick<
-  FilterState,
-  'filters' | 'sort'
-> | null => {
-  if (typeof window === 'undefined') return null
-
-  try {
-    const data = localStorage.getItem(FILTERS_STORAGE_KEY)
-    return data ? JSON.parse(data) : null
-  } catch {
-    return null
-  }
-}
 
 export const loadGridViewFromStorage = (): boolean => {
   if (typeof window === 'undefined') return true

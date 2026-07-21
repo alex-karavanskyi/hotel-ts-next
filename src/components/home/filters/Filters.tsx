@@ -9,13 +9,11 @@ import {
 } from '@/shared/types/productsType'
 
 interface FiltersProps extends FilterFields {
-  search: string
   handleFilters: HandleFiltersFn
   handleClearButton: HandleClearButtonFn
 }
 
 const Filters: React.FC<FiltersProps> = ({
-  search,
   price,
   min_price,
   max_price,
@@ -25,7 +23,7 @@ const Filters: React.FC<FiltersProps> = ({
   return (
     <Container>
       <SectionTitle>Search & price</SectionTitle>
-      <Search search={search} handleFilters={handleFilters} />
+      <Search handleFilters={handleFilters} />
       <Price
         price={price}
         min_price={min_price}

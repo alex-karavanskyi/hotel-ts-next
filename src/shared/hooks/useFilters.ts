@@ -11,8 +11,6 @@ import {
   updateTextFilter,
 } from '@/shared/actions/filterActions'
 import { useDebouncedUpdateFilters } from '@/shared/hooks/useDebounceFilters'
-import { useSearchStorage } from '@/shared/hooks/useSearchStorage'
-import { useStorageSync } from '@/shared/hooks/useStorageSync'
 import { FilterName } from '@/shared/types/productsType'
 import { createSearchParams } from '@/shared/utils/createSearchParams'
 
@@ -22,13 +20,9 @@ export const useFilters = () => {
 
   const debouncedUpdateFilters = useDebouncedUpdateFilters()
 
-  const search = useAppSelector(state => state.filter.filters.text)
   const selectedCategories = useAppSelector(
     state => state.filter.filters.category
   )
-
-  useSearchStorage(search)
-  useStorageSync()
 
   const handleFilters = (
     name: FilterName,
@@ -80,7 +74,6 @@ export const useFilters = () => {
   }
 
   return {
-    search,
     handleFilters,
     handleClearButton,
   }

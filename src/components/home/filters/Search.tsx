@@ -2,15 +2,17 @@
 import { RxCross2 } from 'react-icons/rx'
 import styled from 'styled-components'
 
+import { useAppSelector } from '@/redux/hooks'
 import { FilterName, HandleFiltersFn } from '@/shared/types/productsType'
 
 interface SearchProps {
-  search: string
   handleFilters: HandleFiltersFn
 }
 
-const Search: React.FC<SearchProps> = ({ search, handleFilters }) => {
+const Search: React.FC<SearchProps> = ({ handleFilters }) => {
   const clearSearch = () => handleFilters(FilterName.Text, '')
+
+  const text = useAppSelector(state => state.filter.filters.text)
 
   return (
     <Container>
@@ -20,20 +22,17 @@ const Search: React.FC<SearchProps> = ({ search, handleFilters }) => {
         name="text"
         placeholder="Search"
         className="search__input"
+        value={text}
         onChange={e => handleFilters(FilterName.Text, e.target.value)}
-        value={search}
       />
-
-      {search && (
-        <button
-          type="button"
-          className="search__clear"
-          onClick={clearSearch}
-          aria-label="Clear search"
-        >
-          <RxCross2 size={18} />
-        </button>
-      )}
+      <button
+        type="button"
+        className="search__clear"
+        onClick={clearSearch}
+        aria-label="Clear search"
+      >
+        <RxCross2 size={18} />
+      </button>
     </Container>
   )
 }

@@ -6,7 +6,6 @@ import {
 import { numberPagination } from '@/redux/features/paginationSlice'
 import { AppDispatch } from '@/redux/store'
 
-import { SEARCH_STORAGE_KEY } from '../constants/localStorage'
 import { FilterName } from '../types/productsType'
 import { normalizeCategories } from '../utils/normalizeCategories'
 
@@ -36,8 +35,6 @@ export const clearAllFilters = (
   dispatch(clearFilters())
 
   dispatch(numberPagination(1))
-
-  localStorage.removeItem(SEARCH_STORAGE_KEY)
 
   debouncedUpdateFilters(new URLSearchParams())
 }

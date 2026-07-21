@@ -1,10 +1,7 @@
 'use client'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import {
-  loadFiltersFromStorage,
-  loadGridViewFromStorage,
-} from '@/shared/lib/localStorageFilters'
+import { loadGridViewFromStorage } from '@/shared/lib/localStorageFilters'
 import { FilterState, Product } from '@/shared/types/productsType'
 
 const initialGridView = loadGridViewFromStorage()
@@ -21,15 +18,6 @@ const initialState: FilterState = {
     max_price: 0,
     price: 0,
   },
-}
-
-const savedState = loadFiltersFromStorage()
-if (savedState) {
-  initialState.filters = {
-    ...initialState.filters,
-    ...savedState.filters,
-  }
-  initialState.sort = savedState.sort
 }
 
 const filterSlice = createSlice({

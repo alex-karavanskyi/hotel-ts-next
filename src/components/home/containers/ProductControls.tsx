@@ -18,7 +18,7 @@ const ProductControls = () => {
   useInitializeFiltersFromUrl()
   const isMobile = useIsMobile()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const { search, handleFilters, handleClearButton } = useFilters()
+  const { handleFilters, handleClearButton } = useFilters()
   const { products, products_loading: loading } = useAppSelector(
     store => store.products
   )
@@ -51,7 +51,6 @@ const ProductControls = () => {
         <Sidebar
           loading={loading}
           category={category}
-          search={search}
           price={price}
           min_price={min_price}
           max_price={max_price}

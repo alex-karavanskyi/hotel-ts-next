@@ -19,7 +19,7 @@ const postsPerPage = 6
 
 const ProductList = () => {
   const isMobile = useIsMobile()
-  const { search, handleFilters, handleClearButton } = useFilters()
+  const { handleFilters, handleClearButton } = useFilters()
   const { pagination } = useAppSelector(store => store.pagination)
 
   const { products_loading: loading, products_error: error } = useAppSelector(
@@ -68,7 +68,6 @@ const ProductList = () => {
         />
         <Filters
           category={category}
-          search={search}
           price={price}
           min_price={min_price}
           max_price={max_price}

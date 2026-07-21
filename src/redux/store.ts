@@ -6,7 +6,6 @@ import modalReducer from '@/redux/features/modalSlice'
 import paginationSlice from '@/redux/features/paginationSlice'
 import productReducer from '@/redux/features/productSlice'
 
-import { persistFiltersMiddleware } from './middleware/persistFiltersMiddleware'
 import { persistGridViewMiddleware } from './middleware/persistGridViewMiddleware'
 import { persistPaginationMiddleware } from './middleware/persistPaginationMiddleware'
 
@@ -20,7 +19,6 @@ export const store = configureStore({
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(
-      persistFiltersMiddleware,
       persistGridViewMiddleware,
       persistPaginationMiddleware
     ),
